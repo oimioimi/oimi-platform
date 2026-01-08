@@ -10,31 +10,21 @@ body { margin:0; font-family:'Segoe UI',sans-serif; background:#fff; }
 .container { max-width:600px; margin:auto; padding:10px; }
 .card { background:#fff; padding:20px; border-radius:20px; box-shadow:0 10px 30px rgba(0,0,0,.1); }
 label { font-weight:bold; font-size:13px; display:block; margin-top:8px; }
-input, select, textarea {
-  width:100%; padding:10px; border-radius:8px; border:1px solid #ccc; font-size:14px;
-}
+input, select, textarea { width:100%; padding:10px; border-radius:8px; border:1px solid #ccc; font-size:14px; }
 .num-input { direction:ltr; text-align:left; }
-.btn { width:100%; background:linear-gradient(135deg,#00732f,#00a342);
-  color:#fff; padding:14px; border:none; border-radius:10px;
-  font-size:16px; font-weight:bold; margin-top:15px; cursor:pointer;
-}
+.btn { width:100%; background:linear-gradient(135deg,#00732f,#00a342); color:#fff; padding:14px; border:none; border-radius:10px; font-size:16px; font-weight:bold; margin-top:15px; cursor:pointer; }
 .box { background:var(--lg); padding:12px; border-radius:10px; border:1px solid var(--p); margin-bottom:10px; font-size:13px; }
 </style>
 </head>
 <body>
-
 <div class="container">
 <div class="card">
-
 <h2 style="text-align:center">طلب التقييم المهني</h2>
 
 <form id="oimi-form" enctype="multipart/form-data">
-
 <div class="box">
 <strong>خطوات إتمام الطلب:</strong><br>
-1️⃣ تحويل الرسوم<br>
-2️⃣ تعبئة البيانات<br>
-3️⃣ إرسال الطلب
+1️⃣ تحويل الرسوم<br>2️⃣ تعبئة البيانات<br>3️⃣ إرسال الطلب
 </div>
 
 <label>الاسم بالعربية *</label>
@@ -79,17 +69,13 @@ input, select, textarea {
 <input type="file" id="receipt_file" accept="image/*" required>
 
 <button class="btn" id="submitBtn">إرسال الطلب</button>
-
 </form>
 </div>
 </div>
 
 <script>
-// ================== إعداد الدول ==================
-const countryCodes = {
- "السودان":"00249","مصر":"0020","السعودية":"00966",
- "الإمارات":"00971","قطر":"00974","الكويت":"00965"
-};
+// ============ إعداد الدول ============
+const countryCodes = { "السودان":"00249","مصر":"0020","السعودية":"00966","الإمارات":"00971","قطر":"00974","الكويت":"00965" };
 const cSel = document.getElementById("u_country");
 Object.keys(countryCodes).forEach(c=>{
   const o=document.createElement("option");
@@ -102,37 +88,40 @@ function handleCountryChange(el){
  p.value=w.value=countryCodes[el.value];
 }
 
-// ================== إرسال النموذج ==================
-const scriptURL = "https://script.google.com/macros/s/AKfycbw0_bL4nPeYNcKIi1CVGveBO_VhFQJimAUreo394RtrvcZCpze8HzKTL_gWTLyKwowI/exec";
+// ============ الإرسال ============
+const scriptURL = "https://script.google.com/macros/s/AKfycbzDz64Ul4v5vpUJQ17_sxmpPmhp-d2ILEIgaS2LlZ75QnTconOeWyej2SitR1D5vkv7/exec";
 
 document.getElementById("oimi-form").addEventListener("submit", async e=>{
  e.preventDefault();
  const btn=document.getElementById("submitBtn");
  btn.disabled=true; btn.textContent="جاري الإرسال...";
 
- const fd = new FormData();
- fd.append("الاسم العربي", document.getElementById("u_name_ar").value);
- fd.append("الاسم الانجليزي", document.getElementById("u_name_en").value);
- fd.append("التخصص", document.getElementById("u_spec").value);
- fd.append("بلد الإقامة", document.getElementById("u_country").value);
- fd.append("رقم الهاتف", document.getElementById("u_phone").value);
- fd.append("رقم الواتساب", document.getElementById("u_whatsapp").value);
- fd.append("البريد", document.getElementById("u_email").value);
- fd.append("ملاحظات", document.getElementById("u_notes").value);
- fd.append("المصدر", document.getElementById("u_source").value);
- fd.append("cv_file", document.getElementById("cv_file").files[0]);
- fd.append("receipt_file", document.getElementById("receipt_file").files[0]);
+ const fd=new FormData();
+ fd.append("الاسم العربي", u_name_ar.value);
+ fd.append("الاسم الانجليزي", u_name_en.value);
+ fd.append("التخصص", u_spec.value);
+ fd.append("بلد الإقامة", u_country.value);
+ fd.append("رقم الهاتف", u_phone.value);
+ fd.append("رقم الواتساب", u_whatsapp.value);
+ fd.append("البريد", u_email.value);
+ fd.append("ملاحظات", u_notes.value);
+ fd.append("المصدر", u_source.value);
+ fd.append("cv_file", cv_file.files[0]);
+ fd.append("receipt_file", receipt_file.files[0]);
 
  try {
-   await fetch(scriptURL, { method: "POST", body: fd });
+   await fetch(scriptURL, { method:"POST", body:fd });
    alert("تم إرسال طلبك بنجاح ✅");
+   window.open(
+     "https://wa.me/249900065080?text=" + encodeURIComponent("تم إرسال طلبي للمنصة باسم: " + u_name_ar.value),
+     "_blank"
+   );
    location.reload();
  } catch(err) {
-   alert("حدث خطأ أثناء الإرسال ❌");
+   alert("حدث خطأ ❌ حاول مرة أخرى");
    btn.disabled=false; btn.textContent="إرسال الطلب";
  }
 });
 </script>
-
 </body>
 </html>
