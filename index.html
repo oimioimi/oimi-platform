@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>منصة OIMI - طلب تقييم</title>
-
 <style>
 :root { --p:#00732f; --lg:#e8f5e9; }
 body { margin:0; font-family:'Segoe UI',sans-serif; background:#fff; }
@@ -12,29 +11,25 @@ body { margin:0; font-family:'Segoe UI',sans-serif; background:#fff; }
 .card { background:#fff; padding:20px; border-radius:20px; box-shadow:0 10px 30px rgba(0,0,0,.1); }
 label { font-weight:bold; font-size:13px; display:block; margin-top:8px; }
 input, select, textarea {
-  width:100%; padding:10px; border-radius:8px;
-  border:1px solid #ccc; font-size:14px;
+  width:100%; padding:10px; border-radius:8px; border:1px solid #ccc; font-size:14px;
 }
 .num-input { direction:ltr; text-align:left; }
-.btn {
-  width:100%; background:linear-gradient(135deg,#00732f,#00a342);
+.btn { width:100%; background:linear-gradient(135deg,#00732f,#00a342);
   color:#fff; padding:14px; border:none; border-radius:10px;
   font-size:16px; font-weight:bold; margin-top:15px; cursor:pointer;
 }
-.box {
-  background:var(--lg); padding:12px; border-radius:10px;
-  border:1px solid var(--p); margin-bottom:10px; font-size:13px;
-}
+.box { background:var(--lg); padding:12px; border-radius:10px; border:1px solid var(--p); margin-bottom:10px; font-size:13px; }
 </style>
 </head>
-
 <body>
+
 <div class="container">
 <div class="card">
 
 <h2 style="text-align:center">طلب التقييم المهني</h2>
 
 <form id="oimi-form" enctype="multipart/form-data">
+
 <div class="box">
 <strong>خطوات إتمام الطلب:</strong><br>
 1️⃣ تحويل الرسوم<br>
@@ -97,7 +92,8 @@ const countryCodes = {
 };
 const cSel = document.getElementById("u_country");
 Object.keys(countryCodes).forEach(c=>{
-  const o=document.createElement("option"); o.value=c; o.textContent=c; cSel.appendChild(o);
+  const o=document.createElement("option");
+  o.value=c; o.textContent=c; cSel.appendChild(o);
 });
 function handleCountryChange(el){
  const p=document.getElementById("u_phone");
@@ -106,35 +102,33 @@ function handleCountryChange(el){
  p.value=w.value=countryCodes[el.value];
 }
 
-// ================== الإرسال ==================
-const scriptURL = "https://script.google.com/macros/s/AKfycbxHNetzb3P5sa7cDfADC-WlqsDu_NngTIycpbCsvF1B5ACMH4QogJb6svDIVQ9-8aao/exec";
+// ================== إرسال النموذج ==================
+const scriptURL = "https://script.google.com/macros/s/AKfycbxFYc09GbxOR68nhjI0mi6wSquKOAN4WlkIPEqpwZm3L3-0_yIhPpACbrzDSSU7Gbs3/exec";
 
 document.getElementById("oimi-form").addEventListener("submit", async e=>{
  e.preventDefault();
  const btn=document.getElementById("submitBtn");
  btn.disabled=true; btn.textContent="جاري الإرسال...";
 
- const fd=new FormData();
- fd.append("الاسم العربي", u_name_ar.value);
- fd.append("الاسم الانجليزي", u_name_en.value);
- fd.append("التخصص", u_spec.value);
- fd.append("بلد الإقامة", u_country.value);
- fd.append("رقم الهاتف", u_phone.value);
- fd.append("رقم الواتساب", u_whatsapp.value);
- fd.append("البريد", u_email.value);
- fd.append("ملاحظات", u_notes.value);
- fd.append("المصدر", u_source.value);
- fd.append("cv_file", cv_file.files[0]);
- fd.append("receipt_file", receipt_file.files[0]);
+ const fd = new FormData();
+ fd.append("الاسم العربي", document.getElementById("u_name_ar").value);
+ fd.append("الاسم الانجليزي", document.getElementById("u_name_en").value);
+ fd.append("التخصص", document.getElementById("u_spec").value);
+ fd.append("بلد الإقامة", document.getElementById("u_country").value);
+ fd.append("رقم الهاتف", document.getElementById("u_phone").value);
+ fd.append("رقم الواتساب", document.getElementById("u_whatsapp").value);
+ fd.append("البريد", document.getElementById("u_email").value);
+ fd.append("ملاحظات", document.getElementById("u_notes").value);
+ fd.append("المصدر", document.getElementById("u_source").value);
+ fd.append("cv_file", document.getElementById("cv_file").files[0]);
+ fd.append("receipt_file", document.getElementById("receipt_file").files[0]);
 
  try {
-   await fetch(scriptURL, { method: "POST", body: fd, mode: "no-cors" });
+   await fetch(scriptURL, { method: "POST", body: fd });
    alert("تم إرسال طلبك بنجاح ✅");
-   const waText = encodeURIComponent("تم إرسال طلبي باسم: "+u_name_ar.value);
-   window.open(`https://wa.me/249900065080?text=${waText}`, "_blank");
    location.reload();
- } catch (err) {
-   alert("حدث خطأ ❌ يرجى المحاولة لاحقًا");
+ } catch(err) {
+   alert("حدث خطأ أثناء الإرسال ❌");
    btn.disabled=false; btn.textContent="إرسال الطلب";
  }
 });
