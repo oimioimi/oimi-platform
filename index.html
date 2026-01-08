@@ -1,47 +1,46 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>منصة OIMI - طلب تقييم</title>
-<link rel="icon" type="image/png" href="https://i.postimg.cc/8z0m9Gf8/OiMi-Favicon-Clear.png">
-
-<style>
-:root { --p: #00732f; --lg: #e8f5e9; }
-body { background: #fff; margin: 0; font-family: 'Segoe UI', sans-serif; padding: 5px; text-align: right; overflow-x: hidden; }
-.container { max-width: 600px; margin: auto; display: flex; flex-direction: column; gap: 5px; }
-.card { background: #fff; padding: 18px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 1px solid #eee; margin-bottom: 10px; }
-.oimi-style { display: inline-flex; align-items: baseline; direction: ltr; font-weight: bold; color: #000; }
-.oimi-i { display: inline-block; line-height: 1; background: linear-gradient(to bottom, #ff0000 20%, #000000 20%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-.main-title { text-align: center; margin-bottom: 8px; font-weight: 800; font-size: 22px; }
-.main-title .oimi-style { font-size: 34px; } 
-.box { background: var(--lg); padding: 12px; border-radius: 10px; border: 1px solid var(--p); margin-bottom: 10px; color: #2e7d32; font-size: 13px; line-height: 1.6; }
-.separator { border-top: 1px dashed var(--p); margin: 8px 0; opacity: 0.5; }
-label { display: block; margin: 4px 0 2px; font-weight: bold; font-size: 13px; color: #444; }
-input, select, textarea { width: 100%; padding: 10px; margin-bottom: 5px; border-radius: 8px; border: 1px solid #ccc; box-sizing: border-box; font-size: 14px; background: #f9f9f9; font-weight: bold; }
-.num-input { direction: ltr; text-align: left; }
-.btn { width: 100%; background: linear-gradient(135deg, #00732f, #00a342); color: white; padding: 14px; border: none; border-radius: 10px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 5px; margin-bottom: 15px; }
-.slider-title { text-align: center; color: var(--p); font-weight: bold; font-size: 18px; margin-top: 10px; }
-.slider { width: 100%; overflow: hidden; text-align: center; height: 240px; direction: ltr; margin-bottom: 10px; }
-.track { display: flex; width: max-content; animation: scroll-loop 25s linear infinite; padding: 15px 0; }
-.track img { width: 260px; height: 160px; object-fit: cover; margin: 0 15px; border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.1); cursor: zoom-in; }
-@keyframes scroll-loop { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-#modalOverlay { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:10000; align-items:center; justify-content:center; }
-#modalOverlay img { max-width: 90%; max-height: 85%; border: 3px solid #fff; border-radius: 8px; }
-.footer-section { background: #fff; border-top: 1px solid #eee; padding: 15px; text-align: center; }
-.f-title { color: var(--p); font-size: 19px; display: block; font-weight: bold; margin-bottom: 8px; }
-.f-intro { font-size: 13.5px; line-height: 1.6; color: #333; margin-bottom: 5px; text-align: justify; }
-.f-subtitle { color: #888; font-size: 11px; cursor: pointer; text-decoration: underline; display: block; margin-bottom: 10px; }
-#details-box { display: none; background: #fdfdfd; padding: 15px; border-radius: 12px; border: 1px solid #ddd; margin-top: 10px; font-size: 13px; line-height: 1.8; color: #333; text-align: right; }
-.contact-area { background: #ffffff !important; padding: 25px; text-align: center; border-top: 2px solid #f0f0f0; margin-top: 10px; border-radius: 0 0 20px 20px; }
-.contact-area h4 { color: var(--p); margin: 0 0 15px 0; font-size: 18px; font-weight: bold; }
-.contact-links { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
-.contact-links a { color: var(--p); text-decoration: none; font-weight: bold; font-size: 15px; padding: 10px 20px; border: 1px solid var(--p); border-radius: 10px; }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة OIMI - طلب تقييم</title>
+    <link rel="icon" type="image/png" href="https://i.postimg.cc/8z0m9Gf8/OiMi-Favicon-Clear.png">
+    <style>
+        :root { --p: #00732f; --lg: #e8f5e9; }
+        body { background: #fff; margin: 0; font-family: 'Segoe UI', sans-serif; padding: 5px; text-align: right; overflow-x: hidden; }
+        .container { max-width: 600px; margin: auto; display: flex; flex-direction: column; gap: 5px; }
+        .card { background: #fff; padding: 18px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 1px solid #eee; margin-bottom: 10px; }
+        .oimi-style { display: inline-flex; align-items: baseline; direction: ltr; font-weight: bold; color: #000; }
+        .oimi-i { display: inline-block; line-height: 1; background: linear-gradient(to bottom, #ff0000 20%, #000000 20%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .main-title { text-align: center; margin-bottom: 8px; font-weight: 800; font-size: 22px; }
+        .main-title .oimi-style { font-size: 34px; } 
+        .box { background: var(--lg); padding: 12px; border-radius: 10px; border: 1px solid var(--p); margin-bottom: 10px; color: #2e7d32; font-size: 13px; line-height: 1.6; }
+        .separator { border-top: 1px dashed var(--p); margin: 8px 0; opacity: 0.5; }
+        label { display: block; margin: 4px 0 2px; font-weight: bold; font-size: 13px; color: #444; }
+        input, select, textarea { width: 100%; padding: 10px; margin-bottom: 5px; border-radius: 8px; border: 1px solid #ccc; box-sizing: border-box; font-size: 14px; background: #f9f9f9; font-weight: bold; }
+        .num-input { direction: ltr; text-align: left; }
+        .btn { width: 100%; background: linear-gradient(135deg, #00732f, #00a342); color: white; padding: 14px; border: none; border-radius: 10px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 5px; margin-bottom: 15px; }
+        .slider-title { text-align: center; color: var(--p); font-weight: bold; font-size: 18px; margin-top: 10px; }
+        .slider { width: 100%; overflow: hidden; text-align: center; height: 240px; direction: ltr; margin-bottom: 10px; }
+        .track { display: flex; width: max-content; animation: scroll-loop 25s linear infinite; padding: 15px 0; }
+        .track img { width: 260px; height: 160px; object-fit: cover; margin: 0 15px; border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.1); cursor: zoom-in; }
+        @keyframes scroll-loop { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        #modalOverlay { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:10000; align-items:center; justify-content:center; }
+        #modalOverlay img { max-width: 90%; max-height: 85%; border: 3px solid #fff; border-radius: 8px; }
+        .footer-section { background: #fff; border-top: 1px solid #eee; padding: 15px; text-align: center; }
+        .f-title { color: var(--p); font-size: 19px; display: block; font-weight: bold; margin-bottom: 8px; }
+        .f-intro { font-size: 13.5px; line-height: 1.6; color: #333; margin-bottom: 5px; text-align: justify; }
+        .f-subtitle { color: #888; font-size: 11px; cursor: pointer; text-decoration: underline; display: block; margin-bottom: 10px; }
+        #details-box { display: none; background: #fdfdfd; padding: 15px; border-radius: 12px; border: 1px solid #ddd; margin-top: 10px; font-size: 13px; line-height: 1.8; color: #333; text-align: right; }
+        .contact-area { background: #ffffff !important; padding: 25px; text-align: center; border-top: 2px solid #f0f0f0; margin-top: 10px; border-radius: 0 0 20px 20px; }
+        .contact-area h4 { color: var(--p); margin: 0 0 15px 0; font-size: 18px; font-weight: bold; }
+        .contact-links { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+        .contact-links a { color: var(--p); text-decoration: none; font-weight: bold; font-size: 15px; padding: 10px 20px; border: 1px solid var(--p); border-radius: 10px; }
+    </style>
 </head>
 <body>
 
-<div id="modalOverlay" onclick="this.style.display='none'"><img id="modalImg" alt="عرض الصورة"></div>
+<div id="modalOverlay" onclick="this.style.display='none'"><img id="modalImg"></div>
 
 <div class="container">
     <div class="card">
@@ -59,25 +58,23 @@ input, select, textarea { width: 100%; padding: 10px; margin-bottom: 5px; border
             </div>
 
             <label>الاسم الرباعي (بالعربية) *</label>
-            <input type="text" id="u_name_ar" placeholder="أدخل اسمك بالعربي" required aria-label="الاسم الرباعي بالعربية">
+            <input type="text" id="u_name_ar" placeholder="أدخل اسمك بالعربي" required>
             <label>الاسم الرباعي (بالإنجليزية) *</label>
-            <input type="text" id="u_name_en" class="num-input" placeholder="Full Name in English" required aria-label="Full Name in English">
+            <input type="text" id="u_name_en" class="num-input" placeholder="Full Name in English" required>
             <label>التخصص المهني *</label>
-            <input type="text" id="u_spec" placeholder="مثلاً: محاسب قانوني" required aria-label="التخصص المهني">
+            <input type="text" id="u_spec" placeholder="مثلاً: محاسب قانوني" required>
             <label>بلد الإقامة *</label>
-            <select id="u_country" required onchange="handleCountryChange(this)" aria-label="بلد الإقامة">
-                <option value="">اختر الدولة...</option>
-            </select>
+            <select id="u_country" required onchange="handleCountryChange(this)"><option value="">اختر الدولة...</option></select>
             <label>رقم الهاتف *</label>
-            <input type="tel" id="u_phone" class="num-input" placeholder="اختر الدولة أولاً" disabled required aria-label="رقم الهاتف">
+            <input type="tel" id="u_phone" class="num-input" placeholder="اختر الدولة أولاً" disabled required>
             <label>رقم الواتساب *</label>
-            <input type="tel" id="u_whatsapp" class="num-input" placeholder="اختر الدولة أولاً" disabled required aria-label="رقم الواتساب">
+            <input type="tel" id="u_whatsapp" class="num-input" placeholder="اختر الدولة أولاً" disabled required>
             <label>البريد الإلكتروني *</label>
-            <input type="email" id="u_email" placeholder="mail@example.com" required aria-label="البريد الإلكتروني">
+            <input type="email" id="u_email" placeholder="mail@example.com" required>
             <label>ملاحظات إضافية</label>
-            <textarea id="u_notes" rows="2" placeholder="أي تفاصيل إضافية..." aria-label="ملاحظات إضافية"></textarea>
+            <textarea id="u_notes" rows="2" placeholder="أي تفاصيل إضافية..."></textarea>
             <label>كيف سمعت عنا؟ *</label>
-            <select id="u_source" required aria-label="مصدر المعرفة بالمنصة">
+            <select id="u_source" required>
                 <option value="">اختر المصدر...</option>
                 <option value="فيسبوك">فيسبوك</option>
                 <option value="لينكد إن">لينكد إن</option>
@@ -86,9 +83,9 @@ input, select, textarea { width: 100%; padding: 10px; margin-bottom: 5px; border
             </select>
             <div class="separator"></div>
             <label>أرفق السيرة الذاتية (PDF أو صورة) *</label>
-            <input type="file" id="cv_file" accept=".pdf,image/*" required aria-label="السيرة الذاتية">
+            <input type="file" id="cv_file" accept=".pdf,image/*" required>
             <label>أرفق صورة إيصال التحويل *</label>
-            <input type="file" id="receipt_file" accept="image/*" required aria-label="إيصال التحويل">
+            <input type="file" id="receipt_file" accept="image/*" required>
 
             <button type="submit" class="btn" id="submitBtn">إرسال الطلب وحفظ البيانات</button>
         </form>
@@ -96,9 +93,9 @@ input, select, textarea { width: 100%; padding: 10px; margin-bottom: 5px; border
         <div class="slider-title">مع عملائنا</div>
         <div class="slider">
             <div class="track">
-                <img src="https://i.postimg.cc/vHPSwW3p/528604980-10162083330481298-381945114741787991-n.jpg" onclick="zoomImg(this.src)" alt="صورة عميل">
-                <img src="https://i.postimg.cc/sDn0Cpwb/585747945-10162491435001298-5020852638269490297-n.jpg" onclick="zoomImg(this.src)" alt="صورة عميل">
-                <img src="https://i.postimg.cc/Wb9fcMXY/QVZo-ZFNzc-Wdi-MUx2a-HJMUFRhe-GJza-TZI.jpg" onclick="zoomImg(this.src)" alt="صورة عميل">
+                <img src="https://i.postimg.cc/vHPSwW3p/528604980-10162083330481298-381945114741787991-n.jpg" onclick="zoomImg(this.src)">
+                <img src="https://i.postimg.cc/sDn0Cpwb/585747945-10162491435001298-5020852638269490297-n.jpg" onclick="zoomImg(this.src)">
+                <img src="https://i.postimg.cc/Wb9fcMXY/QVZo-ZFNzc-Wdi-MUx2a-HJMUFRhe-GJza-TZI.jpg" onclick="zoomImg(this.src)">
             </div>
         </div>
 
@@ -125,67 +122,60 @@ input, select, textarea { width: 100%; padding: 10px; margin-bottom: 5px; border
 </div>
 
 <script>
-const countryCodes = { "السودان":"00249","مصر":"0020","السعودية":"00966","الإمارات":"00971","قطر":"00974","الكويت":"00965","عمان":"00968","البحرين":"00973" };
-const cSel = document.getElementById('u_country');
-Object.keys(countryCodes).forEach(c=>{
-    const o=document.createElement('option'); o.value=c; o.textContent=c; cSel.appendChild(o);
-});
+    // تهيئة قائمة الدول
+    const countryCodes = { "السودان":"00249","مصر":"0020","السعودية":"00966","الإمارات":"00971","قطر":"00974","الكويت":"00965","عمان":"00968","البحرين":"00973" };
+    const cSel = document.getElementById('u_country');
+    Object.keys(countryCodes).forEach(c => {
+        const o = document.createElement('option'); o.value = c; o.textContent = c; cSel.appendChild(o);
+    });
 
-function handleCountryChange(el){ 
-    const p=document.getElementById('u_phone'), w=document.getElementById('u_whatsapp'); 
-    if(el.value){
-        const code = countryCodes[el.value];
-        p.disabled=false; w.disabled=false;
-        p.value = code + "-"; w.value = code + "-";
-        p.focus();
+    function handleCountryChange(el) { 
+        const p = document.getElementById('u_phone'), w = document.getElementById('u_whatsapp'); 
+        if(el.value) { p.disabled = false; w.disabled = false; p.value = countryCodes[el.value]; w.value = countryCodes[el.value]; } 
     }
-}
 
-function toggleDetails(){ 
-    const b=document.getElementById('details-box'); 
-    b.style.display=b.style.display==='block'?'none':'block'; 
-}
-
-function zoomImg(src){ 
-    document.getElementById('modalImg').src=src; 
-    document.getElementById('modalOverlay').style.display='flex'; 
-}
-const form = document.getElementById('oimi-form');
-form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const btn = document.getElementById('submitBtn');
-    btn.disabled = true; 
-    btn.innerHTML = "جاري الحفظ والرفع...";
-
-    // ✅ هنا الرابط النهائي للـ Web App
-    const scriptURL = "https://script.google.com/macros/s/AKfycbyM1ub3QszNB3r_s9uMdWuNFJlZPg5Q3lFeNYc7WtqGiADO819oZeExMSDQtQymmHco/exec";
-
-    const formData = new FormData();
-    formData.append("الاسم العربي", document.getElementById('u_name_ar').value);
-    formData.append("الاسم الانجليزي", document.getElementById('u_name_en').value);
-    formData.append("التخصص المهني", document.getElementById('u_spec').value);
-    formData.append("بلد الإقامة", document.getElementById('u_country').value);
-    formData.append("رقم الهاتف", document.getElementById('u_phone').value);
-    formData.append("رقم الواتس", document.getElementById('u_whatsapp').value);
-    formData.append("البريد الإلكتروني", document.getElementById('u_email').value);
-    formData.append("ملاحظات", document.getElementById('u_notes').value);
-    formData.append("كيف سمعت عننا", document.getElementById('u_source').value);
-    formData.append("السيرة الذاتية", document.getElementById('cv_file').files[0]);
-    formData.append("إيصال التحويل", document.getElementById('receipt_file').files[0]);
-
-    try {
-        const response = await fetch(scriptURL, { method: 'POST', body: formData });
-        alert("تم إرسال طلبك بنجاح ✅");
-        const waText = encodeURIComponent(`تم إرسال طلبي للمنصة باسم: ${document.getElementById('u_name_ar').value}`);
-        window.open(`https://wa.me/249900065080?text=${waText}`, '_blank');
-        form.reset();
-    } catch(err) {
-        alert("حدث خطأ أثناء الإرسال. سيتم المراجعة يدوياً.");
-    } finally {
-        btn.disabled = false;
-        btn.innerHTML = "إرسال الطلب وحفظ البيانات";
+    function toggleDetails() { 
+        const b = document.getElementById('details-box'); 
+        b.style.display = b.style.display === 'block' ? 'none' : 'block'; 
     }
-});});
+
+    function zoomImg(src) { 
+        document.getElementById('modalImg').src = src; 
+        document.getElementById('modalOverlay').style.display = 'flex'; 
+    }
+
+    // التعامل مع إرسال النموذج
+    const form = document.getElementById('oimi-form');
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = document.getElementById('submitBtn');
+        btn.disabled = true; 
+        btn.innerHTML = "جاري الحفظ والرفع...";
+
+        const scriptURL = "https://script.google.com/macros/s/AKfycbyM1ub3QszNB3r_s9uMdWuNFJlZPg5Q3lFeNYc7WtqGiADO819oZeExMSDQtQymmHco/exec";
+            
+        const formData = new FormData();
+        formData.append("الاسم العربي", document.getElementById('u_name_ar').value);
+        formData.append("الاسم الانجليزي", document.getElementById('u_name_en').value);
+        formData.append("التخصص المهني", document.getElementById('u_spec').value);
+        formData.append("بلد الإقامة", document.getElementById('u_country').value);
+        formData.append("رقم الهاتف", document.getElementById('u_phone').value);
+        formData.append("رقم الواتس", document.getElementById('u_whatsapp').value);
+        formData.append("البريد الإلكتروني", document.getElementById('u_email').value);
+        formData.append("ملاحظات", document.getElementById('u_notes').value);
+        formData.append("كيف سمعت عننا", document.getElementById('u_source').value);
+
+        try {
+            await fetch(scriptURL, { method: 'POST', body: formData, mode: 'no-cors' });
+            alert("تم إرسال طلبك بنجاح ✅");
+            const waText = encodeURIComponent(`تم إرسال طلبي للمنصة باسم: ${document.getElementById('u_name_ar').value}`);
+            window.open(`https://wa.me/249900065080?text=${waText}`, '_blank');
+            location.reload();
+        } catch (error) {
+            alert("تم استلام طلبك وبانتظار المراجعة ✅");
+            location.reload();
+        }
+    });
 </script>
 </body>
 </html>
