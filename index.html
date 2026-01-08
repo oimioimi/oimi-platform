@@ -34,11 +34,7 @@ input, select, textarea {
 
 <h2 style="text-align:center">طلب التقييم المهني</h2>
 
-<form id="oimi-form"
-      action="https://script.google.com/macros/s/AKfycbxFYc09GbxOR68nhjI0mi6wSquKOAN4WlkIPEqpwZm3L3-0_yIhPpACbrzDSSU7Gbs3/exec"
-      method="POST"
-      enctype="multipart/form-data">
-
+<form id="oimi-form" enctype="multipart/form-data">
 <div class="box">
 <strong>خطوات إتمام الطلب:</strong><br>
 1️⃣ تحويل الرسوم<br>
@@ -47,33 +43,33 @@ input, select, textarea {
 </div>
 
 <label>الاسم بالعربية *</label>
-<input name="الاسم العربي" id="u_name_ar" required>
+<input id="u_name_ar" required>
 
 <label>الاسم بالإنجليزية *</label>
-<input name="الاسم الانجليزي" id="u_name_en" class="num-input" required>
+<input id="u_name_en" class="num-input" required>
 
 <label>التخصص *</label>
-<input name="التخصص" id="u_spec" required>
+<input id="u_spec" required>
 
 <label>بلد الإقامة *</label>
-<select name="بلد الإقامة" id="u_country" required onchange="handleCountryChange(this)">
+<select id="u_country" required onchange="handleCountryChange(this)">
 <option value="">اختر الدولة</option>
 </select>
 
 <label>رقم الهاتف *</label>
-<input name="رقم الهاتف" id="u_phone" class="num-input" disabled required>
+<input id="u_phone" class="num-input" disabled required>
 
 <label>رقم الواتساب *</label>
-<input name="رقم الواتساب" id="u_whatsapp" class="num-input" disabled required>
+<input id="u_whatsapp" class="num-input" disabled required>
 
 <label>البريد الإلكتروني *</label>
-<input name="البريد" type="email" id="u_email" required>
+<input type="email" id="u_email" required>
 
 <label>ملاحظات</label>
-<textarea name="ملاحظات" id="u_notes"></textarea>
+<textarea id="u_notes"></textarea>
 
 <label>كيف سمعت عنا *</label>
-<select name="المصدر" id="u_source" required>
+<select id="u_source" required>
 <option value="">اختر</option>
 <option>فيسبوك</option>
 <option>لينكد إن</option>
@@ -82,10 +78,10 @@ input, select, textarea {
 </select>
 
 <label>السيرة الذاتية *</label>
-<input type="file" name="cv_file" id="cv_file" accept=".pdf,image/*" required>
+<input type="file" id="cv_file" accept=".pdf,image/*" required>
 
 <label>إيصال التحويل *</label>
-<input type="file" name="receipt_file" id="receipt_file" accept="image/*" required>
+<input type="file" id="receipt_file" accept="image/*" required>
 
 <button class="btn" id="submitBtn">إرسال الطلب</button>
 
@@ -99,19 +95,49 @@ const countryCodes = {
  "السودان":"00249","مصر":"0020","السعودية":"00966",
  "الإمارات":"00971","قطر":"00974","الكويت":"00965"
 };
-
 const cSel = document.getElementById("u_country");
 Object.keys(countryCodes).forEach(c=>{
-  const o=document.createElement("option");
-  o.value=c; o.textContent=c; cSel.appendChild(o);
+  const o=document.createElement("option"); o.value=c; o.textContent=c; cSel.appendChild(o);
 });
-
 function handleCountryChange(el){
  const p=document.getElementById("u_phone");
  const w=document.getElementById("u_whatsapp");
  p.disabled=w.disabled=false;
  p.value=w.value=countryCodes[el.value];
 }
+
+// ================== الإرسال ==================
+const scriptURL = "https://script.google.com/macros/s/AKfycbxFYc09GbxOR68nhjI0mi6wSquKOAN4WlkIPEqpwZm3L3-0_yIhPpACbrzDSSU7Gbs3/exec";
+
+document.getElementById("oimi-form").addEventListener("submit", async e=>{
+ e.preventDefault();
+ const btn=document.getElementById("submitBtn");
+ btn.disabled=true; btn.textContent="جاري الإرسال...";
+
+ const fd=new FormData();
+ fd.append("الاسم العربي", u_name_ar.value);
+ fd.append("الاسم الانجليزي", u_name_en.value);
+ fd.append("التخصص", u_spec.value);
+ fd.append("بلد الإقامة", u_country.value);
+ fd.append("رقم الهاتف", u_phone.value);
+ fd.append("رقم الواتساب", u_whatsapp.value);
+ fd.append("البريد", u_email.value);
+ fd.append("ملاحظات", u_notes.value);
+ fd.append("المصدر", u_source.value);
+ fd.append("cv_file", cv_file.files[0]);
+ fd.append("receipt_file", receipt_file.files[0]);
+
+ try {
+   await fetch(scriptURL, { method: "POST", body: fd, mode: "no-cors" });
+   alert("تم إرسال طلبك بنجاح ✅");
+   const waText = encodeURIComponent("تم إرسال طلبي باسم: "+u_name_ar.value);
+   window.open(`https://wa.me/249900065080?text=${waText}`, "_blank");
+   location.reload();
+ } catch (err) {
+   alert("حدث خطأ ❌ يرجى المحاولة لاحقًا");
+   btn.disabled=false; btn.textContent="إرسال الطلب";
+ }
+});
 </script>
 
 </body>
