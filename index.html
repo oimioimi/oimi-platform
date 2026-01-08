@@ -147,39 +147,7 @@ form.addEventListener('submit', async (e) => {
     btn.innerHTML = "جاري الحفظ والرفع...";
 
     // رابط الـ Web App الخاص بك (V53)
-    const scriptURL = "https://script.google.com/macros/s/AKfycbzTtbZ3soEwSJLaJUCF557MiPXr44AHmgjvr5OkLjG04odoz49kVLvCPweDXZxMxrmG/exec";
-    
-    // تجميع البيانات في FormData لإرسالها بشكل صحيح لجوجل شيت
-    const formData = new FormData();
-    formData.append("الاسم العربي", document.getElementById('u_name_ar').value);
-    formData.append("الاسم الانجليزي", document.getElementById('u_name_en').value);
-    formData.append("التخصص المهني", document.getElementById('u_spec').value);
-    formData.append("بلد الإقامة", document.getElementById('u_country').value);
-    formData.append("رقم الهاتف", document.getElementById('u_phone').value);
-    formData.append("رقم الواتس", document.getElementById('u_whatsapp').value);
-    formData.append("البريد الإلكتروني", document.getElementById('u_email').value);
-    formData.append("ملاحظات", document.getElementById('u_notes').value);
-    formData.append("كيف سمعت عننا", document.getElementById('u_source').value);
-
-    try {
-        // إرسال البيانات باستخدام fetch
-        await fetch(scriptURL, { method: 'POST', body: formData });
-        
-        // إظهار رسالة النجاح
-        alert("تم إرسال طلبك بنجاح ✅");
-        
-        // فتح الواتساب للتأكيد
-        const waText = encodeURIComponent(`تم إرسال طلبي للمنصة باسم: ${document.getElementById('u_name_ar').value}`);
-        window.open(`https://wa.me/249900065080?text=${waText}`, '_blank');
-        
-        // إعادة تحميل الصفحة
-        location.reload();
-        
-    } catch (error) {
-        // غالباً ما تظهر رسالة خطأ بسبب CORS رغم وصول البيانات للشيت، لذا سنعتبرها نجاحاً
-        alert("تم استلام طلبك وبانتظار المراجعة ✅");
-        location.reload();
-    }
+    const scriptURL =
 });
 </script>
 </body>
