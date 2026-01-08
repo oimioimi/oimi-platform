@@ -150,7 +150,6 @@ function zoomImg(src){
     document.getElementById('modalImg').src=src; 
     document.getElementById('modalOverlay').style.display='flex'; 
 }
-
 const form = document.getElementById('oimi-form');
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -158,8 +157,9 @@ form.addEventListener('submit', async (e) => {
     btn.disabled = true; 
     btn.innerHTML = "جاري الحفظ والرفع...";
 
+    // ✅ هنا الرابط النهائي للـ Web App
     const scriptURL = "https://script.google.com/macros/s/AKfycbyM1ub3QszNB3r_s9uMdWuNFJlZPg5Q3lFeNYc7WtqGiADO819oZeExMSDQtQymmHco/exec";
-    
+
     const formData = new FormData();
     formData.append("الاسم العربي", document.getElementById('u_name_ar').value);
     formData.append("الاسم الانجليزي", document.getElementById('u_name_en').value);
@@ -175,21 +175,17 @@ form.addEventListener('submit', async (e) => {
 
     try {
         const response = await fetch(scriptURL, { method: 'POST', body: formData });
-        if(response.ok || response.status===0){ // Google Apps Script غالباً يرجع 0 بسبب CORS
-            alert("تم إرسال طلبك بنجاح ✅");
-            const waText = encodeURIComponent(`تم إرسال طلبي للمنصة باسم: ${document.getElementById('u_name_ar').value}`);
-            window.open(`https://wa.me/249900065080?text=${waText}`, '_blank');
-            form.reset();
-        } else {
-            alert("حدث خطأ أثناء الإرسال. سيتم إعادة المحاولة لاحقاً.");
-        }
-    } catch (error) {
-        alert("تم استلام طلبك وبانتظار المراجعة ✅");
+        alert("تم إرسال طلبك بنجاح ✅");
+        const waText = encodeURIComponent(`تم إرسال طلبي للمنصة باسم: ${document.getElementById('u_name_ar').value}`);
+        window.open(`https://wa.me/249900065080?text=${waText}`, '_blank');
+        form.reset();
+    } catch(err) {
+        alert("حدث خطأ أثناء الإرسال. سيتم المراجعة يدوياً.");
     } finally {
         btn.disabled = false;
         btn.innerHTML = "إرسال الطلب وحفظ البيانات";
     }
-});
+});});
 </script>
 </body>
 </html>
