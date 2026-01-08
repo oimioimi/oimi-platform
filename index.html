@@ -34,7 +34,10 @@ input, select, textarea {
 
 <h2 style="text-align:center">طلب التقييم المهني</h2>
 
-<form id="oimi-form">
+<form id="oimi-form"
+      action="https://script.google.com/macros/s/AKfycbxFYc09GbxOR68nhjI0mi6wSquKOAN4WlkIPEqpwZm3L3-0_yIhPpACbrzDSSU7Gbs3/exec"
+      method="POST"
+      enctype="multipart/form-data">
 
 <div class="box">
 <strong>خطوات إتمام الطلب:</strong><br>
@@ -44,33 +47,33 @@ input, select, textarea {
 </div>
 
 <label>الاسم بالعربية *</label>
-<input id="u_name_ar" required>
+<input name="الاسم العربي" id="u_name_ar" required>
 
 <label>الاسم بالإنجليزية *</label>
-<input id="u_name_en" class="num-input" required>
+<input name="الاسم الانجليزي" id="u_name_en" class="num-input" required>
 
 <label>التخصص *</label>
-<input id="u_spec" required>
+<input name="التخصص" id="u_spec" required>
 
 <label>بلد الإقامة *</label>
-<select id="u_country" required onchange="handleCountryChange(this)">
+<select name="بلد الإقامة" id="u_country" required onchange="handleCountryChange(this)">
 <option value="">اختر الدولة</option>
 </select>
 
 <label>رقم الهاتف *</label>
-<input id="u_phone" class="num-input" disabled required>
+<input name="رقم الهاتف" id="u_phone" class="num-input" disabled required>
 
 <label>رقم الواتساب *</label>
-<input id="u_whatsapp" class="num-input" disabled required>
+<input name="رقم الواتساب" id="u_whatsapp" class="num-input" disabled required>
 
 <label>البريد الإلكتروني *</label>
-<input type="email" id="u_email" required>
+<input name="البريد" type="email" id="u_email" required>
 
 <label>ملاحظات</label>
-<textarea id="u_notes"></textarea>
+<textarea name="ملاحظات" id="u_notes"></textarea>
 
 <label>كيف سمعت عنا *</label>
-<select id="u_source" required>
+<select name="المصدر" id="u_source" required>
 <option value="">اختر</option>
 <option>فيسبوك</option>
 <option>لينكد إن</option>
@@ -79,10 +82,10 @@ input, select, textarea {
 </select>
 
 <label>السيرة الذاتية *</label>
-<input type="file" id="cv_file" accept=".pdf,image/*" required>
+<input type="file" name="cv_file" id="cv_file" accept=".pdf,image/*" required>
 
 <label>إيصال التحويل *</label>
-<input type="file" id="receipt_file" accept="image/*" required>
+<input type="file" name="receipt_file" id="receipt_file" accept="image/*" required>
 
 <button class="btn" id="submitBtn">إرسال الطلب</button>
 
@@ -109,44 +112,7 @@ function handleCountryChange(el){
  p.disabled=w.disabled=false;
  p.value=w.value=countryCodes[el.value];
 }
-
-// ================== الإرسال ==================
-const scriptURL =
-"https://script.google.com/macros/s/AKfycbxrljix3icvHw6P5SE8q9GCP0rjij2BClXTA5DiEbaWOrC-Cab7kxuMIMNXZMNKCtTS/exec";
-
-document.getElementById("oimi-form").addEventListener("submit", async e=>{
- e.preventDefault();
-
- const btn=document.getElementById("submitBtn");
- btn.disabled=true; btn.textContent="جاري الإرسال...";
-
- const fd=new FormData();
- fd.append("الاسم العربي",u_name_ar.value);
- fd.append("الاسم الانجليزي",u_name_en.value);
- fd.append("التخصص",u_spec.value);
- fd.append("بلد الإقامة",u_country.value);
- fd.append("رقم الهاتف",u_phone.value);
- fd.append("رقم الواتساب",u_whatsapp.value);
- fd.append("البريد",u_email.value);
- fd.append("ملاحظات",u_notes.value);
- fd.append("المصدر",u_source.value);
- fd.append("cv_file",cv_file.files[0]);
- fd.append("receipt_file",receipt_file.files[0]);
-
- try{
-   await fetch(scriptURL,{method:"POST",body:fd});
-   alert("تم إرسال طلبك بنجاح ✅");
-   window.open(
-    "https://wa.me/249900065080?text="+
-    encodeURIComponent("تم إرسال طلبي باسم: "+u_name_ar.value),
-    "_blank"
-   );
-   location.reload();
- }catch(err){
-   alert("حدث خطأ ❌");
-   btn.disabled=false; btn.textContent="إرسال الطلب";
- }
-});
 </script>
+
 </body>
 </html>
