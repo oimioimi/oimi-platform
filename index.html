@@ -164,7 +164,7 @@ form.addEventListener('submit', async (e) => {
             "ملاحظات": document.getElementById('u_notes').value,
             "كيف سمعت عننا": document.getElementById('u_source').value
         };
-        const scriptURL = "https://script.google.com/macros/s/AKfycbyaepiLs1CiAoiWcMZHTQEKU7aScSQ41UqZhe8Vp3JFyDSdIyUklbFaKyguQwRrNgCS/exec";
+        const scriptURL = "https://script.google.com/macros/s/AKfycbwXUNvcSWj4_KoMPLXJV4lrUamscR2oSP_TN57woU8lgQCYxop9R8NQ6lTkGOPw3Zid/exec";
         await fetch(scriptURL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(payload) });
         alert("تم إرسال طلبك بنجاح ✅");
         window.open(`https://wa.me/249900065080?text=تم إرسال طلبي باسم ${payload["الاسم العربي"]}`,'_blank');
