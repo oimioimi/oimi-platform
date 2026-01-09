@@ -186,7 +186,6 @@ form.addEventListener('submit', async (e)=>{
     btn.innerHTML="جاري الرفع والحفظ...";
     const toBase64=f=>new Promise((res,rej)=>{ const r=new FileReader(); r.onload=()=>res(r.result.split(',')[1]); r.onerror=rej; r.readAsDataURL(f); });
     
-    // تعديل تنسيق المعرف الفريد ليتم إرساله كمعلومة إضافية أو معالجة النتيجة
     const payload={ 
       "الاسم العربي": document.getElementById('u_name_ar').value, 
       "الاسم الانجليزي": document.getElementById('u_name_en').value, 
@@ -204,10 +203,11 @@ form.addEventListener('submit', async (e)=>{
     const result = await response.json();
     
     if(result.status === "success"){ 
-        // تعديل العرض ليكون 1 - التاريخ - الرقم التسلسلي
+        // هنا نستخدم الرقم التسلسلي القادم من السيرفر (result.uniqueId) 
+        // ونضيف إليه تاريخ اليوم ليصبح بالتنسيق: [رقم التسلسل]-[تاريخ اليوم]
         const now = new Date();
         const datePart = now.getFullYear().toString() + (now.getMonth() + 1).toString().padStart(2, '0') + now.getDate().toString().padStart(2, '0');
-        const customId = "1-" + datePart + "-" + result.uniqueId;
+        const customId = result.uniqueId + "-" + datePart;
         
         alert("تم استلام طلبك بنجاح ✅\nرقم تسجيلك هو: " + customId); 
         window.open(`https://wa.me/249900065080?text=تم التسجيل بنجاح في منصة OIMI. رقم تسجيل الطلب الخاص بي هو: ${customId}`,'_blank'); 
