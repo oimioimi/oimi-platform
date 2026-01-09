@@ -59,16 +59,16 @@ input, select, textarea { width: 100%; padding: 10px; margin-bottom: 5px; border
             </div>
 
             <label>الاسم الرباعي (بالعربية فقط) *</label>
-            <input type="text" id="u_name_ar" placeholder="أدخل الاسم بالعربي" required oninput="this.value=this.value.replace(/[a-zA-Z]/g,'')">
+            <input type="text" id="u_name_ar" placeholder="أدخل الاسم بالعربي" required oninvalid="this.setCustomValidity('يرجى إدخال الاسم الرباعي بالعربية')" oninput="this.setCustomValidity(''); this.value=this.value.replace(/[a-zA-Z]/g,'')">
             
             <label>الاسم الرباعي (بالإنجليزية فقط) *</label>
-            <input type="text" id="u_name_en" class="num-input" placeholder="Full Name in English" required oninput="this.value=this.value.replace(/[\u0600-\u06FF]/g,'')">
+            <input type="text" id="u_name_en" class="num-input" placeholder="Full Name in English" required oninvalid="this.setCustomValidity('يرجى إدخال الاسم الرباعي بالإنجليزية')" oninput="this.setCustomValidity(''); this.value=this.value.replace(/[\u0600-\u06FF]/g,'')">
 
             <label>التخصص المهني *</label>
-            <input type="text" id="u_spec" placeholder="مثلاً: محاسب" required>
+            <input type="text" id="u_spec" placeholder="مثلاً: محاسب" required oninvalid="this.setCustomValidity('يرجى إدخال التخصص المهني')">
             
             <label>بلد الاقامة *</label>
-            <select id="u_country" required onchange="handleCountryChange(this)">
+            <select id="u_country" required onchange="handleCountryChange(this)" oninvalid="this.setCustomValidity('يرجى اختيار بلد الإقامة')">
                 <option value="">اختر الدولة...</option>
             </select>
             
@@ -79,10 +79,10 @@ input, select, textarea { width: 100%; padding: 10px; margin-bottom: 5px; border
             <input type="tel" id="u_whatsapp" class="num-input" placeholder="أدخل الأرقام فقط" disabled required oninput="this.value=this.value.replace(/[^0-9]/g,'')">
             
             <label>البريد الالكتروني *</label>
-            <input type="email" id="u_email" placeholder="mail@example.com" required>
+            <input type="email" id="u_email" placeholder="mail@example.com" required oninvalid="this.setCustomValidity('يرجى إدخال بريد إلكتروني صحيح')">
 
             <label>كيف سمعت عنا؟ *</label>
-            <select id="u_source" required>
+            <select id="u_source" required oninvalid="this.setCustomValidity('يرجى اختيار المصدر')">
                 <option value="">اختر المصدر...</option>
                 <option value="فيسبوك">فيسبوك</option>
                 <option value="لينكد إن">لينكد إن</option>
@@ -95,10 +95,10 @@ input, select, textarea { width: 100%; padding: 10px; margin-bottom: 5px; border
 
             <div class="separator"></div>
             <label>أرفق السيرة الذاتية (PDF أو صورة) *</label>
-            <input type="file" id="cv_file" accept=".pdf,image/*" required>
+            <input type="file" id="cv_file" accept=".pdf,image/*" required oninvalid="this.setCustomValidity('يرجى إرفاق السيرة الذاتية')">
             
-            <label>أرفق صورة إإيصال التحويل *</label>
-            <input type="file" id="receipt_file" accept="image/*" required>
+            <label>أرفق صورة إيصال التحويل *</label>
+            <input type="file" id="receipt_file" accept="image/*" required oninvalid="this.setCustomValidity('يرجى إرفاق إيصال التحويل')">
 
             <button type="submit" class="btn" id="submitBtn">إرسال الطلب وحفظ البيانات</button>
         </form>
@@ -134,7 +134,6 @@ input, select, textarea { width: 100%; padding: 10px; margin-bottom: 5px; border
 </div>
 
 <script>
-// الرابط الجديد الذي قمت بتزويدي به
 const scriptURL = "https://script.google.com/macros/s/AKfycbxoOZImKozdwyFJTkLxi7lamMwWqKg6JrzoT0WsLQidcC0F5LrE6N57DiBFE56UJ3ab/exec";
 
 const countryCodes = { "السودان": "00249","مصر": "0020","السعودية": "00966","الإمارات": "00971","قطر": "00974","عمان": "00968","الكويت": "00965","البحرين": "00973" };
@@ -155,6 +154,11 @@ form.addEventListener('submit', async (e)=>{
   const btn=document.getElementById('submitBtn');
   const email = document.getElementById('u_email').value.trim().toLowerCase();
   
+  // التحقق من الحقول التي قد تُترك كما هي (كود الدولة فقط)
+  if(document.getElementById('u_phone').value === countryCodes[document.getElementById('u_country').value]){
+      alert("يرجى إكمال رقم الهاتف بعد كود الدولة"); return;
+  }
+
   btn.disabled=true; btn.innerHTML="جاري التحقق...";
 
   try {
@@ -186,7 +190,6 @@ form.addEventListener('submit', async (e)=>{
     const result = await response.json();
     
     if(result.status === "success"){ 
-        // عرض الرقم الجديد: [رقم التسلسل]-[تاريخ اليوم]
         const now = new Date();
         const dateStr = now.getFullYear().toString() + (now.getMonth() + 1).toString().padStart(2, '0') + now.getDate().toString().padStart(2, '0');
         const finalId = result.uniqueId + "-" + dateStr;
@@ -196,9 +199,14 @@ form.addEventListener('submit', async (e)=>{
         location.reload(); 
     }
   } catch(err){ 
-    alert("عذراً، حدث خطأ. تأكد من اتصال الإنترنت وحجم الملفات."); 
+    alert("عذراً، حدث خطأ أثناء الإرسال. يرجى التأكد من اتصال الإنترنت."); 
     btn.disabled=false; btn.innerHTML="إرسال الطلب وحفظ البيانات"; 
   }
+});
+
+// تصفير رسائل الخطأ عند الكتابة
+form.querySelectorAll('input, select').forEach(el => {
+    el.addEventListener('input', () => el.setCustomValidity(''));
 });
 </script>
 </body>
