@@ -13,7 +13,6 @@
         .box { background: var(--lg); padding: 15px; border-radius: 10px; border: 1px solid var(--p); margin-bottom: 15px; font-size: 14px; line-height: 1.6; }
         label { display: block; margin: 12px 0 5px; font-weight: bold; font-size: 14px; }
         input, select, textarea { width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #ccc; box-sizing: border-box; font-size: 14px; }
-        .num-input { direction: ltr; text-align: left; }
         .btn { width: 100%; background: var(--p); color: white; padding: 15px; border: none; border-radius: 10px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 20px; }
         .btn:disabled { background: #999; }
     </style>
@@ -23,7 +22,6 @@
 <div class="container">
     <div class="card">
         <h2 class="main-title">منصة OIMI</h2>
-        
         <form id="oimi-form">
             <div class="box">
                 <strong>✅ خطوات الطلب:</strong><br>
@@ -32,54 +30,35 @@
             </div>
 
             <label>الاسم الرباعي (بالعربية) *</label>
-            <input type="text" id="u_name_ar" placeholder="أدخل اسمك الكامل بالعربية" required>
+            <input type="text" id="u_name_ar" required>
             
             <label>الاسم الرباعي (بالإنجليزية) *</label>
-            <input type="text" id="u_name_en" class="num-input" placeholder="Full Name in English" required>
+            <input type="text" id="u_name_en" style="direction: ltr; text-align: left;" required>
 
             <label>التخصص المهني *</label>
-            <input type="text" id="u_spec" placeholder="مثال: مهندس، طبيب..." required>
+            <input type="text" id="u_spec" required>
             
             <label>بلد الإقامة *</label>
-            <select id="u_country" required onchange="handleCountryChange(this)">
+            <select id="u_country" required>
                 <option value="">اختر الدولة...</option>
                 <option value="السودان">السودان</option>
                 <option value="الإمارات">الإمارات</option>
                 <option value="السعودية">السعودية</option>
                 <option value="مصر">مصر</option>
-                <option value="قطر">قطر</option>
-                <option value="عمان">عمان</option>
-                <option value="البحرين">البحرين</option>
-                <option value="الكويت">الكويت</option>
+                <option value="أخرى">أخرى</option>
             </select>
             
             <label>رقم الهاتف *</label>
-            <input type="tel" id="u_phone" class="num-input" placeholder="أدخل رقم الهاتف مع الكود" required>
-            
-            <label>رقم الواتساب *</label>
-            <input type="tel" id="u_whatsapp" class="num-input" placeholder="أدخل رقم الواتساب" required>
+            <input type="tel" id="u_phone" placeholder="مثال: 00971..." required>
             
             <label>البريد الإلكتروني *</label>
-            <input type="email" id="u_email" placeholder="example@mail.com" required>
+            <input type="email" id="u_email" required>
 
-            <label>ملاحظات إضافية</label>
-            <textarea id="u_notes" rows="2"></textarea>
-
-            <label>كيف سمعت عنا؟ *</label>
-            <select id="u_source" required>
-                <option value="">اختر المصدر...</option>
-                <option value="فيسبوك">فيسبوك</option>
-                <option value="تيك توك">تيك توك</option>
-                <option value="صديق">صديق</option>
-            </select>
-
-            <hr style="margin: 20px 0; border: 0; border-top: 1px dashed var(--p);">
-
-            <label>أرفق السيرة الذاتية (PDF/Image) *</label>
-            <input type="file" id="cv_file" required>
+            <label>أرفق السيرة الذاتية *</label>
+            <input type="file" id="cv_file" accept=".pdf,image/*" required>
             
-            <label>أرفق صورة إيصال التحويل *</label>
-            <input type="file" id="receipt_file" required>
+            <label>أرفق إيصال التحويل *</label>
+            <input type="file" id="receipt_file" accept="image/*" required>
 
             <button type="submit" class="btn" id="submitBtn">إرسال الطلب وحفظ البيانات</button>
         </form>
@@ -87,27 +66,17 @@
 </div>
 
 <script>
-// الرابط الجديد - النسخة 80
-const scriptURL = 'https://script.google.com/macros/s/AKfycbwGIyYpzNy1DmSsiSbDsX2UpaYHpBAmZ0DRchIwgrt6ScSz2OzV1P4Ix8j8v7kHkYa9/exec';
-
-const countryCodes = { "السودان": "00249", "الإمارات": "00971", "السعودية": "00966", "مصر": "0020", "قطر": "00974", "عمان": "00968", "البحرين": "00973", "الكويت": "00965" };
-
-function handleCountryChange(el) {
-    const p = document.getElementById('u_phone'), w = document.getElementById('u_whatsapp');
-    if(el.value && countryCodes[el.value]) {
-        p.value = countryCodes[el.value];
-        w.value = countryCodes[el.value];
-    }
-}
+const scriptURL = 'https://script.google.com/macros/s/AKfycbzNFmucaD8ayccrFDiUlWULF47CSw-hg9NbQFD1tLyAbnN9ZBnl1yNSGaaV4Bd6gpXz/exec';
 
 const form = document.getElementById('oimi-form');
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const btn = document.getElementById('submitBtn');
-    btn.disabled = true; btn.innerHTML = "جاري الحفظ والرفع... انتظر قليلاً";
+    btn.disabled = true; btn.innerHTML = "جاري الحفظ والرفع...";
 
     const toBase64 = file => new Promise((resolve, reject) => {
-        const reader = new FileReader(); reader.readAsDataURL(file);
+        const reader = new FileReader(); 
+        reader.readAsDataURL(file);
         reader.onload = () => resolve(reader.result.split(',')[1]);
         reader.onerror = error => reject(error);
     });
@@ -122,29 +91,28 @@ form.addEventListener('submit', async (e) => {
             "التخصص المهني": document.getElementById('u_spec').value,
             "بلد الإقامة": document.getElementById('u_country').value,
             "رقم الهاتف": document.getElementById('u_phone').value,
-            "رقم الواتس": document.getElementById('u_whatsapp').value,
+            "رقم الواتس": document.getElementById('u_phone').value, // سنستخدم نفس الرقم للتسهيل
             "البريد الإلكتروني": document.getElementById('u_email').value,
-            "ملاحظات": document.getElementById('u_notes').value,
-            "كيف سمعت عننا": document.getElementById('u_source').value,
+            "ملاحظات": "طلب جديد من الموقع",
+            "كيف سمعت عننا": "الموقع الإلكتروني",
             "cv_data": await toBase64(cvF),
             "cv_name": cvF.name,
             "receipt_data": await toBase64(rcF),
             "receipt_name": rcF.name
         };
 
-        await fetch(scriptURL, { 
-            method: 'POST', 
-            mode: 'no-cors', 
-            headers: { 'Content-Type': 'text/plain' },
+        // إرسال حقيقي وانتظار الاستجابة
+        const response = await fetch(scriptURL, { 
+            method: 'POST',
+            mode: 'no-cors', // لضمان تخطي مشاكل الـ CORS مع جوجل
             body: JSON.stringify(payload) 
         });
 
-        alert("تم الإرسال بنجاح!");
-        window.open(`https://wa.me/249900065080?text=تم إرسال طلبي باسم: ${payload["الاسم العربي"]}`, '_blank');
+        alert("تم الإرسال بنجاح! شكراً لك.");
         location.reload();
         
     } catch (e) {
-        alert("حدث خطأ، يرجى المحاولة مرة أخرى.");
+        alert("فشل الإرسال: " + e.message);
         btn.disabled = false; btn.innerHTML = "إرسال الطلب وحفظ البيانات";
     }
 });
