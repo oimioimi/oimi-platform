@@ -1,42 +1,43 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>منصة OIMI - طلب تقييم</title>
-<style>
-:root { --p: #00732f; --lg: #e8f5e9; }
-body { background: #fff; margin: 0; font-family: 'Segoe UI', sans-serif; padding: 5px; text-align: right; overflow-x: hidden; }
-.container { max-width: 600px; margin: auto; display: flex; flex-direction: column; gap: 2px; }
-.card { background: #fff; padding: 18px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 1px solid #eee; }
-.main-title { color: var(--p); text-align: center; margin-bottom: 8px; font-weight: 800; font-size: 19px; }
-.box { background: var(--lg); padding: 12px; border-radius: 10px; border: 1px solid var(--p); margin-bottom: 10px; color: #2e7d32; font-size: 13px; line-height: 1.6; }
-.separator { border-top: 1px dashed var(--p); margin: 8px 0; opacity: 0.5; }
-label { display: block; margin: 4px 0 2px; font-weight: bold; font-size: 13px; color: #444; }
-input, select, textarea { width: 100%; padding: 10px; margin-bottom: 5px; border-radius: 8px; border: 1px solid #ccc; box-sizing: border-box; font-size: 14px; background: #f9f9f9; font-weight: bold; }
-.num-input { direction: ltr; text-align: left; }
-input:disabled { background: #f0f0ff !important; cursor: not-allowed; color: #888; border: 1px solid #ddd; }
-.btn { width: 100%; background: linear-gradient(135deg, #00732f, #00a342); color: white; padding: 14px; border: none; border-radius: 10px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 10px; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة OIMI - طلب تقييم</title>
+    <style>
+        :root { --p: #00732f; --lg: #e8f5e9; }
+        body { background: #fff; margin: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 5px; text-align: right; overflow-x: hidden; }
+        .container { max-width: 600px; margin: auto; display: flex; flex-direction: column; gap: 2px; }
+        .card { background: #fff; padding: 18px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 1px solid #eee; }
+        .main-title { color: var(--p); text-align: center; margin-bottom: 8px; font-weight: 800; font-size: 19px; }
+        .box { background: var(--lg); padding: 12px; border-radius: 10px; border: 1px solid var(--p); margin-bottom: 10px; color: #2e7d32; font-size: 13px; line-height: 1.6; }
+        .separator { border-top: 1px dashed var(--p); margin: 8px 0; opacity: 0.5; }
+        label { display: block; margin: 4px 0 2px; font-weight: bold; font-size: 13px; color: #444; }
+        input, select, textarea { width: 100%; padding: 10px; margin-bottom: 5px; border-radius: 8px; border: 1px solid #ccc; box-sizing: border-box; font-size: 14px; background: #f9f9f9; font-weight: bold; }
+        .num-input { direction: ltr; text-align: left; }
+        input:disabled { background: #f0f0ff !important; cursor: not-allowed; color: #888; border: 1px solid #ddd; }
+        .btn { width: 100%; background: linear-gradient(135deg, #00732f, #00a342); color: white; padding: 14px; border: none; border-radius: 10px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 10px; transition: 0.3s; }
+        .btn:hover { opacity: 0.9; transform: translateY(-2px); }
 
-/* شريط الصور - السرعة 20 ثانية */
-.slider { width: 100%; overflow: hidden; margin-top: 15px; text-align: center; direction: ltr; position: relative; height: 260px; }
-.slider h4 { color: var(--p); margin: 5px 0; font-size: 16px; direction: rtl; }
-.track { display: flex; width: max-content; animation: scroll-loop 20s linear infinite; padding: 20px 0; align-items: center; }
-.track img { width: 260px; height: 160px; object-fit: cover; margin: 0 15px; border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.1); cursor: zoom-in; transition: 0.3s; }
-.track img:hover { transform: scale(1.05); }
-@keyframes scroll-loop { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        /* شريط الصور السحابي */
+        .slider { width: 100%; overflow: hidden; margin-top: 15px; text-align: center; direction: ltr; position: relative; height: 260px; }
+        .slider h4 { color: var(--p); margin: 5px 0; font-size: 16px; direction: rtl; }
+        .track { display: flex; width: max-content; animation: scroll-loop 20s linear infinite; padding: 20px 0; align-items: center; }
+        .track img { width: 260px; height: 160px; object-fit: cover; margin: 0 15px; border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.1); cursor: zoom-in; transition: 0.3s; }
+        .track img:hover { transform: scale(1.05); }
+        @keyframes scroll-loop { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-/* نافذة تكبير الصور (Modal) */
-#modalOverlay { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:10000; align-items:center; justify-content:center; }
-#modalOverlay img { max-width: 95%; max-height: 90%; border: 3px solid #fff; border-radius: 10px; }
+        /* نافذة تكبير الصور */
+        #modalOverlay { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:10000; align-items:center; justify-content:center; }
+        #modalOverlay img { max-width: 95%; max-height: 90%; border: 3px solid #fff; border-radius: 10px; }
 
-/* قسم عن المنصة السفلي */
-.footer-section { background: #fff; border-top: 1px solid #eee; margin-top: 15px; padding: 15px; text-align: right; }
-.f-title { color: var(--p); cursor: pointer; text-decoration: underline; font-size: 17px; margin-bottom: 10px; display: block; font-weight: bold; text-align: center; }
-#details-box { display: none; background: #fdfdfd; padding: 15px; border-radius: 12px; border: 1px solid #ddd; margin-top: 10px; font-size: 13px; line-height: 1.8; color: #333; }
-.contact-area { margin-top: 20px; border-top: 1px solid #eee; padding-top: 15px; text-align: center; }
-.contact-area a { color: var(--p); text-decoration: none; font-weight: bold; margin: 0 15px; }
-</style>
+        /* تذييل الصفحة */
+        .footer-section { background: #fff; border-top: 1px solid #eee; margin-top: 15px; padding: 15px; text-align: right; }
+        .f-title { color: var(--p); cursor: pointer; text-decoration: underline; font-size: 17px; margin-bottom: 10px; display: block; font-weight: bold; text-align: center; }
+        #details-box { display: none; background: #fdfdfd; padding: 15px; border-radius: 12px; border: 1px solid #ddd; margin-top: 10px; font-size: 13px; line-height: 1.8; color: #333; }
+        .contact-area { margin-top: 20px; border-top: 1px solid #eee; padding-top: 15px; text-align: center; }
+        .contact-area a { color: var(--p); text-decoration: none; font-weight: bold; margin: 0 15px; }
+    </style>
 </head>
 <body>
 
@@ -58,13 +59,13 @@ input:disabled { background: #f0f0ff !important; cursor: not-allowed; color: #88
             </div>
 
             <label>الاسم الرباعي (بالعربية) *</label>
-            <input type="text" id="u_name_ar" required>
+            <input type="text" id="u_name_ar" placeholder="مثال: أحمد محمد علي حسن" required>
             
             <label>الاسم الرباعي (بالإنجليزية) *</label>
-            <input type="text" id="u_name_en" class="num-input" required>
+            <input type="text" id="u_name_en" class="num-input" placeholder="Example: Ahmed Mohamed Ali Hassan" required>
 
             <label>التخصص المهني *</label>
-            <input type="text" id="u_spec" required>
+            <input type="text" id="u_spec" placeholder="مثال: محاسب، مهندس مدني، طبيب..." required>
             
             <label>بلد الإقامة *</label>
             <select id="u_country" required onchange="handleCountryChange(this)">
@@ -72,18 +73,18 @@ input:disabled { background: #f0f0ff !important; cursor: not-allowed; color: #88
             </select>
             
             <div onclick="checkCountryFirst()">
-                <label>رقم الهاتف *</label>
-                <input type="tel" id="u_phone" class="num-input" disabled required>
+                <label>رقم الهاتف (مع رمز الدولة) *</label>
+                <input type="tel" id="u_phone" class="num-input" placeholder="00249..." disabled required>
                 
                 <label>رقم الواتساب *</label>
-                <input type="tel" id="u_whatsapp" class="num-input" disabled required>
+                <input type="tel" id="u_whatsapp" class="num-input" placeholder="00249..." disabled required>
             </div>
             
             <label>البريد الإلكتروني *</label>
-            <input type="email" id="u_email" required>
+            <input type="email" id="u_email" placeholder="example@gmail.com" required>
 
             <label>ملاحظات إضافية</label>
-            <textarea id="u_notes" rows="2"></textarea>
+            <textarea id="u_notes" rows="2" placeholder="أي تفاصيل أخرى تود إضافتها..."></textarea>
 
             <label>كيف سمعت عنا؟ *</label>
             <select id="u_source" required>
@@ -95,10 +96,10 @@ input:disabled { background: #f0f0ff !important; cursor: not-allowed; color: #88
             </select>
 
             <div class="separator"></div>
-            <label>أرفق السيرة الذاتية *</label>
+            <label>أرفق السيرة الذاتية (PDF أو صورة) *</label>
             <input type="file" id="cv_file" accept=".pdf,image/*" required>
             
-            <label>أرفق صورة إيصال التحويل *</label>
+            <label>أرفق صورة إيصال التحويل (بنكك) *</label>
             <input type="file" id="receipt_file" accept="image/*" required>
 
             <button type="submit" class="btn" id="submitBtn">إرسال الطلب وحفظ البيانات</button>
@@ -133,10 +134,12 @@ input:disabled { background: #f0f0ff !important; cursor: not-allowed; color: #88
 </div>
 
 <script>
-const scriptURL = 'https://script.google.com/macros/s/AKfycbyB4NVV4GJ_WXgJOsNgCL4vPIoXn0K8nAtV5piqqA3WBgwtYcp39vqv5wW3yVeHL6yp/exec';
+// الرابط المحدث والنهائي
+const scriptURL = 'https://script.google.com/macros/s/AKfycbxXirJXfeWHuoTydZMFHCN61BAXWWivn7mKkipgaaPPVXd_-eTokptYtxFGxiwgc6s/exec';
 
 const countryCodes = { "أفغانستان": "0093", "الجزائر": "00213", "البحرين": "00973", "مصر": "0020", "العراق": "00964", "الأردن": "00962", "الكويت": "00965", "لبنان": "00961", "ليبيا": "00218", "المغرب": "00212", "عمان": "00968", "فلسطين": "00970", "قطر": "00974", "السعودية": "00966", "السودان": "00249", "سوريا": "00963", "تونس": "00216", "تركيا": "0090", "الإمارات العربية المتحدة": "00971", "اليمن": "00967", "المملكة المتحدة": "0044", "الولايات المتحدة": "001" };
 
+// تعبئة الدول برمجياً
 const cSel = document.getElementById('u_country');
 Object.keys(countryCodes).sort((a,b) => a.localeCompare(b, 'ar')).forEach(name => {
     let opt = document.createElement('option'); opt.value = name; opt.textContent = name; cSel.appendChild(opt);
@@ -168,7 +171,7 @@ form.addEventListener('submit', async (e) => {
     if (!form.checkValidity()) { alert("يرجى تعبئة جميع الحقول المطلوبة وإرفاق الملفات."); return; }
 
     const btn = document.getElementById('submitBtn');
-    btn.disabled = true; btn.innerHTML = "جاري الحفظ والرفع...";
+    btn.disabled = true; btn.innerHTML = "جاري الحفظ والرفع... (قد يستغرق لحظات)";
 
     const toBase64 = file => new Promise((resolve, reject) => {
         const reader = new FileReader(); reader.readAsDataURL(file);
@@ -177,8 +180,8 @@ form.addEventListener('submit', async (e) => {
     });
 
     try {
-        const cvBase = await toBase64(document.getElementById('cv_file').files[0]);
-        const rcBase = await toBase64(document.getElementById('receipt_file').files[0]);
+        const cvFile = document.getElementById('cv_file').files[0];
+        const rcFile = document.getElementById('receipt_file').files[0];
         
         const payload = {
             "الاسم العربي": document.getElementById('u_name_ar').value,
@@ -190,10 +193,13 @@ form.addEventListener('submit', async (e) => {
             "البريد الإلكتروني": document.getElementById('u_email').value,
             "ملاحظات": document.getElementById('u_notes').value,
             "كيف سمعت عننا": document.getElementById('u_source').value,
-            "cv_data": cvBase,
-            "receipt_data": rcBase
+            "cv_data": await toBase64(cvFile),
+            "cv_name": cvFile.name,
+            "receipt_data": await toBase64(rcFile),
+            "receipt_name": rcFile.name
         };
 
+        // إرسال البيانات للسكربت
         await fetch(scriptURL, { 
             method: 'POST', 
             mode: 'no-cors', 
@@ -201,11 +207,15 @@ form.addEventListener('submit', async (e) => {
             body: JSON.stringify(payload) 
         });
 
-        alert("تم الإرسال بنجاح!");
-        window.open(`https://wa.me/249900065080?text=تم إرسال طلبي باسم ${payload["الاسم العربي"]}`, '_blank');
+        alert("تم الإرسال بنجاح! سيتم توجيهك الآن لتأكيد الطلب عبر واتساب.");
+        
+        // التوجيه للواتساب برسالة جاهزة
+        const waMsg = `تم إرسال طلبي للتقييم المهني بنجاح.%0Aالاسم: ${payload["الاسم العربي"]}%0Aالتخصص: ${payload["التخصص المهني"]}`;
+        window.open(`https://wa.me/249900065080?text=${waMsg}`, '_blank');
+        
         location.reload();
     } catch (e) {
-        alert("خطأ في الاتصال، حاول مجدداً.");
+        alert("حدث خطأ في الاتصال. يرجى التأكد من الإنترنت والمحاولة مرة أخرى.");
         btn.disabled = false; btn.innerHTML = "إرسال الطلب وحفظ البيانات";
     }
 });
