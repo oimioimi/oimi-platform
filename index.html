@@ -166,7 +166,10 @@ Object.keys(countryCodes).sort((a,b)=>a.localeCompare(b,'ar')).forEach(c=>{ cons
 
 function handleCountryChange(el){ 
     const p=document.getElementById('u_phone'), w=document.getElementById('u_whatsapp'); 
-    if(el.value){ p.disabled=false; w.disabled=false; p.value=countryCodes[el.value]; w.value=countryCodes[el.value]; } 
+    if(el.value){ 
+        p.disabled=false; w.disabled=false; 
+        p.value=countryCodes[el.value]; w.value=countryCodes[el.value]; 
+    } 
 }
 
 function zoomImg(src){ document.getElementById('modalImg').src=src; document.getElementById('modalOverlay').style.display='flex'; }
