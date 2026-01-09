@@ -67,33 +67,33 @@ input, select, textarea { width: 100%; padding: 10px; margin-bottom: 5px; border
             </div>
 
             <label>الاسم الرباعي (بالعربية فقط) *</label>
-            <input type="text" id="u_name_ar" placeholder="أدخل الاسم بالعربي" required oninput="this.value=this.value.replace(/[a-zA-Z]/g,'')">
+            <input type="text" id="u_name_ar" placeholder="أدخل الاسم بالعربي" required oninvalid="this.setCustomValidity('يرجى إدخال الاسم بالعربية')" oninput="this.setCustomValidity(''); this.value=this.value.replace(/[a-zA-Z]/g,'')">
             
             <label>الاسم الرباعي (بالإنجليزية فقط) *</label>
-            <input type="text" id="u_name_en" class="num-input" placeholder="Full Name in English" required oninput="this.value=this.value.replace(/[\u0600-\u06FF]/g,'')">
+            <input type="text" id="u_name_en" class="num-input" placeholder="Full Name in English" required oninvalid="this.setCustomValidity('Please enter full name in English')" oninput="this.setCustomValidity(''); this.value=this.value.replace(/[\u0600-\u06FF]/g,'')">
 
             <label>التخصص المهني *</label>
-            <input type="text" id="u_spec" placeholder="مثلاً: محاسب" required>
+            <input type="text" id="u_spec" placeholder="مثلاً: محاسب" required oninvalid="this.setCustomValidity('يرجى إدخال التخصص المهني')">
             
             <label>بلد الاقامة *</label>
-            <select id="u_country" required onchange="handleCountryChange(this)">
+            <select id="u_country" required onchange="handleCountryChange(this)" oninvalid="this.setCustomValidity('يرجى اختيار بلد الإقامة')">
                 <option value="">اختر الدولة...</option>
             </select>
             
             <label>رقم الهاتف (أرقام إنجليزية فقط) *</label>
-            <input type="tel" id="u_phone" class="num-input" placeholder="اختر الدولة أولاً" disabled required oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+            <input type="tel" id="u_phone" class="num-input" placeholder="اختر الدولة أولاً" disabled required oninvalid="this.setCustomValidity('يرجى إدخال رقم الهاتف بالأرقام الإنجليزية')" oninput="this.setCustomValidity(''); this.value=this.value.replace(/[^0-9]/g,'')">
             
             <label>رقم الواتساب (أرقام إنجليزية فقط) *</label>
-            <input type="tel" id="u_whatsapp" class="num-input" placeholder="اختر الدولة أولاً" disabled required oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+            <input type="tel" id="u_whatsapp" class="num-input" placeholder="اختر الدولة أولاً" disabled required oninvalid="this.setCustomValidity('يرجى إدخال رقم الواتساب بالأرقام الإنجليزية')" oninput="this.setCustomValidity(''); this.value=this.value.replace(/[^0-9]/g,'')">
             
             <label>البريد الالكتروني *</label>
-            <input type="email" id="u_email" placeholder="mail@example.com" required>
+            <input type="email" id="u_email" placeholder="mail@example.com" required oninvalid="this.setCustomValidity('يرجى إدخال بريد إلكتروني صحيح')">
 
             <label>ملاحظات إضافية (اختياري)</label>
             <textarea id="u_notes" rows="2" placeholder="أضف أي تفاصيل أخرى..."></textarea>
 
             <label>كيف سمعت عنا؟ *</label>
-            <select id="u_source" required>
+            <select id="u_source" required oninvalid="this.setCustomValidity('يرجى اختيار كيف سمعت عنا')">
                 <option value="">اختر المصدر...</option>
                 <option value="فيسبوك">فيسبوك</option>
                 <option value="لينكد إن">لينكد إن</option>
@@ -103,10 +103,10 @@ input, select, textarea { width: 100%; padding: 10px; margin-bottom: 5px; border
 
             <div class="separator"></div>
             <label>أرفق السيرة الذاتية (PDF أو صورة) *</label>
-            <input type="file" id="cv_file" accept=".pdf,image/*" required>
+            <input type="file" id="cv_file" accept=".pdf,image/*" required oninvalid="this.setCustomValidity('يرجى إرفاق ملف السيرة الذاتية')">
             
             <label>أرفق صورة إيصال التحويل *</label>
-            <input type="file" id="receipt_file" accept="image/*" required>
+            <input type="file" id="receipt_file" accept="image/*" required oninvalid="this.setCustomValidity('يرجى إرفاق صورة إيصال التحويل')">
 
             <button type="submit" class="btn" id="submitBtn">إرسال الطلب وحفظ البيانات</button>
         </form>
@@ -152,7 +152,11 @@ Object.keys(countryCodes).sort((a,b)=>a.localeCompare(b,'ar')).forEach(c=>{ cons
 
 function handleCountryChange(el){ 
     const p=document.getElementById('u_phone'), w=document.getElementById('u_whatsapp'); 
-    if(el.value){ p.disabled=false; w.disabled=false; p.value=countryCodes[el.value]; w.value=countryCodes[el.value]; } 
+    if(el.value){ 
+        p.disabled=false; w.disabled=false; 
+        p.value=countryCodes[el.value]; w.value=countryCodes[el.value];
+        p.setCustomValidity(''); w.setCustomValidity('');
+    } 
 }
 
 function zoomImg(src){ document.getElementById('modalImg').src=src; document.getElementById('modalOverlay').style.display='flex'; }
@@ -161,13 +165,6 @@ function toggleDetails(){ const b=document.getElementById('details-box'); b.styl
 const form=document.getElementById('oimi-form');
 form.addEventListener('submit', async (e)=>{
   e.preventDefault();
-  
-  // تعريب رسائل التحقق اليدوي (Validation)
-  if(!form.checkValidity()) {
-      alert("يرجى إكمال جميع الحقول المطلوبة بشكل صحيح.");
-      return;
-  }
-
   const btn=document.getElementById('submitBtn');
   const email = document.getElementById('u_email').value.trim().toLowerCase();
   btn.disabled=true; btn.innerHTML="جاري التحقق من البيانات...";
@@ -206,6 +203,11 @@ form.addEventListener('submit', async (e)=>{
     alert("عذراً، حدث خطأ أثناء الإرسال. يرجى التأكد من اتصال الإنترنت والمحاولة مرة أخرى."); 
     btn.disabled=false; btn.innerHTML="إرسال الطلب وحفظ البيانات"; 
   }
+});
+
+// مسح رسائل التنبيه عند البدء بالكتابة (للسماح بالتحقق الجديد)
+form.querySelectorAll('input, select, textarea').forEach(el => {
+    el.addEventListener('input', () => el.setCustomValidity(''));
 });
 </script>
 </body>
