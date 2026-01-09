@@ -1,49 +1,135 @@
-// استبدل هذا الجزء فقط داخل كود الموقع الحالي (من أول form.addEventListener)
-const form = document.getElementById('oimi-form');
-form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const btn = document.getElementById('submitBtn');
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة OIMI - طلب تقييم</title>
+    <link rel="icon" type="image/png" href="https://i.postimg.cc/cJRw69tq/Favicon-for-OIMI.png">
+    <style>
+        :root { --p: #00732f; --lg: #e8f5e9; }
+        body { background: #fff; margin: 0; font-family: 'Segoe UI', sans-serif; padding: 5px; text-align: right; overflow-x: hidden; }
+        .container { max-width: 600px; margin: auto; display: flex; flex-direction: column; gap: 2px; }
+        .card { background: #fff; padding: 18px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 1px solid #eee; }
+        .oimi-style { display: inline-flex; align-items: baseline; direction: ltr; font-weight: bold; color: #000; }
+        .oimi-i { display: inline-block; line-height: 1; background: linear-gradient(to bottom, #ff0000 20%, #000000 20%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .main-title { text-align: center; margin-bottom: 8px; font-weight: 800; font-size: 22px; }
+        .main-title .oimi-style { font-size: 34px; } 
+        .box { background: var(--lg); padding: 12px; border-radius: 10px; border: 1px solid var(--p); margin-bottom: 10px; color: #2e7d32; font-size: 13px; line-height: 1.6; }
+        label { display: block; margin: 4px 0 2px; font-weight: bold; font-size: 13px; color: #444; }
+        input, select, textarea { width: 100%; padding: 10px; margin-bottom: 5px; border-radius: 8px; border: 1px solid #ccc; box-sizing: border-box; font-size: 14px; background: #f9f9f9; font-weight: bold; }
+        .num-input { direction: ltr; text-align: left; }
+        .separator { border-top: 1px dashed var(--p); margin: 8px 0; opacity: 0.5; }
+        .footer-section { background: #fff; border-top: 1px solid #eee; margin-top: 15px; padding: 15px; text-align: center; }
+        .btn { width: 100%; background: linear-gradient(135deg, #00732f, #00a342); color: white; padding: 14px; border: none; border-radius: 10px; font-size: 16px; font-weight: bold; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="card">
+        <h2 class="main-title">منصة <span class="oimi-style">O<span class="oimi-i">i</span>M<span class="oimi-i">i</span>.ae</span></h2>
+        
+        <form id="oimi-form">
+            <div class="box">
+                <strong>✅ خطوات إتمام الطلب:</strong><br>
+                ١. تحويل الرسوم لبنك الخرطوم: 4623370.<br>
+                ٢. أكمل المعلومات واضغط إرسال.
+            </div>
+
+            <label>الاسم الرباعي (بالعربية) *</label>
+            <input type="text" id="u_name_ar" required>
+            
+            <label>الاسم الرباعي (بالإنجليزية) *</label>
+            <input type="text" id="u_name_en" class="num-input" required>
+
+            <label>التخصص المهني *</label>
+            <input type="text" id="u_spec" required>
+            
+            <label>بلد الاقامة *</label>
+            <select id="u_country" required onchange="handleCountryChange(this)">
+                <option value="">اختر الدولة...</option>
+            </select>
+            
+            <label>رقم الهاتف *</label>
+            <input type="tel" id="u_phone" class="num-input" disabled required>
+            
+            <label>رقم الواتساب *</label>
+            <input type="tel" id="u_whatsapp" class="num-input" disabled required>
+            
+            <label>البريد الالكتروني *</label>
+            <input type="email" id="u_email" required>
+
+            <label>كيف سمعت عنا؟ *</label>
+            <select id="u_source" required>
+                <option value="">اختر المصدر...</option>
+                <option value="فيسبوك">فيسبوك</option>
+                <option value="لينكد إن">لينكد إن</option>
+                <option value="تيك توك">تيك توك</option>
+                <option value="صديق">عن طريق صديق</option>
+            </select>
+
+            <label>ملاحظات</label>
+            <textarea id="u_notes" rows="2"></textarea>
+
+            <div class="separator"></div>
+            <label>أرفق السيرة الذاتية *</label>
+            <input type="file" id="cv_file" accept=".pdf,image/*" required>
+            
+            <label>أرفق صورة إيصال التحويل *</label>
+            <input type="file" id="receipt_file" accept="image/*" required>
+
+            <button type="submit" class="btn" id="submitBtn">إرسال الطلب وحفظ البيانات</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    // تأكد من أن هذا الرابط هو رابط "الانتشار" (Deployment) الأخير من جوجل
+    const scriptURL = "https://script.google.com/macros/s/AKfycbw0jhOgO2iYIss-Y4_B_hk8WKtFzyUH7FlgLwJijo6iCJ0lchZ_A9dMQAoXxQJo7IAT/exec";
     
-    // تغيير الحالة فوراً لمنع الضغط المتكرر
-    btn.disabled = true; 
-    btn.innerHTML = "جاري الرفع... يرجى الانتظار";
+    const countryCodes = { "السودان": "00249","مصر": "0020","السعودية": "00966","الإمارات": "00971" };
+    const cSel = document.getElementById('u_country');
+    Object.keys(countryCodes).forEach(c=>{ const o=document.createElement('option'); o.value=c; o.textContent=c; cSel.appendChild(o); });
 
-    try {
-        const toBase64 = f => new Promise((res, rej) => { 
-            const r = new FileReader(); 
-            r.onload = () => res(r.result.split(',')[1]); 
-            r.onerror = rej; 
-            r.readAsDataURL(f); 
-        });
-
-        const payload = { 
-            "الاسم العربي": document.getElementById('u_name_ar').value, 
-            "الاسم الانجليزي": document.getElementById('u_name_en').value, 
-            "التخصص المهني": document.getElementById('u_spec').value, 
-            "بلد الإقامة": document.getElementById('u_country').value, 
-            "رقم الهاتف": document.getElementById('u_phone').value, 
-            "رقم الواتس": document.getElementById('u_whatsapp').value, 
-            "البريد الإلكتروني": document.getElementById('u_email').value.trim().toLowerCase(), 
-            "كيف سمعت عننا": document.getElementById('u_source').value, 
-            "ملاحظات": document.getElementById('u_notes').value, 
-            "cv_data": await toBase64(document.getElementById('cv_file').files[0]), 
-            "receipt_data": await toBase64(document.getElementById('receipt_file').files[0]) 
-        };
-
-        // إرسال البيانات مباشرة بدون فحص مسبق لتجنب التعليق
-        const response = await fetch(scriptURL, { 
-            method: 'POST', 
-            mode: 'no-cors', // هذا الوضع يحل مشاكل الـ CORS والتعليق في بعض المتصفحات
-            body: JSON.stringify(payload) 
-        });
-
-        // ملاحظة: في وضع no-cors لا يمكن قراءة الرد، سنفترض النجاح بعد ثانيتين
-        alert("تم استلام طلبك بنجاح ✅ جاري الحفظ...");
-        location.reload();
-
-    } catch (err) { 
-        alert("حدث خطأ في الاتصال، يرجى المحاولة مرة أخرى."); 
-        btn.disabled = false; 
-        btn.innerHTML = "إرسال الطلب وحفظ البيانات"; 
+    function handleCountryChange(el){ 
+        const p=document.getElementById('u_phone'), w=document.getElementById('u_whatsapp'); 
+        if(el.value){ p.disabled=false; w.disabled=false; p.value=countryCodes[el.value]; w.value=countryCodes[el.value]; } 
     }
-});
+
+    document.getElementById('oimi-form').addEventListener('submit', async (e)=>{
+        e.preventDefault();
+        const btn=document.getElementById('submitBtn');
+        btn.disabled=true; btn.innerHTML="جاري الرفع... يرجى الانتظار";
+
+        try {
+            const toBase64=f=>new Promise((res,rej)=>{ const r=new FileReader(); r.onload=()=>res(r.result.split(',')[1]); r.onerror=rej; r.readAsDataURL(f); });
+            
+            const payload={ 
+              "الاسم العربي": document.getElementById('u_name_ar').value, 
+              "الاسم الانجليزي": document.getElementById('u_name_en').value, 
+              "التخصص المهني": document.getElementById('u_spec').value, 
+              "بلد الإقامة": document.getElementById('u_country').value, 
+              "رقم الهاتف": document.getElementById('u_phone').value, 
+              "رقم الواتس": document.getElementById('u_whatsapp').value, 
+              "البريد الإلكتروني": document.getElementById('u_email').value, 
+              "كيف سمعت عننا": document.getElementById('u_source').value, 
+              "ملاحظات": document.getElementById('u_notes').value, 
+              "cv_data": await toBase64(document.getElementById('cv_file').files[0]), 
+              "receipt_data": await toBase64(document.getElementById('receipt_file').files[0]) 
+            };
+
+            const response = await fetch(scriptURL, { method:'POST', body:JSON.stringify(payload) });
+            const result = await response.json();
+
+            if(result.status === "success"){ 
+                alert("تم بنجاح ✅ رقمك: " + result.uniqueId); 
+                location.reload(); 
+            }
+        } catch(err){ 
+            alert("حدث خطأ في الاتصال. تأكد من نشر السكريبت (Deploy) كـ Anyone."); 
+            btn.disabled=false; btn.innerHTML="إرسال الطلب وحفظ البيانات"; 
+        }
+    });
+</script>
+</body>
+</html>
