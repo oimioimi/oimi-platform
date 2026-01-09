@@ -95,7 +95,7 @@ input, select, textarea { width: 100%; padding: 10px; margin-bottom: 5px; border
             <input type="tel" id="u_phone" class="num-input" placeholder="اختر الدولة أولاً" disabled required oninput="this.value=this.value.replace(/[^0-9]/g,'')">
             
             <label>رقم الواتساب (أرقام إنجليزية فقط) *</label>
-            <input type="tel" id="u_whatsapp" class="num-input" disabled required oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+            <input type="tel" id="u_whatsapp" class="num-input" placeholder="اختر الدولة أولاً" disabled required oninput="this.value=this.value.replace(/[^0-9]/g,'')">
             
             <label>البريد الالكتروني *</label>
             <input type="email" id="u_email" placeholder="mail@example.com" required>
@@ -158,7 +158,6 @@ input, select, textarea { width: 100%; padding: 10px; margin-bottom: 5px; border
 </div>
 
 <script>
-// تم استخدام رابط السكريبت V89 الخاص بك لضمان دقة البيانات
 const scriptURL = "https://script.google.com/macros/s/AKfycbwL-jQa-sF4nEFVWtPlmAi3y8jgWX2erSHfbpFD_RP4d4bAQ1KWI-x6XgPuk5dca5WB/exec";
 
 const countryCodes = { "السودان": "00249","مصر": "0020","السعودية": "00966","الإمارات": "00971","قطر": "00974","عمان": "00968","الكويت": "00965","البحرين": "00973" };
@@ -181,7 +180,6 @@ form.addEventListener('submit', async (e)=>{
   btn.disabled=true; btn.innerHTML="جاري التحقق من البيانات...";
 
   try {
-    // فحص الإيميل مسبقاً لمنع التكرار
     const checkResp = await fetch(`${scriptURL}?checkEmail=${email}&t=${new Date().getTime()}`);
     const checkResult = await checkResp.json();
 
@@ -212,12 +210,12 @@ form.addEventListener('submit', async (e)=>{
     const result = await response.json();
 
     if(result.status === "success"){ 
-        alert("تم استلام طلبك بنجاح ✅\nرقم تسجيلك: " + result.uniqueId); 
-        window.open(`https://wa.me/249900065080?text=تم التسجيل بنجاح. رقم الطلب: ${result.uniqueId}`,'_blank'); 
+        alert("تم استلام طلبك بنجاح ✅\nرقم تسجيلك هو: " + result.uniqueId); 
+        window.open(`https://wa.me/249900065080?text=تم التسجيل بنجاح في منصة OIMI. رقم تسجيل الطلب الخاص بي هو: ${result.uniqueId}`,'_blank'); 
         location.reload(); 
     }
   } catch(err){ 
-    alert("حدث خطأ، يرجى المحاولة مرة أخرى."); 
+    alert("عذراً، حدث خطأ أثناء الإرسال. يرجى التأكد من اتصال الإنترنت والمحاولة مرة أخرى."); 
     btn.disabled=false; btn.innerHTML="إرسال الطلب وحفظ البيانات"; 
   }
 });
