@@ -15,9 +15,11 @@
         .oimi-style { display: inline-flex; align-items: baseline; direction: ltr; font-weight: bold; font-size: 38px; }
         .oimi-i { display: inline-block; background: linear-gradient(to bottom, #ff0000 20%, #000000 20%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
-        /* صندوق الخطوات المحدث */
-        .steps-box { background: var(--lg); padding: 15px; border-radius: 12px; border: 1.5px solid var(--p); margin-bottom: 10px; color: #2e7d32; font-size: 14px; line-height: 1.8; }
+        /* صندوق الخطوات المطور لضمان السطر الواحد */
+        .steps-box { background: var(--lg); padding: 15px; border-radius: 12px; border: 1.5px solid var(--p); margin-bottom: 10px; color: #2e7d32; line-height: 1.8; }
         .steps-box strong { color: var(--p); font-size: 16px; display: block; margin-bottom: 5px; }
+        .single-line { font-size: 12.5px; white-space: nowrap; display: block; overflow: hidden; text-overflow: ellipsis; }
+        .step-txt { font-size: 14px; }
         .whatsapp-link { color: var(--p); font-weight: bold; text-decoration: underline; }
         
         .duplicate-info { color: var(--p); font-size: 13px; font-weight: bold; margin: 10px 0; display: block; text-align: center; background: #fff; padding: 10px; border-radius: 10px; border: 1px solid #c3e6cb; }
@@ -27,20 +29,19 @@
         .num-input { direction: ltr; text-align: left; }
         
         .btn { width: 100%; background: linear-gradient(135deg, #00732f, #00a342); color: white; padding: 16px; border: none; border-radius: 12px; font-size: 18px; font-weight: bold; cursor: pointer; margin-top: 20px; }
-        .btn:disabled { background: #ccc; cursor: not-allowed; }
-
-        /* قسم مع عملائنا وشريط الصور */
+        
+        /* شريط الصور */
         .slider-section { background: #fff; padding: 15px; border-radius: 20px; border: 1px solid #eee; text-align: center; }
         .slider-section h3 { color: var(--p); margin-bottom: 10px; }
-        .slider { width: 100%; overflow: hidden; position: relative; height: 200px; }
-        .track { display: flex; width: max-content; animation: scroll-loop 20s linear infinite; align-items: center; }
-        .track img { width: 240px; height: 150px; object-fit: cover; margin: 0 10px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .slider { width: 100%; overflow: hidden; position: relative; height: 180px; }
+        .track { display: flex; width: max-content; animation: scroll-loop 20s linear infinite; }
+        .track img { width: 220px; height: 140px; object-fit: cover; margin: 0 10px; border-radius: 10px; }
         @keyframes scroll-loop { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
         .info-section { background: #fff; padding: 25px; border-radius: 20px; border: 1px solid #eee; }
         .info-section h3 { color: var(--p); margin-top: 0; margin-bottom: 15px; text-align: center; border-bottom: 2px solid var(--lg); padding-bottom: 10px; }
-        .info-section p { font-size: 14px; color: #444; line-height: 1.8; text-align: justify; margin-bottom: 15px; }
-        .info-links { text-align: center; margin-top: 15px; padding-top: 10px; border-top: 1px dashed #eee; }
+        .info-section p { font-size: 14px; color: #444; line-height: 1.8; text-align: justify; }
+        .info-links { text-align: center; margin-top: 15px; }
         .info-links a { display: inline-block; margin: 5px 12px; color: var(--p); text-decoration: none; font-weight: bold; font-size: 14px; }
         .separator { border-top: 1px dashed #ccc; margin: 15px 0; }
     </style>
@@ -54,10 +55,10 @@
         <form id="oimi-form">
             <div class="steps-box">
                 <strong>✅ خطوات إتمام الطلب:</strong>
-                ١. تحويل رسوم الخدمة (50,000 جنيه) لبنك الخرطوم (بنكك) :4623370 (باسم الأستاذ / عمر إبراهيم).<br>
-                ٢. أكمل المعلومات جميعها (الأرقام باللغة الإنجليزية حصراً).<br>
-                ٣. اضغط "إرسال" لحفظ بياناتك والحصول على رقم تسجيلك.<br>
-                ٤. 💡 صعوبة في سداد الرسوم؟ <a href="https://wa.me/249900065080" class="whatsapp-link">تواصل معنا هنا.</a>
+                <span class="single-line">١. تحويل رسوم الخدمة (50,000 جنيه) لبنك الخرطوم (بنكك) :4623370 (باسم الأستاذ / عمر إبراهيم).</span>
+                <span class="step-txt">٢. أكمل المعلومات جميعها (الأرقام باللغة الإنجليزية حصراً).</span><br>
+                <span class="step-txt">٣. اضغط "إرسال" لحفظ بياناتك والحصول على رقم تسجيلك.</span><br>
+                <span class="step-txt">٤. 💡 صعوبة في سداد الرسوم؟ <a href="https://wa.me/249900065080" class="whatsapp-link">تواصل معنا هنا.</a></span>
             </div>
             
             <div class="duplicate-info">يُسمح بالتسجيل مرة واحدة فقط لكل بريد إلكتروني.</div>
@@ -140,21 +141,16 @@ function handleCountryChange(el){
 const form = document.getElementById('oimi-form');
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    
     const val = id => document.getElementById(id).value.trim();
     const files = id => document.getElementById(id).files.length;
 
-    if(!val('u_name_ar')) { alert('يرجى كتابة الاسم بالعربية'); return; }
-    if(!val('u_name_en')) { alert('يرجى كتابة الاسم بالإنجليزية'); return; }
-    if(!val('u_country')) { alert('يرجى اختيار بلد الإقامة'); return; }
-    if(val('u_phone').length < 7) { alert('يرجى إدخال رقم الهاتف صحيح'); return; }
-    if(val('u_whatsapp').length < 7) { alert('يرجى إدخال رقم واتساب إلزامي'); return; }
-    if(!val('u_email')) { alert('يرجى إدخال البريد الإلكتروني'); return; }
-    if(!files('cv_file')) { alert('يرجى إرفاق السيرة الذاتية'); return; }
-    if(!files('receipt_file')) { alert('يرجى إرفاق إيصال التحويل'); return; }
+    if(!val('u_name_ar') || !val('u_name_en') || !val('u_country') || val('u_phone').length < 7 || val('u_whatsapp').length < 7 || !val('u_email') || !files('cv_file') || !files('receipt_file')) {
+        alert('يرجى إكمال كافة الحقول الإلزامية وإرفاق الملفات.');
+        return;
+    }
 
     const btn = document.getElementById('submitBtn');
-    btn.disabled = true; btn.innerHTML = "جاري التحقق من البيانات...";
+    btn.disabled = true; btn.innerHTML = "جاري التحقق والحفظ...";
 
     const toBase64 = file => new Promise((resolve, reject) => {
         const reader = new FileReader(); reader.readAsDataURL(file);
@@ -181,19 +177,16 @@ form.addEventListener('submit', async (e) => {
         const res = await resp.json();
 
         if (res.status === "exists") {
-            alert("⚠️ تنبيه: لقد قمت بالتسجيل مسبقاً بهذا البريد الإلكتروني. يرجى مراجعتنا عبر الواتساب برقم تسجيلك.");
+            alert("⚠️ تنبيه: هذا البريد مسجل مسبقاً. تواصل معنا برقم تسجيلك.");
             btn.disabled = false; btn.innerHTML = "إرسال الطلب وحفظ البيانات";
         } else if (res.status === "success") {
-            alert("تم التسجيل بنجاح ✅\nرقم تسجيلك هو: " + res.uniqueId);
-            window.open("https://wa.me/249900065080?text=" + encodeURIComponent("تم التسجيل. رقم التسجيل: " + res.uniqueId), "_blank");
+            alert("تم التسجيل بنجاح ✅ رقم تسجيلك: " + res.uniqueId);
+            window.open("https://wa.me/249900065080?text=" + encodeURIComponent("تم التسجيل. رقمي: " + res.uniqueId), "_blank");
             location.reload();
-        } else {
-            alert("حدث خطأ: " + (res.message || "يرجى المحاولة لاحقاً"));
-            btn.disabled = false; btn.innerHTML = "إرسال الطلب";
         }
     } catch (e) {
-        alert("فشل الاتصال بالخادم. يرجى التأكد من جودة الإنترنت.");
-        btn.disabled = false; btn.innerHTML = "إرسال الطلب وحفظ البيانات";
+        alert("حدث خطأ في الاتصال.");
+        btn.disabled = false; btn.innerHTML = "إرسال الطلب";
     }
 });
 </script>
