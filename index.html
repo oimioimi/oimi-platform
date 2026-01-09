@@ -8,16 +8,17 @@
     <style>
         :root { --p: #00732f; --lg: #f0fff4; }
         body { background: #fdfdfd; margin: 0; font-family: 'Segoe UI', Tahoma, sans-serif; padding: 10px; text-align: right; }
-        .container { max-width: 600px; margin: auto; }
+        .container { max-width: 600px; margin: auto; display: flex; flex-direction: column; gap: 15px; }
         .card { background: #fff; padding: 25px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); border: 1px solid #eee; }
         
         .main-title { text-align: center; margin-bottom: 15px; font-weight: 800; font-size: 24px; color: #000; }
         .oimi-style { display: inline-flex; align-items: baseline; direction: ltr; font-weight: bold; font-size: 38px; }
         .oimi-i { display: inline-block; background: linear-gradient(to bottom, #ff0000 20%, #000000 20%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
+        /* صندوق الخطوات - 4 أسطر */
         .steps-box { background: var(--lg); padding: 15px; border-radius: 12px; border: 1.5px solid var(--p); margin-bottom: 10px; color: #2e7d32; font-size: 14px; line-height: 1.8; }
         .steps-box strong { color: var(--p); font-size: 16px; display: block; margin-bottom: 5px; }
-        .whatsapp-link { display: block; margin-top: 8px; color: var(--p); font-weight: bold; text-decoration: none; border-top: 1px dashed #c3e6cb; padding-top: 8px; }
+        .whatsapp-link { color: var(--p); font-weight: bold; text-decoration: underline; }
         
         .duplicate-info { color: var(--p); font-size: 13px; font-weight: bold; margin: 10px 0; display: block; text-align: center; background: #fff; padding: 10px; border-radius: 10px; border: 1px solid #c3e6cb; }
         
@@ -27,6 +28,12 @@
         
         .btn { width: 100%; background: linear-gradient(135deg, #00732f, #00a342); color: white; padding: 16px; border: none; border-radius: 12px; font-size: 18px; font-weight: bold; cursor: pointer; margin-top: 20px; }
         .btn:disabled { background: #ccc; cursor: not-allowed; }
+        
+        /* أقسام إضافية */
+        .info-section { background: #fff; padding: 15px; border-radius: 15px; border: 1px solid #eee; text-align: center; }
+        .info-section h3 { color: var(--p); margin-top: 0; }
+        .info-links a { display: inline-block; margin: 5px 10px; color: #555; text-decoration: none; font-weight: bold; font-size: 14px; }
+        .info-links a:hover { color: var(--p); }
         .separator { border-top: 1px dashed #ccc; margin: 15px 0; }
     </style>
 </head>
@@ -41,8 +48,8 @@
                 <strong>✅ خطوات إتمام الطلب:</strong>
                 ١. تحويل رسوم الخدمة (50,000 جنيه) لبنك الخرطوم :4623370 (باسم الأستاذ / عمر إبراهيم).<br>
                 ٢. أكمل المعلومات جميعها (الأرقام باللغة الإنجليزية حصراً).<br>
-                ٣. اضغط "إرسال" لحفظ بياناتك والحصول على رقم تسجيلك.
-                <a href="https://wa.me/249900065080" class="whatsapp-link">💡 صعوبة في سداد الرسوم؟ تواصل معنا هنا.</a>
+                ٣. اضغط "إرسال" لحفظ بياناتك والحصول على رقم تسجيلك.<br>
+                ٤. 💡 صعوبة في سداد الرسوم؟ <a href="https://wa.me/249900065080" class="whatsapp-link">تواصل معنا هنا.</a>
             </div>
             
             <div class="duplicate-info">يُسمح بالتسجيل مرة واحدة فقط لكل بريد إلكتروني.</div>
@@ -77,10 +84,28 @@
             <button type="submit" class="btn" id="submitBtn">إرسال الطلب وحفظ البيانات</button>
         </form>
     </div>
+
+    <div class="info-section">
+        <h3>عن المنصة</h3>
+        <p style="font-size: 14px; color: #666;">منصة OIMI هي وجهتك الأولى لتطوير مسارك المهني وبناء سيرة ذاتية احترافية تفتح لك أبواب الفرص العالمية.</p>
+        <div class="info-links">
+            <a href="#">عن OIMI</a> | 
+            <a href="#">سياسة الخصوصية</a> | 
+            <a href="#">الشروط والأحكام</a>
+        </div>
+    </div>
+
+    <div class="info-section">
+        <h3>تواصل معنا</h3>
+        <div class="info-links">
+            <a href="https://wa.me/249900065080">واتساب</a> | 
+            <a href="mailto:info@oimi.ae">البريد الإلكتروني</a> | 
+            <a href="https://facebook.com/oimi.ae">فيسبوك</a>
+        </div>
+    </div>
 </div>
 
 <script>
-// الرابط الخاص بك (الإصدار 88)
 const scriptURL = "https://script.google.com/macros/s/AKfycbw0jhOgO2iYIss-Y4_B_hk8WKtFzyUH7FlgLwJijo6iCJ0lchZ_A9dMQAoXxQJo7IAT/exec";
 
 const countryCodes = { "السودان": "00249", "مصر": "0020", "السعودية": "00966", "الإمارات": "00971", "قطر": "00974", "عمان": "00968", "الكويت": "00965", "البحرين": "00973" };
@@ -96,7 +121,6 @@ const form = document.getElementById('oimi-form');
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
     
-    // فحص إلزامي صارم لجميع الحقول
     const val = id => document.getElementById(id).value.trim();
     const files = id => document.getElementById(id).files.length;
 
@@ -104,7 +128,7 @@ form.addEventListener('submit', async (e) => {
     if(!val('u_name_en')) { alert('يرجى كتابة الاسم بالإنجليزية'); return; }
     if(!val('u_country')) { alert('يرجى اختيار بلد الإقامة'); return; }
     if(val('u_phone').length < 7) { alert('يرجى إدخال رقم هاتف صحيح'); return; }
-    if(val('u_whatsapp').length < 7) { alert('يرجى إدخال رقم واتساب صحيح (إلزامي)'); return; }
+    if(val('u_whatsapp').length < 7) { alert('يرجى إدخال رقم واتساب صحيح'); return; }
     if(!val('u_email')) { alert('يرجى إدخال البريد الإلكتروني'); return; }
     if(!files('cv_file')) { alert('يرجى إرفاق السيرة الذاتية'); return; }
     if(!files('receipt_file')) { alert('يرجى إرفاق صورة إيصال التحويل'); return; }
@@ -122,7 +146,7 @@ form.addEventListener('submit', async (e) => {
         const payload = {
             "الاسم العربي": val('u_name_ar'),
             "الاسم الانجليزي": val('u_name_en'),
-            "البريد الإلكتروني": val('u_email').toLowerCase(),
+            "البريد الإلكتروني": val('u_email').toLowerCase(), // تحويل لصغير لضمان مطابقة المنع
             "بلد الإقامة": val('u_country'),
             "رقم الهاتف": val('u_phone'),
             "رقم الواتس": val('u_whatsapp'),
@@ -137,10 +161,10 @@ form.addEventListener('submit', async (e) => {
         const res = await resp.json();
 
         if (res.status === "exists") {
-            alert("⚠️ تنبيه: هذا البريد الإلكتروني مسجل مسبقاً لدينا. يرجى مراجعتنا عبر الواتساب برقم التسجيل الخاص بك.");
+            alert("⚠️ تنبيه: لقد قمت بالتسجيل مسبقاً بهذا البريد الإلكتروني. يرجى مراجعتنا عبر الواتساب برقم تسجيلك.");
             btn.disabled = false; btn.innerHTML = "إرسال الطلب وحفظ البيانات";
         } else if (res.status === "success") {
-            alert("تم التسجيل بنجاح ✅\nرقم تسجيلك: " + res.uniqueId);
+            alert("تم التسجيل بنجاح ✅\nرقم تسجيلك هو: " + res.uniqueId);
             window.open("https://wa.me/249900065080?text=" + encodeURIComponent("تم التسجيل. رقم التسجيل: " + res.uniqueId), "_blank");
             location.reload();
         } else {
@@ -148,7 +172,7 @@ form.addEventListener('submit', async (e) => {
             btn.disabled = false; btn.innerHTML = "إرسال الطلب";
         }
     } catch (e) {
-        alert("فشل الاتصال بالخادم. يرجى المحاولة مرة أخرى.");
+        alert("فشل الاتصال بالخادم. يرجى التأكد من جودة الإنترنت.");
         btn.disabled = false; btn.innerHTML = "إرسال الطلب وحفظ البيانات";
     }
 });
