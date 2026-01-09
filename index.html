@@ -1,34 +1,34 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>منصة OIMI - طلب تقييم</title>
-<link rel="icon" type="image/png" href="https://i.postimg.cc/cJRw69tq/Favicon-for-OIMI.png">
-<style>
-:root { --p: #00732f; --lg: #e8f5e9; }
-body { background: #fff; margin: 0; font-family: 'Segoe UI', sans-serif; padding: 5px; text-align: right; overflow-x: hidden; }
-.container { max-width: 600px; margin: auto; display: flex; flex-direction: column; gap: 2px; }
-.card { background: #fff; padding: 18px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 1px solid #eee; }
-.oimi-style { display: inline-flex; align-items: baseline; direction: ltr; font-weight: bold; color: #000; }
-.oimi-i { display: inline-block; line-height: 1; background: linear-gradient(to bottom, #ff0000 20%, #000000 20%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-.main-title { text-align: center; margin-bottom: 8px; font-weight: 800; font-size: 22px; }
-.main-title .oimi-style { font-size: 34px; } 
-.box { background: var(--lg); padding: 12px; border-radius: 10px; border: 1px solid var(--p); margin-bottom: 10px; color: #2e7d32; font-size: 13px; line-height: 1.6; }
-.help-link-center { text-align: center; margin-top: 8px; padding-top: 8px; border-top: 1px dashed var(--p); }
-label { display: block; margin: 4px 0 2px; font-weight: bold; font-size: 13px; color: #444; }
-input, select, textarea { width: 100%; padding: 10px; margin-bottom: 5px; border-radius: 8px; border: 1px solid #ccc; box-sizing: border-box; font-size: 14px; background: #f9f9f9; font-weight: bold; }
-.num-input { direction: ltr; text-align: left; }
-.separator { border-top: 1px dashed var(--p); margin: 8px 0; opacity: 0.5; }
-.footer-section { background: #fff; border-top: 1px solid #eee; margin-top: 15px; padding: 15px; text-align: center; }
-.f-title { color: var(--p); font-size: 22px; display: block; font-weight: bold; margin-bottom: 8px; }
-.f-intro { font-size: 13.5px; line-height: 1.6; color: #333; margin-bottom: 5px; text-align: justify; direction: rtl; }
-.f-subtitle { color: #888; font-size: 11px; cursor: pointer; text-decoration: underline; display: block; margin-bottom: 10px; }
-#details-box { display: none; background: #fdfdfd; padding: 15px; border-radius: 12px; border: 1px solid #ddd; margin-top: 10px; font-size: 13px; text-align: right; }
-.contact-area { margin-top: 20px; border-top: 1px solid #eee; padding-top: 15px; text-align: center; }
-.contact-area a { color: var(--p); text-decoration: none; font-weight: bold; margin: 0 15px; }
-.btn { width: 100%; background: linear-gradient(135deg, #00732f, #00a342); color: white; padding: 14px; border: none; border-radius: 10px; font-size: 16px; font-weight: bold; cursor: pointer; }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة OIMI - طلب تقييم</title>
+    <link rel="icon" type="image/png" href="https://i.postimg.cc/cJRw69tq/Favicon-for-OIMI.png">
+    <style>
+        :root { --p: #00732f; --lg: #e8f5e9; }
+        body { background: #fff; margin: 0; font-family: 'Segoe UI', sans-serif; padding: 5px; text-align: right; overflow-x: hidden; }
+        .container { max-width: 600px; margin: auto; display: flex; flex-direction: column; gap: 2px; }
+        .card { background: #fff; padding: 18px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 1px solid #eee; }
+        .oimi-style { display: inline-flex; align-items: baseline; direction: ltr; font-weight: bold; color: #000; }
+        .oimi-i { display: inline-block; line-height: 1; background: linear-gradient(to bottom, #ff0000 20%, #000000 20%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .main-title { text-align: center; margin-bottom: 8px; font-weight: 800; font-size: 22px; }
+        .main-title .oimi-style { font-size: 34px; } 
+        .box { background: var(--lg); padding: 12px; border-radius: 10px; border: 1px solid var(--p); margin-bottom: 10px; color: #2e7d32; font-size: 13px; line-height: 1.6; }
+        .help-link-center { text-align: center; margin-top: 8px; padding-top: 8px; border-top: 1px dashed var(--p); }
+        label { display: block; margin: 4px 0 2px; font-weight: bold; font-size: 13px; color: #444; }
+        input, select, textarea { width: 100%; padding: 10px; margin-bottom: 5px; border-radius: 8px; border: 1px solid #ccc; box-sizing: border-box; font-size: 14px; background: #f9f9f9; font-weight: bold; }
+        .num-input { direction: ltr; text-align: left; }
+        .separator { border-top: 1px dashed var(--p); margin: 8px 0; opacity: 0.5; }
+        .footer-section { background: #fff; border-top: 1px solid #eee; margin-top: 15px; padding: 15px; text-align: center; }
+        .f-title { color: var(--p); font-size: 22px; display: block; font-weight: bold; margin-bottom: 8px; }
+        .f-intro { font-size: 13.5px; line-height: 1.6; color: #333; margin-bottom: 5px; text-align: justify; direction: rtl; }
+        .f-subtitle { color: #888; font-size: 11px; cursor: pointer; text-decoration: underline; display: block; margin-bottom: 10px; }
+        #details-box { display: none; background: #fdfdfd; padding: 15px; border-radius: 12px; border: 1px solid #ddd; margin-top: 10px; font-size: 13px; text-align: right; }
+        .contact-area { margin-top: 20px; border-top: 1px solid #eee; padding-top: 15px; text-align: center; }
+        .contact-area a { color: var(--p); text-decoration: none; font-weight: bold; margin: 0 15px; }
+        .btn { width: 100%; background: linear-gradient(135deg, #00732f, #00a342); color: white; padding: 14px; border: none; border-radius: 10px; font-size: 16px; font-weight: bold; cursor: pointer; }
+    </style>
 </head>
 <body>
 
@@ -110,68 +110,88 @@ input, select, textarea { width: 100%; padding: 10px; margin-bottom: 5px; border
 </div>
 
 <script>
-const scriptURL = "https://script.google.com/macros/s/AKfycbw0jhOgO2iYIss-Y4_B_hk8WKtFzyUH7FlgLwJijo6iCJ0lchZ_A9dMQAoXxQJo7IAT/exec";
-const countryCodes = { "السودان": "00249","مصر": "0020","السعودية": "00966","الإمارات": "00971","قطر": "00974","عمان": "00968","الكويت": "00965","البحرين": "00973" };
-const cSel = document.getElementById('u_country');
-Object.keys(countryCodes).sort((a,b)=>a.localeCompare(b,'ar')).forEach(c=>{ const o=document.createElement('option'); o.value=c; o.textContent=c; cSel.appendChild(o); });
-
-function handleCountryChange(el){ 
-    const p=document.getElementById('u_phone'), w=document.getElementById('u_whatsapp'); 
-    if(el.value){ p.disabled=false; w.disabled=false; p.value=countryCodes[el.value]; w.value=countryCodes[el.value]; } 
-}
-
-function toggleDetails(){ const b=document.getElementById('details-box'); b.style.display=b.style.display==='block'?'none':'block'; }
-
-const form=document.getElementById('oimi-form');
-form.addEventListener('submit', async (e)=>{
-    e.preventDefault();
-    const btn=document.getElementById('submitBtn');
-    const email = document.getElementById('u_email').value.trim().toLowerCase();
+    // الرابط الخاص بجوجل سكريبت
+    const scriptURL = "https://script.google.com/macros/s/AKfycbw0jhOgO2iYIss-Y4_B_hk8WKtFzyUH7FlgLwJijo6iCJ0lchZ_A9dMQAoXxQJo7IAT/exec";
     
-    btn.disabled=true; btn.innerHTML="جاري التحقق...";
+    const countryCodes = { "السودان": "00249","مصر": "0020","السعودية": "00966","الإمارات": "00971","قطر": "00974","عمان": "00968","الكويت": "00965","البحرين": "00973" };
+    const cSel = document.getElementById('u_country');
+    
+    // تعبئة قائمة الدول
+    Object.keys(countryCodes).sort((a,b)=>a.localeCompare(b,'ar')).forEach(c=>{ 
+        const o=document.createElement('option'); o.value=c; o.textContent=c; cSel.appendChild(o); 
+    });
 
-    try {
-        const checkUrl = scriptURL + "?checkEmail=" + encodeURIComponent(email) + "&t=" + new Date().getTime();
-        const checkResp = await fetch(checkUrl);
-        const checkResult = await checkResp.json();
-
-        if (checkResult && checkResult.exists) {
-            alert("⚠️ عذراً، هذا البريد مسجل مسبقاً لدينا.");
-            btn.disabled=false; btn.innerHTML="إرسال الطلب وحفظ البيانات";
-            return;
-        }
-
-        btn.innerHTML="جاري الرفع...";
-        const toBase64=f=>new Promise((res,rej)=>{ const r=new FileReader(); r.onload=()=>res(r.result.split(',')[1]); r.onerror=rej; r.readAsDataURL(f); });
-        
-        // الترتيب البرمجي ليتوافق مع الشيت الجديد
-        const payload={ 
-          "الاسم العربي": document.getElementById('u_name_ar').value, 
-          "الاسم الانجليزي": document.getElementById('u_name_en').value, 
-          "التخصص المهني": document.getElementById('u_spec').value, 
-          "بلد الإقامة": document.getElementById('u_country').value, 
-          "رقم الهاتف": document.getElementById('u_phone').value, 
-          "رقم الواتس": document.getElementById('u_whatsapp').value, 
-          "البريد الإلكتروني": email, 
-          "كيف سمعت عننا": document.getElementById('u_source').value, // العمود I
-          "ملاحظات": document.getElementById('u_notes').value,       // العمود J
-          "cv_data": await toBase64(document.getElementById('cv_file').files[0]), 
-          "receipt_data": await toBase64(document.getElementById('receipt_file').files[0]) 
-        };
-
-        const response = await fetch(scriptURL, { method:'POST', body:JSON.stringify(payload) });
-        const result = await response.json();
-
-        if(result.status === "success"){ 
-            alert("تم بنجاح ✅ رقمك: " + result.uniqueId); 
-            window.open(`https://wa.me/249900065080?text=رقم الطلب: ${result.uniqueId}`,'_blank'); 
-            location.reload(); 
-        }
-    } catch(err){ 
-        alert("حدث خطأ في الاتصال، يرجى المحاولة ثانية."); 
-        btn.disabled=false; btn.innerHTML="إرسال الطلب وحفظ البيانات"; 
+    // التعامل مع تغيير الدولة
+    function handleCountryChange(el){ 
+        const p=document.getElementById('u_phone'), w=document.getElementById('u_whatsapp'); 
+        if(el.value){ 
+            p.disabled=false; w.disabled=false; 
+            p.value=countryCodes[el.value]; 
+            w.value=countryCodes[el.value]; 
+        } 
     }
-});
+
+    // إظهار التفاصيل في الفوتر
+    function toggleDetails(){ 
+        const b=document.getElementById('details-box'); 
+        b.style.display=b.style.display==='block'?'none':'block'; 
+    }
+
+    const form=document.getElementById('oimi-form');
+    form.addEventListener('submit', async (e)=>{
+        e.preventDefault();
+        const btn=document.getElementById('submitBtn');
+        const email = document.getElementById('u_email').value.trim().toLowerCase();
+        
+        btn.disabled=true; btn.innerHTML="جاري التحقق...";
+
+        try {
+            // 1. فحص التكرار (منع الإرسال إذا كان الإيميل مسجلاً)
+            const checkUrl = scriptURL + "?checkEmail=" + encodeURIComponent(email) + "&t=" + new Date().getTime();
+            const checkResp = await fetch(checkUrl);
+            const checkResult = await checkResp.json();
+
+            if (checkResult && checkResult.exists) {
+                alert("⚠️ عذراً، هذا البريد مسجل مسبقاً لدينا.");
+                btn.disabled=false; btn.innerHTML="إرسال الطلب وحفظ البيانات";
+                return;
+            }
+
+            // 2. تحويل الملفات لرفعها
+            btn.innerHTML="جاري الرفع...";
+            const toBase64=f=>new Promise((res,rej)=>{ 
+                const r=new FileReader(); r.onload=()=>res(r.result.split(',')[1]); r.onerror=rej; r.readAsDataURL(f); 
+            });
+            
+            // 3. تجهيز البيانات بالترتيب الصحيح المتوافق مع الشيت
+            const payload={ 
+              "الاسم العربي": document.getElementById('u_name_ar').value, 
+              "الاسم الانجليزي": document.getElementById('u_name_en').value, 
+              "التخصص المهني": document.getElementById('u_spec').value, 
+              "بلد الإقامة": document.getElementById('u_country').value, 
+              "رقم الهاتف": document.getElementById('u_phone').value, 
+              "رقم الواتس": document.getElementById('u_whatsapp').value, 
+              "البريد الإلكتروني": email, 
+              "كيف سمعت عننا": document.getElementById('u_source').value, // العمود I
+              "ملاحظات": document.getElementById('u_notes').value,       // العمود J
+              "cv_data": await toBase64(document.getElementById('cv_file').files[0]), 
+              "receipt_data": await toBase64(document.getElementById('receipt_file').files[0]) 
+            };
+
+            // 4. الإرسال الفعلي
+            const response = await fetch(scriptURL, { method:'POST', body:JSON.stringify(payload) });
+            const result = await response.json();
+
+            if(result.status === "success"){ 
+                alert("تم بنجاح ✅ رقمك: " + result.uniqueId); 
+                window.open(`https://wa.me/249900065080?text=رقم الطلب: ${result.uniqueId}`,'_blank'); 
+                location.reload(); 
+            }
+        } catch(err){ 
+            alert("حدث خطأ في الاتصال، يرجى المحاولة ثانية."); 
+            btn.disabled=false; btn.innerHTML="إرسال الطلب وحفظ البيانات"; 
+        }
+    });
 </script>
 </body>
 </html>
