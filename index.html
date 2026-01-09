@@ -67,16 +67,16 @@ input, select, textarea { width: 100%; padding: 10px; margin-bottom: 5px; border
             </div>
 
             <label>الاسم الرباعي (بالعربية فقط) *</label>
-            <input type="text" id="u_name_ar" placeholder="أدخل الاسم بالعربي" required oninvalid="this.setCustomValidity('يرجى إدخال الاسم بالعربية')" oninput="this.setCustomValidity(''); this.value=this.value.replace(/[a-zA-Z]/g,'')">
+            <input type="text" id="u_name_ar" placeholder="أدخل الاسم بالعربي" required oninvalid="this.setCustomValidity('يرجى إدخال الاسم الرباعي بالعربية')" oninput="this.setCustomValidity(''); this.value=this.value.replace(/[a-zA-Z]/g,'')">
             
             <label>الاسم الرباعي (بالإنجليزية فقط) *</label>
-            <input type="text" id="u_name_en" class="num-input" placeholder="Full Name in English" required oninvalid="this.setCustomValidity('Please enter full name in English')" oninput="this.setCustomValidity(''); this.value=this.value.replace(/[\u0600-\u06FF]/g,'')">
+            <input type="text" id="u_name_en" class="num-input" placeholder="Full Name in English" required oninvalid="this.setCustomValidity('يرجى إدخال الاسم الرباعي بالإنجليزية')" oninput="this.setCustomValidity(''); this.value=this.value.replace(/[\u0600-\u06FF]/g,'')">
 
             <label>التخصص المهني *</label>
             <input type="text" id="u_spec" placeholder="مثلاً: محاسب" required oninvalid="this.setCustomValidity('يرجى إدخال التخصص المهني')">
             
             <label>بلد الاقامة *</label>
-            <select id="u_country" required onchange="handleCountryChange(this)" oninvalid="this.setCustomValidity('يرجى اختيار بلد الإقامة')">
+            <select id="u_country" required onchange="handleCountryChange(this)" oninvalid="this.setCustomValidity('يرجى اختيار بلد الإقامة من القائمة')">
                 <option value="">اختر الدولة...</option>
             </select>
             
@@ -89,9 +89,6 @@ input, select, textarea { width: 100%; padding: 10px; margin-bottom: 5px; border
             <label>البريد الالكتروني *</label>
             <input type="email" id="u_email" placeholder="mail@example.com" required oninvalid="this.setCustomValidity('يرجى إدخال بريد إلكتروني صحيح')">
 
-            <label>ملاحظات إضافية (اختياري)</label>
-            <textarea id="u_notes" rows="2" placeholder="أضف أي تفاصيل أخرى..."></textarea>
-
             <label>كيف سمعت عنا؟ *</label>
             <select id="u_source" required oninvalid="this.setCustomValidity('يرجى اختيار كيف سمعت عنا')">
                 <option value="">اختر المصدر...</option>
@@ -100,6 +97,9 @@ input, select, textarea { width: 100%; padding: 10px; margin-bottom: 5px; border
                 <option value="تيك توك">تيك توك</option>
                 <option value="صديق">عن طريق صديق</option>
             </select>
+
+            <label>ملاحظات إضافية (اختياري)</label>
+            <textarea id="u_notes" rows="2" placeholder="أضف أي تفاصيل أخرى..."></textarea>
 
             <div class="separator"></div>
             <label>أرفق السيرة الذاتية (PDF أو صورة) *</label>
@@ -127,14 +127,13 @@ input, select, textarea { width: 100%; padding: 10px; margin-bottom: 5px; border
     <div class="footer-section">
         <span class="f-title">عن المنصة</span>
         <div class="f-intro">
-            <span class="oimi-style" style="font-size:20px;">O<span class="oimi-i">i</span>M<span class="oimi-i">i</span>.ae</span> هي منصة رقمية رائدة متخصصة في تقديم حلول مهنية متكاملة للباحثين عن عمل في منطقة الشرق الأوسط وشمال أفريقيا، تهدف إلى جسر الفجوة بين الكفاءات المهنية ومتطلبات سوق العمل الحديث.
+            <span class="oimi-style" style="font-size:20px;">O<span class="oimi-i">i</span>M<span class="oimi-i">i</span>.ae</span> هي منصة رقمية رائدة متخصصة في تقديم حلول مهنية متكاملة للباحثين عن عمل في منطقة الشرق الأوسط وشمال أفريقيا.
         </div>
         <span class="f-subtitle" onclick="toggleDetails()">اضغط للتفاصيل الإضافية ▾</span>
         <div id="details-box">
             <div class="bmc-header">🎯 رؤيتنا وأهدافنا:</div>
-            • <b>تمكين المهنيين:</b> نسعى لتزويد عملائنا بالأدوات اللازمة لاجتياز أنظمة تصفية السير الذاتية (ATS) بنجاح.<br>
-            • <b>التميز الرقمي:</b> نهدف للريادة في تقديم الخدمات الاستشارية المهنية بلمسة تقنية إبداعية.<br>
-            • <b>دعم المسار الوظيفي:</b> تقديم محتوى وتنسيقات عالمية تبرز القيمة الحقيقية لكل موظف.
+            • <b>تمكين المهنيين:</b> نسعى لتزويد عملائنا بالأدوات اللازمة لاجتياز أنظمة تصفية السير الذاتية (ATS).<br>
+            • <b>التميز الرقمي:</b> نهدف للريادة بلمسة تقنية إبداعية.
         </div>
         <div class="contact-area">
             <h4>تواصل معنا</h4>
@@ -167,7 +166,7 @@ form.addEventListener('submit', async (e)=>{
   e.preventDefault();
   const btn=document.getElementById('submitBtn');
   const email = document.getElementById('u_email').value.trim().toLowerCase();
-  btn.disabled=true; btn.innerHTML="جاري التحقق من البيانات...";
+  btn.disabled=true; btn.innerHTML="جاري التحقق...";
 
   try {
     const checkResp = await fetch(`${scriptURL}?checkEmail=${email}&t=${new Date().getTime()}`);
@@ -200,12 +199,11 @@ form.addEventListener('submit', async (e)=>{
         location.reload(); 
     }
   } catch(err){ 
-    alert("عذراً، حدث خطأ أثناء الإرسال. يرجى التأكد من اتصال الإنترنت والمحاولة مرة أخرى."); 
+    alert("عذراً، حدث خطأ أثناء الإرسال. يرجى المحاولة مرة أخرى."); 
     btn.disabled=false; btn.innerHTML="إرسال الطلب وحفظ البيانات"; 
   }
 });
 
-// مسح رسائل التنبيه عند البدء بالكتابة (للسماح بالتحقق الجديد)
 form.querySelectorAll('input, select, textarea').forEach(el => {
     el.addEventListener('input', () => el.setCustomValidity(''));
 });
