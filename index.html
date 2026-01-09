@@ -13,8 +13,8 @@
         .box { background: var(--lg); padding: 15px; border-radius: 10px; border: 1px solid var(--p); margin-bottom: 15px; font-size: 14px; line-height: 1.6; }
         label { display: block; margin: 12px 0 5px; font-weight: bold; font-size: 14px; }
         input, select, textarea { width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #ccc; box-sizing: border-box; font-size: 14px; }
-        .btn { width: 100%; background: var(--p); color: white; padding: 15px; border: none; border-radius: 10px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 20px; }
-        .btn:disabled { background: #999; }
+        .btn { width: 100%; background: var(--p); color: white; padding: 15px; border: none; border-radius: 10px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 20px; transition: 0.3s; }
+        .btn:disabled { background: #999; cursor: not-allowed; }
     </style>
 </head>
 <body>
@@ -24,7 +24,7 @@
         <h2 class="main-title">منصة OIMI</h2>
         <form id="oimi-form">
             <div class="box">
-                <strong>✅ خطوات الطلب:</strong><br>
+                <strong>✅ إكمال الطلب:</strong><br>
                 ١. حول الرسوم لحساب بنكك: <strong>4623370</strong> (عمر إبراهيم).<br>
                 ٢. ارفع المستندات أدناه واضغط إرسال.
             </div>
@@ -45,6 +45,7 @@
                 <option value="الإمارات">الإمارات</option>
                 <option value="السعودية">السعودية</option>
                 <option value="مصر">مصر</option>
+                <option value="قطر">قطر</option>
                 <option value="أخرى">أخرى</option>
             </select>
             
@@ -54,10 +55,10 @@
             <label>البريد الإلكتروني *</label>
             <input type="email" id="u_email" required>
 
-            <label>أرفق السيرة الذاتية *</label>
+            <label>أرفق السيرة الذاتية (PDF/Image) *</label>
             <input type="file" id="cv_file" accept=".pdf,image/*" required>
             
-            <label>أرفق إيصال التحويل *</label>
+            <label>أرفق صورة إيصال التحويل *</label>
             <input type="file" id="receipt_file" accept="image/*" required>
 
             <button type="submit" class="btn" id="submitBtn">إرسال الطلب وحفظ البيانات</button>
@@ -66,13 +67,15 @@
 </div>
 
 <script>
-const scriptURL = 'https://script.google.com/macros/s/AKfycbzNFmucaD8ayccrFDiUlWULF47CSw-hg9NbQFD1tLyAbnN9ZBnl1yNSGaaV4Bd6gpXz/exec';
+// الرابط الجديد الخاص بالنسخة 82
+const scriptURL = 'https://script.google.com/macros/s/AKfycbwz0PCnQ1A6P06gmmNJlBeo_XENeR1J3PfyyScq16ofN-Ko9z3LgGNpH0aNtAcPpdG5/exec';
 
 const form = document.getElementById('oimi-form');
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const btn = document.getElementById('submitBtn');
-    btn.disabled = true; btn.innerHTML = "جاري الحفظ والرفع...";
+    btn.disabled = true; 
+    btn.innerHTML = "جاري الحفظ والرفع... (يرجى الانتظار)";
 
     const toBase64 = file => new Promise((resolve, reject) => {
         const reader = new FileReader(); 
@@ -85,34 +88,44 @@ form.addEventListener('submit', async (e) => {
         const cvF = document.getElementById('cv_file').files[0];
         const rcF = document.getElementById('receipt_file').files[0];
         
+        // فحص حجم الملفات (يفضل أقل من 2MB لكل ملف للتجربة)
+        if (cvF.size > 2 * 1024 * 1024 || rcF.size > 2 * 1024 * 1024) {
+            alert("حجم الملف كبير جداً. يرجى اختيار ملفات أقل من 2 ميجابايت.");
+            btn.disabled = false; btn.innerHTML = "إرسال الطلب وحفظ البيانات";
+            return;
+        }
+
         const payload = {
             "الاسم العربي": document.getElementById('u_name_ar').value,
             "الاسم الانجليزي": document.getElementById('u_name_en').value,
             "التخصص المهني": document.getElementById('u_spec').value,
             "بلد الإقامة": document.getElementById('u_country').value,
             "رقم الهاتف": document.getElementById('u_phone').value,
-            "رقم الواتس": document.getElementById('u_phone').value, // سنستخدم نفس الرقم للتسهيل
+            "رقم الواتس": document.getElementById('u_phone').value,
             "البريد الإلكتروني": document.getElementById('u_email').value,
-            "ملاحظات": "طلب جديد من الموقع",
-            "كيف سمعت عننا": "الموقع الإلكتروني",
+            "ملاحظات": "طلب من الموقع",
+            "كيف سمعت عننا": "الموقع",
             "cv_data": await toBase64(cvF),
             "cv_name": cvF.name,
             "receipt_data": await toBase64(rcF),
             "receipt_name": rcF.name
         };
 
-        // إرسال حقيقي وانتظار الاستجابة
-        const response = await fetch(scriptURL, { 
+        // الإرسال وانتظار رد من السيرفر
+        fetch(scriptURL, { 
             method: 'POST',
-            mode: 'no-cors', // لضمان تخطي مشاكل الـ CORS مع جوجل
+            mode: 'no-cors',
             body: JSON.stringify(payload) 
+        }).then(res => {
+            alert("تم الإرسال بنجاح! شكراً لك.");
+            location.reload();
+        }).catch(err => {
+            alert("خطأ في السيرفر: " + err.message);
+            btn.disabled = false; btn.innerHTML = "إرسال الطلب وحفظ البيانات";
         });
-
-        alert("تم الإرسال بنجاح! شكراً لك.");
-        location.reload();
         
     } catch (e) {
-        alert("فشل الإرسال: " + e.message);
+        alert("خطأ في معالجة البيانات: " + e.message);
         btn.disabled = false; btn.innerHTML = "إرسال الطلب وحفظ البيانات";
     }
 });
