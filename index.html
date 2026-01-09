@@ -14,28 +14,29 @@
         .oimi-i { display: inline-block; line-height: 1; background: linear-gradient(to bottom, #ff0000 20%, #000000 20%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .main-title { text-align: center; margin-bottom: 8px; font-weight: 800; font-size: 22px; }
         .main-title .oimi-style { font-size: 34px; } 
-        
-        .box { background: var(--lg); padding: 12px; border-radius: 10px; border: 1px solid var(--p); margin-bottom: 10px; color: #2e7d32; font-size: 13px; line-height: 1.6; }
-        
-        /* قسم مع عملائنا والصور */
-        .clients-header { text-align: center; color: var(--p); font-weight: bold; font-size: 14px; margin-top: 10px; }
-        .marquee-wrapper { background: #fdfdfd; padding: 10px 0; border-radius: 10px; overflow: hidden; white-space: nowrap; border: 1px solid #f0f0f0; margin-bottom: 10px; }
-        .marquee-content { display: inline-block; animation: scroll 25s linear infinite; }
-        .marquee-content img { height: 35px; margin: 0 15px; vertical-align: middle; filter: grayscale(20%); }
-        @keyframes scroll { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
 
+        /* قسم مع عملائنا والشريط المتحرك التفاعلي */
+        .clients-section { margin: 15px 0; text-align: center; }
+        .clients-title { font-weight: bold; color: var(--p); font-size: 16px; margin-bottom: 10px; }
+        .marquee-container { width: 100%; overflow: hidden; background: #f9f9f9; padding: 15px 0; border-radius: 12px; border: 1px solid #eee; }
+        .marquee-content { display: flex; width: max-content; animation: scroll 30s linear infinite; }
+        .marquee-content:hover { animation-play-state: paused; }
+        .marquee-content img { height: 40px; margin: 0 25px; transition: transform 0.4s ease; cursor: pointer; filter: grayscale(10%); }
+        .marquee-content img:hover { transform: scale(1.6); filter: grayscale(0%); }
+        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(50%); } }
+
+        .box { background: var(--lg); padding: 12px; border-radius: 10px; border: 1px solid var(--p); margin-bottom: 10px; color: #2e7d32; font-size: 13px; line-height: 1.6; }
         label { display: block; margin: 4px 0 2px; font-weight: bold; font-size: 13px; color: #444; }
         input, select, textarea { width: 100%; padding: 10px; margin-bottom: 5px; border-radius: 8px; border: 1px solid #ccc; box-sizing: border-box; font-size: 14px; background: #f9f9f9; font-weight: bold; }
         .num-input { direction: ltr; text-align: left; }
         .separator { border-top: 1px dashed var(--p); margin: 8px 0; opacity: 0.5; }
-        
+
         /* الفوتر المكتمل */
         .footer-section { background: #fff; border-top: 1px solid #eee; margin-top: 15px; padding: 15px; text-align: center; }
         .f-title { color: var(--p); font-size: 22px; display: block; font-weight: bold; margin-bottom: 8px; }
         .f-intro { font-size: 13.5px; line-height: 1.6; color: #333; margin-bottom: 10px; text-align: justify; }
         .contact-area { background: #f9f9f9; padding: 15px; border-radius: 15px; border: 1px solid #eee; margin-top: 10px; }
-        .contact-area a { color: var(--p); text-decoration: none; font-weight: bold; margin: 0 10px; display: inline-block; }
-        
+        .contact-area a { color: var(--p); text-decoration: none; font-weight: bold; margin: 0 10px; }
         .btn { width: 100%; background: linear-gradient(135deg, #00732f, #00a342); color: white; padding: 14px; border: none; border-radius: 10px; font-size: 16px; font-weight: bold; cursor: pointer; }
     </style>
 </head>
@@ -45,49 +46,42 @@
     <div class="card">
         <h2 class="main-title">منصة <span class="oimi-style">O<span class="oimi-i">i</span>M<span class="oimi-i">i</span>.ae</span><br><span style="font-size:14px; color:#444; font-weight:normal;">طلب التقييم المهني وعمل السير الذاتية (ATS)</span></h2>
         
-        <div class="clients-header">نفخر بخدمة عملائنا في كبرى الشركات</div>
-        <div class="marquee-wrapper">
-            <div class="marquee-content">
-                <img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/44/Saudi_Aramco_Logo.svg/2560px-Saudi_Aramco_Logo.svg.png" alt="Aramco">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/ADNOC_Logo.svg/2000px-ADNOC_Logo.svg.png" alt="Adnoc">
-                <img src="https://upload.wikimedia.org/wikipedia/ar/thumb/4/41/Stc_logo.svg/1280px-Stc_logo.svg.png" alt="STC">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Dubai_Islamic_Bank_logo.svg/2560px-Dubai_Islamic_Bank_logo.svg.png" alt="DIB">
-                <img src="https://upload.wikimedia.org/wikipedia/ar/0/04/Qatar_Energy.png" alt="Qatar Energy">
-                <img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/44/Saudi_Aramco_Logo.svg/2560px-Saudi_Aramco_Logo.svg.png" alt="Aramco">
+        <div class="clients-section">
+            <div class="clients-title">مع عملائنا في كبرى الشركات</div>
+            <div class="marquee-container">
+                <div class="marquee-content">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/44/Saudi_Aramco_Logo.svg/2560px-Saudi_Aramco_Logo.svg.png" alt="Aramco">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/ADNOC_Logo.svg/2000px-ADNOC_Logo.svg.png" alt="Adnoc">
+                    <img src="https://upload.wikimedia.org/wikipedia/ar/thumb/4/41/Stc_logo.svg/1280px-Stc_logo.svg.png" alt="STC">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Dubai_Islamic_Bank_logo.svg/2560px-Dubai_Islamic_Bank_logo.svg.png" alt="DIB">
+                    <img src="https://upload.wikimedia.org/wikipedia/ar/0/04/Qatar_Energy.png" alt="Qatar Energy">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/44/Saudi_Aramco_Logo.svg/2560px-Saudi_Aramco_Logo.svg.png" alt="Aramco">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/ADNOC_Logo.svg/2000px-ADNOC_Logo.svg.png" alt="Adnoc">
+                </div>
             </div>
         </div>
 
         <form id="oimi-form">
             <div class="box">
                 <strong>✅ خطوات إتمام الطلب:</strong><br>
-                ١. تحويل رسوم الخدمة (50,000 جنيه) لبنك الخرطوم (بنكك) :4623370 (باسم / عمر إبراهيم).<br>
-                ٢. أكمل المعلومات (الأرقام باللغة الإنجليزية حصراً).<br>
-                ٣. اضغط "إرسال" لحفظ بياناتك والحصول على رقم تسجيلك.
+                ١. تحويل الرسوم (50,000 جنيه) لبنك الخرطوم: 4623370 (عمر إبراهيم).<br>
+                ٢. أكمل المعلومات واضغط إرسال لحفظ البيانات.
             </div>
 
             <label>الاسم الرباعي (بالعربية فقط) *</label>
             <input type="text" id="u_name_ar" required oninput="this.value=this.value.replace(/[a-zA-Z]/g,'')">
-            
             <label>الاسم الرباعي (بالإنجليزية فقط) *</label>
             <input type="text" id="u_name_en" class="num-input" required oninput="this.value=this.value.replace(/[\u0600-\u06FF]/g,'')">
-
             <label>التخصص المهني *</label>
             <input type="text" id="u_spec" required>
-            
             <label>بلد الاقامة *</label>
-            <select id="u_country" required onchange="handleCountryChange(this)">
-                <option value="">اختر الدولة...</option>
-            </select>
-            
+            <select id="u_country" required onchange="handleCountryChange(this)"><option value="">اختر الدولة...</option></select>
             <label>رقم الهاتف *</label>
             <input type="tel" id="u_phone" class="num-input" disabled required>
-            
             <label>رقم الواتساب *</label>
             <input type="tel" id="u_whatsapp" class="num-input" disabled required pattern=".{10,}">
-            
             <label>البريد الالكتروني *</label>
             <input type="email" id="u_email" required>
-
             <label>كيف سمعت عنا؟ *</label>
             <select id="u_source" required>
                 <option value="">اختر المصدر...</option>
@@ -96,17 +90,13 @@
                 <option value="تيك توك">تيك توك</option>
                 <option value="صديق">عن طريق صديق</option>
             </select>
-
             <label>ملاحظات</label>
             <textarea id="u_notes" rows="2"></textarea>
-
             <div class="separator"></div>
             <label>أرفق السيرة الذاتية *</label>
             <input type="file" id="cv_file" accept=".pdf,image/*" required>
-            
             <label>أرفق صورة إيصال التحويل *</label>
             <input type="file" id="receipt_file" accept="image/*" required>
-
             <button type="submit" class="btn" id="submitBtn">إرسال الطلب وحفظ البيانات</button>
         </form>
     </div>
@@ -146,15 +136,12 @@
             const checkUrl = scriptURL + "?checkEmail=" + encodeURIComponent(email) + "&t=" + new Date().getTime();
             const checkResp = await fetch(checkUrl);
             const checkResult = await checkResp.json();
-
             if (checkResult && checkResult.exists) {
                 alert("⚠️ عذراً، هذا البريد مسجل مسبقاً لدينا.");
                 btn.disabled=false; btn.innerHTML="إرسال الطلب وحفظ البيانات";
                 return;
             }
-
             const toBase64=f=>new Promise((res,rej)=>{ const r=new FileReader(); r.onload=()=>res(r.result.split(',')[1]); r.onerror=rej; r.readAsDataURL(f); });
-            
             const payload={ 
               "الاسم العربي": document.getElementById('u_name_ar').value, 
               "الاسم الانجليزي": document.getElementById('u_name_en').value, 
@@ -168,13 +155,11 @@
               "cv_data": await toBase64(document.getElementById('cv_file').files[0]), 
               "receipt_data": await toBase64(document.getElementById('receipt_file').files[0]) 
             };
-
             const response = await fetch(scriptURL, { method:'POST', body:JSON.stringify(payload) });
             const result = await response.json();
-
             if(result.status === "success"){ 
                 alert("تم بنجاح ✅ رقمك: " + result.uniqueId); 
-                window.open(`https://wa.me/249900065080?text=رقم الطلب الخاص بي: ${result.uniqueId}`,'_blank'); 
+                window.open(`https://wa.me/249900065080?text=رقم الطلب الخاص بي هو: ${result.uniqueId}`,'_blank'); 
                 location.reload(); 
             }
         } catch(err){ 
