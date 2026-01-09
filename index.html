@@ -62,7 +62,7 @@ input, select, textarea { width: 100%; padding: 10px; margin-bottom: 5px; border
             <label>رقم الهاتف *</label>
             <input type="tel" id="u_phone" class="num-input" disabled required oninvalid="this.setCustomValidity('يرجى إدخال رقم الهاتف')" oninput="this.setCustomValidity(''); this.value=this.value.replace(/[^0-9]/g,'')">
             
-            <label>رقم الواتساب (مطلوب كامل مع رمز الدولة) *</label>
+            <label>رقم الواتساب *</label>
             <input type="tel" id="u_whatsapp" class="num-input" disabled required pattern=".{10,}" oninvalid="this.setCustomValidity('يرجى إدخال رقم واتساب صحيح وكامل')" oninput="this.setCustomValidity(''); this.value=this.value.replace(/[^0-9]/g,'')">
             
             <label>البريد الالكتروني *</label>
@@ -126,13 +126,15 @@ const form=document.getElementById('oimi-form');
 form.addEventListener('submit', async (e)=>{
     e.preventDefault();
     const btn=document.getElementById('submitBtn');
-    const email = document.getElementById('u_email').value.trim().toLowerCase();
+    const emailInput = document.getElementById('u_email');
+    const email = emailInput.value.trim().toLowerCase();
     
     btn.disabled=true; btn.innerHTML="جاري التحقق...";
 
     try {
-        // فحص مباشر للإيميل في كل مرة يتم فيها الضغط على الإرسال
-        const checkResp = await fetch(`${scriptURL}?checkEmail=${email}&t=${new Date().getTime()}`);
+        // فحص "حي" ومباشر مع كسر الكاش
+        const checkUrl = scriptURL + "?checkEmail=" + encodeURIComponent(email) + "&nocache=" + new Date().getTime();
+        const checkResp = await fetch(checkUrl);
         const checkResult = await checkResp.json();
 
         if (checkResult.exists) {
