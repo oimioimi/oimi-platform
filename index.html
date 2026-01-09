@@ -12,7 +12,6 @@ body { background: #fff; margin: 0; font-family: 'Segoe UI', sans-serif; padding
 .container { max-width: 600px; margin: auto; display: flex; flex-direction: column; gap: 2px; }
 .card { background: #fff; padding: 18px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 1px solid #eee; }
 
-/* شعار OiMi بنقطتين حمراوين */
 .oimi-style { display: inline-flex; align-items: baseline; direction: ltr; font-weight: bold; color: #000; }
 .oimi-i { display: inline-block; line-height: 1; background: linear-gradient(to bottom, #ff0000 20%, #000000 20%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
@@ -20,8 +19,6 @@ body { background: #fff; margin: 0; font-family: 'Segoe UI', sans-serif; padding
 .main-title .oimi-style { font-size: 34px; } 
 
 .box { background: var(--lg); padding: 12px; border-radius: 10px; border: 1px solid var(--p); margin-bottom: 10px; color: #2e7d32; font-size: 13px; line-height: 1.6; }
-
-/* رابط المساعدة موسط بدون ايموجي */
 .help-link-center { text-align: center; margin-top: 8px; padding-top: 8px; border-top: 1px dashed var(--p); }
 
 label { display: block; margin: 4px 0 2px; font-weight: bold; font-size: 13px; color: #444; }
@@ -29,14 +26,12 @@ input, select, textarea { width: 100%; padding: 10px; margin-bottom: 5px; border
 .num-input { direction: ltr; text-align: left; }
 .separator { border-top: 1px dashed var(--p); margin: 8px 0; opacity: 0.5; }
 
-/* شريط الصور */
 .slider { width: 100%; overflow: hidden; margin-top: 15px; text-align: center; direction: ltr; position: relative; height: 260px; }
 .slider h4 { color: var(--p); margin: 5px 0; font-size: 16px; direction: rtl; }
 .track { display: flex; width: max-content; animation: scroll-loop 25s linear infinite; padding: 20px 0; align-items: center; }
 .track img { width: 260px; height: 160px; object-fit: cover; margin: 0 15px; border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.1); cursor: zoom-in; }
 @keyframes scroll-loop { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-/* قسم عن المنصة المحدث */
 .footer-section { background: #fff; border-top: 1px solid #eee; margin-top: 15px; padding: 15px; text-align: center; }
 .f-title { color: var(--p); font-size: 22px; display: block; font-weight: bold; margin-bottom: 8px; }
 .f-intro { font-size: 13.5px; line-height: 1.6; color: #333; margin-bottom: 5px; text-align: justify; direction: rtl; }
@@ -72,33 +67,33 @@ input, select, textarea { width: 100%; padding: 10px; margin-bottom: 5px; border
             </div>
 
             <label>الاسم الرباعي (بالعربية فقط) *</label>
-            <input type="text" id="u_name_ar" placeholder="أدخل الاسم بالعربي" required oninvalid="this.setCustomValidity('يرجى إدخال الاسم بالعربية')" oninput="this.setCustomValidity(''); this.value=this.value.replace(/[a-zA-Z]/g,'')">
+            <input type="text" id="u_name_ar" placeholder="أدخل الاسم بالعربي" required oninput="this.value=this.value.replace(/[a-zA-Z]/g,'')">
             
             <label>الاسم الرباعي (بالإنجليزية فقط) *</label>
-            <input type="text" id="u_name_en" class="num-input" placeholder="Full Name in English" required oninvalid="this.setCustomValidity('يرجى إدخال الاسم بالإنجليزية')" oninput="this.setCustomValidity(''); this.value=this.value.replace(/[\u0600-\u06FF]/g,'')">
+            <input type="text" id="u_name_en" class="num-input" placeholder="Full Name in English" required oninput="this.value=this.value.replace(/[\u0600-\u06FF]/g,'')">
 
             <label>التخصص المهني *</label>
-            <input type="text" id="u_spec" placeholder="مثلاً: محاسب" required oninvalid="this.setCustomValidity('يرجى إدخال التخصص')">
+            <input type="text" id="u_spec" placeholder="مثلاً: محاسب" required>
             
             <label>بلد الاقامة *</label>
-            <select id="u_country" required oninvalid="this.setCustomValidity('يرجى اختيار الدولة')">
+            <select id="u_country" required onchange="handleCountryChange(this)">
                 <option value="">اختر الدولة...</option>
             </select>
             
             <label>رقم الهاتف (أرقام إنجليزية فقط) *</label>
-            <input type="tel" id="u_phone" class="num-input" placeholder="اختر الدولة أولاً" disabled required oninput="this.setCustomValidity(''); this.value=this.value.replace(/[^0-9]/g,'')" oninvalid="this.setCustomValidity('يرجى إدخال رقم الهاتف')">
+            <input type="tel" id="u_phone" class="num-input" placeholder="اختر الدولة أولاً" disabled required oninput="this.value=this.value.replace(/[^0-9]/g,'')">
             
             <label>رقم الواتساب (أرقام إنجليزية فقط) *</label>
-            <input type="tel" id="u_whatsapp" class="num-input" placeholder="أرقام إنجليزية فقط" disabled required oninput="this.setCustomValidity(''); this.value=this.value.replace(/[^0-9]/g,'')" oninvalid="this.setCustomValidity('يرجى إدخال رقم الواتساب بالإنجليزية فقط')">
+            <input type="tel" id="u_whatsapp" class="num-input" placeholder="اختر الدولة أولاً" disabled required oninput="this.value=this.value.replace(/[^0-9]/g,'')">
             
             <label>البريد الالكتروني *</label>
-            <input type="email" id="u_email" placeholder="mail@example.com" required oninvalid="this.setCustomValidity('يرجى إدخال بريد إلكتروني صحيح')">
+            <input type="email" id="u_email" placeholder="mail@example.com" required>
 
             <label>ملاحظات إضافية (اختياري)</label>
             <textarea id="u_notes" rows="2" placeholder="أضف أي تفاصيل أخرى..."></textarea>
 
             <label>كيف سمعت عنا؟ *</label>
-            <select id="u_source" required oninvalid="this.setCustomValidity('يرجى اختيار المصدر')">
+            <select id="u_source" required>
                 <option value="">اختر المصدر...</option>
                 <option value="فيسبوك">فيسبوك</option>
                 <option value="لينكد إن">لينكد إن</option>
@@ -108,10 +103,10 @@ input, select, textarea { width: 100%; padding: 10px; margin-bottom: 5px; border
 
             <div class="separator"></div>
             <label>أرفق السيرة الذاتية (PDF أو صورة) *</label>
-            <input type="file" id="cv_file" accept=".pdf,image/*" required oninvalid="this.setCustomValidity('يرجى إرفاق السيرة الذاتية')">
+            <input type="file" id="cv_file" accept=".pdf,image/*" required>
             
             <label>أرفق صورة إيصال التحويل *</label>
-            <input type="file" id="receipt_file" accept="image/*" required oninvalid="this.setCustomValidity('يرجى إرفاق صورة الإيصال')">
+            <input type="file" id="receipt_file" accept="image/*" required>
 
             <button type="submit" class="btn" id="submitBtn">إرسال الطلب وحفظ البيانات</button>
         </form>
@@ -166,6 +161,13 @@ function toggleDetails(){ const b=document.getElementById('details-box'); b.styl
 const form=document.getElementById('oimi-form');
 form.addEventListener('submit', async (e)=>{
   e.preventDefault();
+  
+  // تعريب رسائل التحقق اليدوي (Validation)
+  if(!form.checkValidity()) {
+      alert("يرجى إكمال جميع الحقول المطلوبة بشكل صحيح.");
+      return;
+  }
+
   const btn=document.getElementById('submitBtn');
   const email = document.getElementById('u_email').value.trim().toLowerCase();
   btn.disabled=true; btn.innerHTML="جاري التحقق من البيانات...";
@@ -201,7 +203,7 @@ form.addEventListener('submit', async (e)=>{
         location.reload(); 
     }
   } catch(err){ 
-    alert("عذراً، حدث خطأ أثناء الإرسال. يرجى المحاولة مرة أخرى."); 
+    alert("عذراً، حدث خطأ أثناء الإرسال. يرجى التأكد من اتصال الإنترنت والمحاولة مرة أخرى."); 
     btn.disabled=false; btn.innerHTML="إرسال الطلب وحفظ البيانات"; 
   }
 });
