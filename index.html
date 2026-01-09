@@ -205,175 +205,4 @@ form.querySelectorAll('input, select, textarea').forEach(el => {
 });
 </script>
 </body>
-</html>.f-intro { font-size: 13.5px; line-height: 1.6; color: #333; margin-bottom: 5px; text-align: justify; direction: rtl; }
-.f-subtitle { color: #888; font-size: 11px; cursor: pointer; text-decoration: underline; display: block; margin-bottom: 10px; }
-#details-box { display: none; background: #fdfdfd; padding: 15px; border-radius: 12px; border: 1px solid #ddd; margin-top: 10px; font-size: 13px; line-height: 1.8; color: #333; text-align: right; }
-.bmc-header { font-weight: bold; color: var(--p); margin: 12px 0 5px; border-bottom: 1px solid #eee; padding-bottom: 3px; font-size: 14.5px; }
-
-.contact-area { margin-top: 20px; border-top: 1px solid #eee; padding-top: 15px; text-align: center; }
-.contact-area a { color: var(--p); text-decoration: none; font-weight: bold; margin: 0 15px; }
-.btn { width: 100%; background: linear-gradient(135deg, #00732f, #00a342); color: white; padding: 14px; border: none; border-radius: 10px; font-size: 16px; font-weight: bold; cursor: pointer; }
-
-#modalOverlay { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:10000; align-items:center; justify-content:center; }
-#modalOverlay img { max-width: 90%; max-height: 80%; border: 3px solid #fff; border-radius: 10px; }
-</style>
-</head>
-<body>
-
-<div id="modalOverlay" onclick="this.style.display='none'"><img id="modalImg"></div>
-
-<div class="container">
-    <div class="card">
-        <h2 class="main-title">منصة <span class="oimi-style">O<span class="oimi-i">i</span>M<span class="oimi-i">i</span>.ae</span><br><span style="font-size:14px; color:#444; font-weight:normal;">طلب التقييم المهني وعمل السير الذاتية (ATS)</span></h2>
-        
-        <form id="oimi-form">
-            <div class="box">
-                <strong>✅ خطوات إتمام الطلب:</strong><br>
-                ١. تحويل رسوم الخدمة (50,000 جنيه) لبنك الخرطوم (بنكك) :4623370 (باسم الأستاذ / عمر إبراهيم).<br>
-                ٢. أكمل المعلومات جميعها (الأرقام باللغة الإنجليزية حصراً).<br>
-                ٣. اضغط "إرسال" لحفظ بياناتك والحصول على رقم تسجيلك.
-                <div class="help-link-center">
-                    <a href="https://wa.me/249900065080" target="_blank" style="color:var(--p); font-weight:bold; text-decoration:none;">إذا كنت تواجه صعوبة في سداد الرسوم؟ اضغط هنا للتواصل معنا.</a>
-                </div>
-            </div>
-
-            <label>الاسم الرباعي (بالعربية فقط) *</label>
-            <input type="text" id="u_name_ar" placeholder="أدخل الاسم بالعربي" required oninvalid="this.setCustomValidity('يرجى إدخال الاسم الرباعي بالعربية')" oninput="this.setCustomValidity(''); this.value=this.value.replace(/[a-zA-Z]/g,'')">
-            
-            <label>الاسم الرباعي (بالإنجليزية فقط) *</label>
-            <input type="text" id="u_name_en" class="num-input" placeholder="Full Name in English" required oninvalid="this.setCustomValidity('يرجى إدخال الاسم الرباعي بالإنجليزية')" oninput="this.setCustomValidity(''); this.value=this.value.replace(/[\u0600-\u06FF]/g,'')">
-
-            <label>التخصص المهني *</label>
-            <input type="text" id="u_spec" placeholder="مثلاً: محاسب" required oninvalid="this.setCustomValidity('يرجى إدخال التخصص المهني')">
-            
-            <label>بلد الاقامة *</label>
-            <select id="u_country" required onchange="handleCountryChange(this)" oninvalid="this.setCustomValidity('يرجى اختيار بلد الإقامة من القائمة')">
-                <option value="">اختر الدولة...</option>
-            </select>
-            
-            <label>رقم الهاتف (أرقام إنجليزية فقط) *</label>
-            <input type="tel" id="u_phone" class="num-input" placeholder="اختر الدولة أولاً" disabled required oninvalid="this.setCustomValidity('يرجى إدخال رقم الهاتف بالأرقام الإنجليزية')" oninput="this.setCustomValidity(''); this.value=this.value.replace(/[^0-9]/g,'')">
-            
-            <label>رقم الواتساب (أرقام إنجليزية فقط) *</label>
-            <input type="tel" id="u_whatsapp" class="num-input" placeholder="اختر الدولة أولاً" disabled required oninvalid="this.setCustomValidity('يرجى إدخال رقم الواتساب بالأرقام الإنجليزية')" oninput="this.setCustomValidity(''); this.value=this.value.replace(/[^0-9]/g,'')">
-            
-            <label>البريد الالكتروني *</label>
-            <input type="email" id="u_email" placeholder="mail@example.com" required oninvalid="this.setCustomValidity('يرجى إدخال بريد إلكتروني صحيح')">
-
-            <label>كيف سمعت عنا؟ *</label>
-            <select id="u_source" required oninvalid="this.setCustomValidity('يرجى اختيار كيف سمعت عنا')">
-                <option value="">اختر المصدر...</option>
-                <option value="فيسبوك">فيسبوك</option>
-                <option value="لينكد إن">لينكد إن</option>
-                <option value="تيك توك">تيك توك</option>
-                <option value="صديق">عن طريق صديق</option>
-            </select>
-
-            <label>ملاحظات إضافية (اختياري)</label>
-            <textarea id="u_notes" rows="2" placeholder="أضف أي تفاصيل أخرى..."></textarea>
-
-            <div class="separator"></div>
-            <label>أرفق السيرة الذاتية (PDF أو صورة) *</label>
-            <input type="file" id="cv_file" accept=".pdf,image/*" required oninvalid="this.setCustomValidity('يرجى إرفاق ملف السيرة الذاتية')">
-            
-            <label>أرفق صورة إيصال التحويل *</label>
-            <input type="file" id="receipt_file" accept="image/*" required oninvalid="this.setCustomValidity('يرجى إرفاق صورة إيصال التحويل')">
-
-            <button type="submit" class="btn" id="submitBtn">إرسال الطلب وحفظ البيانات</button>
-        </form>
-    </div>
-
-    <div class="slider">
-        <h4>مع عملائنا</h4>
-        <div class="track">
-            <img src="https://i.postimg.cc/vHPSwW3p/528604980-10162083330481298-381945114741787991-n.jpg" onclick="zoomImg(this.src)">
-            <img src="https://i.postimg.cc/sDn0Cpwb/585747945-10162491435001298-5020852638269490297-n.jpg" onclick="zoomImg(this.src)">
-            <img src="https://i.postimg.cc/Wb9fcMXY/QVZo-ZFNzc-Wdi-MUx2a-HJMUFRhe-GJza-TZI.jpg" onclick="zoomImg(this.src)">
-        </div>
-    </div>
-
-    <div class="footer-section">
-        <span class="f-title">عن المنصة</span>
-        <div class="f-intro">
-            <span class="oimi-style" style="font-size:20px;">O<span class="oimi-i">i</span>M<span class="oimi-i">i</span>.ae</span> هي منصة رقمية رائدة متخصصة في تقديم حلول مهنية متكاملة للباحثين عن عمل.
-        </div>
-        <span class="f-subtitle" onclick="toggleDetails()">اضغط للتفاصيل الإضافية ▾</span>
-        <div id="details-box">
-            <div class="bmc-header">🎯 رؤيتنا وأهدافنا:</div>
-            • تمكين المهنيين لاجتياز أنظمة ATS بنجاح.
-        </div>
-        <div class="contact-area">
-            <h4>تواصل معنا</h4>
-            <a href="https://wa.me/249900065080" target="_blank">🟢 واتساب</a> | 
-            <a href="mailto:info@oimi.ae">📧 البريد الإلكتروني</a>
-        </div>
-    </div>
-</div>
-
-<script>
-const scriptURL = "https://script.google.com/macros/s/AKfycbwL-jQa-sF4nEFVWtPlmAi3y8jgWX2erSHfbpFD_RP4d4bAQ1KWI-x6XgPuk5dca5WB/exec";
-const countryCodes = { "السودان": "00249","مصر": "0020","السعودية": "00966","الإمارات": "00971","قطر": "00974","عمان": "00968","الكويت": "00965","البحرين": "00973" };
-const cSel = document.getElementById('u_country');
-Object.keys(countryCodes).sort((a,b)=>a.localeCompare(b,'ar')).forEach(c=>{ const o=document.createElement('option'); o.value=c; o.textContent=c; cSel.appendChild(o); });
-
-function handleCountryChange(el){ 
-    const p=document.getElementById('u_phone'), w=document.getElementById('u_whatsapp'); 
-    if(el.value){ 
-        p.disabled=false; w.disabled=false; 
-        p.value=countryCodes[el.value]; w.value=countryCodes[el.value];
-        p.setCustomValidity(''); w.setCustomValidity('');
-    } 
-}
-
-function zoomImg(src){ document.getElementById('modalImg').src=src; document.getElementById('modalOverlay').style.display='flex'; }
-function toggleDetails(){ const b=document.getElementById('details-box'); b.style.display=b.style.display==='block'?'none':'block'; }
-
-const form=document.getElementById('oimi-form');
-form.addEventListener('submit', async (e)=>{
-  e.preventDefault();
-  const btn=document.getElementById('submitBtn');
-  const email = document.getElementById('u_email').value.trim().toLowerCase();
-  btn.disabled=true; btn.innerHTML="جاري التحقق...";
-
-  try {
-    const checkResp = await fetch(`${scriptURL}?checkEmail=${email}&t=${new Date().getTime()}`);
-    const checkResult = await checkResp.json();
-    if (checkResult && checkResult.exists) {
-        alert("⚠️ عذراً، هذا البريد مسجل لدينا مسبقاً.");
-        btn.disabled=false; btn.innerHTML="إرسال الطلب وحفظ البيانات";
-        return;
-    }
-    btn.innerHTML="جاري الرفع والحفظ...";
-    const toBase64=f=>new Promise((res,rej)=>{ const r=new FileReader(); r.onload=()=>res(r.result.split(',')[1]); r.onerror=rej; r.readAsDataURL(f); });
-    const payload={ 
-      "الاسم العربي": document.getElementById('u_name_ar').value, 
-      "الاسم الانجليزي": document.getElementById('u_name_en').value, 
-      "التخصص المهني": document.getElementById('u_spec').value, 
-      "بلد الإقامة": document.getElementById('u_country').value, 
-      "رقم الهاتف": document.getElementById('u_phone').value, 
-      "رقم الواتس": document.getElementById('u_whatsapp').value, 
-      "البريد الإلكتروني": email, 
-      "كيف سمعت عننا": document.getElementById('u_source').value, // الترتيب في الإرسال
-      "ملاحظات": document.getElementById('u_notes').value, 
-      "cv_data": await toBase64(document.getElementById('cv_file').files[0]), 
-      "receipt_data": await toBase64(document.getElementById('receipt_file').files[0]) 
-    };
-    const response = await fetch(scriptURL, { method:'POST', body:JSON.stringify(payload) });
-    const result = await response.json();
-    if(result.status === "success"){ 
-        alert("تم استلام طلبك بنجاح ✅\nرقم تسجيلك هو: " + result.uniqueId); 
-        window.open(`https://wa.me/249900065080?text=تم التسجيل بنجاح في منصة OIMI. رقم تسجيل الطلب الخاص بي هو: ${result.uniqueId}`,'_blank'); 
-        location.reload(); 
-    }
-  } catch(err){ 
-    alert("عذراً، حدث خطأ أثناء الإرسال. يرجى المحاولة مرة أخرى."); 
-    btn.disabled=false; btn.innerHTML="إرسال الطلب وحفظ البيانات"; 
-  }
-});
-
-form.querySelectorAll('input, select, textarea').forEach(el => {
-    el.addEventListener('input', () => el.setCustomValidity(''));
-});
-</script>
-</body>
 </html>
