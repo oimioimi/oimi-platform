@@ -12,7 +12,6 @@ body { background: #fff; margin: 0; font-family: 'Segoe UI', sans-serif; padding
 .container { max-width: 600px; margin: auto; display: flex; flex-direction: column; gap: 2px; }
 .card { background: #fff; padding: 18px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 1px solid #eee; }
 
-/* شعار OiMi بنقطتين حمراوين */
 .oimi-style { display: inline-flex; align-items: baseline; direction: ltr; font-weight: bold; color: #000; }
 .oimi-i { display: inline-block; line-height: 1; background: linear-gradient(to bottom, #ff0000 20%, #000000 20%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
@@ -20,8 +19,6 @@ body { background: #fff; margin: 0; font-family: 'Segoe UI', sans-serif; padding
 .main-title .oimi-style { font-size: 34px; } 
 
 .box { background: var(--lg); padding: 12px; border-radius: 10px; border: 1px solid var(--p); margin-bottom: 10px; color: #2e7d32; font-size: 13px; line-height: 1.6; }
-
-/* رابط المساعدة موسط بدون ايموجي */
 .help-link-center { text-align: center; margin-top: 8px; padding-top: 8px; border-top: 1px dashed var(--p); }
 
 label { display: block; margin: 4px 0 2px; font-weight: bold; font-size: 13px; color: #444; }
@@ -29,21 +26,17 @@ input, select, textarea { width: 100%; padding: 10px; margin-bottom: 5px; border
 .num-input { direction: ltr; text-align: left; }
 .separator { border-top: 1px dashed var(--p); margin: 8px 0; opacity: 0.5; }
 
-/* شريط الصور */
 .slider { width: 100%; overflow: hidden; margin-top: 15px; text-align: center; direction: ltr; position: relative; height: 260px; }
 .slider h4 { color: var(--p); margin: 5px 0; font-size: 16px; direction: rtl; }
 .track { display: flex; width: max-content; animation: scroll-loop 25s linear infinite; padding: 20px 0; align-items: center; }
-.track img { width: 260px; height: 160px; object-fit: cover; margin: 0 15px; border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.1); cursor: zoom-in; }
+.track img { width: 260px; height: 160px; object-fit: cover; margin: 0 15px; border-radius: 12px; cursor: zoom-in; }
 @keyframes scroll-loop { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-/* قسم عن المنصة المحدث */
 .footer-section { background: #fff; border-top: 1px solid #eee; margin-top: 15px; padding: 15px; text-align: center; }
 .f-title { color: var(--p); font-size: 22px; display: block; font-weight: bold; margin-bottom: 8px; }
 .f-intro { font-size: 13.5px; line-height: 1.6; color: #333; margin-bottom: 5px; text-align: justify; direction: rtl; }
 .f-subtitle { color: #888; font-size: 11px; cursor: pointer; text-decoration: underline; display: block; margin-bottom: 10px; }
-#details-box { display: none; background: #fdfdfd; padding: 15px; border-radius: 12px; border: 1px solid #ddd; margin-top: 10px; font-size: 13px; line-height: 1.8; color: #333; text-align: right; }
-.bmc-header { font-weight: bold; color: var(--p); margin: 12px 0 5px; border-bottom: 1px solid #eee; padding-bottom: 3px; font-size: 14.5px; }
-
+#details-box { display: none; background: #fdfdfd; padding: 15px; border-radius: 12px; border: 1px solid #ddd; margin-top: 10px; font-size: 13px; text-align: right; }
 .contact-area { margin-top: 20px; border-top: 1px solid #eee; padding-top: 15px; text-align: center; }
 .contact-area a { color: var(--p); text-decoration: none; font-weight: bold; margin: 0 15px; }
 .btn { width: 100%; background: linear-gradient(135deg, #00732f, #00a342); color: white; padding: 14px; border: none; border-radius: 10px; font-size: 16px; font-weight: bold; cursor: pointer; }
@@ -59,8 +52,7 @@ input, select, textarea { width: 100%; padding: 10px; margin-bottom: 5px; border
 <div class="container">
     <div class="card">
         <h2 class="main-title">
-            منصة 
-            <span class="oimi-style">O<span class="oimi-i">i</span>M<span class="oimi-i">i</span>.ae</span>
+            منصة <span class="oimi-style">O<span class="oimi-i">i</span>M<span class="oimi-i">i</span>.ae</span>
             <br>
             <span style="font-size:14px; color:#444; font-weight:normal;">طلب التقييم المهني وعمل السير الذاتية (ATS)</span>
         </h2>
@@ -71,40 +63,39 @@ input, select, textarea { width: 100%; padding: 10px; margin-bottom: 5px; border
                 ١. تحويل رسوم الخدمة (50,000 جنيه) لبنك الخرطوم (بنكك) :4623370 (باسم الأستاذ / عمر إبراهيم).<br>
                 ٢. أكمل المعلومات جميعها (الأرقام باللغة الإنجليزية حصراً).<br>
                 ٣. اضغط "إرسال" لحفظ بياناتك والحصول على رقم تسجيلك.
-                
                 <div class="help-link-center">
                     <a href="https://wa.me/249900065080" target="_blank" style="color:var(--p); font-weight:bold; text-decoration:none;">إذا كنت تواجه صعوبة في سداد الرسوم؟ اضغط هنا للتواصل معنا.</a>
                 </div>
             </div>
 
             <label>الاسم الرباعي (بالعربية فقط) *</label>
-            <input type="text" id="u_name_ar" placeholder="أدخل الاسم بالعربي" required oninput="this.value=this.value.replace(/[a-zA-Z]/g,'')">
+            <input type="text" id="u_name_ar" placeholder="أدخل الاسم بالعربي" required oninvalid="this.setCustomValidity('يرجى إدخال الاسم بالعربية')" oninput="this.setCustomValidity(''); this.value=this.value.replace(/[a-zA-Z]/g,'')">
             
             <label>الاسم الرباعي (بالإنجليزية فقط) *</label>
-            <input type="text" id="u_name_en" class="num-input" placeholder="Full Name in English" required oninput="this.value=this.value.replace(/[\u0600-\u06FF]/g,'')">
+            <input type="text" id="u_name_en" class="num-input" placeholder="Full Name in English" required oninvalid="this.setCustomValidity('يرجى إدخال الاسم بالإنجليزية')" oninput="this.setCustomValidity(''); this.value=this.value.replace(/[\u0600-\u06FF]/g,'')">
 
             <label>التخصص المهني *</label>
-            <input type="text" id="u_spec" placeholder="مثلاً: محاسب" required>
+            <input type="text" id="u_spec" placeholder="مثلاً: محاسب" required oninvalid="this.setCustomValidity('يرجى إدخال تخصصك المهني')" oninput="this.setCustomValidity('')">
             
             <label>بلد الاقامة *</label>
-            <select id="u_country" required onchange="handleCountryChange(this)">
+            <select id="u_country" required oninvalid="this.setCustomValidity('يرجى اختيار بلد الإقامة')" oninput="this.setCustomValidity('')" onchange="handleCountryChange(this)">
                 <option value="">اختر الدولة...</option>
             </select>
             
             <label>رقم الهاتف (أرقام إنجليزية فقط) *</label>
-            <input type="tel" id="u_phone" class="num-input" placeholder="اختر الدولة أولاً" disabled required oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+            <input type="tel" id="u_phone" class="num-input" placeholder="00xxxx" disabled required oninvalid="this.setCustomValidity('يرجى إدخال رقم الهاتف')" oninput="this.setCustomValidity(''); this.value=this.value.replace(/[^0-9]/g,'')">
             
             <label>رقم الواتساب (أرقام إنجليزية فقط) *</label>
-            <input type="tel" id="u_whatsapp" class="num-input" disabled required oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+            <input type="tel" id="u_whatsapp" class="num-input" placeholder="00xxxx" disabled required oninvalid="this.setCustomValidity('يرجى إدخال رقم الواتساب')" oninput="this.setCustomValidity(''); this.value=this.value.replace(/[^0-9]/g,'')">
             
             <label>البريد الالكتروني *</label>
-            <input type="email" id="u_email" placeholder="mail@example.com" required>
+            <input type="email" id="u_email" placeholder="mail@example.com" required oninvalid="this.setCustomValidity('يرجى إدخال بريد إلكتروني صحيح')" oninput="this.setCustomValidity('')">
 
             <label>ملاحظات إضافية (اختياري)</label>
             <textarea id="u_notes" rows="2" placeholder="أضف أي تفاصيل أخرى..."></textarea>
 
             <label>كيف سمعت عنا؟ *</label>
-            <select id="u_source" required>
+            <select id="u_source" required oninvalid="this.setCustomValidity('يرجى اختيار المصدر')" oninput="this.setCustomValidity('')">
                 <option value="">اختر المصدر...</option>
                 <option value="فيسبوك">فيسبوك</option>
                 <option value="لينكد إن">لينكد إن</option>
@@ -114,10 +105,10 @@ input, select, textarea { width: 100%; padding: 10px; margin-bottom: 5px; border
 
             <div class="separator"></div>
             <label>أرفق السيرة الذاتية (PDF أو صورة) *</label>
-            <input type="file" id="cv_file" accept=".pdf,image/*" required>
+            <input type="file" id="cv_file" accept=".pdf,image/*" required oninvalid="this.setCustomValidity('يرجى إرفاق السيرة الذاتية')" oninput="this.setCustomValidity('')">
             
             <label>أرفق صورة إيصال التحويل *</label>
-            <input type="file" id="receipt_file" accept="image/*" required>
+            <input type="file" id="receipt_file" accept="image/*" required oninvalid="this.setCustomValidity('يرجى إرفاق إيصال التحويل')" oninput="this.setCustomValidity('')">
 
             <button type="submit" class="btn" id="submitBtn">إرسال الطلب وحفظ البيانات</button>
         </form>
@@ -135,17 +126,14 @@ input, select, textarea { width: 100%; padding: 10px; margin-bottom: 5px; border
     <div class="footer-section">
         <span class="f-title">عن المنصة</span>
         <div class="f-intro">
-            <span class="oimi-style" style="font-size:20px;">O<span class="oimi-i">i</span>M<span class="oimi-i">i</span>.ae</span> هي منصة رقمية رائدة متخصصة في تقديم حلول مهنية متكاملة للباحثين عن عمل في منطقة الشرق الأوسط وشمال أفريقيا، تهدف إلى جسر الفجوة بين الكفاءات المهنية ومتطلبات سوق العمل الحديث.
+            <span class="oimi-style" style="font-size:20px;">O<span class="oimi-i">i</span>M<span class="oimi-i">i</span>.ae</span> هي منصة رقمية رائدة متخصصة في تقديم حلول مهنية متكاملة للباحثين عن عمل في منطقة الشرق الأوسط وشمال أفريقيا.
         </div>
         <span class="f-subtitle" onclick="toggleDetails()">اضغط للتفاصيل الإضافية ▾</span>
-        
         <div id="details-box">
-            <div class="bmc-header">🎯 رؤيتنا وأهدافنا:</div>
-            • <b>تمكين المهنيين:</b> نسعى لتزويد عملائنا بالأدوات اللازمة لاجتياز أنظمة تصفية السير الذاتية (ATS) بنجاح.<br>
-            • <b>التميز الرقمي:</b> نهدف للريادة في تقديم الخدمات الاستشارية المهنية بلمسة تقنية إبداعية.<br>
-            • <b>دعم المسار الوظيفي:</b> تقديم محتوى وتنسيقات عالمية تبرز القيمة الحقيقية لكل موظف.
+            • <b>تمكين المهنيين:</b> تجاوز أنظمة الـ ATS بنجاح.<br>
+            • <b>التميز الرقمي:</b> استشارات مهنية بلمسة تقنية.<br>
+            • <b>دعم المسار:</b> تبرز القيمة الحقيقية لكل موظف.
         </div>
-
         <div class="contact-area">
             <h4>تواصل معنا</h4>
             <a href="https://wa.me/249900065080" target="_blank">🟢 واتساب</a> | 
@@ -171,53 +159,52 @@ function toggleDetails(){ const b=document.getElementById('details-box'); b.styl
 
 const form=document.getElementById('oimi-form');
 form.addEventListener('submit', async (e)=>{
-  e.preventDefault();
-  const btn=document.getElementById('submitBtn');
-  const email = document.getElementById('u_email').value.trim().toLowerCase();
-  btn.disabled=true; btn.innerHTML="جاري الحفظ والتحقق من التسجيل المسبق...";
-
-  try {
-    // 1. الفحص الاستباقي لمنع الرفع المكرر
-    const checkResp = await fetch(`${scriptURL}?checkEmail=${email}`);
-    const checkResult = await checkResp.json();
-
-    if (checkResult.exists) {
-        alert("⚠️ عذراً، هذا البريد مسجل لدينا مسبقاً. يُسمح بتسجيل واحد فقط لكل مستخدم.");
-        btn.disabled=false; btn.innerHTML="إرسال الطلب وحفظ البيانات";
-        return;
-    }
-
-    // 2. إذا لم يكن مسجلاً، ابدأ الرفع الفعلي
-    btn.innerHTML="جاري الرفع والحفظ...";
-    const toBase64=f=>new Promise((res,rej)=>{ const r=new FileReader(); r.onload=()=>res(r.result.split(',')[1]); r.onerror=rej; r.readAsDataURL(f); });
+    e.preventDefault();
+    const btn=document.getElementById('submitBtn');
+    const email = document.getElementById('u_email').value.trim().toLowerCase();
     
-    const cvFile=document.getElementById('cv_file').files[0], receiptFile=document.getElementById('receipt_file').files[0];
-    const payload={ 
-      "الاسم العربي": document.getElementById('u_name_ar').value, 
-      "الاسم الانجليزي": document.getElementById('u_name_en').value, 
-      "التخصص المهني": document.getElementById('u_spec').value, 
-      "بلد الإقامة": document.getElementById('u_country').value, 
-      "رقم الهاتف": document.getElementById('u_phone').value, 
-      "رقم الواتس": document.getElementById('u_whatsapp').value, 
-      "البريد الإلكتروني": email, 
-      "ملاحظات": document.getElementById('u_notes').value, 
-      "كيف سمعت عننا": document.getElementById('u_source').value, 
-      "cv_name": cvFile.name, "cv_data": await toBase64(cvFile), 
-      "receipt_name": receiptFile.name, "receipt_data": await toBase64(receiptFile) 
-    };
+    btn.disabled=true; btn.innerHTML="جاري التحقق من التسجيل...";
 
-    const response = await fetch(scriptURL, { method:'POST', body:JSON.stringify(payload) });
-    const result = await response.json();
+    try {
+        const checkResp = await fetch(`${scriptURL}?checkEmail=${email}`);
+        const checkResult = await checkResp.json();
 
-    if(result.status === "success"){ 
-        alert("تم استلام طلبك بنجاح ✅\nرقم تسجيلك: " + result.uniqueId); 
-        window.open(`https://wa.me/249900065080?text=تم التسجيل بنجاح. رقم تسجيل الطلب: ${result.uniqueId}`,'_blank'); 
-        location.reload(); 
+        if (checkResult.exists) {
+            alert("⚠️ عذراً، هذا البريد مسجل مسبقاً. يُسمح بتسجيل واحد فقط.");
+            btn.disabled=false; btn.innerHTML="إرسال الطلب وحفظ البيانات";
+            return;
+        }
+
+        btn.innerHTML="جاري الحفظ والرفع...";
+        const toBase64=f=>new Promise((res,rej)=>{ const r=new FileReader(); r.onload=()=>res(r.result.split(',')[1]); r.onerror=rej; r.readAsDataURL(f); });
+        
+        const cvFile=document.getElementById('cv_file').files[0], receiptFile=document.getElementById('receipt_file').files[0];
+        const payload={ 
+          "الاسم العربي": document.getElementById('u_name_ar').value, 
+          "الاسم الانجليزي": document.getElementById('u_name_en').value, 
+          "التخصص المهني": document.getElementById('u_spec').value, 
+          "بلد الإقامة": document.getElementById('u_country').value, 
+          "رقم الهاتف": document.getElementById('u_phone').value, 
+          "رقم الواتس": document.getElementById('u_whatsapp').value, 
+          "البريد الإلكتروني": email, 
+          "ملاحظات": document.getElementById('u_notes').value, 
+          "كيف سمعت عننا": document.getElementById('u_source').value, 
+          "cv_name": cvFile.name, "cv_data": await toBase64(cvFile), 
+          "receipt_name": receiptFile.name, "receipt_data": await toBase64(receiptFile) 
+        };
+
+        const response = await fetch(scriptURL, { method:'POST', body:JSON.stringify(payload) });
+        const result = await response.json();
+
+        if(result.status === "success"){ 
+            alert("تم استلام طلبك بنجاح ✅\nرقم تسجيلك: " + result.uniqueId); 
+            window.open(`https://wa.me/249900065080?text=تم التسجيل بنجاح. رقم تسجيل الطلب: ${result.uniqueId}`,'_blank'); 
+            location.reload(); 
+        }
+    } catch(err){ 
+        alert("حدث خطأ في الإرسال، حاول ثانية."); 
+        btn.disabled=false; btn.innerHTML="إرسال الطلب وحفظ البيانات"; 
     }
-  } catch(err){ 
-    alert("حدث خطأ، يرجى المحاولة مرة أخرى."); 
-    btn.disabled=false; btn.innerHTML="إرسال الطلب وحفظ البيانات"; 
-  }
 });
 </script>
 </body>
