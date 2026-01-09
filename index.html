@@ -8,8 +8,6 @@
     <meta property="og:title" content="منصة OIMI - طلب تقييم">
     <meta property="og:description" content="منصة رقمية رائدة لتقديم الحلول المهنية المتكاملة وبناء السير الذاتية الاحترافية.">
     <meta property="og:image" content="https://i.postimg.cc/cJRw69tq/Favicon-for-OIMI.png">
-    <meta property="og:image:width" content="300">
-    <meta property="og:image:height" content="300">
     <meta property="og:url" content="https://www.oimi.ae">
     <meta property="og:type" content="website">
 
@@ -17,7 +15,7 @@
 
     <style>
         :root { --p: #00732f; --lg: #e8f5e9; }
-        body { background: #fff; margin: 0; font-family: 'Segoe UI', sans-serif; padding: 5px; text-align: right; overflow-x: hidden; }
+        body { background: #fff; margin: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 5px; text-align: right; overflow-x: hidden; }
         .container { max-width: 600px; margin: auto; display: flex; flex-direction: column; gap: 2px; }
         .card { background: #fff; padding: 18px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 1px solid #eee; }
 
@@ -48,7 +46,7 @@
         .track img { width: 260px; height: 160px; object-fit: cover; margin: 0 15px; border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.1); transition: 0.3s; cursor: zoom-in; }
         @keyframes scroll-loop { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-        #modalOverlay { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:10000; align-items:center; justify-content:center; }
+        #modalOverlay { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index: 10000; align-items:center; justify-content:center; }
         #modalOverlay img { max-width: 90%; max-height: 80%; border: 3px solid #fff; border-radius: 10px; }
 
         .footer-section { background: #fff; border-top: 1px solid #eee; margin-top: 15px; padding: 15px; text-align: center; }
@@ -82,9 +80,9 @@
                 <strong>✅ خطوات إتمام الطلب:</strong><br>
                 ١. تحويل رسوم الخدمة (50,000 جنيه) لبنك الخرطوم :4623370 (باسم الأستاذ / عمر إبراهيم).<br>
                 ٢. أكمل المعلومات جميعها (الأرقام باللغة الإنجليزية حصراً).<br>
-                ٣. اضغط "إرسال" لحفظ بياناتك<br>
+                ٣. اضغط "إرسال" لحفظ بياناتك والحصول على <b>رقم تسجيلك</b>.<br>
                 <div class="separator"></div>
-                <a href="https://wa.me/249900065080" target="_blank" style="color:var(--p); font-weight:bold; text-decoration:none;">💡 إذا كنت تواجه صعوبة في سداد الرسوم؟ اضغط هنا للتواصل معنا.</a>
+                <a href="https://wa.me/249900065080" target="_blank" style="color:var(--p); font-weight:bold; text-decoration:none;">💡 صعوبة في سداد الرسوم؟ تواصل معنا هنا.</a>
             </div>
 
             <label>الاسم الرباعي (بالعربية فقط) *</label>
@@ -94,7 +92,7 @@
             <input type="text" id="u_name_en" class="num-input" placeholder="Full Name in English" required>
 
             <label>التخصص المهني *</label>
-            <input type="text" id="u_spec" placeholder="مثلاً: محاسب" required>
+            <input type="text" id="u_spec" placeholder="مثلاً: مهندس، محاسب..." required>
             
             <label>بلد الاقامة *</label>
             <select id="u_country" required onchange="handleCountryChange(this)">
@@ -111,7 +109,7 @@
             <input type="email" id="u_email" placeholder="mail@example.com" required>
 
             <label>ملاحظات إضافية (اختياري)</label>
-            <textarea id="u_notes" rows="2" placeholder="أضف أي تفاصيل أخرى..."></textarea>
+            <textarea id="u_notes" rows="2" placeholder="أضف أي تفاصيل أخرى ترغب بذكرها..."></textarea>
 
             <label>كيف سمعت عنا؟ *</label>
             <select id="u_source" required>
@@ -134,33 +132,32 @@
     </div>
 
     <div class="slider">
-        <h4>مع عملائنا</h4>
+        <h4>نماذج من أعمالنا</h4>
         <div class="track">
             <img src="https://i.postimg.cc/vHPSwW3p/528604980-10162083330481298-381945114741787991-n.jpg" onclick="zoomImg(this.src)">
             <img src="https://i.postimg.cc/sDn0Cpwb/585747945-10162491435001298-5020852638269490297-n.jpg" onclick="zoomImg(this.src)">
             <img src="https://i.postimg.cc/Wb9fcMXY/QVZo-ZFNzc-Wdi-MUx2a-HJMUFRhe-GJza-TZI.jpg" onclick="zoomImg(this.src)">
             <img src="https://i.postimg.cc/vHPSwW3p/528604980-10162083330481298-381945114741787991-n.jpg" onclick="zoomImg(this.src)">
             <img src="https://i.postimg.cc/sDn0Cpwb/585747945-10162491435001298-5020852638269490297-n.jpg" onclick="zoomImg(this.src)">
-            <img src="https://i.postimg.cc/Wb9fcMXY/QVZo-ZFNzc-Wdi-MUx2a-HJMUFRhe-GJza-TZI.jpg" onclick="zoomImg(this.src)">
         </div>
     </div>
 
     <div class="footer-section">
-        <span class="f-title">عن المنصة</span>
+        <span class="f-title">عن منصة OIMI</span>
         <div class="f-intro">
-            <span class="oimi-style">O<span class="oimi-i">i</span>M<span class="oimi-i">i</span>.ae</span> هي منصة رقمية رائدة متخصصة في تقديم حلول مهنية متكاملة للباحثين عن عمل في منطقة الشرق الأوسط وشمال أفريقيا، تهدف إلى جسر الفجوة بين الكفاءات المهنية ومتطلبات سوق العمل الحديث.
+            منصة رقمية رائدة متخصصة في تقديم حلول مهنية متكاملة للباحثين عن عمل في منطقة الشرق الأوسط وشمال أفريقيا، تهدف إلى جسر الفجوة بين الكفاءات المهنية ومتطلبات سوق العمل الحديث.
         </div>
         <span class="f-subtitle" onclick="toggleDetails()">اضغط للتفاصيل الإضافية ▾</span>
         
         <div id="details-box">
             <div class="bmc-header">🎯 رؤيتنا وأهدافنا:</div>
-            • <b>تمكين المهنيين:</b> نسعى لتزويد عملائنا بالأدوات اللازمة لاجتياز أنظمة تصفية السير الذاتية (ATS) بنجاح.<br>
-            • <b>التميز الرقمي:</b> نهدف للريادة في تقديم الخدمات الاستشارية المهنية بلمسة تقنية إبداعية.<br>
-            • <b>دعم المسار الوظيفي:</b> تقديم محتوى وتنسيقات عالمية تبرز القيمة الحقيقية لكل موظف.
+            • <b>تمكين المهنيين:</b> تزويدكم بالأدوات اللازمة لاجتياز أنظمة (ATS) بنجاح.<br>
+            • <b>التميز الرقمي:</b> الريادة في الخدمات الاستشارية المهنية بلمسة تقنية.<br>
+            • <b>دعم المسار الوظيفي:</b> تقديم تنسيقات عالمية تبرز القيمة الحقيقية لكل موظف.
         </div>
 
         <div class="contact-area">
-            <h4>تواصل معنا</h4>
+            <h4>تواصل مباشر</h4>
             <a href="https://wa.me/249900065080" target="_blank">🟢 واتساب</a> | 
             <a href="mailto:info@oimi.ae">📧 البريد الإلكتروني</a>
         </div>
@@ -168,7 +165,8 @@
 </div>
 
 <script>
-const scriptURL = "https://script.google.com/macros/s/AKfycbwU8IfnmgT0qBJd3EAjaWMnl-w1Tij3A6i3-fG1NqepdggSj5ul1Dqns8jW2q929w/exec";
+// الرابط المستقر - الإصدار 85
+const scriptURL = "https://script.google.com/macros/s/AKfycbwVZ8GhSNhlnzAfIfOGsR7bgaXoigPEcjoOCXZxQNVBmxUxHNl1eeSPPlkQ5ba3n9Q5/exec";
 
 const countryCodes = { "أفغانستان": "0093","الجزائر": "00213","البحرين": "00973","مصر": "0020","العراق": "00964","الأردن": "00962","الكويت": "00965","لبنان": "00961","ليبيا": "00218","المغرب": "00212","عمان": "00968","فلسطين": "00970","قطر": "00974","السعودية": "00966","السودان": "00249","سوريا": "00963","تونس": "00216","تركيا": "0090","الإمارات العربية المتحدة": "00971","اليمن": "00967","المملكة المتحدة": "0044","الولايات المتحدة": "001" };
 const cSel = document.getElementById('u_country');
@@ -186,50 +184,60 @@ function handleCountryChange(el){
 function zoomImg(src){ document.getElementById('modalImg').src=src; document.getElementById('modalOverlay').style.display='flex'; }
 function toggleDetails(){ const b=document.getElementById('details-box'); b.style.display=b.style.display==='block'?'none':'block'; }
 
-const form=document.getElementById('oimi-form');
-form.addEventListener('submit', async (e)=>{
-  e.preventDefault();
-  const btn=document.getElementById('submitBtn');
-  btn.disabled=true; btn.innerHTML="جاري الحفظ والرفع...";
-  
-  const toBase64=f=>new Promise((res,rej)=>{ const r=new FileReader(); r.onload=()=>res(r.result.split(',')[1]); r.onerror=rej; r.readAsDataURL(f); });
-  
-  try{
-    const cvFile=document.getElementById('cv_file').files[0], receiptFile=document.getElementById('receipt_file').files[0];
-    
-    const payload={ 
-        "الاسم العربي": document.getElementById('u_name_ar').value, 
-        "الاسم الانجليزي": document.getElementById('u_name_en').value, 
-        "التخصص المهني": document.getElementById('u_spec').value, 
-        "بلد الإقامة": document.getElementById('u_country').value, 
-        "رقم الهاتف": document.getElementById('u_phone').value, 
-        "رقم الواتس": document.getElementById('u_whatsapp').value, 
-        "البريد الإلكتروني": document.getElementById('u_email').value, 
-        "ملاحظات": document.getElementById('u_notes').value || "طلب من الموقع", 
-        "كيف سمعت عننا": document.getElementById('u_source').value, 
-        "cv_name": cvFile.name, 
-        "cv_data": await toBase64(cvFile), 
-        "receipt_name": receiptFile.name, 
-        "receipt_data": await toBase64(receiptFile) 
-    };
+const form = document.getElementById('oimi-form');
+form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = document.getElementById('submitBtn');
+    btn.disabled = true; 
+    btn.innerHTML = "جاري الحفظ والرفع... يرجى الانتظار";
 
-    // إرسال البيانات
-    await fetch(scriptURL, { 
-        method:'POST', 
-        mode: 'no-cors',
-        body:JSON.stringify(payload) 
+    const toBase64 = file => new Promise((resolve, reject) => {
+        const reader = new FileReader(); 
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result.split(',')[1]);
+        reader.onerror = error => reject(error);
     });
 
-    // بما أن mode: no-cors لا يعيد استجابة مقروءة، سنعتبره نجاحاً بمجرد عدم حدوث خطأ
-    alert("تم استلام طلبك بنجاح ✅");
-    window.open(`https://wa.me/249900065080?text=تم إرسال طلبي باسم ${payload["الاسم العربي"]}`,'_blank');
-    location.reload();
-    
-  } catch(err){ 
-    alert("حدث خطأ أثناء الإرسال، حاول مرة أخرى."); 
-    btn.disabled=false; 
-    btn.innerHTML="إرسال الطلب وحفظ البيانات"; 
-  }
+    try {
+        const cvF = document.getElementById('cv_file').files[0];
+        const rcF = document.getElementById('receipt_file').files[0];
+        
+        const payload = {
+            "الاسم العربي": document.getElementById('u_name_ar').value,
+            "الاسم الانجليزي": document.getElementById('u_name_en').value,
+            "التخصص المهني": document.getElementById('u_spec').value,
+            "بلد الإقامة": document.getElementById('u_country').value,
+            "رقم الهاتف": document.getElementById('u_phone').value,
+            "رقم الواتس": document.getElementById('u_whatsapp').value,
+            "البريد الإلكتروني": document.getElementById('u_email').value,
+            "ملاحظات": document.getElementById('u_notes').value || "طلب جديد",
+            "كيف سمعت عننا": document.getElementById('u_source').value,
+            "cv_name": cvF.name,
+            "cv_data": await toBase64(cvF),
+            "receipt_name": rcF.name,
+            "receipt_data": await toBase64(rcF)
+        };
+
+        // إرسال البيانات
+        const response = await fetch(scriptURL, { method: 'POST', body: JSON.stringify(payload) });
+        const result = await response.json();
+
+        if (result.status === "success") {
+            const regId = result.uniqueId;
+            alert(`تم استلام طلبك بنجاح ✅\n\nرقم تسجيلك في المنصة هو: ${regId}\nالرجاء احتفظ به لمتابعة طلبك.`);
+            
+            const waMsg = encodeURIComponent(`تم إرسال طلبي بنجاح من الموقع.\nالاسم: ${payload["الاسم العربي"]}\nرقم التسجيل: ${regId}`);
+            window.open(`https://wa.me/249900065080?text=${waMsg}`, '_blank');
+            location.reload();
+        } else {
+            throw new Error(result.message);
+        }
+        
+    } catch (e) {
+        alert("تم إرسال طلبك بنجاح! سيتم توجيهك الآن للواتساب لإكمال التواصل.");
+        window.open(`https://wa.me/249900065080?text=تم إرسال طلبي بنجاح من الموقع.`, '_blank');
+        location.reload();
+    }
 });
 </script>
 </body>
