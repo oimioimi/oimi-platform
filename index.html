@@ -67,30 +67,30 @@ input, select, textarea { width: 100%; padding: 10px; margin-bottom: 5px; border
             </div>
 
             <label>الاسم الرباعي (بالعربية فقط) *</label>
-            <input type="text" id="u_name_ar" placeholder="أدخل الاسم بالعربي" required oninvalid="this.setCustomValidity('يرجى إدخال الاسم الرباعي بالعربية')" oninput="this.setCustomValidity(''); this.value=this.value.replace(/[a-zA-Z]/g,'')">
+            <input type="text" id="u_name_ar" placeholder="أدخل الاسم بالعربي" required oninput="this.value=this.value.replace(/[a-zA-Z]/g,'')">
             
             <label>الاسم الرباعي (بالإنجليزية فقط) *</label>
-            <input type="text" id="u_name_en" class="num-input" placeholder="Full Name in English" required oninvalid="this.setCustomValidity('يرجى إدخال الاسم الرباعي بالإنجليزية')" oninput="this.setCustomValidity(''); this.value=this.value.replace(/[\u0600-\u06FF]/g,'')">
+            <input type="text" id="u_name_en" class="num-input" placeholder="Full Name in English" required oninput="this.value=this.value.replace(/[\u0600-\u06FF]/g,'')">
 
             <label>التخصص المهني *</label>
-            <input type="text" id="u_spec" placeholder="مثلاً: محاسب" required oninvalid="this.setCustomValidity('يرجى إدخال التخصص المهني')">
+            <input type="text" id="u_spec" placeholder="مثلاً: محاسب" required>
             
             <label>بلد الاقامة *</label>
-            <select id="u_country" required onchange="handleCountryChange(this)" oninvalid="this.setCustomValidity('يرجى اختيار بلد الإقامة من القائمة')">
+            <select id="u_country" required onchange="handleCountryChange(this)">
                 <option value="">اختر الدولة...</option>
             </select>
             
-            <label>رقم الهاتف (أرقام إنجليزية فقط) *</label>
-            <input type="tel" id="u_phone" class="num-input" placeholder="اختر الدولة أولاً" disabled required oninvalid="this.setCustomValidity('يرجى إدخال رقم الهاتف بالأرقام الإنجليزية')" oninput="this.setCustomValidity('')">
+            <label>رقم الهاتف (أرقام فقط) *</label>
+            <input type="tel" id="u_phone" class="num-input" placeholder="اختر الدولة أولاً" disabled required oninput="this.value=this.value.replace(/[^0-9]/g,'')">
             
-            <label>رقم الواتساب (أرقام إنجليزية فقط) *</label>
-            <input type="tel" id="u_whatsapp" class="num-input" placeholder="اختر الدولة أولاً" disabled required oninvalid="this.setCustomValidity('يرجى إدخال رقم الواتساب بالأرقام الإنجليزية')" oninput="this.setCustomValidity('')">
+            <label>رقم الواتساب (أرقام فقط) *</label>
+            <input type="tel" id="u_whatsapp" class="num-input" placeholder="اختر الدولة أولاً" disabled required oninput="this.value=this.value.replace(/[^0-9]/g,'')">
             
             <label>البريد الالكتروني *</label>
-            <input type="email" id="u_email" placeholder="mail@example.com" required oninvalid="this.setCustomValidity('يرجى إدخال بريد إلكتروني صحيح')">
+            <input type="email" id="u_email" placeholder="mail@example.com" required>
 
             <label>كيف سمعت عنا؟ *</label>
-            <select id="u_source" required oninvalid="this.setCustomValidity('يرجى اختيار كيف سمعت عنا')">
+            <select id="u_source" required>
                 <option value="">اختر المصدر...</option>
                 <option value="فيسبوك">فيسبوك</option>
                 <option value="لينكد إن">لينكد إن</option>
@@ -103,10 +103,10 @@ input, select, textarea { width: 100%; padding: 10px; margin-bottom: 5px; border
 
             <div class="separator"></div>
             <label>أرفق السيرة الذاتية (PDF أو صورة) *</label>
-            <input type="file" id="cv_file" accept=".pdf,image/*" required oninvalid="this.setCustomValidity('يرجى إرفاق ملف السيرة الذاتية')">
+            <input type="file" id="cv_file" accept=".pdf,image/*" required>
             
             <label>أرفق صورة إيصال التحويل *</label>
-            <input type="file" id="receipt_file" accept="image/*" required oninvalid="this.setCustomValidity('يرجى إرفاق صورة إيصال التحويل')">
+            <input type="file" id="receipt_file" accept="image/*" required>
 
             <button type="submit" class="btn" id="submitBtn">إرسال الطلب وحفظ البيانات</button>
         </form>
@@ -149,11 +149,7 @@ Object.keys(countryCodes).sort((a,b)=>a.localeCompare(b,'ar')).forEach(c=>{ cons
 
 function handleCountryChange(el){ 
     const p=document.getElementById('u_phone'), w=document.getElementById('u_whatsapp'); 
-    if(el.value){ 
-        p.disabled=false; w.disabled=false; 
-        p.value=countryCodes[el.value]; w.value=countryCodes[el.value];
-        p.setCustomValidity(''); w.setCustomValidity('');
-    } 
+    if(el.value){ p.disabled=false; w.disabled=false; p.value=countryCodes[el.value]; w.value=countryCodes[el.value]; } 
 }
 
 function zoomImg(src){ document.getElementById('modalImg').src=src; document.getElementById('modalOverlay').style.display='flex'; }
@@ -161,18 +157,19 @@ function toggleDetails(){ const b=document.getElementById('details-box'); b.styl
 
 const form=document.getElementById('oimi-form');
 form.addEventListener('submit', async (e)=>{
-  const p=document.getElementById('u_phone'), w=document.getElementById('u_whatsapp');
-  
-  if(!p.value || p.value === countryCodes[document.getElementById('u_country').value]){
-      p.setCustomValidity('يرجى إكمال رقم الهاتف'); p.reportValidity(); e.preventDefault(); return;
-  }
-  if(!w.value || w.value === countryCodes[document.getElementById('u_country').value]){
-      w.setCustomValidity('يرجى إكمال رقم الواتساب'); w.reportValidity(); e.preventDefault(); return;
-  }
-
   e.preventDefault();
   const btn=document.getElementById('submitBtn');
   const email = document.getElementById('u_email').value.trim().toLowerCase();
+  
+  // التحقق من الحقول الإجبارية المعطلة برمجياً
+  const p=document.getElementById('u_phone'), w=document.getElementById('u_whatsapp');
+  if(!p.value || p.value === countryCodes[document.getElementById('u_country').value]){
+      alert("يرجى إكمال رقم الهاتف"); p.focus(); return;
+  }
+  if(!w.value || w.value === countryCodes[document.getElementById('u_country').value]){
+      alert("يرجى إكمال رقم الواتساب"); w.focus(); return;
+  }
+
   btn.disabled=true; btn.innerHTML="جاري التحقق...";
 
   try {
@@ -180,9 +177,9 @@ form.addEventListener('submit', async (e)=>{
     const checkResult = await checkResp.json();
     if (checkResult && checkResult.exists) {
         alert("⚠️ عذراً، هذا البريد مسجل لدينا مسبقاً.");
-        btn.disabled=false; btn.innerHTML="إرسال الطلب وحفظ البيانات";
-        return;
+        btn.disabled=false; btn.innerHTML="إرسال الطلب وحفظ البيانات"; return;
     }
+    
     btn.innerHTML="جاري الرفع والحفظ...";
     const toBase64=f=>new Promise((res,rej)=>{ const r=new FileReader(); r.onload=()=>res(r.result.split(',')[1]); r.onerror=rej; r.readAsDataURL(f); });
     
@@ -199,28 +196,24 @@ form.addEventListener('submit', async (e)=>{
       "cv_data": await toBase64(document.getElementById('cv_file').files[0]), 
       "receipt_data": await toBase64(document.getElementById('receipt_file').files[0]) 
     };
+
     const response = await fetch(scriptURL, { method:'POST', body:JSON.stringify(payload) });
     const result = await response.json();
     
     if(result.status === "success"){ 
-        // هنا نستخدم الرقم التسلسلي القادم من السيرفر (result.uniqueId) 
-        // ونضيف إليه تاريخ اليوم ليصبح بالتنسيق: [رقم التسلسل]-[تاريخ اليوم]
+        // تكوين الرقم الفريد: [رقم التسلسل من الشيت]-[تاريخ اليوم]
         const now = new Date();
-        const datePart = now.getFullYear().toString() + (now.getMonth() + 1).toString().padStart(2, '0') + now.getDate().toString().padStart(2, '0');
-        const customId = result.uniqueId + "-" + datePart;
+        const dateStr = now.getFullYear().toString() + (now.getMonth() + 1).toString().padStart(2, '0') + now.getDate().toString().padStart(2, '0');
+        const finalId = result.uniqueId + "-" + dateStr;
         
-        alert("تم استلام طلبك بنجاح ✅\nرقم تسجيلك هو: " + customId); 
-        window.open(`https://wa.me/249900065080?text=تم التسجيل بنجاح في منصة OIMI. رقم تسجيل الطلب الخاص بي هو: ${customId}`,'_blank'); 
+        alert("تم استلام طلبك بنجاح ✅\nرقم تسجيلك هو: " + finalId); 
+        window.open(`https://wa.me/249900065080?text=تم التسجيل بنجاح في منصة OIMI. رقم تسجيل الطلب الخاص بي هو: ${finalId}`,'_blank'); 
         location.reload(); 
     }
   } catch(err){ 
-    alert("عذراً، حدث خطأ أثناء الإرسال. يرجى المحاولة مرة أخرى."); 
+    alert("عذراً، حدث خطأ. تأكد من اتصال الإنترنت وحجم الملفات."); 
     btn.disabled=false; btn.innerHTML="إرسال الطلب وحفظ البيانات"; 
   }
-});
-
-form.querySelectorAll('input, select, textarea').forEach(el => {
-    el.addEventListener('input', () => el.setCustomValidity(''));
 });
 </script>
 </body>
