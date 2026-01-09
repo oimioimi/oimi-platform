@@ -11,38 +11,30 @@
 body { background: #fff; margin: 0; font-family: 'Segoe UI', sans-serif; padding: 5px; text-align: right; overflow-x: hidden; }
 .container { max-width: 600px; margin: auto; display: flex; flex-direction: column; gap: 2px; }
 .card { background: #fff; padding: 18px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 1px solid #eee; }
-
 .oimi-style { display: inline-flex; align-items: baseline; direction: ltr; font-weight: bold; color: #000; }
 .oimi-i { display: inline-block; line-height: 1; background: linear-gradient(to bottom, #ff0000 20%, #000000 20%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-
 .main-title { text-align: center; margin-bottom: 8px; font-weight: 800; font-size: 22px; }
 .main-title .oimi-style { font-size: 34px; } 
-
 .box { background: var(--lg); padding: 12px; border-radius: 10px; border: 1px solid var(--p); margin-bottom: 10px; color: #2e7d32; font-size: 13px; line-height: 1.6; }
 .help-link-center { text-align: center; margin-top: 8px; padding-top: 8px; border-top: 1px dashed var(--p); }
-
 label { display: block; margin: 4px 0 2px; font-weight: bold; font-size: 13px; color: #444; }
 input, select, textarea { width: 100%; padding: 10px; margin-bottom: 5px; border-radius: 8px; border: 1px solid #ccc; box-sizing: border-box; font-size: 14px; background: #f9f9f9; font-weight: bold; }
 .num-input { direction: ltr; text-align: left; }
 .separator { border-top: 1px dashed var(--p); margin: 8px 0; opacity: 0.5; }
-
 .slider { width: 100%; overflow: hidden; margin-top: 15px; text-align: center; direction: ltr; position: relative; height: 260px; }
 .slider h4 { color: var(--p); margin: 5px 0; font-size: 16px; direction: rtl; }
 .track { display: flex; width: max-content; animation: scroll-loop 25s linear infinite; padding: 20px 0; align-items: center; }
 .track img { width: 260px; height: 160px; object-fit: cover; margin: 0 15px; border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.1); cursor: zoom-in; }
 @keyframes scroll-loop { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-
 .footer-section { background: #fff; border-top: 1px solid #eee; margin-top: 15px; padding: 15px; text-align: center; }
 .f-title { color: var(--p); font-size: 22px; display: block; font-weight: bold; margin-bottom: 8px; }
 .f-intro { font-size: 13.5px; line-height: 1.6; color: #333; margin-bottom: 5px; text-align: justify; direction: rtl; }
 .f-subtitle { color: #888; font-size: 11px; cursor: pointer; text-decoration: underline; display: block; margin-bottom: 10px; }
 #details-box { display: none; background: #fdfdfd; padding: 15px; border-radius: 12px; border: 1px solid #ddd; margin-top: 10px; font-size: 13px; line-height: 1.8; color: #333; text-align: right; }
 .bmc-header { font-weight: bold; color: var(--p); margin: 12px 0 5px; border-bottom: 1px solid #eee; padding-bottom: 3px; font-size: 14.5px; }
-
 .contact-area { margin-top: 20px; border-top: 1px solid #eee; padding-top: 15px; text-align: center; }
 .contact-area a { color: var(--p); text-decoration: none; font-weight: bold; margin: 0 15px; }
 .btn { width: 100%; background: linear-gradient(135deg, #00732f, #00a342); color: white; padding: 14px; border: none; border-radius: 10px; font-size: 16px; font-weight: bold; cursor: pointer; }
-
 #modalOverlay { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:10000; align-items:center; justify-content:center; }
 #modalOverlay img { max-width: 90%; max-height: 80%; border: 3px solid #fff; border-radius: 10px; }
 </style>
@@ -81,10 +73,10 @@ input, select, textarea { width: 100%; padding: 10px; margin-bottom: 5px; border
             </select>
             
             <label>رقم الهاتف (أرقام فقط) *</label>
-            <input type="tel" id="u_phone" class="num-input" placeholder="اختر الدولة أولاً" disabled required oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+            <input type="tel" id="u_phone" class="num-input" placeholder="أدخل الأرقام فقط" disabled required oninput="this.value=this.value.replace(/[^0-9]/g,'')">
             
             <label>رقم الواتساب (أرقام فقط) *</label>
-            <input type="tel" id="u_whatsapp" class="num-input" placeholder="اختر الدولة أولاً" disabled required oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+            <input type="tel" id="u_whatsapp" class="num-input" placeholder="أدخل الأرقام فقط" disabled required oninput="this.value=this.value.replace(/[^0-9]/g,'')">
             
             <label>البريد الالكتروني *</label>
             <input type="email" id="u_email" placeholder="mail@example.com" required>
@@ -105,7 +97,7 @@ input, select, textarea { width: 100%; padding: 10px; margin-bottom: 5px; border
             <label>أرفق السيرة الذاتية (PDF أو صورة) *</label>
             <input type="file" id="cv_file" accept=".pdf,image/*" required>
             
-            <label>أرفق صورة إيصال التحويل *</label>
+            <label>أرفق صورة إإيصال التحويل *</label>
             <input type="file" id="receipt_file" accept="image/*" required>
 
             <button type="submit" class="btn" id="submitBtn">إرسال الطلب وحفظ البيانات</button>
@@ -200,15 +192,15 @@ form.addEventListener('submit', async (e)=>{
     const result = await response.json();
     
     if(result.status === "success"){ 
-        // الحل النهائي والجذري لمشكلة الرقم الفريد:
-        // نأخذ الرقم التسلسلي الخام القادم من السيرفر (UniqueId)
-        // ثم ندمجه يدوياً مع تاريخ اليوم
+        // استخراج الرقم التسلسلي فقط من النتيجة (مثل 69979)
+        let rawId = result.uniqueId.toString().match(/\d+/);
+        let serialNumber = rawId ? rawId[0] : "1";
+        
+        // إذا كنت تريد أن يبدأ من 1، والسيرفر يعطيك أرقام كبيرة، يمكننا طرح رقم ثابت أو تركه كما هو 
+        // لكن التنسيق سيكون: [الرقم]-[التاريخ]
         const now = new Date();
         const dateStr = now.getFullYear().toString() + (now.getMonth() + 1).toString().padStart(2, '0') + now.getDate().toString().padStart(2, '0');
-        
-        // نتأكد أن result.uniqueId يحتوي على الرقم فقط
-        let rawId = result.uniqueId;
-        const finalId = rawId + "-" + dateStr;
+        const finalId = serialNumber + "-" + dateStr;
         
         alert("تم استلام طلبك بنجاح ✅\nرقم تسجيلك هو: " + finalId); 
         window.open(`https://wa.me/249900065080?text=تم التسجيل بنجاح في منصة OIMI. رقم تسجيل الطلب الخاص بي هو: ${finalId}`,'_blank'); 
