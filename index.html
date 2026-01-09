@@ -81,10 +81,10 @@ input, select, textarea { width: 100%; padding: 10px; margin-bottom: 5px; border
             </select>
             
             <label>رقم الهاتف (أرقام إنجليزية فقط) *</label>
-            <input type="tel" id="u_phone" class="num-input" placeholder="اختر الدولة أولاً" disabled required oninvalid="this.setCustomValidity('يرجى إدخال رقم الهاتف بالأرقام الإنجليزية')" oninput="this.setCustomValidity(''); this.value=this.value.replace(/[^0-9]/g,'')">
+            <input type="tel" id="u_phone" class="num-input" placeholder="اختر الدولة أولاً" disabled required oninvalid="this.setCustomValidity('يرجى إدخال رقم الهاتف بالأرقام الإنجليزية')" oninput="this.setCustomValidity('')">
             
             <label>رقم الواتساب (أرقام إنجليزية فقط) *</label>
-            <input type="tel" id="u_whatsapp" class="num-input" placeholder="اختر الدولة أولاً" disabled required oninvalid="this.setCustomValidity('يرجى إدخال رقم الواتساب بالأرقام الإنجليزية')" oninput="this.setCustomValidity(''); this.value=this.value.replace(/[^0-9]/g,'')">
+            <input type="tel" id="u_whatsapp" class="num-input" placeholder="اختر الدولة أولاً" disabled required oninvalid="this.setCustomValidity('يرجى إدخال رقم الواتساب بالأرقام الإنجليزية')" oninput="this.setCustomValidity('')">
             
             <label>البريد الالكتروني *</label>
             <input type="email" id="u_email" placeholder="mail@example.com" required oninvalid="this.setCustomValidity('يرجى إدخال بريد إلكتروني صحيح')">
@@ -115,9 +115,6 @@ input, select, textarea { width: 100%; padding: 10px; margin-bottom: 5px; border
     <div class="slider">
         <h4>مع عملائنا</h4>
         <div class="track">
-            <img src="https://i.postimg.cc/vHPSwW3p/528604980-10162083330481298-381945114741787991-n.jpg" onclick="zoomImg(this.src)">
-            <img src="https://i.postimg.cc/sDn0Cpwb/585747945-10162491435001298-5020852638269490297-n.jpg" onclick="zoomImg(this.src)">
-            <img src="https://i.postimg.cc/Wb9fcMXY/QVZo-ZFNzc-Wdi-MUx2a-HJMUFRhe-GJza-TZI.jpg" onclick="zoomImg(this.src)">
             <img src="https://i.postimg.cc/vHPSwW3p/528604980-10162083330481298-381945114741787991-n.jpg" onclick="zoomImg(this.src)">
             <img src="https://i.postimg.cc/sDn0Cpwb/585747945-10162491435001298-5020852638269490297-n.jpg" onclick="zoomImg(this.src)">
             <img src="https://i.postimg.cc/Wb9fcMXY/QVZo-ZFNzc-Wdi-MUx2a-HJMUFRhe-GJza-TZI.jpg" onclick="zoomImg(this.src)">
@@ -164,6 +161,16 @@ function toggleDetails(){ const b=document.getElementById('details-box'); b.styl
 
 const form=document.getElementById('oimi-form');
 form.addEventListener('submit', async (e)=>{
+  const p=document.getElementById('u_phone'), w=document.getElementById('u_whatsapp');
+  
+  // تحقق إضافي يدوي للحقول المعطلة أو التي تم فتحها
+  if(!p.value || p.value === countryCodes[document.getElementById('u_country').value]){
+      p.setCustomValidity('يرجى إكمال رقم الهاتف'); p.reportValidity(); e.preventDefault(); return;
+  }
+  if(!w.value || w.value === countryCodes[document.getElementById('u_country').value]){
+      w.setCustomValidity('يرجى إكمال رقم الواتساب'); w.reportValidity(); e.preventDefault(); return;
+  }
+
   e.preventDefault();
   const btn=document.getElementById('submitBtn');
   const email = document.getElementById('u_email').value.trim().toLowerCase();
