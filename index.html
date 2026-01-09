@@ -15,7 +15,7 @@
 
     <style>
         :root { --p: #00732f; --lg: #e8f5e9; }
-        body { background: #fff; margin: 0; font-family: 'Segoe UI', sans-serif; padding: 5px; text-align: right; overflow-x: hidden; }
+        body { background: #fff; margin: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 5px; text-align: right; overflow-x: hidden; }
         .container { max-width: 600px; margin: auto; display: flex; flex-direction: column; gap: 2px; }
         .card { background: #fff; padding: 18px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 1px solid #eee; }
 
@@ -31,11 +31,13 @@
         .main-title .oimi-style { font-size: 34px; } 
 
         .box { background: var(--lg); padding: 12px; border-radius: 10px; border: 1px solid var(--p); margin-bottom: 5px; color: #2e7d32; font-size: 13px; line-height: 1.6; }
-        .duplicate-msg { color: #d32f2f; font-size: 12px; font-weight: bold; margin-bottom: 10px; display: block; }
-        .separator { border-top: 1px dashed var(--p); margin: 8px 0; opacity: 0.5; }
         
-        label { display: block; margin: 4px 0 2px; font-weight: bold; font-size: 13px; color: #444; }
-        input, select, textarea { width: 100%; padding: 10px; margin-bottom: 5px; border-radius: 8px; border: 1px solid #ccc; box-sizing: border-box; font-size: 14px; background: #f9f9f9; font-weight: bold; }
+        /* رسالة التنبيه الخضراء في المنتصف */
+        .duplicate-msg { color: var(--p); font-size: 12px; font-weight: bold; margin: 10px 0; display: block; text-align: center; background: #f0fff4; padding: 8px; border-radius: 8px; border: 1px solid #c3e6cb; }
+        
+        .separator { border-top: 1px dashed var(--p); margin: 8px 0; opacity: 0.5; }
+        label { display: block; margin: 12px 0 4px; font-weight: bold; font-size: 13px; color: #444; }
+        input, select, textarea { width: 100%; padding: 12px; margin-bottom: 5px; border-radius: 8px; border: 1px solid #ccc; box-sizing: border-box; font-size: 14px; background: #f9f9f9; font-weight: bold; }
         .num-input { direction: ltr; text-align: left; }
         input:disabled { background: #f0f0ff !important; cursor: not-allowed; color: #888; border: 1px solid #ddd; }
 
@@ -48,9 +50,8 @@
         #modalOverlay { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index: 10000; align-items:center; justify-content:center; }
         #modalOverlay img { max-width: 90%; max-height: 80%; border: 3px solid #fff; border-radius: 10px; }
 
-        .footer-section { background: #fff; border-top: 1px solid #eee; margin-top: 15px; padding: 15px; text-align: center; }
-        .btn { width: 100%; background: linear-gradient(135deg, #00732f, #00a342); color: white; padding: 14px; border: none; border-radius: 10px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 5px; }
-        .btn:disabled { background: #999; }
+        .btn { width: 100%; background: linear-gradient(135deg, #00732f, #00a342); color: white; padding: 16px; border: none; border-radius: 10px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 10px; transition: 0.3s; }
+        .btn:disabled { background: #999; cursor: not-allowed; }
     </style>
 </head>
 <body>
@@ -66,20 +67,21 @@
                 <strong>✅ خطوات إتمام الطلب:</strong><br>
                 ١. تحويل رسوم الخدمة (50,000 جنيه) لبنك الخرطوم :4623370 (باسم الأستاذ / عمر إبراهيم).<br>
                 ٢. أكمل المعلومات جميعها (الأرقام باللغة الإنجليزية حصراً).<br>
-                ٣. اضغط "إرسال" لحفظ بياناتك والحصول على رقم تسجيلك.<br>
+                ٣. اضغط "إرسال" لحفظ بياناتك والحصول على رقم تسجيلك.
                 <div class="separator"></div>
                 <a href="https://wa.me/249900065080" target="_blank" style="color:var(--p); font-weight:bold; text-decoration:none;">💡 صعوبة في سداد الرسوم؟ تواصل معنا هنا.</a>
             </div>
-            <span class="duplicate-msg">⚠️ تنبيه: يُسمح بالتسجيل مرة واحدة فقط لكل بريد إلكتروني.</span>
+            
+            <span class="duplicate-msg">يُسمح بالتسجيل مرة واحدة فقط لكل بريد إلكتروني.</span>
 
             <label>الاسم الرباعي (بالعربية فقط) *</label>
-            <input type="text" id="u_name_ar" placeholder="أدخل الاسم بالعربي" required oninput="validateArabic(this)">
+            <input type="text" id="u_name_ar" placeholder="أدخل الاسم بالعربي" required oninput="this.value=this.value.replace(/[a-zA-Z]/g,'')">
             
             <label>الاسم الرباعي (بالإنجليزية فقط) *</label>
-            <input type="text" id="u_name_en" class="num-input" placeholder="Full Name in English" required oninput="validateEnglish(this)">
+            <input type="text" id="u_name_en" class="num-input" placeholder="Full Name in English" required oninput="this.value=this.value.replace(/[\u0600-\u06FF]/g,'')">
             
             <label>التخصص المهني *</label>
-            <input type="text" id="u_spec" placeholder="مثلاً: محاسب" required>
+            <input type="text" id="u_spec" placeholder="مثلاً: مهندس مدني" required>
             
             <label>بلد الاقامة *</label>
             <select id="u_country" required onchange="handleCountryChange(this)">
@@ -119,6 +121,7 @@
     </div>
 
     <div class="slider">
+        <h4>نماذج من أعمالنا</h4>
         <div class="track">
             <img src="https://i.postimg.cc/vHPSwW3p/528604980-10162083330481298-381945114741787991-n.jpg" onclick="zoomImg(this.src)">
             <img src="https://i.postimg.cc/sDn0Cpwb/585747945-10162491435001298-5020852638269490297-n.jpg" onclick="zoomImg(this.src)">
@@ -129,12 +132,8 @@
 </div>
 
 <script>
-const scriptURL = "https://script.google.com/macros/s/AKfycbyPDBr-Msg4IdfCZSV6XOqQAiKCfGcoCsg2Er-bsF1snJF8U-4qZVl8578wfw6vp5aX/exec";
-
-// منع الإنجليزية في حقل العربي
-function validateArabic(el) { el.value = el.value.replace(/[a-zA-Z]/g, ''); }
-// منع العربي في حقل الإنجليزي
-function validateEnglish(el) { el.value = el.value.replace(/[\u0600-\u06FF]/g, ''); }
+// الرابط الجديد - إصدار 87
+const scriptURL = "https://script.google.com/macros/s/AKfycbyvU2dSKwRDKwzzNrUzorUVMphCJyIOxhoiMZNWqI80FgkaHbmE3FxeTe1vCbwjwWSL/exec";
 
 const countryCodes = { "أفغانستان": "0093","الجزائر": "00213","البحرين": "00973","مصر": "0020","العراق": "00964","الأردن": "00962","الكويت": "00965","لبنان": "00961","ليبيا": "00218","المغرب": "00212","عمان": "00968","فلسطين": "00970","قطر": "00974","السعودية": "00966","السودان": "00249","سوريا": "00963","تونس": "00216","تركيا": "0090","الإمارات العربية المتحدة": "00971","اليمن": "00967","المملكة المتحدة": "0044","الولايات المتحدة": "001" };
 const cSel = document.getElementById('u_country');
@@ -150,7 +149,7 @@ const form = document.getElementById('oimi-form');
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const btn = document.getElementById('submitBtn');
-    btn.disabled = true; btn.innerHTML = "جاري التحقق والرفع...";
+    btn.disabled = true; btn.innerHTML = "جاري التحقق والحفظ... يرجى الانتظار";
 
     const toBase64 = file => new Promise((resolve, reject) => {
         const reader = new FileReader(); reader.readAsDataURL(file);
@@ -161,6 +160,7 @@ form.addEventListener('submit', async (e) => {
     try {
         const cvF = document.getElementById('cv_file').files[0];
         const rcF = document.getElementById('receipt_file').files[0];
+        
         const payload = {
             "الاسم العربي": document.getElementById('u_name_ar').value,
             "الاسم الانجليزي": document.getElementById('u_name_en').value,
@@ -169,10 +169,12 @@ form.addEventListener('submit', async (e) => {
             "رقم الهاتف": document.getElementById('u_phone').value,
             "رقم الواتس": document.getElementById('u_whatsapp').value,
             "البريد الإلكتروني": document.getElementById('u_email').value,
-            "ملاحظات": document.getElementById('u_notes').value,
+            "ملاحظات": document.getElementById('u_notes').value || "طلب جديد",
             "كيف سمعت عننا": document.getElementById('u_source').value,
-            "cv_name": cvF.name, "cv_data": await toBase64(cvF),
-            "receipt_name": rcF.name, "receipt_data": await toBase64(rcF)
+            "cv_name": cvF.name,
+            "cv_data": await toBase64(cvF),
+            "receipt_name": rcF.name,
+            "receipt_data": await toBase64(rcF)
         };
 
         const response = await fetch(scriptURL, { method: 'POST', body: JSON.stringify(payload) });
@@ -182,12 +184,15 @@ form.addEventListener('submit', async (e) => {
             alert("لقد تم تسجيلك مسبقاً في المنصة. تواصل معنا برقم التسجيل عبر الواتس.");
             btn.disabled = false; btn.innerHTML = "إرسال الطلب وحفظ البيانات";
         } else if (result.status === "success") {
-            alert(`تم استلام طلبك بنجاح ✅\nرقم تسجيلك: ${result.uniqueId}\nالرجاء احتفظ به.`);
-            window.open(`https://wa.me/249900065080?text=${encodeURIComponent('تم التسجيل بنجاح. رقم التسجيل: ' + result.uniqueId)}`, '_blank');
+            alert(`تم استلام طلبك بنجاح ✅\n\nرقم تسجيلك في المنصة هو: ${result.uniqueId}\nالرجاء احتفظ به لمتابعة طلبك.`);
+            window.open(`https://wa.me/249900065080?text=${encodeURIComponent('تم إرسال طلبي بنجاح من الموقع.\nالاسم: ' + payload["الاسم العربي"] + '\nرقم التسجيل: ' + result.uniqueId)}`, '_blank');
             location.reload();
+        } else {
+            alert("حدث خطأ أثناء المعالجة: " + result.message);
+            btn.disabled = false; btn.innerHTML = "إرسال الطلب";
         }
     } catch (e) {
-        alert("حدث خطأ أثناء الإرسال. يرجى التأكد من اتصالك بالإنترنت والمحاولة مرة أخرى.");
+        alert("فشل الاتصال بالخادم. يرجى التأكد من استبدال كود السكربت وعمل Deployment جديد.");
         btn.disabled = false; btn.innerHTML = "إرسال الطلب وحفظ البيانات";
     }
 });
