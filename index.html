@@ -14,9 +14,8 @@
         label { display: block; margin: 8px 0 2px; font-weight: bold; font-size: 13px; color: #444; }
         input, select, textarea { width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #ccc; box-sizing: border-box; font-size: 14px; background: #f9f9f9; font-weight: bold; }
         .num-input { direction: ltr; text-align: left; }
-        input:disabled { background: #ececfb !important; cursor: not-allowed; }
-        .btn { width: 100%; background: linear-gradient(135deg, #00732f, #00a342); color: white; padding: 15px; border: none; border-radius: 10px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 15px; }
-        .btn:disabled { background: #ccc; }
+        .btn { width: 100%; background: linear-gradient(135deg, #00732f, #00a342); color: white; padding: 15px; border: none; border-radius: 10px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 15px; transition: 0.3s; }
+        .btn:disabled { background: #999; cursor: not-allowed; }
         .separator { border-top: 1px dashed var(--p); margin: 10px 0; opacity: 0.5; }
     </style>
 </head>
@@ -28,9 +27,9 @@
         
         <form id="oimi-form">
             <div class="box">
-                <strong>✅ خطوات الطلب:</strong><br>
-                ١. التحويل لحساب بنكك: <strong>4623370</strong> (عمر إبراهيم).<br>
-                ٢. تعبئة البيانات ورفع الملفات بالأسفل.
+                <strong>✅ إكمال الطلب:</strong><br>
+                ١. حول الرسوم لحساب بنكك: <strong>4623370</strong> (عمر إبراهيم).<br>
+                ٢. أرفق المستندات أدناه واضغط إرسال.
             </div>
 
             <label>الاسم الرباعي (بالعربية) *</label>
@@ -57,7 +56,7 @@
             <input type="email" id="u_email" placeholder="example@mail.com" required>
 
             <label>ملاحظات إضافية</label>
-            <textarea id="u_notes" rows="2"></textarea>
+            <textarea id="u_notes" rows="2" placeholder="أي تفاصيل أخرى..."></textarea>
 
             <label>كيف سمعت عنا؟ *</label>
             <select id="u_source" required>
@@ -75,14 +74,14 @@
             <label>أرفق صورة إيصال التحويل *</label>
             <input type="file" id="receipt_file" accept="image/*" required>
 
-            <button type="submit" class="btn" id="submitBtn">إرسال الطلب الآن</button>
+            <button type="submit" class="btn" id="submitBtn">إرسال الطلب وحفظ البيانات</button>
         </form>
     </div>
 </div>
 
 <script>
-// الرابط الجديد (النسخة 76)
-const scriptURL = 'https://script.google.com/macros/s/AKfycbxT-Y0a0RdyWXFSL1iQkUrnxwGEebJ1PvY-GYic5QNunIIQQPC00U97smGA1bY-J532/exec';
+// الرابط الجديد (النسخة 77) المتصل بـ Sheet 1
+const scriptURL = 'https://script.google.com/macros/s/AKfycbxLaS9fWwpV2oMbLCSaxNcG6Q_JgcAXUQGbAumbN3na9-i6OMXGaFwNcNhHSZh70v52/exec';
 
 const countryCodes = { "الجزائر": "00213", "البحرين": "00973", "مصر": "0020", "العراق": "00964", "الأردن": "00962", "الكويت": "00965", "لبنان": "00961", "ليبيا": "00218", "المغرب": "00212", "عمان": "00968", "فلسطين": "00970", "قطر": "00974", "السعودية": "00966", "السودان": "00249", "سوريا": "00963", "تونس": "00216", "تركيا": "0090", "الإمارات": "00971", "اليمن": "00967", "المملكة المتحدة": "0044", "أمريكا": "001" };
 
@@ -103,7 +102,7 @@ const form = document.getElementById('oimi-form');
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const btn = document.getElementById('submitBtn');
-    btn.disabled = true; btn.innerHTML = "جاري الرفع... يرجى الانتظار";
+    btn.disabled = true; btn.innerHTML = "جاري الحفظ والرفع... يرجى الانتظار";
 
     const toBase64 = file => new Promise((resolve, reject) => {
         const reader = new FileReader(); reader.readAsDataURL(file);
@@ -142,8 +141,8 @@ form.addEventListener('submit', async (e) => {
         window.open(`https://wa.me/249900065080?text=تم إرسال طلبي باسم: ${payload["الاسم العربي"]}`, '_blank');
         location.reload();
     } catch (e) {
-        alert("خطأ في الإرسال. تأكد من جودة الإنترنت.");
-        btn.disabled = false; btn.innerHTML = "إرسال الطلب الآن";
+        alert("فشل في الاتصال. يرجى مراجعة الإنترنت.");
+        btn.disabled = false; btn.innerHTML = "إرسال الطلب وحفظ البيانات";
     }
 });
 </script>
