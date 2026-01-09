@@ -132,8 +132,7 @@ input, select, textarea { width: 100%; padding: 10px; margin-bottom: 5px; border
         <span class="f-subtitle" onclick="toggleDetails()">اضغط للتفاصيل الإضافية ▾</span>
         <div id="details-box">
             <div class="bmc-header">🎯 رؤيتنا وأهدافنا:</div>
-            • <b>تمكين المهنيين:</b> نسعى لتزويد عملائنا بالأدوات اللازمة لاجتياز أنظمة تصفية السير الذاتية (ATS).<br>
-            • <b>التميز الرقمي:</b> نهدف للريادة بلمسة تقنية إبداعية.
+            • <b>تمكين المهنيين:</b> نسعى لتزويد عملائنا بالأدوات اللازمة لاجتياز أنظمة تصفية السير الذاتية (ATS).
         </div>
         <div class="contact-area">
             <h4>تواصل معنا</h4>
@@ -186,8 +185,8 @@ form.addEventListener('submit', async (e)=>{
       "رقم الهاتف": document.getElementById('u_phone').value, 
       "رقم الواتس": document.getElementById('u_whatsapp').value, 
       "البريد الإلكتروني": email, 
-      "ملاحظات": document.getElementById('u_notes').value, 
       "كيف سمعت عننا": document.getElementById('u_source').value, 
+      "ملاحظات": document.getElementById('u_notes').value, 
       "cv_data": await toBase64(document.getElementById('cv_file').files[0]), 
       "receipt_data": await toBase64(document.getElementById('receipt_file').files[0]) 
     };
