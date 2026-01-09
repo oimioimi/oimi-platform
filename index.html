@@ -28,13 +28,9 @@ input, select, textarea { width: 100%; padding: 10px; margin-bottom: 5px; border
 .contact-area { margin-top: 20px; border-top: 1px solid #eee; padding-top: 15px; text-align: center; }
 .contact-area a { color: var(--p); text-decoration: none; font-weight: bold; margin: 0 15px; }
 .btn { width: 100%; background: linear-gradient(135deg, #00732f, #00a342); color: white; padding: 14px; border: none; border-radius: 10px; font-size: 16px; font-weight: bold; cursor: pointer; }
-#modalOverlay { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:10000; align-items:center; justify-content:center; }
-#modalOverlay img { max-width: 90%; max-height: 80%; border: 3px solid #fff; border-radius: 10px; }
 </style>
 </head>
 <body>
-
-<div id="modalOverlay" onclick="this.style.display='none'"><img id="modalImg"></div>
 
 <div class="container">
     <div class="card">
@@ -56,27 +52,27 @@ input, select, textarea { width: 100%; padding: 10px; margin-bottom: 5px; border
             <input type="text" id="u_name_en" class="num-input" required oninvalid="this.setCustomValidity('يرجى إدخال الاسم بالإنجليزية')" oninput="this.setCustomValidity(''); this.value=this.value.replace(/[\u0600-\u06FF]/g,'')">
 
             <label>التخصص المهني *</label>
-            <input type="text" id="u_spec" required oninvalid="this.setCustomValidity('يرجى إدخال التخصص')" oninput="this.setCustomValidity('')">
+            <input type="text" id="u_spec" required oninvalid="this.setCustomValidity('يرجى إدخال التخصص المهني')" oninput="this.setCustomValidity('')">
             
             <label>بلد الاقامة *</label>
-            <select id="u_country" required onchange="handleCountryChange(this)">
+            <select id="u_country" required oninvalid="this.setCustomValidity('يرجى اختيار بلد الإقامة')" onchange="this.setCustomValidity(''); handleCountryChange(this)">
                 <option value="">اختر الدولة...</option>
             </select>
             
             <label>رقم الهاتف *</label>
-            <input type="tel" id="u_phone" class="num-input" disabled required oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+            <input type="tel" id="u_phone" class="num-input" disabled required oninvalid="this.setCustomValidity('يرجى إدخال رقم الهاتف')" oninput="this.setCustomValidity(''); this.value=this.value.replace(/[^0-9]/g,'')">
             
             <label>رقم الواتساب (مطلوب كامل مع رمز الدولة) *</label>
             <input type="tel" id="u_whatsapp" class="num-input" disabled required pattern=".{10,}" oninvalid="this.setCustomValidity('يرجى إدخال رقم واتساب صحيح وكامل')" oninput="this.setCustomValidity(''); this.value=this.value.replace(/[^0-9]/g,'')">
             
             <label>البريد الالكتروني *</label>
-            <input type="email" id="u_email" required oninput="this.setCustomValidity('')">
+            <input type="email" id="u_email" required oninvalid="this.setCustomValidity('يرجى إدخال بريد إلكتروني صحيح')" oninput="this.setCustomValidity('')">
 
-            <label>ملاحظات إضافية</label>
+            <label>ملاحظات إضافية (اختياري)</label>
             <textarea id="u_notes" rows="2"></textarea>
 
             <label>كيف سمعت عنا؟ *</label>
-            <select id="u_source" required>
+            <select id="u_source" required oninvalid="this.setCustomValidity('يرجى اختيار كيف سمعت عنا')" onchange="this.setCustomValidity('')">
                 <option value="">اختر المصدر...</option>
                 <option value="فيسبوك">فيسبوك</option>
                 <option value="لينكد إن">لينكد إن</option>
@@ -85,11 +81,11 @@ input, select, textarea { width: 100%; padding: 10px; margin-bottom: 5px; border
             </select>
 
             <div class="separator"></div>
-            <label>أرفق السيرة الذاتية *</label>
-            <input type="file" id="cv_file" accept=".pdf,image/*" required>
+            <label>أرفق السيرة الذاتية (PDF أو صورة) *</label>
+            <input type="file" id="cv_file" accept=".pdf,image/*" required oninvalid="this.setCustomValidity('يرجى إرفاق ملف السيرة الذاتية')" onchange="this.setCustomValidity('')">
             
             <label>أرفق صورة إيصال التحويل *</label>
-            <input type="file" id="receipt_file" accept="image/*" required>
+            <input type="file" id="receipt_file" accept="image/*" required oninvalid="this.setCustomValidity('يرجى إرفاق صورة إيصال التحويل')" onchange="this.setCustomValidity('')">
 
             <button type="submit" class="btn" id="submitBtn">إرسال الطلب وحفظ البيانات</button>
         </form>
@@ -130,23 +126,22 @@ const form=document.getElementById('oimi-form');
 form.addEventListener('submit', async (e)=>{
     e.preventDefault();
     const btn=document.getElementById('submitBtn');
-    const emailInput = document.getElementById('u_email');
-    const email = emailInput.value.trim().toLowerCase();
+    const email = document.getElementById('u_email').value.trim().toLowerCase();
     
-    btn.disabled=true; btn.innerHTML="جاري التحقق من البيانات...";
+    btn.disabled=true; btn.innerHTML="جاري التحقق...";
 
     try {
-        // الفحص الاستباقي
-        const checkResp = await fetch(`${scriptURL}?checkEmail=${email}`);
+        // فحص مباشر للإيميل في كل مرة يتم فيها الضغط على الإرسال
+        const checkResp = await fetch(`${scriptURL}?checkEmail=${email}&t=${new Date().getTime()}`);
         const checkResult = await checkResp.json();
 
         if (checkResult.exists) {
-            alert("⚠️ عذراً، هذا البريد مسجل مسبقاً.");
+            alert("⚠️ عذراً، هذا البريد مسجل مسبقاً لدينا.");
             btn.disabled=false; btn.innerHTML="إرسال الطلب وحفظ البيانات";
             return;
         }
 
-        btn.innerHTML="جاري الحفظ والرفع...";
+        btn.innerHTML="جاري الرفع...";
         const toBase64=f=>new Promise((res,rej)=>{ const r=new FileReader(); r.onload=()=>res(r.result.split(',')[1]); r.onerror=rej; r.readAsDataURL(f); });
         
         const payload={ 
@@ -172,7 +167,7 @@ form.addEventListener('submit', async (e)=>{
             location.reload(); 
         }
     } catch(err){ 
-        alert("خطأ في الاتصال."); btn.disabled=false; btn.innerHTML="إرسال الطلب وحفظ البيانات"; 
+        alert("حدث خطأ في الاتصال بالسيرفر."); btn.disabled=false; btn.innerHTML="إرسال الطلب وحفظ البيانات"; 
     }
 });
 </script>
