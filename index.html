@@ -19,7 +19,7 @@
         .btn { width: 100%; background: linear-gradient(135deg, #00732f, #00a342); color: white; padding: 14px; border: none; border-radius: 10px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 10px; transition: 0.3s; }
         .btn:hover { opacity: 0.9; transform: translateY(-2px); }
 
-        /* شريط الصور السحابي */
+        /* شريط النماذج */
         .slider { width: 100%; overflow: hidden; margin-top: 15px; text-align: center; direction: ltr; position: relative; height: 260px; }
         .slider h4 { color: var(--p); margin: 5px 0; font-size: 16px; direction: rtl; }
         .track { display: flex; width: max-content; animation: scroll-loop 20s linear infinite; padding: 20px 0; align-items: center; }
@@ -27,11 +27,10 @@
         .track img:hover { transform: scale(1.05); }
         @keyframes scroll-loop { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-        /* نافذة تكبير الصور */
+        /* Modal */
         #modalOverlay { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:10000; align-items:center; justify-content:center; }
         #modalOverlay img { max-width: 95%; max-height: 90%; border: 3px solid #fff; border-radius: 10px; }
 
-        /* تذييل الصفحة */
         .footer-section { background: #fff; border-top: 1px solid #eee; margin-top: 15px; padding: 15px; text-align: right; }
         .f-title { color: var(--p); cursor: pointer; text-decoration: underline; font-size: 17px; margin-bottom: 10px; display: block; font-weight: bold; text-align: center; }
         #details-box { display: none; background: #fdfdfd; padding: 15px; border-radius: 12px; border: 1px solid #ddd; margin-top: 10px; font-size: 13px; line-height: 1.8; color: #333; }
@@ -50,10 +49,10 @@
         <form id="oimi-form" novalidate>
             <div class="box">
                 <strong>✅ خطوات إتمام الطلب:</strong><br>
-                ١. تحويل رسوم الخدمة (50,000 جنيه) لبنك الخرطوم ( بنكك) الحساب: <strong>4623370</strong> (باسم عمر إبراهيم).<br>
+                ١. تحويل رسوم الخدمة (50,000 جنيه) لبنك الخرطوم (بنكك) الحساب: <strong>4623370</strong> (باسم عمر إبراهيم).<br>
                 ٢. تعبئة كافة الحقول أدناه بدقة (الأرقام بالإنجليزية).<br>
                 ٣. إرفاق نسخة من السيرة الذاتية وصورة إيصال التحويل.<br>
-                ٤. الضغط على زر "إرسال" لرفع البيانات وتأكيد الطلب.<br>
+                ٤. الضغط على زر "إرسال" لرفع البيانات وتأكيد الطلب.
                 <div class="separator"></div>
                 <a href="https://wa.me/249900065080" target="_blank" style="color:var(--p); font-weight:bold; text-decoration:none; font-size:12px;">💡 واجهتك مشكلة في الدفع؟ اضغط هنا للتواصل المباشر معنا.</a>
             </div>
@@ -73,18 +72,18 @@
             </select>
             
             <div onclick="checkCountryFirst()">
-                <label>رقم الهاتف (مع رمز الدولة) *</label>
-                <input type="tel" id="u_phone" class="num-input" placeholder="00249..." disabled required>
+                <label>رقم الهاتف *</label>
+                <input type="tel" id="u_phone" class="num-input" disabled required>
                 
                 <label>رقم الواتساب *</label>
-                <input type="tel" id="u_whatsapp" class="num-input" placeholder="00249..." disabled required>
+                <input type="tel" id="u_whatsapp" class="num-input" disabled required>
             </div>
             
             <label>البريد الإلكتروني *</label>
             <input type="email" id="u_email" placeholder="example@gmail.com" required>
 
             <label>ملاحظات إضافية</label>
-            <textarea id="u_notes" rows="2" placeholder="أي تفاصيل أخرى تود إضافتها..."></textarea>
+            <textarea id="u_notes" rows="2" placeholder="أي تفاصيل أخرى..."></textarea>
 
             <label>كيف سمعت عنا؟ *</label>
             <select id="u_source" required>
@@ -96,10 +95,10 @@
             </select>
 
             <div class="separator"></div>
-            <label>أرفق السيرة الذاتية (PDF أو صورة) *</label>
+            <label>أرفق السيرة الذاتية *</label>
             <input type="file" id="cv_file" accept=".pdf,image/*" required>
             
-            <label>أرفق صورة إيصال التحويل (بنكك) *</label>
+            <label>أرفق صورة إيصال التحويل *</label>
             <input type="file" id="receipt_file" accept="image/*" required>
 
             <button type="submit" class="btn" id="submitBtn">إرسال الطلب وحفظ البيانات</button>
@@ -122,9 +121,9 @@
         <span class="f-title" onclick="toggleDetails()">عن المنصة ▾</span>
         <div id="details-box">
             <strong>📍 من نحن؟</strong><br>
-            OIMI.ae منصة رقمية رائدة تُقدم حلولاً مهنية متكاملة للباحثين عن عمل، تجمع بين التقييم المهني الاحترافي وإعداد السير الذاتية (ATS).<br><br>
+            OIMI.ae منصة رقمية رائدة تُقدم حلولاً مهنية متكاملة للباحثين عن عمل.<br><br>
             <strong>🎯 هدفنا:</strong><br>
-            تمكين المهنيين من اجتياز فلاتر التوظيف التقنية وتقديم استشارات مبنية على معايير سوق العمل العالمي.
+            تمكين المهنيين من اجتياز فلاتر التوظيف التقنية.
         </div>
         <div class="contact-area">
             <a href="https://wa.me/249900065080" target="_blank">🟢 واتساب</a> | 
@@ -134,12 +133,11 @@
 </div>
 
 <script>
-// الرابط المحدث والنهائي
-const scriptURL = 'https://script.google.com/macros/s/AKfycbxXirJXfeWHuoTydZMFHCN61BAXWWivn7mKkipgaaPPVXd_-eTokptYtxFGxiwgc6s/exec';
+// الرابط الجديد المحدث (Version 75)
+const scriptURL = 'https://script.google.com/macros/s/AKfycbywnq_WQezcQolqjdyA4LwiLREkRTJGNL8AnjSHtnss6Kf_HXN0c12TGVxw2pMIc24x/exec';
 
 const countryCodes = { "أفغانستان": "0093", "الجزائر": "00213", "البحرين": "00973", "مصر": "0020", "العراق": "00964", "الأردن": "00962", "الكويت": "00965", "لبنان": "00961", "ليبيا": "00218", "المغرب": "00212", "عمان": "00968", "فلسطين": "00970", "قطر": "00974", "السعودية": "00966", "السودان": "00249", "سوريا": "00963", "تونس": "00216", "تركيا": "0090", "الإمارات العربية المتحدة": "00971", "اليمن": "00967", "المملكة المتحدة": "0044", "الولايات المتحدة": "001" };
 
-// تعبئة الدول برمجياً
 const cSel = document.getElementById('u_country');
 Object.keys(countryCodes).sort((a,b) => a.localeCompare(b, 'ar')).forEach(name => {
     let opt = document.createElement('option'); opt.value = name; opt.textContent = name; cSel.appendChild(opt);
@@ -168,10 +166,10 @@ function toggleDetails() {
 const form = document.getElementById('oimi-form');
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    if (!form.checkValidity()) { alert("يرجى تعبئة جميع الحقول المطلوبة وإرفاق الملفات."); return; }
+    if (!form.checkValidity()) { alert("يرجى تعبئة كافة الحقول ورفع الملفات."); return; }
 
     const btn = document.getElementById('submitBtn');
-    btn.disabled = true; btn.innerHTML = "جاري الحفظ والرفع... (قد يستغرق لحظات)";
+    btn.disabled = true; btn.innerHTML = "جاري الحفظ والرفع...";
 
     const toBase64 = file => new Promise((resolve, reject) => {
         const reader = new FileReader(); reader.readAsDataURL(file);
@@ -180,8 +178,8 @@ form.addEventListener('submit', async (e) => {
     });
 
     try {
-        const cvFile = document.getElementById('cv_file').files[0];
-        const rcFile = document.getElementById('receipt_file').files[0];
+        const cvF = document.getElementById('cv_file').files[0];
+        const rcF = document.getElementById('receipt_file').files[0];
         
         const payload = {
             "الاسم العربي": document.getElementById('u_name_ar').value,
@@ -193,13 +191,12 @@ form.addEventListener('submit', async (e) => {
             "البريد الإلكتروني": document.getElementById('u_email').value,
             "ملاحظات": document.getElementById('u_notes').value,
             "كيف سمعت عننا": document.getElementById('u_source').value,
-            "cv_data": await toBase64(cvFile),
-            "cv_name": cvFile.name,
-            "receipt_data": await toBase64(rcFile),
-            "receipt_name": rcFile.name
+            "cv_data": await toBase64(cvF),
+            "cv_name": cvF.name,
+            "receipt_data": await toBase64(rcF),
+            "receipt_name": rcF.name
         };
 
-        // إرسال البيانات للسكربت
         await fetch(scriptURL, { 
             method: 'POST', 
             mode: 'no-cors', 
@@ -207,15 +204,11 @@ form.addEventListener('submit', async (e) => {
             body: JSON.stringify(payload) 
         });
 
-        alert("تم الإرسال بنجاح! سيتم توجيهك الآن لتأكيد الطلب عبر واتساب.");
-        
-        // التوجيه للواتساب برسالة جاهزة
-        const waMsg = `تم إرسال طلبي للتقييم المهني بنجاح.%0Aالاسم: ${payload["الاسم العربي"]}%0Aالتخصص: ${payload["التخصص المهني"]}`;
-        window.open(`https://wa.me/249900065080?text=${waMsg}`, '_blank');
-        
+        alert("تم الإرسال بنجاح! سيتم توجيهك للواتساب.");
+        window.open(`https://wa.me/249900065080?text=تم إرسال طلبي باسم: ${payload["الاسم العربي"]}`, '_blank');
         location.reload();
     } catch (e) {
-        alert("حدث خطأ في الاتصال. يرجى التأكد من الإنترنت والمحاولة مرة أخرى.");
+        alert("فشل الإرسال. تأكد من الإنترنت.");
         btn.disabled = false; btn.innerHTML = "إرسال الطلب وحفظ البيانات";
     }
 });
