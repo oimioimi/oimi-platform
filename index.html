@@ -14,9 +14,8 @@
         label { display: block; margin: 8px 0 2px; font-weight: bold; font-size: 13px; color: #444; }
         input, select, textarea { width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #ccc; box-sizing: border-box; font-size: 14px; background: #f9f9f9; font-weight: bold; }
         .num-input { direction: ltr; text-align: left; }
-        .btn { width: 100%; background: linear-gradient(135deg, #00732f, #00a342); color: white; padding: 15px; border: none; border-radius: 10px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 15px; transition: 0.3s; }
-        .btn:disabled { background: #999; cursor: not-allowed; }
-        .separator { border-top: 1px dashed var(--p); margin: 10px 0; opacity: 0.5; }
+        .btn { width: 100%; background: linear-gradient(135deg, #00732f, #00a342); color: white; padding: 15px; border: none; border-radius: 10px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 15px; }
+        .btn:disabled { background: #999; }
     </style>
 </head>
 <body>
@@ -24,55 +23,45 @@
 <div class="container">
     <div class="card">
         <h2 class="main-title">منصة OIMI</h2>
-        
         <form id="oimi-form">
             <div class="box">
-                <strong>✅ إكمال الطلب:</strong><br>
-                ١. حول الرسوم لحساب بنكك: <strong>4623370</strong> (عمر إبراهيم).<br>
-                ٢. أرفق المستندات أدناه واضغط إرسال.
+                <strong>✅ خطوات الطلب:</strong><br>
+                ١. التحويل لحساب بنكك: 4623370 (عمر إبراهيم).<br>
+                ٢. تعبئة البيانات ورفع المستندات أدناه.
             </div>
 
             <label>الاسم الرباعي (بالعربية) *</label>
-            <input type="text" id="u_name_ar" placeholder="الاسم بالعربي" required>
-            
+            <input type="text" id="u_name_ar" required>
             <label>الاسم الرباعي (بالإنجليزية) *</label>
-            <input type="text" id="u_name_en" class="num-input" placeholder="Full Name in English" required>
-
+            <input type="text" id="u_name_en" class="num-input" required>
             <label>التخصص المهني *</label>
-            <input type="text" id="u_spec" placeholder="مثال: مهندس، محاسب..." required>
-            
+            <input type="text" id="u_spec" required>
             <label>بلد الإقامة *</label>
             <select id="u_country" required onchange="handleCountryChange(this)">
                 <option value="">اختر الدولة...</option>
             </select>
-            
             <label>رقم الهاتف *</label>
             <input type="tel" id="u_phone" class="num-input" disabled required>
-            
             <label>رقم الواتساب *</label>
             <input type="tel" id="u_whatsapp" class="num-input" disabled required>
-            
             <label>البريد الإلكتروني *</label>
-            <input type="email" id="u_email" placeholder="example@mail.com" required>
-
-            <label>ملاحظات إضافية</label>
-            <textarea id="u_notes" rows="2" placeholder="أي تفاصيل أخرى..."></textarea>
-
+            <input type="email" id="u_email" required>
+            <label>ملاحظات</label>
+            <textarea id="u_notes" rows="2"></textarea>
             <label>كيف سمعت عنا؟ *</label>
             <select id="u_source" required>
-                <option value="">اختر المصدر...</option>
+                <option value="">اختر...</option>
                 <option value="فيسبوك">فيسبوك</option>
                 <option value="لينكد إن">لينكد إن</option>
                 <option value="تيك توك">تيك توك</option>
-                <option value="صديق">عن طريق صديق</option>
+                <option value="صديق">صديق</option>
             </select>
 
-            <div class="separator"></div>
+            <div style="border-top: 1px dashed #00732f; margin: 15px 0;"></div>
             <label>أرفق السيرة الذاتية (PDF/Image) *</label>
-            <input type="file" id="cv_file" accept=".pdf,image/*" required>
-            
+            <input type="file" id="cv_file" required>
             <label>أرفق صورة إيصال التحويل *</label>
-            <input type="file" id="receipt_file" accept="image/*" required>
+            <input type="file" id="receipt_file" required>
 
             <button type="submit" class="btn" id="submitBtn">إرسال الطلب وحفظ البيانات</button>
         </form>
@@ -80,29 +69,25 @@
 </div>
 
 <script>
-// الرابط الجديد (النسخة 77) المتصل بـ Sheet 1
-const scriptURL = 'https://script.google.com/macros/s/AKfycbxLaS9fWwpV2oMbLCSaxNcG6Q_JgcAXUQGbAumbN3na9-i6OMXGaFwNcNhHSZh70v52/exec';
+// الرابط الجديد - النسخة 79
+const scriptURL = 'https://script.google.com/macros/s/AKfycbzfCOzQmwBKE57tzPyr9d5RCBvrA6G-kzRvhwxRD8-p9J1j4VFnK7TOMMufIGc7OmYJ/exec';
 
-const countryCodes = { "الجزائر": "00213", "البحرين": "00973", "مصر": "0020", "العراق": "00964", "الأردن": "00962", "الكويت": "00965", "لبنان": "00961", "ليبيا": "00218", "المغرب": "00212", "عمان": "00968", "فلسطين": "00970", "قطر": "00974", "السعودية": "00966", "السودان": "00249", "سوريا": "00963", "تونس": "00216", "تركيا": "0090", "الإمارات": "00971", "اليمن": "00967", "المملكة المتحدة": "0044", "أمريكا": "001" };
-
+const countryCodes = { "مصر": "0020", "السودان": "00249", "السعودية": "00966", "الإمارات": "00971", "قطر": "00974", "البحرين": "00973", "الكويت": "00965", "عمان": "00968" };
 const cSel = document.getElementById('u_country');
-Object.keys(countryCodes).sort((a,b) => a.localeCompare(b, 'ar')).forEach(name => {
+Object.keys(countryCodes).forEach(name => {
     let opt = document.createElement('option'); opt.value = name; opt.textContent = name; cSel.appendChild(opt);
 });
 
 function handleCountryChange(el) {
     const p = document.getElementById('u_phone'), w = document.getElementById('u_whatsapp');
-    if(el.value) {
-        p.disabled = false; w.disabled = false;
-        p.value = countryCodes[el.value]; w.value = countryCodes[el.value];
-    }
+    if(el.value) { p.disabled = false; w.disabled = false; p.value = countryCodes[el.value]; w.value = countryCodes[el.value]; }
 }
 
 const form = document.getElementById('oimi-form');
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const btn = document.getElementById('submitBtn');
-    btn.disabled = true; btn.innerHTML = "جاري الحفظ والرفع... يرجى الانتظار";
+    btn.disabled = true; btn.innerHTML = "جاري الرفع... يرجى الانتظار";
 
     const toBase64 = file => new Promise((resolve, reject) => {
         const reader = new FileReader(); reader.readAsDataURL(file);
@@ -130,6 +115,7 @@ form.addEventListener('submit', async (e) => {
             "receipt_name": rcF.name
         };
 
+        // إرسال البيانات
         await fetch(scriptURL, { 
             method: 'POST', 
             mode: 'no-cors', 
@@ -137,11 +123,12 @@ form.addEventListener('submit', async (e) => {
             body: JSON.stringify(payload) 
         });
 
-        alert("تم الإرسال بنجاح! شكراً لك.");
+        alert("تم الإرسال بنجاح!");
         window.open(`https://wa.me/249900065080?text=تم إرسال طلبي باسم: ${payload["الاسم العربي"]}`, '_blank');
         location.reload();
+        
     } catch (e) {
-        alert("فشل في الاتصال. يرجى مراجعة الإنترنت.");
+        alert("حدث خطأ أثناء الإرسال. تأكد من الإنترنت.");
         btn.disabled = false; btn.innerHTML = "إرسال الطلب وحفظ البيانات";
     }
 });
