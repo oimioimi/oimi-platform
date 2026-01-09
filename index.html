@@ -9,12 +9,16 @@
         body { background: #f4f4f4; margin: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 10px; text-align: right; }
         .container { max-width: 500px; margin: auto; }
         .card { background: #fff; padding: 20px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 1px solid #ddd; }
-        .main-title { color: var(--p); text-align: center; margin-bottom: 15px; font-size: 22px; }
-        .box { background: var(--lg); padding: 15px; border-radius: 10px; border: 1px solid var(--p); margin-bottom: 15px; font-size: 14px; line-height: 1.6; }
-        label { display: block; margin: 12px 0 5px; font-weight: bold; font-size: 14px; }
-        input, select, textarea { width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #ccc; box-sizing: border-box; font-size: 14px; }
-        .btn { width: 100%; background: var(--p); color: white; padding: 15px; border: none; border-radius: 10px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 20px; transition: 0.3s; }
-        .btn:disabled { background: #999; cursor: not-allowed; }
+        .main-title { color: var(--p); text-align: center; margin-bottom: 15px; font-size: 22px; font-weight: bold; }
+        .box { background: var(--lg); padding: 15px; border-radius: 10px; border: 1px solid var(--p); margin-bottom: 15px; font-size: 14px; line-height: 1.6; color: #2e7d32; }
+        label { display: block; margin: 12px 0 5px; font-weight: bold; font-size: 14px; color: #333; }
+        input, select, textarea { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #ccc; box-sizing: border-box; font-size: 14px; background: #fafafa; }
+        input:focus { border-color: var(--p); outline: none; background: #fff; }
+        .num-input { direction: ltr; text-align: left; }
+        .btn { width: 100%; background: linear-gradient(135deg, #00732f, #00a342); color: white; padding: 15px; border: none; border-radius: 10px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 20px; transition: 0.3s; }
+        .btn:hover { opacity: 0.9; transform: translateY(-1px); }
+        .btn:disabled { background: #999; cursor: not-allowed; transform: none; }
+        .footer-note { text-align: center; font-size: 12px; color: #777; margin-top: 15px; }
     </style>
 </head>
 <body>
@@ -22,38 +26,56 @@
 <div class="container">
     <div class="card">
         <h2 class="main-title">منصة OIMI</h2>
+        
         <form id="oimi-form">
             <div class="box">
-                <strong>✅ إكمال الطلب:</strong><br>
+                <strong>✅ خطوات إكمال الطلب:</strong><br>
                 ١. حول الرسوم لحساب بنكك: <strong>4623370</strong> (عمر إبراهيم).<br>
-                ٢. ارفع المستندات أدناه واضغط إرسال.
+                ٢. ارفع المستندات أدناه واضغط "إرسال الطلب".
             </div>
 
             <label>الاسم الرباعي (بالعربية) *</label>
-            <input type="text" id="u_name_ar" required>
+            <input type="text" id="u_name_ar" placeholder="أدخل اسمك الكامل بالعربية" required>
             
             <label>الاسم الرباعي (بالإنجليزية) *</label>
-            <input type="text" id="u_name_en" style="direction: ltr; text-align: left;" required>
+            <input type="text" id="u_name_en" class="num-input" placeholder="Full Name in English" required>
 
             <label>التخصص المهني *</label>
-            <input type="text" id="u_spec" required>
+            <input type="text" id="u_spec" placeholder="مثال: مهندس برمجيات، محاسب..." required>
             
             <label>بلد الإقامة *</label>
-            <select id="u_country" required>
+            <select id="u_country" required onchange="updateCountryCode(this)">
                 <option value="">اختر الدولة...</option>
                 <option value="السودان">السودان</option>
                 <option value="الإمارات">الإمارات</option>
                 <option value="السعودية">السعودية</option>
                 <option value="مصر">مصر</option>
                 <option value="قطر">قطر</option>
-                <option value="أخرى">أخرى</option>
+                <option value="عمان">عمان</option>
+                <option value="البحرين">البحرين</option>
+                <option value="الكويت">الكويت</option>
+                <option value="أخرى">دولة أخرى</option>
             </select>
             
-            <label>رقم الهاتف *</label>
-            <input type="tel" id="u_phone" placeholder="مثال: 00971..." required>
+            <label>رقم الهاتف والواتساب *</label>
+            <input type="tel" id="u_phone" class="num-input" placeholder="00xxxxxxxxxx" required>
             
             <label>البريد الإلكتروني *</label>
-            <input type="email" id="u_email" required>
+            <input type="email" id="u_email" placeholder="example@mail.com" required>
+
+            <label>كيف سمعت عنا؟ *</label>
+            <select id="u_source" required>
+                <option value="">اختر المصدر...</option>
+                <option value="فيسبوك">فيسبوك</option>
+                <option value="تيك توك">تيك توك</option>
+                <option value="لينكد إن">لينكد إن</option>
+                <option value="صديق">عن طريق صديق</option>
+            </select>
+
+            <label>ملاحظات إضافية</label>
+            <textarea id="u_notes" rows="2" placeholder="أي معلومات إضافية ترغب في ذكرها..."></textarea>
+
+            <hr style="margin: 20px 0; border: 0; border-top: 1px dashed #ccc;">
 
             <label>أرفق السيرة الذاتية (PDF/Image) *</label>
             <input type="file" id="cv_file" accept=".pdf,image/*" required>
@@ -62,20 +84,30 @@
             <input type="file" id="receipt_file" accept="image/*" required>
 
             <button type="submit" class="btn" id="submitBtn">إرسال الطلب وحفظ البيانات</button>
+            <p class="footer-note">سيتم حفظ البيانات وفتح محادثة واتساب تلقائياً</p>
         </form>
     </div>
 </div>
 
 <script>
-// الرابط الجديد الخاص بالنسخة 82
-const scriptURL = 'https://script.google.com/macros/s/AKfycbwz0PCnQ1A6P06gmmNJlBeo_XENeR1J3PfyyScq16ofN-Ko9z3LgGNpH0aNtAcPpdG5/exec';
+// الرابط المحدث للنسخة 83
+const scriptURL = 'https://script.google.com/macros/s/AKfycbxVHAiJgKrjSxLQ0anQvTYPi-FB6coOVr7opozw_zQwWU1bUBh3Ox0kGlbW9VtPGrtw/exec';
+
+const codes = { "السودان": "00249", "الإمارات": "00971", "السعودية": "00966", "مصر": "0020", "قطر": "00974", "عمان": "00968", "البحرين": "00973", "الكويت": "00965" };
+
+function updateCountryCode(el) {
+    const p = document.getElementById('u_phone');
+    if(el.value && codes[el.value]) {
+        p.value = codes[el.value];
+    }
+}
 
 const form = document.getElementById('oimi-form');
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const btn = document.getElementById('submitBtn');
     btn.disabled = true; 
-    btn.innerHTML = "جاري الحفظ والرفع... (يرجى الانتظار)";
+    btn.innerHTML = "جاري الحفظ والرفع... يرجى الانتظار";
 
     const toBase64 = file => new Promise((resolve, reject) => {
         const reader = new FileReader(); 
@@ -88,13 +120,6 @@ form.addEventListener('submit', async (e) => {
         const cvF = document.getElementById('cv_file').files[0];
         const rcF = document.getElementById('receipt_file').files[0];
         
-        // فحص حجم الملفات (يفضل أقل من 2MB لكل ملف للتجربة)
-        if (cvF.size > 2 * 1024 * 1024 || rcF.size > 2 * 1024 * 1024) {
-            alert("حجم الملف كبير جداً. يرجى اختيار ملفات أقل من 2 ميجابايت.");
-            btn.disabled = false; btn.innerHTML = "إرسال الطلب وحفظ البيانات";
-            return;
-        }
-
         const payload = {
             "الاسم العربي": document.getElementById('u_name_ar').value,
             "الاسم الانجليزي": document.getElementById('u_name_en').value,
@@ -103,29 +128,27 @@ form.addEventListener('submit', async (e) => {
             "رقم الهاتف": document.getElementById('u_phone').value,
             "رقم الواتس": document.getElementById('u_phone').value,
             "البريد الإلكتروني": document.getElementById('u_email').value,
-            "ملاحظات": "طلب من الموقع",
-            "كيف سمعت عننا": "الموقع",
+            "ملاحظات": document.getElementById('u_notes').value || "طلب جديد",
+            "كيف سمعت عننا": document.getElementById('u_source').value,
             "cv_data": await toBase64(cvF),
             "cv_name": cvF.name,
             "receipt_data": await toBase64(rcF),
             "receipt_name": rcF.name
         };
 
-        // الإرسال وانتظار رد من السيرفر
-        fetch(scriptURL, { 
+        // إرسال البيانات إلى السكربت
+        await fetch(scriptURL, { 
             method: 'POST',
             mode: 'no-cors',
             body: JSON.stringify(payload) 
-        }).then(res => {
-            alert("تم الإرسال بنجاح! شكراً لك.");
-            location.reload();
-        }).catch(err => {
-            alert("خطأ في السيرفر: " + err.message);
-            btn.disabled = false; btn.innerHTML = "إرسال الطلب وحفظ البيانات";
         });
+
+        alert("تم الإرسال بنجاح! سيتم توجيهك الآن للواتساب.");
+        window.open(`https://wa.me/249900065080?text=تم إرسال طلبي باسم: ${payload["الاسم العربي"]}`, '_blank');
+        location.reload();
         
     } catch (e) {
-        alert("خطأ في معالجة البيانات: " + e.message);
+        alert("حدث خطأ في الإرسال، يرجى المحاولة مرة أخرى.");
         btn.disabled = false; btn.innerHTML = "إرسال الطلب وحفظ البيانات";
     }
 });
