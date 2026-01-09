@@ -1,185 +1,214 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة OIMI - طلب تقييم مهني</title>
-    <style>
-        body { 
-            background-color: #ffffff; 
-            margin: 0; 
-            padding: 10px 0; 
-            direction: rtl; 
-            font-family: 'Segoe UI', Tahoma, sans-serif; 
-            overflow-x: hidden; 
-        }
-        
-        .main-card { 
-            max-width: 600px; margin: 0 auto 20px auto; border: 2px solid #00732f; border-radius: 20px; 
-            padding: 30px; background: #fff; box-shadow: 0 10px 25px rgba(0,0,0,0.08); 
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>منصة OIMI - طلب تقييم</title>
+<style>
+:root { --p: #00732f; --lg: #e8f5e9; }
+body { background: #fff; margin: 0; font-family: 'Segoe UI', sans-serif; padding: 5px; text-align: right; overflow-x: hidden; }
+.container { max-width: 600px; margin: auto; display: flex; flex-direction: column; gap: 2px; }
+.card { background: #fff; padding: 18px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 1px solid #eee; }
+.main-title { color: var(--p); text-align: center; margin-bottom: 8px; font-weight: 800; font-size: 19px; }
+.box { background: var(--lg); padding: 12px; border-radius: 10px; border: 1px solid var(--p); margin-bottom: 10px; color: #2e7d32; font-size: 13px; line-height: 1.6; }
+.separator { border-top: 1px dashed var(--p); margin: 8px 0; opacity: 0.5; }
+label { display: block; margin: 4px 0 2px; font-weight: bold; font-size: 13px; color: #444; }
+input, select, textarea { width: 100%; padding: 10px; margin-bottom: 5px; border-radius: 8px; border: 1px solid #ccc; box-sizing: border-box; font-size: 14px; background: #f9f9f9; font-weight: bold; }
+.num-input { direction: ltr; text-align: left; }
+input:disabled { background: #f0f0ff !important; cursor: not-allowed; color: #888; border: 1px solid #ddd; }
+.btn { width: 100%; background: linear-gradient(135deg, #00732f, #00a342); color: white; padding: 14px; border: none; border-radius: 10px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 10px; }
 
-        /* تنسيق العنوان ليكون على سطرين */
-        .main-title { color: #00732f; text-align: center; margin-top: 0; line-height: 1.4; }
-        .main-title span { display: block; font-size: 0.85em; }
+/* شريط الصور - السرعة 20 ثانية */
+.slider { width: 100%; overflow: hidden; margin-top: 15px; text-align: center; direction: ltr; position: relative; height: 260px; }
+.slider h4 { color: var(--p); margin: 5px 0; font-size: 16px; direction: rtl; }
+.track { display: flex; width: max-content; animation: scroll-loop 20s linear infinite; padding: 20px 0; align-items: center; }
+.track img { width: 260px; height: 160px; object-fit: cover; margin: 0 15px; border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.1); cursor: zoom-in; transition: 0.3s; }
+.track img:hover { transform: scale(1.05); }
+@keyframes scroll-loop { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-        .instruction-box {
-            background: #e8f5e9; padding: 15px; border-radius: 12px; border: 1px solid #00732f; 
-            margin-bottom: 20px; color: #2e7d32; font-size: 14px; line-height: 1.6;
-        }
+/* نافذة تكبير الصور (Modal) */
+#modalOverlay { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:10000; align-items:center; justify-content:center; }
+#modalOverlay img { max-width: 95%; max-height: 90%; border: 3px solid #fff; border-radius: 10px; }
 
-        .slider-title { text-align: center; color: #00732f; font-size: 24px; font-weight: bold; margin: 20px 0 10px 0; }
-
-        .full-width-slider { 
-            width: 100vw; background: #ffffff; padding: 40px 0; border: none; overflow: hidden; position: relative; 
-        }
-
-        .slider-track { display: flex; width: max-content; animation: scroll-loop 45s linear infinite; align-items: center; }
-
-        @keyframes scroll-loop {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(calc(310px * 8)); } 
-        }
-
-        .full-width-slider:hover .slider-track { animation-play-state: paused; }
-
-        .slider-track img { 
-            width: 260px; height: 52px; object-fit: contain; margin: 0 25px; 
-            transition: transform 0.5s ease-in-out; cursor: zoom-in; 
-        }
-
-        .slider-track img:hover { transform: scale(1.45); z-index: 10; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1)); }
-
-        /* نافذة التكبير (Lightbox) */
-        #imgModal {
-            display: none; position: fixed; z-index: 9999; top: 0; left: 0;
-            width: 100%; height: 100%; background-color: rgba(0,0,0,0.9);
-            align-items: center; justify-content: center; cursor: zoom-out;
-        }
-        #imgModal img { max-width: 90%; max-height: 90%; border-radius: 10px; box-shadow: 0 0 30px rgba(255,255,255,0.2); }
-
-        input, select, textarea { 
-            width: 100%; padding: 12px; margin-bottom: 15px; border-radius: 8px; 
-            border: 1px solid #ccc; box-sizing: border-box; font-family: inherit; font-size: 14px; background-color: #fff;
-        }
-
-        .btn-send { 
-            width: 100%; background: #00732f; color: white; padding: 18px; border: none; 
-            border-radius: 12px; font-size: 18px; font-weight: bold; cursor: pointer;
-        }
-
-        label { display: block; margin-bottom: 8px; font-weight: bold; color: #333; }
-    </style>
+/* قسم عن المنصة السفلي */
+.footer-section { background: #fff; border-top: 1px solid #eee; margin-top: 15px; padding: 15px; text-align: right; }
+.f-title { color: var(--p); cursor: pointer; text-decoration: underline; font-size: 17px; margin-bottom: 10px; display: block; font-weight: bold; text-align: center; }
+#details-box { display: none; background: #fdfdfd; padding: 15px; border-radius: 12px; border: 1px solid #ddd; margin-top: 10px; font-size: 13px; line-height: 1.8; color: #333; }
+.contact-area { margin-top: 20px; border-top: 1px solid #eee; padding-top: 15px; text-align: center; }
+.contact-area a { color: var(--p); text-decoration: none; font-weight: bold; margin: 0 15px; }
+</style>
 </head>
 <body>
 
-    <div class="main-card">
-        <h2 class="main-title">
-            منصة OIM
-            <span>طلب التقييم المهني و عمل السير الذاتيه (ATS)</span>
-        </h2>
+<div id="modalOverlay" onclick="this.style.display='none'"><img id="modalImg"></div>
 
-        <div class="instruction-box">
-            <strong>✅ خطوات إتمام الطلب:</strong><br>
-            1. حول رسوم التقييم 50,000 (جنيه) عبر تطبيق بنكك للحساب: <strong>4623370</strong><br>
-            باسم: الأستاذ / عمر إبراهيم.
-        </div>
-        <div id="oimiArea">
-            <input type="text" id="uName" placeholder="الاسم الكامل">
-            <input type="text" id="uSpec" placeholder="التخصص المهني">
-            <select id="uCountry">
-                <option value="">-- اختر بلد الإقامة الحالي --</option>
-                <option value="السودان">السودان</option>
-                <option value="الإمارات">الإمارات</option>
-                <option value="السعودية">السعودية</option>
-                <option value="مصر">مصر</option>
-                <option value="أخرى">دولة أخرى</option>
+<div class="container">
+    <div class="card">
+        <h2 class="main-title">منصة OIMI<br><span style="font-size:14px; color:#444;">طلب التقييم المهني وعمل السير الذاتية (ATS)</span></h2>
+        
+        <form id="oimi-form" novalidate>
+            <div class="box">
+                <strong>✅ خطوات إتمام الطلب:</strong><br>
+                ١. تحويل رسوم الخدمة (50,000 جنيه) لبنك الخرطوم ( بنكك) الحساب: <strong>4623370</strong> (باسم عمر إبراهيم).<br>
+                ٢. تعبئة كافة الحقول أدناه بدقة (الأرقام بالإنجليزية).<br>
+                ٣. إرفاق نسخة من السيرة الذاتية وصورة إيصال التحويل.<br>
+                ٤. الضغط على زر "إرسال" لرفع البيانات وتأكيد الطلب.<br>
+                <div class="separator"></div>
+                <a href="https://wa.me/249900065080" target="_blank" style="color:var(--p); font-weight:bold; text-decoration:none; font-size:12px;">💡 واجهتك مشكلة في الدفع؟ اضغط هنا للتواصل المباشر معنا.</a>
+            </div>
+
+            <label>الاسم الرباعي (بالعربية) *</label>
+            <input type="text" id="u_name_ar" required>
+            
+            <label>الاسم الرباعي (بالإنجليزية) *</label>
+            <input type="text" id="u_name_en" class="num-input" required>
+
+            <label>التخصص المهني *</label>
+            <input type="text" id="u_spec" required>
+            
+            <label>بلد الإقامة *</label>
+            <select id="u_country" required onchange="handleCountryChange(this)">
+                <option value="">اختر الدولة...</option>
             </select>
-            <input type="email" id="uEmail" placeholder="البريد الإلكتروني">
-            <input type="tel" id="uPhone" placeholder="(9-0 Only) رقم الهاتف" dir="ltr" style="text-align: right;">
-            <input type="tel" id="uWhatsapp" placeholder="(9-0 Only) رقم الواتساب" dir="ltr" style="text-align: right;">
-            <textarea id="uNotes" placeholder="ملاحظات إضافية" rows="3"></textarea>
-            <label>1. السيرة الذاتية:</label>
-            <input type="file" id="uCV" accept=".pdf,image/*">
-            <label>2. صورة إشعار بنكك:</label>
-            <input type="file" id="uPay" accept="image/*">
-            <button onclick="oimiUpload()" id="uBtn" class="btn-send">إرسال الطلب وإشعار التحويل</button>
+            
+            <div onclick="checkCountryFirst()">
+                <label>رقم الهاتف *</label>
+                <input type="tel" id="u_phone" class="num-input" disabled required>
+                
+                <label>رقم الواتساب *</label>
+                <input type="tel" id="u_whatsapp" class="num-input" disabled required>
+            </div>
+            
+            <label>البريد الإلكتروني *</label>
+            <input type="email" id="u_email" required>
+
+            <label>ملاحظات إضافية</label>
+            <textarea id="u_notes" rows="2"></textarea>
+
+            <label>كيف سمعت عنا؟ *</label>
+            <select id="u_source" required>
+                <option value="">اختر المصدر...</option>
+                <option value="فيسبوك">فيسبوك</option>
+                <option value="لينكد إن">لينكد إن</option>
+                <option value="تيك توك">تيك توك</option>
+                <option value="صديق">عن طريق صديق</option>
+            </select>
+
+            <div class="separator"></div>
+            <label>أرفق السيرة الذاتية *</label>
+            <input type="file" id="cv_file" accept=".pdf,image/*" required>
+            
+            <label>أرفق صورة إيصال التحويل *</label>
+            <input type="file" id="receipt_file" accept="image/*" required>
+
+            <button type="submit" class="btn" id="submitBtn">إرسال الطلب وحفظ البيانات</button>
+        </form>
+    </div>
+
+    <div class="slider">
+        <h4>نماذج من أعمالنا</h4>
+        <div class="track">
+            <img src="https://i.postimg.cc/vHPSwW3p/528604980-10162083330481298-381945114741787991-n.jpg" ondblclick="zoomImg(this.src)">
+            <img src="https://i.postimg.cc/sDn0Cpwb/585747945-10162491435001298-5020852638269490297-n.jpg" ondblclick="zoomImg(this.src)">
+            <img src="https://i.postimg.cc/Wb9fcMXY/QVZo-ZFNzc-Wdi-MUx2a-HJMUFRhe-GJza-TZI.jpg" ondblclick="zoomImg(this.src)">
+            <img src="https://i.postimg.cc/vHPSwW3p/528604980-10162083330481298-381945114741787991-n.jpg" ondblclick="zoomImg(this.src)">
+            <img src="https://i.postimg.cc/sDn0Cpwb/585747945-10162491435001298-5020852638269490297-n.jpg" ondblclick="zoomImg(this.src)">
+            <img src="https://i.postimg.cc/Wb9fcMXY/QVZo-ZFNzc-Wdi-MUx2a-HJMUFRhe-GJza-TZI.jpg" ondblclick="zoomImg(this.src)">
         </div>
     </div>
 
-    <div class="slider-title">مع عملائنا</div>
-    
-    <div class="full-width-slider">
-        <div class="slider-track">
-            <img src="https://i.postimg.cc/vHPSwW3p/528604980-10162083330481298-381945114741787991-n.jpg" onclick="zoomImg(this)">
-            <img src="https://i.postimg.cc/sDn0Cpwb/585747945-10162491435001298-5020852638269490297-n.jpg" onclick="zoomImg(this)">
-            <img src="https://i.postimg.cc/Wb9fcMXY/QVZo-ZFNzc-Wdi-MUx2a-HJMUFRhe-GJza-TZI.jpg" onclick="zoomImg(this)">
-            <img src="https://i.postimg.cc/kXjhPxf1/Screen-Shot-2022-01-14-at-9-42-42-AM.jpg" onclick="zoomImg(this)">
-            <img src="https://i.postimg.cc/65H1xdMx/Screen-Shot-2022-11-01-at-12-14-37-PM.jpg" onclick="zoomImg(this)">
-            <img src="https://i.postimg.cc/zXdPYnxN/Screen-Shot-2023-10-22-at-12-13-37-PM.jpg" onclick="zoomImg(this)">
-            <img src="https://i.postimg.cc/wTWbYhwx/Screenshot-2026-01-03-at-1-49-56-PM.png" onclick="zoomImg(this)">
-            <img src="https://i.postimg.cc/Wb9fcM5b/Screenshot-2026-01-03-at-2-17-12-PM.png" onclick="zoomImg(this)">
-            <img src="https://i.postimg.cc/vHPSwW3p/528604980-10162083330481298-381945114741787991-n.jpg" onclick="zoomImg(this)">
-            <img src="https://i.postimg.cc/sDn0Cpwb/585747945-10162491435001298-5020852638269490297-n.jpg" onclick="zoomImg(this)">
-            <img src="https://i.postimg.cc/Wb9fcMXY/QVZo-ZFNzc-Wdi-MUx2a-HJMUFRhe-GJza-TZI.jpg" onclick="zoomImg(this)">
-            <img src="https://i.postimg.cc/kXjhPxf1/Screen-Shot-2022-01-14-at-9-42-42-AM.jpg" onclick="zoomImg(this)">
-            <img src="https://i.postimg.cc/65H1xdMx/Screen-Shot-2022-11-01-at-12-14-37-PM.jpg" onclick="zoomImg(this)">
-            <img src="https://i.postimg.cc/zXdPYnxN/Screen-Shot-2023-10-22-at-12-13-37-PM.jpg" onclick="zoomImg(this)">
-            <img src="https://i.postimg.cc/wTWbYhwx/Screenshot-2026-01-03-at-1-49-56-PM.png" onclick="zoomImg(this)">
-            <img src="https://i.postimg.cc/Wb9fcM5b/Screenshot-2026-01-03-at-2-17-12-PM.png" onclick="zoomImg(this)">
+    <div class="footer-section">
+        <span class="f-title" onclick="toggleDetails()">عن المنصة ▾</span>
+        <div id="details-box">
+            <strong>📍 من نحن؟</strong><br>
+            OIMI.ae منصة رقمية رائدة تُقدم حلولاً مهنية متكاملة للباحثين عن عمل، تجمع بين التقييم المهني الاحترافي وإعداد السير الذاتية (ATS).<br><br>
+            <strong>🎯 هدفنا:</strong><br>
+            تمكين المهنيين من اجتياز فلاتر التوظيف التقنية وتقديم استشارات مبنية على معايير سوق العمل العالمي.
+        </div>
+        <div class="contact-area">
+            <a href="https://wa.me/249900065080" target="_blank">🟢 واتساب</a> | 
+            <a href="mailto:info@oimi.ae">📧 البريد الإلكتروني</a>
         </div>
     </div>
+</div>
 
-    <div id="imgModal" onclick="this.style.display='none'">
-        <img id="fullImg">
-    </div>
+<script>
+const scriptURL = 'https://script.google.com/macros/s/AKfycbyB4NVV4GJ_WXgJOsNgCL4vPIoXn0K8nAtV5piqqA3WBgwtYcp39vqv5wW3yVeHL6yp/exec';
 
-    <script>
-    // وظيفة تكبير الصور
-    function zoomImg(el) {
-        const modal = document.getElementById('imgModal');
-        const fullImg = document.getElementById('fullImg');
-        modal.style.display = 'flex';
-        fullImg.src = el.src;
+const countryCodes = { "أفغانستان": "0093", "الجزائر": "00213", "البحرين": "00973", "مصر": "0020", "العراق": "00964", "الأردن": "00962", "الكويت": "00965", "لبنان": "00961", "ليبيا": "00218", "المغرب": "00212", "عمان": "00968", "فلسطين": "00970", "قطر": "00974", "السعودية": "00966", "السودان": "00249", "سوريا": "00963", "تونس": "00216", "تركيا": "0090", "الإمارات العربية المتحدة": "00971", "اليمن": "00967", "المملكة المتحدة": "0044", "الولايات المتحدة": "001" };
+
+const cSel = document.getElementById('u_country');
+Object.keys(countryCodes).sort((a,b) => a.localeCompare(b, 'ar')).forEach(name => {
+    let opt = document.createElement('option'); opt.value = name; opt.textContent = name; cSel.appendChild(opt);
+});
+
+function handleCountryChange(el) {
+    const p = document.getElementById('u_phone'), w = document.getElementById('u_whatsapp');
+    if(el.value) {
+        p.disabled = false; w.disabled = false;
+        p.value = countryCodes[el.value]; w.value = countryCodes[el.value];
     }
+}
 
-    async function oimiUpload() {
-        const btn = document.getElementById('uBtn');
-        const uName = document.getElementById('uName').value.trim();
-        const uCountry = document.getElementById('uCountry').value;
-        const cvFile = document.getElementById('uCV').files[0];
-        const payFile = document.getElementById('uPay').files[0];
+function checkCountryFirst() { if (!document.getElementById('u_country').value) alert("يرجى اختيار بلد الإقامة أولاً."); }
 
-        if (!uName || !uCountry || !cvFile || !payFile) { 
-            alert("لطفاً، تأكد من إدخال الاسم واختيار الدولة ورفع الملفين."); 
-            return; 
-        }
+function zoomImg(src) { 
+    document.getElementById('modalImg').src = src; 
+    document.getElementById('modalOverlay').style.display = 'flex'; 
+}
 
-        btn.innerHTML = "جاري الحفظ والرفع..."; btn.disabled = true;
-        const toBase64 = file => new Promise((r) => {
-            const f = new FileReader(); f.readAsDataURL(file);
-            f.onload = () => r(f.result.split(',')[1]);
+function toggleDetails() {
+    const box = document.getElementById('details-box');
+    box.style.display = (box.style.display === 'block') ? 'none' : 'block';
+}
+
+const form = document.getElementById('oimi-form');
+form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!form.checkValidity()) { alert("يرجى تعبئة جميع الحقول المطلوبة وإرفاق الملفات."); return; }
+
+    const btn = document.getElementById('submitBtn');
+    btn.disabled = true; btn.innerHTML = "جاري الحفظ والرفع...";
+
+    const toBase64 = file => new Promise((resolve, reject) => {
+        const reader = new FileReader(); reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result.split(',')[1]);
+        reader.onerror = error => reject(error);
+    });
+
+    try {
+        const cvBase = await toBase64(document.getElementById('cv_file').files[0]);
+        const rcBase = await toBase64(document.getElementById('receipt_file').files[0]);
+        
+        const payload = {
+            "الاسم العربي": document.getElementById('u_name_ar').value,
+            "الاسم الانجليزي": document.getElementById('u_name_en').value,
+            "التخصص المهني": document.getElementById('u_spec').value,
+            "بلد الإقامة": document.getElementById('u_country').value,
+            "رقم الهاتف": document.getElementById('u_phone').value,
+            "رقم الواتس": document.getElementById('u_whatsapp').value,
+            "البريد الإلكتروني": document.getElementById('u_email').value,
+            "ملاحظات": document.getElementById('u_notes').value,
+            "كيف سمعت عننا": document.getElementById('u_source').value,
+            "cv_data": cvBase,
+            "receipt_data": rcBase
+        };
+
+        await fetch(scriptURL, { 
+            method: 'POST', 
+            mode: 'no-cors', 
+            headers: { 'Content-Type': 'text/plain' },
+            body: JSON.stringify(payload) 
         });
 
-        try {
-            const cvB = await toBase64(cvFile);
-            const payB = await toBase64(payFile);
-            const url = "https://script.google.com/macros/s/AKfycbxK4E63V_zM9IN2YQ00ZVN8_3GecRPrBWT4Bs3XSS1Npbofns08sObT0TBxxRlnYG82/exec";
-            const p = new URLSearchParams();
-            p.append('cvData', cvB); p.append('payData', payB);
-            p.append('name', uName); p.append('country', uCountry);
-            p.append('specialty', document.getElementById('uSpec').value);
-            p.append('phone', document.getElementById('uPhone').value);
-            p.append('whatsapp', document.getElementById('uWhatsapp').value);
-            p.append('notes', document.getElementById('uNotes').value);
-
-            await fetch(url, { method: 'POST', body: p, mode: 'no-cors' });
-            document.getElementById('oimiArea').innerHTML = "<div style='text-align:center; color:#00732f;'><h3>✅ تم استلام طلبك!</h3><p>سنتواصل معك قريباً.</p></div>";
-        } catch (e) { alert("خطأ!"); btn.disabled = false; }
+        alert("تم الإرسال بنجاح!");
+        window.open(`https://wa.me/249900065080?text=تم إرسال طلبي باسم ${payload["الاسم العربي"]}`, '_blank');
+        location.reload();
+    } catch (e) {
+        alert("خطأ في الاتصال، حاول مجدداً.");
+        btn.disabled = false; btn.innerHTML = "إرسال الطلب وحفظ البيانات";
     }
-    </script>
+});
+</script>
 </body>
 </html>
-https://script.google.com/macros/s/AKfycbwFy2m9D_jUDippu7Ac7vovhUk0N66bvlO1HyK27DlGIDO8s0JPg5kvv0ekR5prX0cP/exec
-
-https://script.google.com/macros/s/AKfycbwU0WzDdxSn9w9d0i1gqmdXc1Rb-KqmfCk-GBBg9w2XAisIG3xnpmIlKLOIDXLR1Fz-/exec
