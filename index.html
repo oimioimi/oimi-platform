@@ -110,14 +110,18 @@
 </div>
 
 <script>
+    // الرابط الخاص بجوجل سكريبت
     const scriptURL = "https://script.google.com/macros/s/AKfycbw0jhOgO2iYIss-Y4_B_hk8WKtFzyUH7FlgLwJijo6iCJ0lchZ_A9dMQAoXxQJo7IAT/exec";
+    
     const countryCodes = { "السودان": "00249","مصر": "0020","السعودية": "00966","الإمارات": "00971","قطر": "00974","عمان": "00968","الكويت": "00965","البحرين": "00973" };
     const cSel = document.getElementById('u_country');
     
+    // تعبئة قائمة الدول
     Object.keys(countryCodes).sort((a,b)=>a.localeCompare(b,'ar')).forEach(c=>{ 
         const o=document.createElement('option'); o.value=c; o.textContent=c; cSel.appendChild(o); 
     });
 
+    // التعامل مع تغيير الدولة
     function handleCountryChange(el){ 
         const p=document.getElementById('u_phone'), w=document.getElementById('u_whatsapp'); 
         if(el.value){ 
@@ -127,6 +131,7 @@
         } 
     }
 
+    // إظهار التفاصيل في الفوتر
     function toggleDetails(){ 
         const b=document.getElementById('details-box'); 
         b.style.display=b.style.display==='block'?'none':'block'; 
@@ -138,28 +143,27 @@
         const btn=document.getElementById('submitBtn');
         const email = document.getElementById('u_email').value.trim().toLowerCase();
         
-        btn.disabled=true; btn.innerHTML="جاري الرفع...";
+        btn.disabled=true; btn.innerHTML="جاري التحقق...";
 
         try {
-            // محاولة فحص الإيميل مع تجاهل الخطأ في حال فشل الاتصال
-            try {
-                const checkUrl = scriptURL + "?checkEmail=" + encodeURIComponent(email) + "&t=" + new Date().getTime();
-                const checkResp = await fetch(checkUrl);
-                if(checkResp.ok) {
-                    const checkResult = await checkResp.json();
-                    if (checkResult && checkResult.exists) {
-                        alert("⚠️ عذراً، هذا البريد مسجل مسبقاً لدينا.");
-                        btn.disabled=false; btn.innerHTML="إرسال الطلب وحفظ البيانات";
-                        return;
-                    }
-                }
-            } catch(e) { console.log("Check skipped due to connection issue"); }
+            // 1. فحص التكرار (منع الإرسال إذا كان الإيميل مسجلاً)
+            const checkUrl = scriptURL + "?checkEmail=" + encodeURIComponent(email) + "&t=" + new Date().getTime();
+            const checkResp = await fetch(checkUrl);
+            const checkResult = await checkResp.json();
 
-            // رفع الملفات
+            if (checkResult && checkResult.exists) {
+                alert("⚠️ عذراً، هذا البريد مسجل مسبقاً لدينا.");
+                btn.disabled=false; btn.innerHTML="إرسال الطلب وحفظ البيانات";
+                return;
+            }
+
+            // 2. تحويل الملفات لرفعها
+            btn.innerHTML="جاري الرفع...";
             const toBase64=f=>new Promise((res,rej)=>{ 
                 const r=new FileReader(); r.onload=()=>res(r.result.split(',')[1]); r.onerror=rej; r.readAsDataURL(f); 
             });
             
+            // 3. تجهيز البيانات بالترتيب الصحيح المتوافق مع الشيت
             const payload={ 
               "الاسم العربي": document.getElementById('u_name_ar').value, 
               "الاسم الانجليزي": document.getElementById('u_name_en').value, 
@@ -168,12 +172,13 @@
               "رقم الهاتف": document.getElementById('u_phone').value, 
               "رقم الواتس": document.getElementById('u_whatsapp').value, 
               "البريد الإلكتروني": email, 
-              "كيف سمعت عننا": document.getElementById('u_source').value, 
-              "ملاحظات": document.getElementById('u_notes').value, 
+              "كيف سمعت عننا": document.getElementById('u_source').value, // العمود I
+              "ملاحظات": document.getElementById('u_notes').value,       // العمود J
               "cv_data": await toBase64(document.getElementById('cv_file').files[0]), 
               "receipt_data": await toBase64(document.getElementById('receipt_file').files[0]) 
             };
 
+            // 4. الإرسال الفعلي
             const response = await fetch(scriptURL, { method:'POST', body:JSON.stringify(payload) });
             const result = await response.json();
 
@@ -181,11 +186,9 @@
                 alert("تم بنجاح ✅ رقمك: " + result.uniqueId); 
                 window.open(`https://wa.me/249900065080?text=رقم الطلب: ${result.uniqueId}`,'_blank'); 
                 location.reload(); 
-            } else {
-                throw new Error("Server error");
             }
         } catch(err){ 
-            alert("حدث خطأ أثناء الإرسال. يرجى التأكد من اتصال الإنترنت أو المحاولة ثانية."); 
+            alert("حدث خطأ في الاتصال، يرجى المحاولة ثانية."); 
             btn.disabled=false; btn.innerHTML="إرسال الطلب وحفظ البيانات"; 
         }
     });
