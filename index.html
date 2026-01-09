@@ -134,7 +134,9 @@ input, select, textarea { width: 100%; padding: 10px; margin-bottom: 5px; border
 </div>
 
 <script>
-const scriptURL = "https://script.google.com/macros/s/AKfycbwL-jQa-sF4nEFVWtPlmAi3y8jgWX2erSHfbpFD_RP4d4bAQ1KWI-x6XgPuk5dca5WB/exec";
+// الرابط الجديد الذي قمت بتزويدي به
+const scriptURL = "https://script.google.com/macros/s/AKfycbxoOZImKozdwyFJTkLxi7lamMwWqKg6JrzoT0WsLQidcC0F5LrE6N57DiBFE56UJ3ab/exec";
+
 const countryCodes = { "السودان": "00249","مصر": "0020","السعودية": "00966","الإمارات": "00971","قطر": "00974","عمان": "00968","الكويت": "00965","البحرين": "00973" };
 const cSel = document.getElementById('u_country');
 Object.keys(countryCodes).sort((a,b)=>a.localeCompare(b,'ar')).forEach(c=>{ const o=document.createElement('option'); o.value=c; o.textContent=c; cSel.appendChild(o); });
@@ -153,14 +155,6 @@ form.addEventListener('submit', async (e)=>{
   const btn=document.getElementById('submitBtn');
   const email = document.getElementById('u_email').value.trim().toLowerCase();
   
-  const p=document.getElementById('u_phone'), w=document.getElementById('u_whatsapp');
-  if(!p.value || p.value === countryCodes[document.getElementById('u_country').value]){
-      alert("يرجى إكمال رقم الهاتف"); p.focus(); return;
-  }
-  if(!w.value || w.value === countryCodes[document.getElementById('u_country').value]){
-      alert("يرجى إكمال رقم الواتساب"); w.focus(); return;
-  }
-
   btn.disabled=true; btn.innerHTML="جاري التحقق...";
 
   try {
@@ -192,15 +186,10 @@ form.addEventListener('submit', async (e)=>{
     const result = await response.json();
     
     if(result.status === "success"){ 
-        // استخراج الرقم التسلسلي فقط من النتيجة (مثل 69979)
-        let rawId = result.uniqueId.toString().match(/\d+/);
-        let serialNumber = rawId ? rawId[0] : "1";
-        
-        // إذا كنت تريد أن يبدأ من 1، والسيرفر يعطيك أرقام كبيرة، يمكننا طرح رقم ثابت أو تركه كما هو 
-        // لكن التنسيق سيكون: [الرقم]-[التاريخ]
+        // عرض الرقم الجديد: [رقم التسلسل]-[تاريخ اليوم]
         const now = new Date();
         const dateStr = now.getFullYear().toString() + (now.getMonth() + 1).toString().padStart(2, '0') + now.getDate().toString().padStart(2, '0');
-        const finalId = serialNumber + "-" + dateStr;
+        const finalId = result.uniqueId + "-" + dateStr;
         
         alert("تم استلام طلبك بنجاح ✅\nرقم تسجيلك هو: " + finalId); 
         window.open(`https://wa.me/249900065080?text=تم التسجيل بنجاح في منصة OIMI. رقم تسجيل الطلب الخاص بي هو: ${finalId}`,'_blank'); 
