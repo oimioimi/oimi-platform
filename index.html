@@ -3,41 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة OIMI - طلب تقييم</title>
+    <title>منصة OIMI - طلب تقييم المهني</title>
     <link rel="icon" type="image/png" href="https://i.postimg.cc/cJRw69tq/Favicon-for-OIMI.png">
     <style>
-        :root { --p: #00732f; --lg: #e8f5e9; }
-        body { background: #fff; margin: 0; font-family: 'Segoe UI', sans-serif; padding: 5px; text-align: right; overflow-x: hidden; }
+        :root { --p: #00732f; --lg: #e8f5e9; --red: #ff0000; }
+        body { background: #fff; margin: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 5px; text-align: right; overflow-x: hidden; }
         .container { max-width: 600px; margin: auto; display: flex; flex-direction: column; gap: 2px; }
         .card { background: #fff; padding: 18px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 1px solid #eee; }
+        
+        /* تصميم اللوجو المبتكر OIMI */
         .oimi-style { display: inline-flex; align-items: baseline; direction: ltr; font-weight: bold; color: #000; }
-        .oimi-i { display: inline-block; line-height: 1; background: linear-gradient(to bottom, #ff0000 20%, #000000 20%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .oimi-i { display: inline-block; line-height: 1; background: linear-gradient(to bottom, var(--red) 20%, #000000 20%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .main-title { text-align: center; margin-bottom: 8px; font-weight: 800; font-size: 22px; }
-        .main-title .oimi-style { font-size: 34px; } 
+        .main-title .oimi-style { font-size: 34px; }
 
-        /* قسم مع عملائنا والشريط المتحرك التفاعلي */
-        .clients-section { margin: 15px 0; text-align: center; }
-        .clients-title { font-weight: bold; color: var(--p); font-size: 16px; margin-bottom: 10px; }
-        .marquee-container { width: 100%; overflow: hidden; background: #f9f9f9; padding: 15px 0; border-radius: 12px; border: 1px solid #eee; }
-        .marquee-content { display: flex; width: max-content; animation: scroll 30s linear infinite; }
+        /* قسم مع عملائنا والصور التفاعلية */
+        .section-header { text-align: center; color: var(--p); font-weight: bold; font-size: 15px; margin: 15px 0 5px; }
+        .marquee-wrapper { width: 100%; overflow: hidden; background: #fdfdfd; padding: 12px 0; border-radius: 12px; border: 1px solid #f0f0f0; margin-bottom: 10px; }
+        .marquee-content { display: flex; width: max-content; animation: scroll 25s linear infinite; }
         .marquee-content:hover { animation-play-state: paused; }
-        .marquee-content img { height: 40px; margin: 0 25px; transition: transform 0.4s ease; cursor: pointer; filter: grayscale(10%); }
-        .marquee-content img:hover { transform: scale(1.6); filter: grayscale(0%); }
+        .marquee-content img { height: 38px; margin: 0 20px; transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; }
+        .marquee-content img:hover { transform: scale(1.5) rotate(2deg); filter: drop-shadow(0 5px 15px rgba(0,0,0,0.1)); }
         @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(50%); } }
 
         .box { background: var(--lg); padding: 12px; border-radius: 10px; border: 1px solid var(--p); margin-bottom: 10px; color: #2e7d32; font-size: 13px; line-height: 1.6; }
+        .help-link-center { text-align: center; margin-top: 8px; padding-top: 8px; border-top: 1px dashed var(--p); }
+        
         label { display: block; margin: 4px 0 2px; font-weight: bold; font-size: 13px; color: #444; }
         input, select, textarea { width: 100%; padding: 10px; margin-bottom: 5px; border-radius: 8px; border: 1px solid #ccc; box-sizing: border-box; font-size: 14px; background: #f9f9f9; font-weight: bold; }
         .num-input { direction: ltr; text-align: left; }
         .separator { border-top: 1px dashed var(--p); margin: 8px 0; opacity: 0.5; }
 
-        /* الفوتر المكتمل */
-        .footer-section { background: #fff; border-top: 1px solid #eee; margin-top: 15px; padding: 15px; text-align: center; }
-        .f-title { color: var(--p); font-size: 22px; display: block; font-weight: bold; margin-bottom: 8px; }
-        .f-intro { font-size: 13.5px; line-height: 1.6; color: #333; margin-bottom: 10px; text-align: justify; }
-        .contact-area { background: #f9f9f9; padding: 15px; border-radius: 15px; border: 1px solid #eee; margin-top: 10px; }
-        .contact-area a { color: var(--p); text-decoration: none; font-weight: bold; margin: 0 10px; }
-        .btn { width: 100%; background: linear-gradient(135deg, #00732f, #00a342); color: white; padding: 14px; border: none; border-radius: 10px; font-size: 16px; font-weight: bold; cursor: pointer; }
+        /* التعريف والتواصل */
+        .footer-section { background: #fff; border-top: 1px solid #eee; margin-top: 15px; padding: 20px; text-align: center; }
+        .f-title { color: var(--p); font-size: 22px; display: block; font-weight: bold; margin-bottom: 10px; }
+        .f-intro { font-size: 13.5px; line-height: 1.7; color: #333; text-align: justify; direction: rtl; }
+        .f-subtitle { color: #888; font-size: 11px; cursor: pointer; text-decoration: underline; display: block; margin: 10px 0; }
+        #details-box { display: none; background: #fcfcfc; padding: 15px; border-radius: 12px; border: 1px solid #ddd; margin-top: 10px; font-size: 13px; text-align: right; }
+        
+        .contact-area { background: #f9f9f9; padding: 15px; border-radius: 15px; border: 1px solid #eee; margin-top: 15px; }
+        .contact-area h4 { margin: 0 0 10px; color: var(--p); }
+        .contact-links { display: flex; justify-content: center; gap: 20px; }
+        .contact-links a { color: var(--p); text-decoration: none; font-weight: bold; font-size: 14px; }
+
+        .btn { width: 100%; background: linear-gradient(135deg, #00732f, #00a342); color: white; padding: 14px; border: none; border-radius: 10px; font-size: 16px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        .btn:hover { opacity: 0.9; transform: scale(0.99); }
     </style>
 </head>
 <body>
@@ -46,26 +56,26 @@
     <div class="card">
         <h2 class="main-title">منصة <span class="oimi-style">O<span class="oimi-i">i</span>M<span class="oimi-i">i</span>.ae</span><br><span style="font-size:14px; color:#444; font-weight:normal;">طلب التقييم المهني وعمل السير الذاتية (ATS)</span></h2>
         
-        <div class="clients-section">
-            <div class="clients-title">مع عملائنا في كبرى الشركات</div>
-            <div class="marquee-container">
-                <div class="marquee-content">
-                    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/44/Saudi_Aramco_Logo.svg/2560px-Saudi_Aramco_Logo.svg.png" alt="Aramco">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/ADNOC_Logo.svg/2000px-ADNOC_Logo.svg.png" alt="Adnoc">
-                    <img src="https://upload.wikimedia.org/wikipedia/ar/thumb/4/41/Stc_logo.svg/1280px-Stc_logo.svg.png" alt="STC">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Dubai_Islamic_Bank_logo.svg/2560px-Dubai_Islamic_Bank_logo.svg.png" alt="DIB">
-                    <img src="https://upload.wikimedia.org/wikipedia/ar/0/04/Qatar_Energy.png" alt="Qatar Energy">
-                    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/44/Saudi_Aramco_Logo.svg/2560px-Saudi_Aramco_Logo.svg.png" alt="Aramco">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/ADNOC_Logo.svg/2000px-ADNOC_Logo.svg.png" alt="Adnoc">
-                </div>
+        <div class="section-header">مع عملائنا في كبرى الشركات</div>
+        <div class="marquee-wrapper">
+            <div class="marquee-content">
+                <img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/44/Saudi_Aramco_Logo.svg/2560px-Saudi_Aramco_Logo.svg.png" alt="Aramco">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/ADNOC_Logo.svg/2000px-ADNOC_Logo.svg.png" alt="Adnoc">
+                <img src="https://upload.wikimedia.org/wikipedia/ar/thumb/4/41/Stc_logo.svg/1280px-Stc_logo.svg.png" alt="STC">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Dubai_Islamic_Bank_logo.svg/2560px-Dubai_Islamic_Bank_logo.svg.png" alt="DIB">
+                <img src="https://upload.wikimedia.org/wikipedia/ar/0/04/Qatar_Energy.png" alt="Qatar Energy">
+                <img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/44/Saudi_Aramco_Logo.svg/2560px-Saudi_Aramco_Logo.svg.png" alt="Aramco">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/ADNOC_Logo.svg/2000px-ADNOC_Logo.svg.png" alt="Adnoc">
             </div>
         </div>
 
         <form id="oimi-form">
             <div class="box">
                 <strong>✅ خطوات إتمام الطلب:</strong><br>
-                ١. تحويل الرسوم (50,000 جنيه) لبنك الخرطوم: 4623370 (عمر إبراهيم).<br>
-                ٢. أكمل المعلومات واضغط إرسال لحفظ البيانات.
+                ١. تحويل رسوم الخدمة (50,000 جنيه) لبنك الخرطوم (بنكك) :4623370 (باسم / عمر إبراهيم).<br>
+                ٢. أكمل المعلومات (الأرقام باللغة الإنجليزية حصراً).<br>
+                ٣. اضغط "إرسال" لحفظ بياناتك والحصول على رقم تسجيلك.
+                <div class="help-link-center"><a href="https://wa.me/249900065080" target="_blank" style="color:var(--p); font-weight:bold; text-decoration:none;">إذا كنت تواجه صعوبة في سداد الرسوم؟ تواصل معنا.</a></div>
             </div>
 
             <label>الاسم الرباعي (بالعربية فقط) *</label>
@@ -106,10 +116,18 @@
         <div class="f-intro">
             <span class="oimi-style" style="font-size:20px;">O<span class="oimi-i">i</span>M<span class="oimi-i">i</span>.ae</span> هي منصة رقمية رائدة متخصصة في تقديم حلول مهنية متكاملة للباحثين عن عمل في منطقة الشرق الأوسط وشمال أفريقيا، تهدف إلى جسر الفجوة بين الكفاءات المهنية ومتطلبات سوق العمل الحديث.
         </div>
+        <span class="f-subtitle" onclick="toggleDetails()">اضغط للتفاصيل الإضافية ▾</span>
+        <div id="details-box">
+            • <b>تمكين المهنيين:</b> تجاوز أنظمة الـ ATS بنجاح.<br>
+            • <b>التميز الرقمي:</b> استشارات مهنية بلمسة تقنية.<br>
+            • <b>دعم المسار:</b> تبرز القيمة الحقيقية لكل موظف.
+        </div>
         <div class="contact-area">
             <h4>تواصل معنا</h4>
-            <a href="https://wa.me/249900065080" target="_blank">🟢 واتساب</a> | 
-            <a href="mailto:info@oimi.ae">📧 البريد الإلكتروني</a>
+            <div class="contact-links">
+                <a href="https://wa.me/249900065080" target="_blank">🟢 واتساب</a>
+                <a href="mailto:info@oimi.ae">📧 البريد الإلكتروني</a>
+            </div>
         </div>
     </div>
 </div>
@@ -124,6 +142,8 @@
         const p=document.getElementById('u_phone'), w=document.getElementById('u_whatsapp'); 
         if(el.value){ p.disabled=false; w.disabled=false; p.value=countryCodes[el.value]; w.value=countryCodes[el.value]; } 
     }
+
+    function toggleDetails(){ const b=document.getElementById('details-box'); b.style.display=b.style.display==='block'?'none':'block'; }
 
     const form=document.getElementById('oimi-form');
     form.addEventListener('submit', async (e)=>{
