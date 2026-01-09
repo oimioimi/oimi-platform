@@ -63,13 +63,10 @@ input, select, textarea { width: 100%; padding: 10px; margin-bottom: 5px; border
             <input type="tel" id="u_phone" class="num-input" disabled required oninvalid="this.setCustomValidity('يرجى إدخال رقم الهاتف')" oninput="this.setCustomValidity(''); this.value=this.value.replace(/[^0-9]/g,'')">
             
             <label>رقم الواتساب *</label>
-            <input type="tel" id="u_whatsapp" class="num-input" disabled required pattern=".{10,}" oninvalid="this.setCustomValidity('يرجى إدخال رقم واتساب صحيح وكامل')" oninput="this.setCustomValidity(''); this.value=this.value.replace(/[^0-9]/g,'')">
+            <input type="tel" id="u_whatsapp" class="num-input" disabled required pattern=".{10,}" oninvalid="this.setCustomValidity('يرجى إدخال رقم واتساب صحيح')" oninput="this.setCustomValidity(''); this.value=this.value.replace(/[^0-9]/g,'')">
             
             <label>البريد الالكتروني *</label>
             <input type="email" id="u_email" required oninvalid="this.setCustomValidity('يرجى إدخال بريد إلكتروني صحيح')" oninput="this.setCustomValidity('')">
-
-            <label>ملاحظات إضافية (اختياري)</label>
-            <textarea id="u_notes" rows="2"></textarea>
 
             <label>كيف سمعت عنا؟ *</label>
             <select id="u_source" required oninvalid="this.setCustomValidity('يرجى اختيار كيف سمعت عنا')" onchange="this.setCustomValidity('')">
@@ -80,8 +77,11 @@ input, select, textarea { width: 100%; padding: 10px; margin-bottom: 5px; border
                 <option value="صديق">عن طريق صديق</option>
             </select>
 
+            <label>ملاحظات</label>
+            <textarea id="u_notes" rows="2"></textarea>
+
             <div class="separator"></div>
-            <label>أرفق السيرة الذاتية (PDF أو صورة) *</label>
+            <label>أرفق السيرة الذاتية *</label>
             <input type="file" id="cv_file" accept=".pdf,image/*" required oninvalid="this.setCustomValidity('يرجى إرفاق ملف السيرة الذاتية')" onchange="this.setCustomValidity('')">
             
             <label>أرفق صورة إيصال التحويل *</label>
@@ -131,7 +131,6 @@ form.addEventListener('submit', async (e)=>{
     btn.disabled=true; btn.innerHTML="جاري التحقق...";
 
     try {
-        // فحص الإيميل مع معالجة الخطأ
         const checkUrl = scriptURL + "?checkEmail=" + encodeURIComponent(email) + "&t=" + new Date().getTime();
         const checkResp = await fetch(checkUrl);
         const checkResult = await checkResp.json();
@@ -141,15 +140,11 @@ form.addEventListener('submit', async (e)=>{
             btn.disabled=false; btn.innerHTML="إرسال الطلب وحفظ البيانات";
             return;
         }
-    } catch(err) {
-        // إذا فشل الاتصال بالفحص، نسمح بمرور العملية لضمان عدم توقف الموقع
-        console.log("Check failed, proceeding to upload...");
-    }
 
-    try {
         btn.innerHTML="جاري الرفع...";
         const toBase64=f=>new Promise((res,rej)=>{ const r=new FileReader(); r.onload=()=>res(r.result.split(',')[1]); r.onerror=rej; r.readAsDataURL(f); });
         
+        // الترتيب البرمجي ليتوافق مع الشيت الجديد
         const payload={ 
           "الاسم العربي": document.getElementById('u_name_ar').value, 
           "الاسم الانجليزي": document.getElementById('u_name_en').value, 
@@ -158,8 +153,8 @@ form.addEventListener('submit', async (e)=>{
           "رقم الهاتف": document.getElementById('u_phone').value, 
           "رقم الواتس": document.getElementById('u_whatsapp').value, 
           "البريد الإلكتروني": email, 
-          "ملاحظات": document.getElementById('u_notes').value, 
-          "كيف سمعت عننا": document.getElementById('u_source').value, 
+          "كيف سمعت عننا": document.getElementById('u_source').value, // العمود I
+          "ملاحظات": document.getElementById('u_notes').value,       // العمود J
           "cv_data": await toBase64(document.getElementById('cv_file').files[0]), 
           "receipt_data": await toBase64(document.getElementById('receipt_file').files[0]) 
         };
@@ -173,7 +168,7 @@ form.addEventListener('submit', async (e)=>{
             location.reload(); 
         }
     } catch(err){ 
-        alert("حدث خطأ في الإرسال، يرجى المحاولة مرة أخرى."); 
+        alert("حدث خطأ في الاتصال، يرجى المحاولة ثانية."); 
         btn.disabled=false; btn.innerHTML="إرسال الطلب وحفظ البيانات"; 
     }
 });
