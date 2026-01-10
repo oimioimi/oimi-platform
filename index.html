@@ -25,8 +25,6 @@
         .track { display: flex; width: max-content; animation: scroll-loop 25s linear infinite; padding: 20px 0; align-items: center; }
         .track img { width: 260px; height: 160px; object-fit: cover; margin: 0 15px; border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.1); cursor: zoom-in; }
         @keyframes scroll-loop { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-        
-        /* القسم المطلوب تعديله */
         .footer-section { background: #fff; border-top: 1px solid #eee; margin-top: 20px; padding: 20px; text-align: center; }
         .f-title { color: var(--p); font-size: 24px; display: block; font-weight: bold; margin-bottom: 10px; }
         .f-intro { font-size: 14px; line-height: 1.8; color: #333; margin-bottom: 10px; text-align: justify; direction: rtl; }
@@ -63,7 +61,7 @@
             <input type="text" id="u_name_ar" placeholder="أدخل الاسم بالعربي" required oninvalid="this.setCustomValidity('يرجى إدخال الاسم بالعربية')" oninput="this.setCustomValidity(''); this.value=this.value.replace(/[a-zA-Z]/g,'')">
             
             <label>الاسم الرباعي (بالإنجليزية فقط) *</label>
-            <input type="text" id="u_name_en" class="num-input" placeholder="Full Name in English" required oninvalid="this.setCustomValidity('يرجى إدخال الاسم بالإنجليزية')" oninput="this.setCustomValidity(''); this.value=this.value.replace(/[\u0600-\u06FF]/g,'')">
+            <input type="text" id="u_name_en" class="num-input" placeholder="Full Name in English" required oninvalid="this.setCustomValidity('يرجى إدخل الاسم بالإنجليزية')" oninput="this.setCustomValidity(''); this.value=this.value.replace(/[\u0600-\u06FF]/g,'')">
 
             <label>التخصص المهني *</label>
             <input type="text" id="u_spec" placeholder="مثلاً: محاسب" required oninvalid="this.setCustomValidity('يرجى إدخال تخصصك المهني')" oninput="this.setCustomValidity('')">
@@ -127,7 +125,7 @@
     <div class="footer-section">
         <span class="f-title">عن منصة <span class="oimi-style">O<span class="oimi-i">i</span>M<span class="oimi-i">i</span>.ae</span></span>
         <div class="f-intro">
-            <span class="oimi-style" style="font-size:16px;">O<span class="oimi-i">i</span>M<span class="oimi-i">i</span>.ae</span> هي منصة رقمية رائدة متخصصة في تقديم حلول مهنية متكاملة للباحثين عن عمل، تهدف إلى جسر الفجوة بين الكفاءات المهنية ومتطلبات سوق العمل الحديث من خلال تطوير السير الذاتية المهنية المتوافقة مع أنظمة الـ (ATS)، وتقديم الاستشارات الوظيفية الاحترافية التي تضمن إبراز مهاراتك وخبراتك بأفضل صورة ممكنة لزيادة فرصك في القبول الوظيفي والتميز في مسارك المهني.
+            <span class="oimi-style" style="font-size:18px;">O<span class="oimi-i">i</span>M<span class="oimi-i">i</span>.ae</span> هي منصة رقمية رائدة متخصصة في تقديم حلول مهنية متكاملة للباحثين عن عمل، تهدف إلى جسر الفجوة بين الكفاءات المهنية ومتطلبات سوق العمل الحديث من خلال تطوير السير الذاتية المهنية المتوافقة مع أنظمة الـ (ATS)، وتقديم الاستشارات الوظيفية الاحترافية التي تضمن إبراز مهاراتك وخبراتك بأفضل صورة ممكنة لزيادة فرصك في القبول الوظيفي والتميز في مسارك المهني. نحن نعمل على تحويل ملفك المهني إلى أداة تسويقية فعالة تفتح لك أبواب كبرى الشركات.
         </div>
         <span class="f-subtitle" onclick="toggleDetails()">اضغط لعرض رؤيتنا وأهدافنا ▾</span>
         <div id="details-box">
