@@ -16,8 +16,8 @@
         .main-title .oimi-style { font-size: 34px; } 
         .box { background: var(--lg); padding: 12px; border-radius: 10px; border: 1px solid var(--p); margin-bottom: 10px; color: #2e7d32; font-size: 13px; line-height: 1.6; }
         .help-link-center { text-align: center; margin-top: 8px; padding-top: 8px; border-top: 1px dashed var(--p); }
-        label { display: block; margin: 10px 0 5px; font-weight: bold; font-size: 14px; color: #444; }
-        input, select, textarea { width: 100%; padding: 12px; margin-bottom: 5px; border-radius: 8px; border: 1px solid #ccc; box-sizing: border-box; font-size: 14px; background: #f9f9f9; font-weight: bold; }
+        label { display: block; margin: 12px 0 4px; font-weight: bold; font-size: 14px; color: #444; }
+        input, select, textarea { width: 100%; padding: 12px; margin-bottom: 5px; border-radius: 8px; border: 1px solid #ccc; box-sizing: border-box; font-size: 14px; background: #f9f9f9; font-weight: bold; color: #333; }
         .num-input { direction: ltr; text-align: left; }
         .separator { border-top: 1px dashed var(--p); margin: 15px 0; opacity: 0.5; }
         .slider { width: 100%; overflow: hidden; margin-top: 25px; text-align: center; direction: ltr; position: relative; height: 260px; }
@@ -25,15 +25,14 @@
         .track { display: flex; width: max-content; animation: scroll-loop 25s linear infinite; padding: 20px 0; align-items: center; }
         .track img { width: 260px; height: 160px; object-fit: cover; margin: 0 15px; border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.1); cursor: zoom-in; }
         @keyframes scroll-loop { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-        .footer-section { background: #fff; border-top: 1px solid #eee; margin-top: 20px; padding: 20px; text-align: center; }
-        .f-title { color: var(--p); font-size: 24px; display: block; font-weight: bold; margin-bottom: 10px; }
-        .f-intro { font-size: 14px; line-height: 1.8; color: #333; margin-bottom: 10px; text-align: justify; direction: rtl; }
-        .f-subtitle { color: #888; font-size: 12px; cursor: pointer; text-decoration: underline; display: block; margin-bottom: 15px; }
+        .footer-section { background: #fff; border-top: 1px solid #eee; margin-top: 15px; padding: 15px; text-align: center; }
+        .f-title { color: var(--p); font-size: 22px; display: block; font-weight: bold; margin-bottom: 8px; }
+        .f-intro { font-size: 13.5px; line-height: 1.6; color: #333; margin-bottom: 5px; text-align: justify; direction: rtl; }
+        .f-subtitle { color: #888; font-size: 11px; cursor: pointer; text-decoration: underline; display: block; margin-bottom: 10px; }
         #details-box { display: none; background: #fdfdfd; padding: 15px; border-radius: 12px; border: 1px solid #ddd; margin-top: 10px; font-size: 13px; line-height: 1.8; color: #333; text-align: right; }
-        .bmc-header { font-weight: bold; color: var(--p); margin: 12px 0 5px; border-bottom: 1px solid #eee; padding-bottom: 3px; font-size: 15px; }
-        .contact-area { margin-top: 25px; border-top: 1px solid #eee; padding-top: 20px; text-align: center; }
-        .contact-area a { color: var(--p); text-decoration: none; font-weight: bold; margin: 0 15px; font-size: 15px; }
-        .btn { width: 100%; background: linear-gradient(135deg, #00732f, #00a342); color: white; padding: 16px; border: none; border-radius: 10px; font-size: 18px; font-weight: bold; cursor: pointer; margin-top: 10px; }
+        .contact-area { margin-top: 20px; border-top: 1px solid #eee; padding-top: 15px; text-align: center; }
+        .contact-area a { color: var(--p); text-decoration: none; font-weight: bold; margin: 0 15px; }
+        .btn { width: 100%; background: linear-gradient(135deg, #00732f, #00a342); color: white; padding: 16px; border: none; border-radius: 10px; font-size: 18px; font-weight: bold; cursor: pointer; }
         #modalOverlay { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:10000; align-items:center; justify-content:center; }
         #modalOverlay img { max-width: 90%; max-height: 80%; border: 3px solid #fff; border-radius: 10px; }
     </style>
@@ -49,11 +48,10 @@
         <form id="oimi-form">
             <div class="box">
                 <strong>✅ خطوات إتمام الطلب:</strong><br>
-                ١. تحويل رسوم الخدمة (50,000 جنيه) لبنك الخرطوم (بنكك) :4623370 (باسم الأستاذ / عمر إبراهيم).<br>
-                ٢. أكمل المعلومات جميعها (الأرقام باللغة الإنجليزية حصراً).<br>
-                ٣. اضغط "إرسال" لحفظ بياناتك والحصول على رقم تسجيلك.
+                ١. تحويل الرسوم (50,000 جنيه) لبنك الخرطوم: 4623370 (عمر إبراهيم).<br>
+                ٢. أكمل المعلومات واضغط إرسال للحصول على رقم تسجيلك.
                 <div class="help-link-center">
-                    <a href="https://wa.me/249900065080" target="_blank" style="color:var(--p); font-weight:bold; text-decoration:none;">إذا كنت تواجه صعوبة في سداد الرسوم؟ اضغط هنا للتواصل معنا.</a>
+                    <a href="https://wa.me/249900065080" target="_blank" style="color:var(--p); font-weight:bold; text-decoration:none;">تحتاج مساعدة؟ تواصل معنا عبر الواتساب.</a>
                 </div>
             </div>
 
@@ -66,7 +64,7 @@
             <label>التخصص المهني *</label>
             <input type="text" id="u_spec" placeholder="مثلاً: محاسب" required>
             
-            <label>بلد الاقامة *</label>
+            <label>بلد الإقامة *</label>
             <select id="u_country" required onchange="handleCountryChange(this)">
                 <option value="">اختر الدولة...</option>
                 <option value="السودان">السودان</option>
@@ -80,12 +78,12 @@
             </select>
             
             <label>رقم الهاتف (أرقام فقط) *</label>
-            <input type="tel" id="u_phone" class="num-input" placeholder="أدخل الأرقام فقط" disabled required oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+            <input type="tel" id="u_phone" class="num-input" placeholder="00..." disabled required oninput="this.value=this.value.replace(/[^0-9]/g,'')">
             
             <label>رقم الواتساب (أرقام فقط) *</label>
-            <input type="tel" id="u_whatsapp" class="num-input" placeholder="أدخل الأرقام فقط" disabled required oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+            <input type="tel" id="u_whatsapp" class="num-input" placeholder="00..." disabled required oninput="this.value=this.value.replace(/[^0-9]/g,'')">
             
-            <label>البريد الالكتروني *</label>
+            <label>البريد الإلكتروني *</label>
             <input type="email" id="u_email" placeholder="mail@example.com" required>
 
             <label>كيف سمعت عنا؟ *</label>
@@ -123,17 +121,14 @@
     <div class="footer-section">
         <span class="f-title">عن المنصة</span>
         <div class="f-intro">
-            <span class="oimi-style" style="font-size:20px;">O<span class="oimi-i">i</span>M<span class="oimi-i">i</span>.ae</span> هي منصة رقمية رائدة متخصصة في تقديم حلول مهنية متكاملة للباحثين عن عمل في منطقة الشرق الأوسط وشمال أفريقيا، تهدف إلى جسر الفجوة بين الكفاءات المهنية ومتطلبات سوق العمل الحديث.
+            <span class="oimi-style" style="font-size:20px;">O<span class="oimi-i">i</span>M<span class="oimi-i">i</span>.ae</span> هي منصة رقمية رائدة متخصصة في تقديم حلول مهنية.
         </div>
         <span class="f-subtitle" onclick="toggleDetails()">اضغط للتفاصيل الإضافية ▾</span>
         <div id="details-box">
-            <div class="bmc-header">🎯 رؤيتنا وأهدافنا:</div>
-            • <b>تمكين المهنيين:</b> نسعى لتزويد عملائنا بالأدوات اللازمة لاجتياز أنظمة تصفية السير الذاتية (ATS) بنجاح.<br>
-            • <b>التميز الرقمي:</b> نهدف للريادة في تقديم الخدمات الاستشارية المهنية بلمسة تقنية إبداعية.<br>
-            • <b>دعم المسار الوظيفي:</b> تقديم محتوى وتنسيقات عالمية تبرز القيمة الحقيقية لكل موظف.
+             • <b>تمكين المهنيين:</b> اجتياز أنظمة (ATS) بنجاح.<br>
+             • <b>التميز الرقمي:</b> خدمات استشارية بلمسة تقنية.
         </div>
         <div class="contact-area">
-            <h4>تواصل معنا</h4>
             <a href="https://wa.me/249900065080" target="_blank">🟢 واتساب</a> | 
             <a href="mailto:info@oimi.ae">📧 البريد الإلكتروني</a>
         </div>
@@ -141,7 +136,7 @@
 </div>
 
 <script>
-const scriptURL = "https://script.google.com/macros/s/AKfycbxf7r7S_xEg848r0DeokWfNqBd-UhTTEF0XV3JFg40CoIhb2JLPs3eZBJ_ceQSS11Kc/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbzneuTCJx7bXgK_dfMO-n6JXdK8uMRcwVyGh5kyySk9GcFrCj3UmQymCV2Ea2Wz4-V8/exec";
 
 const countryCodes = { "السودان": "00249","مصر": "0020","السعودية": "00966","الإمارات": "00971","قطر": "00974","عمان": "00968","الكويت": "00965","البحرين": "00973" };
 
@@ -157,7 +152,7 @@ const form=document.getElementById('oimi-form');
 form.addEventListener('submit', async (e)=>{
   e.preventDefault();
   const btn=document.getElementById('submitBtn');
-  btn.disabled=true; btn.innerHTML="جاري الحفظ...";
+  btn.disabled=true; btn.innerHTML="جاري الحفظ وإرسال الطلب...";
 
   try {
     const toBase64=f=>new Promise((res)=>{ const r=new FileReader(); r.onload=()=>res(r.result.split(',')[1]); r.readAsDataURL(f); });
@@ -183,9 +178,12 @@ form.addEventListener('submit', async (e)=>{
         alert("تم استلام طلبك بنجاح ✅\nرقم تسجيلك هو: " + result.uniqueId); 
         window.open(`https://wa.me/249900065080?text=تم التسجيل بنجاح في منصة OIMI. رقم تسجيل الطلب الخاص بي هو: ${result.uniqueId}`,'_blank'); 
         location.reload();
-    } else { alert("خطأ: " + result.message); btn.disabled=false; btn.innerHTML="إرسال الطلب"; }
+    } else { 
+        alert("خطأ من السيرفر: " + result.message); 
+        btn.disabled=false; btn.innerHTML="إرسال الطلب وحفظ البيانات"; 
+    }
   } catch(err){ 
-    alert("حدث خطأ في الاتصال. يرجى المحاولة مرة أخرى."); 
+    alert("حدث خطأ في الاتصال. يرجى التأكد من الإنترنت وحجم الملفات."); 
     btn.disabled=false; btn.innerHTML="إرسال الطلب وحفظ البيانات"; 
   }
 });
