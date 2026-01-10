@@ -12,10 +12,11 @@
     <style>
       link[rel="icon"], link[rel="shortcut icon"] { 
         background-color: white !important; 
-        border-radius: 50%; 
+        border-radius: 4px; 
         padding: 2px;
       }
     </style>
+    <link rel="icon" type="image/png" href="https://i.postimg.cc/cJRw69tq/Favicon-for-OIMI.png">
 
     <meta property="og:title" content="منصة OIMI - بوابتك للتميز المهني">
     <meta property="og:description" content="نطور المستقبل الرقمي من قلب الشارقة. استكشف حلولنا المتكاملة للسير الذاتية والتقييم المهني.">
@@ -25,57 +26,44 @@
     <meta name="theme-color" content="#ffffff">
 
     <meta name="google-site-verification" content="672KiCbr6YjUjWjj4" />
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>منصة OIMI - طلب تقييم مهني وسير ذاتية ATS</title>
-    
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="icon" type="image/png" href="https://i.postimg.cc/cJRw69tq/Favicon-for-OIMI.png">
     
     <style>
         :root { --p: #00732f; --lg: #e8f5e9; }
         body { background: #fff; margin: 0; font-family: 'Segoe UI', sans-serif; padding: 5px; text-align: right; overflow-x: hidden; }
         .container { max-width: 600px; margin: auto; display: flex; flex-direction: column; gap: 2px; }
         .card { background: #fff; padding: 18px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 1px solid #eee; }
-        
         .oimi-style { display: inline-flex; align-items: baseline; direction: ltr; font-weight: bold; color: #000; }
         .oimi-i { display: inline-block; line-height: 1; background: linear-gradient(to bottom, #ff0000 20%, #000000 20%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        
         .main-title { text-align: center; margin-bottom: 8px; font-weight: 800; font-size: 22px; }
         .main-title .oimi-style { font-size: 34px; } 
-
         .box { background: var(--lg); padding: 12px; border-radius: 10px; border: 1px solid var(--p); margin-bottom: 10px; color: #2e7d32; font-size: 13px; line-height: 1.6; }
         .help-link-center { text-align: center; margin-top: 8px; padding-top: 8px; border-top: 1px dashed var(--p); }
-        
         label { display: block; margin: 15px 0 5px; font-weight: bold; font-size: 14px; color: #444; }
         input, select, textarea { width: 100%; padding: 12px; margin-bottom: 5px; border-radius: 8px; border: 1px solid #ccc; box-sizing: border-box; font-size: 14px; background: #f9f9f9; font-weight: bold; color: #333; }
         .num-input { direction: ltr; text-align: left; }
         .separator { border-top: 1px dashed var(--p); margin: 15px 0; opacity: 0.5; }
-
-        /* Slider Settings */
         .slider { width: 100%; overflow: hidden; margin-top: 25px; text-align: center; direction: ltr; position: relative; height: 260px; }
         .slider h4 { color: var(--p); margin: 5px 0; font-size: 18px; direction: rtl; }
         .track { display: flex; width: max-content; animation: scroll-loop 40s linear infinite; padding: 20px 0; align-items: center; }
         .track img { width: 260px; height: 160px; object-fit: cover; margin: 0 15px; border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.1); cursor: zoom-in; }
         @keyframes scroll-loop { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-
         .footer-section { background: #fff; border-top: 1px solid #eee; margin-top: 20px; padding: 20px; text-align: center; }
         .f-title { color: var(--p); font-size: 24px; display: block; font-weight: bold; margin-bottom: 10px; }
         .f-intro { font-size: 14px; line-height: 1.8; color: #333; margin-bottom: 10px; text-align: justify; direction: rtl; }
         .f-subtitle { color: #888; font-size: 12px; cursor: pointer; text-decoration: underline; display: block; margin-bottom: 15px; }
         #details-box { display: none; background: #fdfdfd; padding: 15px; border-radius: 12px; border: 1px solid #ddd; margin-top: 10px; font-size: 13px; line-height: 1.8; color: #333; text-align: right; }
         .bmc-header { font-weight: bold; color: var(--p); margin: 12px 0 5px; border-bottom: 1px solid #eee; padding-bottom: 3px; font-size: 15px; }
-
         .social-links { margin: 20px 0; display: flex; justify-content: center; gap: 25px; }
         .social-links a { text-decoration: none; font-size: 24px; color: #555; transition: 0.3s; }
         .social-links a:hover { color: var(--p); transform: scale(1.2); }
-
         .contact-area { margin-top: 25px; border-top: 1px solid #eee; padding-top: 20px; text-align: center; }
         .contact-area a { color: var(--p); text-decoration: none; font-weight: bold; margin: 0 15px; font-size: 15px; }
-
         .btn { width: 100%; background: linear-gradient(135deg, #00732f, #00a342); color: white; padding: 16px; border: none; border-radius: 10px; font-size: 18px; font-weight: bold; cursor: pointer; margin-top: 10px; }
-        
         #modalOverlay { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:10000; align-items:center; justify-content:center; }
         #modalOverlay img { max-width: 90%; max-height: 80%; border: 3px solid #fff; border-radius: 10px; }
     </style>
@@ -100,13 +88,13 @@
             </div>
 
             <label>الاسم الرباعي (بالعربية فقط) *</label>
-            <input type="text" id="u_name_ar" placeholder="أدخل الاسم بالعربي" required oninvalid="this.setCustomValidity('يرجى إدخال الاسم بالعربية')" oninput="this.setCustomValidity(''); this.value=this.value.replace(/[a-zA-Z]/g,'')">
+            <input type="text" id="u_name_ar" placeholder="أدخل الاسم بالعربي" required oninvalid="this.setCustomValidity('يرجى إدخال الاسم بالعربية فقط')" oninput="this.setCustomValidity(''); this.value=this.value.replace(/[a-zA-Z]/g,'')">
             
             <label>الاسم الرباعي (بالإنجليزية فقط) *</label>
-            <input type="text" id="u_name_en" class="num-input" placeholder="Full Name in English" required oninvalid="this.setCustomValidity('يرجى إدخال الاسم بالإنجليزية')" oninput="this.setCustomValidity(''); this.value=this.value.replace(/[\u0600-\u06FF]/g,'')">
+            <input type="text" id="u_name_en" class="num-input" placeholder="Full Name in English" required oninvalid="this.setCustomValidity('يرجى إدخال الاسم بالإنجليزية فقط')" oninput="this.setCustomValidity(''); this.value=this.value.replace(/[\u0600-\u06FF]/g,'')">
 
             <label>التخصص المهني *</label>
-            <input type="text" id="u_spec" placeholder="مثلاً: محاسب" required oninvalid="this.setCustomValidity('يرجى إدخال تخصصك المهني')">
+            <input type="text" id="u_spec" placeholder="مثلاً: محاسب" required oninvalid="this.setCustomValidity('يرجى إدخال التخصص المهني')" oninput="this.setCustomValidity('')">
             
             <label>بلد الإقامة *</label>
             <select id="u_country" required oninvalid="this.setCustomValidity('يرجى اختيار بلد الإقامة')" onchange="this.setCustomValidity(''); handleCountryChange(this)">
@@ -122,13 +110,13 @@
             </select>
             
             <label>رقم الواتساب (أرقام إنجليزية فقط) *</label>
-            <input type="tel" id="u_whatsapp" class="num-input" placeholder="00..." required oninvalid="this.setCustomValidity('يرجى إدخال رقم الواتساب')">
+            <input type="tel" id="u_whatsapp" class="num-input" placeholder="00..." required oninvalid="this.setCustomValidity('يرجى إدخال رقم الواتساب')" oninput="this.setCustomValidity('')">
             
             <label>البريد الإلكتروني *</label>
-            <input type="email" id="u_email" placeholder="mail@example.com" required oninvalid="this.setCustomValidity('يرجى إدخال بريد إلكتروني صحيح')">
+            <input type="email" id="u_email" placeholder="mail@example.com" required oninvalid="this.setCustomValidity('يرجى إدخال بريد إلكتروني صحيح')" oninput="this.setCustomValidity('')">
 
             <label>كيف سمعت عنا؟ *</label>
-            <select id="u_source" required oninvalid="this.setCustomValidity('يرجى اختيار المصدر')">
+            <select id="u_source" required oninvalid="this.setCustomValidity('يرجى اختيار المصدر')" onchange="this.setCustomValidity('')">
                 <option value="">اختر المصدر...</option>
                 <option value="فيسبوك">فيسبوك</option>
                 <option value="لينكد إن">لينكد إن</option>
@@ -136,13 +124,16 @@
                 <option value="صديق">عن طريق صديق</option>
             </select>
 
+            <label>ملاحظات إضافية (اختياري)</label>
+            <textarea id="u_notes" rows="3" placeholder="أي تفاصيل أخرى تود إضافتها..."></textarea>
+
             <div class="separator"></div>
 
             <label>أرفق السيرة الذاتية (PDF أو صورة) *</label>
-            <input type="file" id="cv_file" accept=".pdf,image/*" required oninvalid="this.setCustomValidity('يرجى إرفاق السيرة الذاتية')">
+            <input type="file" id="cv_file" accept=".pdf,image/*" required oninvalid="this.setCustomValidity('يرجى إرفاق ملف السيرة الذاتية')" oninput="this.setCustomValidity('')">
             
             <label>أرفق صورة إيصال التحويل *</label>
-            <input type="file" id="receipt_file" accept="image/*" required oninvalid="this.setCustomValidity('يرجى إرفاق إيصال التحويل')">
+            <input type="file" id="receipt_file" accept="image/*" required oninvalid="this.setCustomValidity('يرجى إرفاق صورة إيصال التحويل')" oninput="this.setCustomValidity('')">
 
             <button type="submit" class="btn" id="submitBtn">إرسال الطلب وحفظ البيانات</button>
         </form>
@@ -159,7 +150,6 @@
             <img src="https://i.postimg.cc/zXdPYnxN/Screen-Shot-2023-10-22-at-12-13-37-PM.jpg" onclick="zoomImg(this.src)">
             <img src="https://i.postimg.cc/wTWbYhwx/Screenshot-2026-01-03-at-1-49-56-PM.png" onclick="zoomImg(this.src)">
             <img src="https://i.postimg.cc/Wb9fcM5b/Screenshot-2026-01-03-at-2-17-12-PM.png" onclick="zoomImg(this.src)">
-            
             <img src="https://i.postimg.cc/vHPSwW3p/528604980-10162083330481298-381945114741787991-n.jpg" onclick="zoomImg(this.src)">
             <img src="https://i.postimg.cc/sDn0Cpwb/585747945-10162491435001298-5020852638269490297-n.jpg" onclick="zoomImg(this.src)">
             <img src="https://i.postimg.cc/Wb9fcMXY/QVZo-ZFNzc-Wdi-MUx2a-HJMUFRhe-GJza-TZI.jpg" onclick="zoomImg(this.src)">
@@ -174,22 +164,54 @@
     <div class="footer-section">
         <span class="f-title">عن منصة <span class="oimi-style">O<span class="oimi-i">i</span>M<span class="oimi-i">i</span>.ae</span></span>
         <div class="f-intro">
-            <span class="oimi-style" style="font-size:18px;">O<span class="oimi-i">i</span>M<span class="oimi-i">i</span>.ae</span> هي منصة رقمية رائدة متخصصة في تقديم حلول مهنية متكاملة للباحثين عن عمل، تهدف إلى تطوير السير الذاتية المهنية المتوافقة مع أنظمة الـ (ATS) وتقديم الاستشارات الوظيفية الاحترافية.
+            <span class="oimi-style" style="font-size:18px;">O<span class="oimi-i">i</span>M<span class="oimi-i">i</span>.ae</span> منصة رقمية رائدة متخصصة في تقديم حلول مهنية متكاملة للباحثين عن عمل في منطقة الشرق الأوسط وشمال أفريقيا. نحن نجمع بين التقييم المهني الاحترافي وصياغة السير الذاتية المحسّنة لأنظمة التتبع الآلي (ATS) لضمان وصول المواهب العربية إلى أفضل الفرص الوظيفية.
         </div>
-        <span class="f-subtitle" onclick="toggleDetails()">اضغط لعرض رؤيتنا وأهدافنا ▾</span>
+        <span class="f-subtitle" onclick="toggleDetails()">اضغط لعرض نموذج الأعمال ومزيد من التفاصيل ▾</span>
         <div id="details-box">
-            <div class="bmc-header">🎯 رؤيتنا وأهدافنا:</div>
-            • <b>تمكين المهنيين:</b> نزود عملائنا بالأدوات اللازمة لاجتياز أنظمة الـ (ATS) والمنافسة عالمياً.<br>
-            • <b>التميز الرقمي:</b> نهدف للريادة في تقديم الاستشارات المهنية بلمسة تقنية إبداعية.<br>
-            • <b>دعم المسار الوظيفي:</b> تقديم محتوى وتنسيقات عالمية تبرز القيمة الحقيقية لكل كادر مهني.
-        </div>
+            <div class="bmc-header">📊 لوحة نموذج الأعمال (Business Model Canvas)</div>
+            
+            <b>1️⃣ شبكة الشركاء الاستراتيجيين:</b><br>
+            • <b>الشركاء الأساسيون:</b><br>
+            &nbsp;&nbsp;🏦 المؤسسات المالية: بنك الخرطوم كشريك رئيسي لتسهيل المعاملات المالية.<br>
+            &nbsp;&nbsp;👥 خبراء الموارد البشرية: شبكة من المختصين المعتمدين في التقييم المهني.<br>
+            &nbsp;&nbsp;💻 مطورو التقنية: متخصصون في أنظمة ATS وخوارزميات التوافق.<br>
+            &nbsp;&nbsp;🎓 المؤسسات التعليمية: جامعات ومعاهد تدريب مهني (شركاء مستقبليون).<br>
+            • <b>الموردون:</b><br>
+            &nbsp;&nbsp;☁️ مزودو الخدمات السحابية، 📱 منصات التواصل (WhatsApp API)، 🤖 وأدوات الذكاء الاصطناعي.<br><br>
 
+            <b>2️⃣ الأنشطة المحورية:</b><br>
+            • <b>الأنشطة الرئيسية:</b><br>
+            &nbsp;&nbsp;🔍 التقييم المهني الشامل: تحليل عميق للمهارات والخبرات.<br>
+            &nbsp;&nbsp;✍️ الصياغة الاحترافية: كتابة سير ذاتية تجمع بين الجاذبية والمحتوى القوي.<br>
+            &nbsp;&nbsp;⚙️ التحسين التقني: ضمان توافق 100% مع أنظمة ATS الحديثة.<br>
+            &nbsp;&nbsp;🗺️ الإرشاد المهني: توجيه مخصص حسب المسار المهني.<br>
+            • <b>الأنشطة الداعمة:</b><br>
+            &nbsp;&nbsp;📞 خدمة العملاء عبر الواتساب، 📈 تحديث البيانات، 🧠 والتدريب المستمر للفريق.<br><br>
+
+            <b>3️⃣ القيمة المُقدمة:</b><br>
+            • <b>القيمة الأساسية:</b><br>
+            &nbsp;&nbsp;✨ التميز المهني: تحويل الخبرات إلى قصة مقنعة.<br>
+            &nbsp;&nbsp;🎯 الدقة التقنية: ضمان عبور فلاتر ATS بنسبة نجاح عالية.<br>
+            &nbsp;&nbsp;🤝 الدعم الشخصي: مرافقة مستمرة حتى تحقيق الهدف.<br>
+            &nbsp;&nbsp;💡 الفهم الثقافي: خبرة عميقة بالسوق المحلي ومتطلباته.<br>
+            • <b>القيمة المضافة:</b><br>
+            &nbsp;&nbsp;🆓 تقييم مجاني للسيرة الحالية، 📍 نصائح مخصصة لكل قطاع، 🛠 ضمان التعديل (30 يوماً)، 🎓 وشبكة دعم من الناجحين.<br><br>
+
+            <b>4️⃣ استراتيجية العلاقات:</b><br>
+            • <b>نموذج العلاقة مع العملاء:</b><br>
+            &nbsp;&nbsp;🌟 المرحلة ١ (الاكتشاف): تواصل ودي عبر الموقع والواتساب.<br>
+            &nbsp;&nbsp;🛠 المرحلة ٢ (الخدمة): متابعة شخصية طوال فترة الإعداد.<br>
+            &nbsp;&nbsp;✅ المرحلة ٣ (ما بعد التسليم): دعم مستمر ونصائح للمقابلات.<br>
+            &nbsp;&nbsp;❤️ المرحلة ٤ (الولاء): بناء مجتمع من السفراء السعداء.<br>
+            • <b>آليات التواصل:</b><br>
+            &nbsp;&nbsp;💬 رسائل واتساب شخصية، 📞 مكالمات استشارية، 🤝 مجموعات دعم، 📧 ونشرة شهرية بالفرص.
+        </div>
+        
         <div class="social-links">
             <a href="#" title="Facebook"><i class="fab fa-facebook"></i></a>
             <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
             <a href="#" title="TikTok"><i class="fab fa-tiktok"></i></a>
         </div>
-
         <div class="contact-area">
             <h4>تواصل معنا</h4>
             <a href="https://wa.me/249900065080" target="_blank">🟢 واتساب</a> | 
@@ -236,6 +258,7 @@ form.addEventListener('submit', async (e) => {
             "رقم الواتس": document.getElementById('u_whatsapp').value,
             "البريد الإلكتروني": email,
             "كيف سمعت عننا": document.getElementById('u_source').value,
+            "ملاحظات": document.getElementById('u_notes').value,
             "cv_data": await toBase64(document.getElementById('cv_file').files[0]),
             "receipt_data": await toBase64(document.getElementById('receipt_file').files[0])
         };
