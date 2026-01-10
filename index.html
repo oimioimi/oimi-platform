@@ -99,7 +99,7 @@
             </select>
 
             <label>ملاحظات إضافية (اختياري)</label>
-            <textarea id="u_notes" rows="2"></textarea>
+            <textarea id="u_notes" rows="2" placeholder="أضف أي تفاصيل أو طلبات خاصة..."></textarea>
 
             <div class="separator"></div>
 
@@ -114,7 +114,7 @@
     </div>
 
     <div class="slider">
-        <h4>نماذج من أعمالنا</h4>
+        <h4>نماذج من أعمالنا مع عملائنا</h4>
         <div class="track">
             <img src="https://i.postimg.cc/vHPSwW3p/528604980-10162083330481298-381945114741787991-n.jpg" onclick="zoomImg(this.src)">
             <img src="https://i.postimg.cc/sDn0Cpwb/585747945-10162491435001298-5020852638269490297-n.jpg" onclick="zoomImg(this.src)">
@@ -122,16 +122,30 @@
         </div>
     </div>
 
-    <div class="contact-area">
-        <a href="https://wa.me/249900065080" target="_blank">🟢 واتساب</a> | 
-        <a href="mailto:info@oimi.ae">📧 البريد الإلكتروني</a>
+    <div class="footer-section">
+        <span class="f-title">عن منصة OIMI.ae</span>
+        <div class="f-intro">
+            <span class="oimi-style" style="font-size:20px;">O<span class="oimi-i">i</span>M<span class="oimi-i">i</span>.ae</span> هي منصة رقمية رائدة متخصصة في تقديم حلول مهنية متكاملة للباحثين عن عمل، تهدف إلى جسر الفجوة بين الكفاءات المهنية ومتطلبات سوق العمل الحديث.
+        </div>
+        <span class="f-subtitle" onclick="toggleDetails()">اضغط لعرض رؤيتنا وأهدافنا ▾</span>
+        <div id="details-box">
+            <div class="bmc-header">🎯 رؤيتنا وأهدافنا:</div>
+            • <b>تمكين المهنيين:</b> نسعى لتزويد عملائنا بالأدوات اللازمة لاجتياز أنظمة تصفية السير الذاتية (ATS) بنجاح.<br>
+            • <b>التميز الرقمي:</b> نهدف للريادة في تقديم الخدمات الاستشارية المهنية بلمسة تقنية إبداعية.<br>
+            • <b>دعم المسار الوظيفي:</b> تقديم محتوى وتنسيقات عالمية تبرز القيمة الحقيقية لكل موظف.
+        </div>
+        <div class="contact-area">
+            <h4>تواصل معنا</h4>
+            <a href="https://wa.me/249900065080" target="_blank">🟢 واتساب</a> | 
+            <a href="mailto:info@oimi.ae">📧 البريد الإلكتروني</a>
+        </div>
     </div>
 </div>
 
 <script>
 const scriptURL = "https://script.google.com/macros/s/AKfycbzneuTCJx7bXgK_dfMO-n6JXdK8uMRcwVyGh5kyySk9GcFrCj3UmQymCV2Ea2Wz4-V8/exec";
 
-const countryCodes = { "السودان": "00249","مصر": "0020","السعودية": "00966","الإمارات": "00971","قطر": "00974","عمان": "00968","الكيويت": "00965","البحرين": "00973" };
+const countryCodes = { "السودان": "00249","مصر": "0020","السعودية": "00966","الإمارات": "00971","قطر": "00974","عمان": "00968","الكويت": "00965","البحرين": "00973" };
 
 function handleCountryChange(el){ 
     const p=document.getElementById('u_phone'), w=document.getElementById('u_whatsapp'); 
@@ -139,6 +153,7 @@ function handleCountryChange(el){
 }
 
 function zoomImg(src){ document.getElementById('modalImg').src=src; document.getElementById('modalOverlay').style.display='flex'; }
+function toggleDetails(){ const b=document.getElementById('details-box'); b.style.display=b.style.display==='block'?'none':'block'; }
 
 const form = document.getElementById('oimi-form');
 form.addEventListener('submit', async (e) => {
@@ -153,7 +168,7 @@ form.addEventListener('submit', async (e) => {
         const checkRes = await fetch(`${scriptURL}?checkEmail=${email}`);
         const checkData = await checkRes.json();
         if (checkData.exists) {
-            alert("هذا البريد الإلكتروني مسجل مسبقاً.");
+            alert("عذراً، هذا البريد الإلكتروني مسجل لدينا مسبقاً.");
             btn.disabled = false; btn.innerHTML = "إرسال الطلب وحفظ البيانات"; return;
         }
 
@@ -178,11 +193,11 @@ form.addEventListener('submit', async (e) => {
         const result = await response.json();
 
         if (result.status === "success") {
-            alert("تم الاستلام بنجاح ✅\nرقم تسجيلك: " + result.uniqueId);
-            window.open(`https://wa.me/249900065080?text=تم التسجيل بنجاح. رقم الطلب: ${result.uniqueId}`, '_blank');
+            alert("تم استلام طلبك بنجاح ✅\nرقم تسجيلك الموحد هو: " + result.uniqueId);
+            window.open(`https://wa.me/249900065080?text=تم التسجيل بنجاح في منصة OIMI. رقم تسجيل الطلب الخاص بي هو: ${result.uniqueId}`, '_blank');
             location.reload();
-        } else { alert("خطأ: " + result.message); btn.disabled = false; }
-    } catch (err) { alert("حدث خطأ في الاتصال."); btn.disabled = false; }
+        } else { alert("خطأ في السيرفر: " + result.message); btn.disabled = false; btn.innerHTML = "إرسال الطلب وحفظ البيانات"; }
+    } catch (err) { alert("حدث خطأ في الاتصال. يرجى التأكد من الإنترنت."); btn.disabled = false; btn.innerHTML = "إرسال الطلب وحفظ البيانات"; }
 });
 </script>
 </body>
