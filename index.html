@@ -21,7 +21,7 @@
         .num-input { direction: ltr; text-align: left; }
         .separator { border-top: 1px dashed var(--p); margin: 15px 0; opacity: 0.5; }
         .slider { width: 100%; overflow: hidden; margin-top: 25px; text-align: center; direction: ltr; position: relative; height: 260px; }
-        .slider h4 { color: var(--p); margin: 5px 0; font-size: 22px; direction: rtl; } /* العنوان المطلوب */
+        .slider h4 { color: var(--p); margin: 5px 0; font-size: 22px; direction: rtl; }
         .track { display: flex; width: max-content; animation: scroll-loop 25s linear infinite; padding: 20px 0; align-items: center; }
         .track img { width: 260px; height: 160px; object-fit: cover; margin: 0 15px; border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.1); cursor: zoom-in; }
         @keyframes scroll-loop { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
@@ -49,7 +49,7 @@
         <form id="oimi-form">
             <div class="box">
                 <strong>✅ خطوات إتمام الطلب:</strong><br>
-                ١. تحويل رسوم الخدمة (50,000 جنيه) لـ 4623370 (باسم الأستاذ / عمر إبراهيم).<br>
+                ١. تحويل رسوم الخدمة (50,000 جنيه) عبر تطبيق <b>بنكك</b> للحساب 4623370 (باسم الأستاذ / عمر إبراهيم).<br>
                 ٢. أكمل المعلومات بجميع الحقول أدناه.<br>
                 ٣. اضغط "إرسال" لحفظ بياناتك والحصول على رقم تسجيلك.
                 <div class="help-link-center">
@@ -58,16 +58,16 @@
             </div>
 
             <label>الاسم الرباعي (بالعربية فقط) *</label>
-            <input type="text" id="u_name_ar" placeholder="أدخل الاسم بالعربي" required oninvalid="this.setCustomValidity('يرجى إدخال الاسم بالعربية')" oninput="this.setCustomValidity(''); this.value=this.value.replace(/[a-zA-Z]/g,'')">
+            <input type="text" id="u_name_ar" placeholder="أدخل الاسم بالعربي" required>
             
             <label>الاسم الرباعي (بالإنجليزية فقط) *</label>
-            <input type="text" id="u_name_en" class="num-input" placeholder="Full Name in English" required oninvalid="this.setCustomValidity('يرجى إدخال الاسم بالإنجليزية')" oninput="this.setCustomValidity(''); this.value=this.value.replace(/[\u0600-\u06FF]/g,'')">
+            <input type="text" id="u_name_en" class="num-input" placeholder="Full Name in English" required>
 
             <label>التخصص المهني *</label>
-            <input type="text" id="u_spec" placeholder="مثلاً: محاسب" required oninvalid="this.setCustomValidity('يرجى إدخال تخصصك المهني')" oninput="this.setCustomValidity('')">
+            <input type="text" id="u_spec" placeholder="مثلاً: محاسب" required>
             
             <label>بلد الإقامة *</label>
-            <select id="u_country" required oninvalid="this.setCustomValidity('يرجى اختيار بلد الإقامة')" onchange="this.setCustomValidity(''); handleCountryChange(this)">
+            <select id="u_country" required onchange="handleCountryChange(this)">
                 <option value="">اختر الدولة...</option>
                 <option value="السودان">السودان</option>
                 <option value="مصر">مصر</option>
@@ -79,17 +79,17 @@
                 <option value="البحرين">البحرين</option>
             </select>
             
-            <label>رقم الهاتف (أرقام إنجليزية فقط) *</label>
-            <input type="tel" id="u_phone" class="num-input" placeholder="00..." required oninvalid="this.setCustomValidity('يرجى إدخال رقم الهاتف')" oninput="this.setCustomValidity(''); this.value=this.value.replace(/[^0-9]/g,'')">
+            <label>رقم الهاتف *</label>
+            <input type="tel" id="u_phone" class="num-input" placeholder="00..." required>
             
-            <label>رقم الواتساب (أرقام إنجليزية فقط) *</label>
-            <input type="tel" id="u_whatsapp" class="num-input" placeholder="00..." required oninvalid="this.setCustomValidity('يرجى إدخال رقم الواتساب')" oninput="this.setCustomValidity(''); this.value=this.value.replace(/[^0-9]/g,'')">
+            <label>رقم الواتساب *</label>
+            <input type="tel" id="u_whatsapp" class="num-input" placeholder="00..." required>
             
             <label>البريد الإلكتروني *</label>
-            <input type="email" id="u_email" placeholder="mail@example.com" required oninvalid="this.setCustomValidity('يرجى إدخال بريد إلكتروني صحيح')" oninput="this.setCustomValidity('')">
+            <input type="email" id="u_email" placeholder="mail@example.com" required>
 
             <label>كيف سمعت عنا؟ *</label>
-            <select id="u_source" required oninvalid="this.setCustomValidity('يرجى اختيار المصدر')" onchange="this.setCustomValidity('')">
+            <select id="u_source" required>
                 <option value="">اختر المصدر...</option>
                 <option value="فيسبوك">فيسبوك</option>
                 <option value="لينكد إن">لينكد إن</option>
@@ -99,15 +99,15 @@
             </select>
 
             <label>ملاحظات إضافية (اختياري)</label>
-            <textarea id="u_notes" rows="2" placeholder="أضف أي تفاصيل أو طلبات خاصة..."></textarea>
+            <textarea id="u_notes" rows="2"></textarea>
 
             <div class="separator"></div>
 
             <label>أرفق السيرة الذاتية (PDF أو صورة) *</label>
-            <input type="file" id="cv_file" accept=".pdf,image/*" required oninvalid="this.setCustomValidity('يرجى إرفاق السيرة الذاتية')" onchange="this.setCustomValidity('')">
+            <input type="file" id="cv_file" accept=".pdf,image/*" required>
             
             <label>أرفق صورة إيصال التحويل *</label>
-            <input type="file" id="receipt_file" accept="image/*" required oninvalid="this.setCustomValidity('يرجى إرفاق إيصال التحويل')" onchange="this.setCustomValidity('')">
+            <input type="file" id="receipt_file" accept="image/*" required>
 
             <button type="submit" class="btn" id="submitBtn">إرسال الطلب وحفظ البيانات</button>
         </form>
@@ -125,7 +125,7 @@
     <div class="footer-section">
         <span class="f-title">عن منصة <span class="oimi-style">O<span class="oimi-i">i</span>M<span class="oimi-i">i</span>.ae</span></span>
         <div class="f-intro">
-            <span class="oimi-style" style="font-size:16px;">O<span class="oimi-i">i</span>M<span class="oimi-i">i</span>.ae</span> هي منصة رقمية رائدة متخصصة في تقديم حلول مهنية متكاملة للباحثين عن عمل، تهدف إلى جسر الفجوة بين الكفاءات المهنية ومتطلبات سوق العمل الحديث من خلال تطوير السير الذاتية المهنية المتوافقة مع أنظمة الـ (ATS)، وتقديم الاستشارات الوظيفية الاحترافية التي تضمن إبراز مهاراتك وخبراتك بأفضل صورة ممكنة لزيادة فرصك في القبول الوظيفي والتميز في مسارك المهني العالمي. نحن نؤمن بأن كل كادر مهني يمتلك نقاط قوة تميزه، ومهمتنا هي إظهار تلك القوة للعالم.
+            <span class="oimi-style" style="font-size:16px;">O<span class="oimi-i">i</span>M<span class="oimi-i">i</span>.ae</span> هي منصة رقمية رائدة متخصصة في تقديم حلول مهنية متكاملة للباحثين عن عمل، تهدف إلى جسر الفجوة بين الكفاءات المهنية ومتطلبات سوق العمل الحديث من خلال تطوير السير الذاتية المهنية المتوافقة مع أنظمة الـ (ATS)، وتقديم الاستشارات الوظيفية الاحترافية التي تضمن إبراز مهاراتك وخبراتك بأفضل صورة ممكنة لزيادة فرصك في القبول الوظيفي والتميز في مسارك المهني العالمي. نحن نؤمن بأن كل كادر مهني يمتلك نقاط قوة تميزه، ومهمتنا هي إظهار تلك القوة للعالم بأفضل المعايير.
         </div>
         <span class="f-subtitle" onclick="toggleDetails()">اضغط لعرض رؤيتنا وأهدافنا ▾</span>
         <div id="details-box">
@@ -143,6 +143,7 @@
 </div>
 
 <script>
+// السكريبت كما هو لضمان الربط مع Google Sheets
 const scriptURL = "https://script.google.com/macros/s/AKfycbzneuTCJx7bXgK_dfMO-n6JXdK8uMRcwVyGh5kyySk9GcFrCj3UmQymCV2Ea2Wz4-V8/exec";
 const countryCodes = { "السودان": "00249","مصر": "0020","السعودية": "00966","الإمارات": "00971","قطر": "00974","عمان": "00968","الكويت": "00965","البحرين": "00973" };
 
