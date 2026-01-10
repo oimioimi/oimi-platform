@@ -125,14 +125,13 @@
     <div class="footer-section">
         <span class="f-title">عن منصة OIMI.ae</span>
         <div class="f-intro">
-            <span class="oimi-style" style="font-size:20px;">O<span class="oimi-i">i</span>M<span class="oimi-i">i</span>.ae</span> هي منصة رقمية رائدة متخصصة في تقديم حلول مهنية متكاملة للباحثين عن عمل، تهدف إلى جسر الفجوة بين الكفاءات المهنية ومتطلبات سوق العمل الحديث.
+            <span class="oimi-style" style="font-size:20px;">O<span class="oimi-i">i</span>M<span class="oimi-i">i</span>.ae</span> هي منصة رقمية رائدة متخصصة في تقديم حلول مهنية متكاملة للباحثين عن عمل.
         </div>
         <span class="f-subtitle" onclick="toggleDetails()">اضغط لعرض رؤيتنا وأهدافنا ▾</span>
         <div id="details-box">
             <div class="bmc-header">🎯 رؤيتنا وأهدافنا:</div>
-            • <b>تمكين المهنيين:</b> نسعى لتزويد عملائنا بالأدوات اللازمة لاجتياز أنظمة تصفية السير الذاتية (ATS) بنجاح.<br>
-            • <b>التميز الرقمي:</b> نهدف للريادة في تقديم الخدمات الاستشارية المهنية بلمسة تقنية إبداعية.<br>
-            • <b>دعم المسار الوظيفي:</b> تقديم محتوى وتنسيقات عالمية تبرز القيمة الحقيقية لكل موظف.
+            • <b>تمكين المهنيين:</b> اجتياز أنظمة تصفية السير الذاتية (ATS) بنجاح.<br>
+            • <b>التميز الرقمي:</b> خدمات استشارية مهنية بلمسة تقنية إبداعية.
         </div>
         <div class="contact-area">
             <h4>تواصل معنا</h4>
@@ -143,6 +142,7 @@
 </div>
 
 <script>
+// الرابط الخاص بك (Deploy 93)
 const scriptURL = "https://script.google.com/macros/s/AKfycbzneuTCJx7bXgK_dfMO-n6JXdK8uMRcwVyGh5kyySk9GcFrCj3UmQymCV2Ea2Wz4-V8/exec";
 
 const countryCodes = { "السودان": "00249","مصر": "0020","السعودية": "00966","الإمارات": "00971","قطر": "00974","عمان": "00968","الكويت": "00965","البحرين": "00973" };
@@ -155,41 +155,73 @@ function handleCountryChange(el){
 function zoomImg(src){ document.getElementById('modalImg').src=src; document.getElementById('modalOverlay').style.display='flex'; }
 function toggleDetails(){ const b=document.getElementById('details-box'); b.style.display=b.style.display==='block'?'none':'block'; }
 
-const form=document.getElementById('oimi-form');
-form.addEventListener('submit', async (e)=>{
-  e.preventDefault();
-  const btn=document.getElementById('submitBtn');
-  btn.disabled=true; btn.innerHTML="جاري الحفظ وإرسال الطلب...";
-
-  try {
-    const toBase64=f=>new Promise((res)=>{ const r=new FileReader(); r.onload=()=>res(r.result.split(',')[1]); r.readAsDataURL(f); });
+const form = document.getElementById('oimi-form');
+form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = document.getElementById('submitBtn');
+    const email = document.getElementById('u_email').value.trim().toLowerCase();
     
-    const payload={ 
-      "الاسم العربي": document.getElementById('u_name_ar').value, 
-      "الاسم الانجليزي": document.getElementById('u_name_en').value, 
-      "التخصص المهني": document.getElementById('u_spec').value, 
-      "بلد الإقامة": document.getElementById('u_country').value, 
-      "رقم الهاتف": document.getElementById('u_phone').value, 
-      "رقم الواتس": document.getElementById('u_whatsapp').value, 
-      "البريد الإلكتروني": document.getElementById('u_email').value.trim().toLowerCase(), 
-      "كيف سمعت عننا": document.getElementById('u_source').value,
-      "ملاحظات": document.getElementById('u_notes').value, 
-      "cv_data": await toBase64(document.getElementById('cv_file').files[0]), 
-      "receipt_data": await toBase64(document.getElementById('receipt_file').files[0]) 
-    };
+    btn.disabled = true;
+    btn.innerHTML = "جاري التحقق من البيانات...";
 
-    const response = await fetch(scriptURL, { method: 'POST', body: JSON.stringify(payload) });
-    const result = await response.json();
+    try {
+        // 1. التحقق من وجود الإيميل مسبقاً
+        const checkRes = await fetch(`${scriptURL}?checkEmail=${email}`);
+        const checkData = await checkRes.json();
 
-    if (result.status === "success") {
-        alert("تم استلام طلبك بنجاح ✅\nرقم تسجيلك الموحد هو: " + result.uniqueId); 
-        window.open(`https://wa.me/249900065080?text=تم التسجيل بنجاح في منصة OIMI. رقم تسجيل الطلب الخاص بي هو: ${result.uniqueId}`,'_blank'); 
-        location.reload();
-    } else { alert("خطأ: " + result.message); btn.disabled=false; btn.innerHTML="إرسال الطلب وحفظ البيانات"; }
-  } catch(err){ 
-    alert("حدث خطأ في الاتصال. يرجى التأكد من الإنترنت أو حجم الملفات."); 
-    btn.disabled=false; btn.innerHTML="إرسال الطلب وحفظ البيانات"; 
-  }
+        if (checkData.exists) {
+            alert("عذراً، هذا البريد الإلكتروني مسجل لدينا مسبقاً. يرجى استخدام بريد آخر أو التواصل معنا.");
+            btn.disabled = false;
+            btn.innerHTML = "إرسال الطلب وحفظ البيانات";
+            return;
+        }
+
+        btn.innerHTML = "جاري معالجة الملفات...";
+
+        // 2. تحويل الملفات لـ Base64
+        const toBase64 = f => new Promise((res) => { 
+            const r = new FileReader(); 
+            r.onload = () => res(r.result.split(',')[1]); 
+            r.readAsDataURL(f); 
+        });
+
+        const cvData = await toBase64(document.getElementById('cv_file').files[0]);
+        const receiptData = await toBase64(document.getElementById('receipt_file').files[0]);
+
+        btn.innerHTML = "جاري إرسال الطلب النهائي...";
+
+        // 3. إرسال البيانات النهائية
+        const payload = {
+            "الاسم العربي": document.getElementById('u_name_ar').value,
+            "الاسم الانجليزي": document.getElementById('u_name_en').value,
+            "التخصص المهني": document.getElementById('u_spec').value,
+            "بلد الإقامة": document.getElementById('u_country').value,
+            "رقم الهاتف": document.getElementById('u_phone').value,
+            "رقم الواتس": document.getElementById('u_whatsapp').value,
+            "البريد الإلكتروني": email,
+            "كيف سمعت عننا": document.getElementById('u_source').value,
+            "ملاحظات": document.getElementById('u_notes').value,
+            "cv_data": cvData,
+            "receipt_data": receiptData
+        };
+
+        const response = await fetch(scriptURL, { method: 'POST', body: JSON.stringify(payload) });
+        const result = await response.json();
+
+        if (result.status === "success") {
+            alert("تم استلام طلبك بنجاح ✅\nرقم تسجيلك الموحد هو: " + result.uniqueId);
+            window.open(`https://wa.me/249900065080?text=تم التسجيل بنجاح في منصة OIMI. رقم تسجيل الطلب الخاص بي هو: ${result.uniqueId}`, '_blank');
+            location.reload();
+        } else {
+            alert("حدث خطأ في الخادم: " + result.message);
+            btn.disabled = false;
+            btn.innerHTML = "إرسال الطلب وحفظ البيانات";
+        }
+    } catch (err) {
+        alert("حدث خطأ في الاتصال. يرجى التأكد من الإنترنت وحجم الملفات.");
+        btn.disabled = false;
+        btn.innerHTML = "إرسال الطلب وحفظ البيانات";
+    }
 });
 </script>
 </body>
