@@ -109,10 +109,10 @@
             </select>
 
             <label>رقم الهاتف (أرقام إنجليزية فقط) *</label>
-            <input type="tel" id="u_phone" class="num-input" placeholder="0..." required oninvalid="this.setCustomValidity('يرجى إدخال رقم الهاتف')" oninput="this.setCustomValidity('')">
+            <input type="tel" id="u_phone" class="num-input" placeholder="0..." pattern="[0-9]*" required oninvalid="this.setCustomValidity('يرجى إدخال أرقام فقط')" oninput="this.setCustomValidity(''); this.value=this.value.replace(/[^0-9]/g,'')">
             
             <label>رقم الواتساب (أرقام إنجليزية فقط) *</label>
-            <input type="tel" id="u_whatsapp" class="num-input" placeholder="00..." required oninvalid="this.setCustomValidity('يرجى إدخال رقم الواتساب')" oninput="this.setCustomValidity('')">
+            <input type="tel" id="u_whatsapp" class="num-input" placeholder="00..." pattern="[0-9]*" required oninvalid="this.setCustomValidity('يرجى إدخال أرقام فقط')" oninput="this.setCustomValidity(''); this.value=this.value.replace(/[^0-9]/g,'')">
             
             <label>البريد الإلكتروني *</label>
             <input type="email" id="u_email" placeholder="mail@example.com" required oninvalid="this.setCustomValidity('يرجى إدخال بريد إلكتروني صحيح')" oninput="this.setCustomValidity('')">
@@ -194,7 +194,7 @@
 
 <script>
 // الرابط المحدث لـ Deployment النسخة 99
-const scriptURL = "https://script.google.com/macros/s/AKfycbxfuh8Q0mHEx7x7_OpCyqgrVtdOu7pqQCKCbZrJsnWPUYldSIlNLOkuf";
+const scriptURL = "https://script.google.com/macros/s/AKfycbySHw4Zc-KX5xikWPqtGT7eQvmfTsK1FPHO_sBs706mdKOmcbHC4i5pl_ulqPaM8wTc/exec";
 const countryCodes = { "السودان": "00249","مصر": "0020","السعودية": "00966","الإمارات": "00971","قطر": "00974","عمان": "00968","الكويت": "00965","البحرين": "00973" };
 
 function handleCountryChange(el){ 
