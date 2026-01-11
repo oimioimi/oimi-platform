@@ -193,7 +193,8 @@
 </div>
 
 <script>
-const scriptURL = "https://script.google.com/macros/s/AKfycbzneuTCJx7bXgK_dfMO-n6JXdK8uMRcwVyGh5kyySk9GcFrCj3UmQymCV2Ea2Wz4-V8/exec";
+// الرابط المحدث لـ Deployment النسخة 96
+const scriptURL = "https://script.google.com/macros/s/AKfycbxoXVBqqjPruYJh8KaX9uWjkaKXvGWiANNkjdJvHSJeS1a2m4aBqaIi9y0vDcFs3TEz/exec";
 const countryCodes = { "السودان": "00249","مصر": "0020","السعودية": "00966","الإمارات": "00971","قطر": "00974","عمان": "00968","الكويت": "00965","البحرين": "00973" };
 
 function handleCountryChange(el){ 
@@ -220,7 +221,7 @@ form.addEventListener('submit', async (e) => {
         const checkData = await checkRes.json();
         if (checkData.exists) {
             alert("هذا البريد مسجل لدينا مسبقاً.");
-            btn.disabled = false; btn.innerHTML = "إرسال الطلب"; return;
+            btn.disabled = false; btn.innerHTML = "إرسال الطلب وحفظ البيانات"; return;
         }
 
         btn.innerHTML = "جاري إرسال طلبك...";
@@ -247,8 +248,8 @@ form.addEventListener('submit', async (e) => {
             alert("تم استلام طلبك بنجاح ✅ رقم تسجيلك: " + result.uniqueId);
             window.open(`https://wa.me/249900065080?text=تم التسجيل بنجاح في منصة OIMI. رقم تسجيل الطلب الخاص بي هو: ${result.uniqueId}`, '_blank');
             location.reload();
-        } else { alert("خطأ: " + result.message); btn.disabled = false; btn.innerHTML = "إرسال الطلب"; }
-    } catch (err) { alert("حدث خطأ في الاتصال."); btn.disabled = false; btn.innerHTML = "إرسال الطلب"; }
+        } else { alert("خطأ: " + result.message); btn.disabled = false; btn.innerHTML = "إرسال الطلب وحفظ البيانات"; }
+    } catch (err) { alert("حدث خطأ في الاتصال."); btn.disabled = false; btn.innerHTML = "إرسال الطلب وحفظ البيانات"; }
 });
 </script>
 </body>
