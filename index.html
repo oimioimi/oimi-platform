@@ -58,9 +58,17 @@
         .f-subtitle { color: #888; font-size: 12px; cursor: pointer; text-decoration: underline; display: block; margin-bottom: 15px; }
         #details-box { display: none; background: #fdfdfd; padding: 15px; border-radius: 12px; border: 1px solid #ddd; margin-top: 10px; font-size: 13px; line-height: 1.8; color: #333; text-align: right; }
         .bmc-header { font-weight: bold; color: var(--p); margin: 12px 0 5px; border-bottom: 1px solid #eee; padding-bottom: 3px; font-size: 15px; }
+        
+        /* تعديل الأيقونات لتكون ملونة */
         .social-links { margin: 20px 0; display: flex; justify-content: center; gap: 25px; }
-        .social-links a { text-decoration: none; font-size: 24px; color: #555; transition: 0.3s; }
-        .social-links a:hover { color: var(--p); transform: scale(1.2); }
+        .social-links a { text-decoration: none; font-size: 30px; transition: 0.3s; }
+        .social-links a:hover { transform: scale(1.2); }
+        .fa-facebook { color: #1877F2; }
+        .fa-linkedin { color: #0A66C2; }
+        .fa-tiktok { color: #000000; filter: drop-shadow(2px 2px 0px #EE1D52) drop-shadow(-2px -2px 0px #69C9D0); }
+        .fa-whatsapp { color: #25D366; }
+        .fa-envelope { color: #EA4335; }
+
         .contact-area { margin-top: 25px; border-top: 1px solid #eee; padding-top: 20px; text-align: center; }
         .contact-area a { color: var(--p); text-decoration: none; font-weight: bold; margin: 0 15px; font-size: 15px; }
         .btn { width: 100%; background: linear-gradient(135deg, #00732f, #00a342); color: white; padding: 16px; border: none; border-radius: 10px; font-size: 18px; font-weight: bold; cursor: pointer; margin-top: 10px; }
@@ -88,7 +96,7 @@
             </div>
 
             <label>الاسم الرباعي (بالعربية فقط) *</label>
-            <input type="text" id="u_name_ar" placeholder="أدخل الاسم بالعربي" required oninvalid="this.setCustomValidity('يرجى إدخال الاسم بالعربية فقط')" oninput="this.setCustomValidity(''); this.value=this.value.replace(/[a-zA-Z]/g,'')">
+            <input type="text" id="u_name_ar" placeholder="أدخل الاسم بالعربي" required oninvalid="this.setCustomValidity('يرجى إدخل الاسم بالعربية فقط')" oninput="this.setCustomValidity(''); this.value=this.value.replace(/[a-zA-Z]/g,'')">
             
             <label>الاسم الرباعي (بالإنجليزية فقط) *</label>
             <input type="text" id="u_name_en" class="num-input" placeholder="Full Name in English" required oninvalid="this.setCustomValidity('يرجى إدخال الاسم بالإنجليزية فقط')" oninput="this.setCustomValidity(''); this.value=this.value.replace(/[\u0600-\u06FF]/g,'')">
@@ -181,14 +189,14 @@
         </div>
         
         <div class="social-links">
-            <a href="#" title="Facebook"><i class="fab fa-facebook"></i></a>
-            <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-            <a href="#" title="TikTok"><i class="fab fa-tiktok"></i></a>
+            <a href="#" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+            <a href="#" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="https://www.tiktok.com/@oimi.ae" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
         </div>
         <div class="contact-area">
             <h4>تواصل معنا</h4>
-            <a href="https://wa.me/249900065080" target="_blank">🟢 واتساب</a> | 
-            <a href="mailto:info@oimi.ae">📧 البريد الإلكتروني</a>
+            <a href="https://wa.me/249900065080" target="_blank"><i class="fab fa-whatsapp"></i> واتساب</a> | 
+            <a href="mailto:info@oimi.ae"><i class="fas fa-envelope"></i> البريد الإلكتروني</a>
         </div>
     </div>
 </div>
