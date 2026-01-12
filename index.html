@@ -15,6 +15,11 @@
       link[rel="icon"] { background-color: #ffffff !important; }
     </style>
 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة OIMI - طلب تقييم مهني وسير ذاتية ATS</title>
+
+    <meta name="keywords" content="سيرة ذاتية, وظائف, شغل, OIMI, OIMI.ae, تقديمات, تسكين وظيفي, سيرة ذاتية ATS, تقييم مهني, توظيف السودان, وظائف الخليج, شغل في السودان, بناء سير ذاتية, منصة OIMI, قوالب ATS, تطوير مهني, استشارات وظيفية, عمل سير ذاتية احترافية, وظائف دبي للسودانيين, بنك الخرطوم توظيف, تقديم وظائف, CV ATS Arabic">
     <meta property="og:title" content="منصة OIMI - بوابتك للتميز المهني">
     <meta property="og:description" content="نطور المستقبل الرقمي للتوظيف. اكتشف حلولنا المتكاملة للسير الذاتية و التقييم المهني.">
     <meta property="og:image" content="https://i.postimg.cc/cJRw69tq/Favicon-for-OIMI.png">
@@ -23,11 +28,7 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://oimi.ae">
     <meta name="theme-color" content="#ffffff">
-
     <meta name="google-site-verification" content="672KiCbr6YjUjWjj4" />
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة OIMI - طلب تقييم مهني وسير ذاتية ATS</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
@@ -290,24 +291,13 @@ form.addEventListener('submit', async (e) => {
         const result = await response.json();
 
         if (result.status === "success") {
-            // تفريغ الفورم برمجياً فوراً
             form.reset();
-            // إعادة الزر لحالته
             btn.disabled = false; 
             btn.innerHTML = "إرسال الطلب وحفظ البيانات";
-
             alert("تم استلام طلبك بنجاح ✅ رقم تسجيلك: " + result.uniqueId);
-            
             const waMsg = `تم التسجيل بنجاح في منصة OIMI. رقم تسجيل الطلب الخاص بي هو: ${result.uniqueId}`;
             const waUrl = `https://wa.me/249900065080?text=${encodeURIComponent(waMsg)}`;
-            
-            try {
-                window.open(waUrl, '_blank');
-            } catch (e) {
-                console.log("Popup blocked");
-            }
-            
-            // محاولة أخيرة لتحديث الصفحة بالكامل لضمان النظافة
+            try { window.open(waUrl, '_blank'); } catch (e) { console.log("Popup blocked"); }
             setTimeout(() => { window.location.reload(); }, 1000);
         } else { 
             alert("حدث خطأ من الخادم: " + result.message); 
@@ -315,9 +305,7 @@ form.addEventListener('submit', async (e) => {
         }
     } catch (err) {
         if (btn.disabled && btn.innerHTML.includes("إرسال")) {
-            // في حال الوصول هنا والبيانات أرسلت، نفرغ الفورم يدوياً احتياطاً
-            form.reset();
-            btn.disabled = false; btn.innerHTML = "إرسال الطلب وحفظ البيانات";
+            form.reset(); btn.disabled = false; btn.innerHTML = "إرسال الطلب وحفظ البيانات";
         } else {
             alert("حدث خطأ في الاتصال. يرجى المحاولة مرة أخرى.");
             btn.disabled = false; btn.innerHTML = "إرسال الطلب وحفظ البيانات";
