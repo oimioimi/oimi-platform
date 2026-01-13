@@ -36,12 +36,15 @@
       box-shadow:0 10px 30px rgba(0,0,0,0.1); border:1px solid #eee;
     }
 
+    /* ✅ Logo style */
     .oimi-style{ display:inline-flex; align-items:baseline; direction:ltr; font-weight:bold; color:#000; }
     .oimi-i{
       display:inline-block; line-height:1;
       background:linear-gradient(to bottom,#ff0000 20%,#000000 20%);
       -webkit-background-clip:text; -webkit-text-fill-color:transparent;
     }
+    .oimi-logo-inline{ font-size: 1.05em; } /* للاستخدام داخل النص */
+    .oimi-logo-title{ font-size: 42px; }     /* للعناوين الكبيرة */
 
     .main-title{ text-align:center; margin:0 0 2px; font-weight:800; font-size:22px; }
     .main-title .oimi-style{ font-size:40px; }
@@ -130,6 +133,99 @@
       -webkit-background-clip:text; -webkit-text-fill-color:transparent;
     }
     .fa-whatsapp{ color:#25D366; }
+
+    /* ✅ About / BMC Section */
+    .about-title{
+      text-align:center;
+      font-weight:900;
+      font-size:26px;
+      margin:5px 0 12px;
+      line-height:1.2;
+    }
+    .about-text{
+      color:#3d4451;
+      font-size:16px;
+      line-height:1.9;
+      margin:0;
+      text-align: justify;
+    }
+    .hint-line{
+      text-align:center;
+      margin:14px 0 0;
+      color:#6b7280;
+      font-weight:700;
+      font-size:14px;
+    }
+    details{
+      margin-top:14px;
+      border:1px solid #eee;
+      border-radius:16px;
+      padding:12px 12px;
+      background:#fff;
+    }
+    summary{
+      cursor:pointer;
+      list-style:none;
+      font-weight:900;
+      color:#111;
+      font-size:15px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      user-select:none;
+    }
+    summary::-webkit-details-marker{ display:none; }
+    .bmc-box{
+      margin-top:12px;
+      border-radius:16px;
+      border:1px solid #eef2f7;
+      background:#fbfdff;
+      padding:16px;
+    }
+    .bmc-head{
+      font-weight:900;
+      color:#0f7a32;
+      text-align:center;
+      font-size:18px;
+      margin:0 0 12px;
+    }
+    .bmc-item{
+      background:#fff;
+      border:1px solid #eef2f7;
+      border-radius:14px;
+      padding:12px 12px;
+      margin:10px 0;
+    }
+    .bmc-item h4{
+      margin:0 0 8px;
+      font-weight:900;
+      font-size:16px;
+      color:#111827;
+      display:flex;
+      align-items:center;
+      justify-content:flex-start;
+      gap:8px;
+    }
+    .bmc-item ul{
+      margin:0;
+      padding-right:18px;
+      color:#374151;
+      line-height:1.9;
+      font-weight:700;
+      font-size:14px;
+    }
+    .badge{
+      display:inline-flex;
+      width:22px; height:22px;
+      border-radius:6px;
+      align-items:center; justify-content:center;
+      font-size:13px;
+      font-weight:900;
+      color:#fff;
+      background:#64748b;
+      flex: 0 0 auto;
+    }
   </style>
 </head>
 
@@ -250,6 +346,64 @@
           <img src="https://i.postimg.cc/kXjhPxf1/Screen-Shot-2022-01-14-at-9-42-42-AM.jpg" onclick="zoomImg(this.src)" alt="">
         </div>
       </div>
+    </div>
+
+    <!-- ✅ عن المنصة + نموذج الأعمال (بعد مع عملائنا) -->
+    <div class="card">
+      <div class="about-title">
+        عن منصة
+        <span class="oimi-style oimi-logo-title">O<span class="oimi-i">i</span>M<span class="oimi-i">i</span>.ae</span>
+      </div>
+
+      <p class="about-text">
+        <span class="oimi-style oimi-logo-inline">O<span class="oimi-i">i</span>M<span class="oimi-i">i</span>.ae</span>
+        منصة رقمية رائدة متخصصة في تقديم حلول مهنية متكاملة للباحثين عن عمل في منطقة الشرق الأوسط وشمال أفريقيا.
+        نحن نجمع بين التقييم المهني الاحترافي وصياغة السير الذاتية المحسنة لأنظمة التتبع الآلي
+        (ATS) لضمان وصول المواهب العربية إلى أفضل الفرص الوظيفية.
+      </p>
+
+      <div class="hint-line">اضغط لعرض نموذج الأعمال ومزيد من التفاصيل</div>
+
+      <details>
+        <summary>لوحة نموذج الأعمال (Business Model Canvas) 📊</summary>
+
+        <div class="bmc-box">
+          <div class="bmc-head">لوحة نموذج الأعمال (Business Model Canvas)</div>
+
+          <div class="bmc-item">
+            <h4><span class="badge">1</span> شبكة الشركاء الاستراتيجيين:</h4>
+            <ul>
+              <li>المؤسسات المالية: بنك الخرطوم كشريك رئيسي.</li>
+              <li>خبراء الموارد البشرية: شبكة مختصين معتمدين.</li>
+              <li>مطورو التقنية: متخصصون في أنظمة ATS.</li>
+              <li>المؤسسات التعليمية والموردون السحابيون.</li>
+            </ul>
+          </div>
+
+          <div class="bmc-item">
+            <h4><span class="badge">2</span> الأنشطة المحورية:</h4>
+            <ul>
+              <li>التقييم المهني وصياغة السيرة الذاتية ATS.</li>
+              <li>التحسين التقني والإرشاد المهني المخصص.</li>
+            </ul>
+          </div>
+
+          <div class="bmc-item">
+            <h4><span class="badge">3</span> القيمة المقدمة:</h4>
+            <ul>
+              <li>التميز المهني والدقة التقنية.</li>
+              <li>الدعم الشخصي والفهم الثقافي للسوق.</li>
+            </ul>
+          </div>
+
+          <div class="bmc-item">
+            <h4><span class="badge">4</span> استراتيجية العلاقات:</h4>
+            <ul>
+              <li>تبدأ من الاستكشاف حتى بناء مجتمع من الناجحين.</li>
+            </ul>
+          </div>
+        </div>
+      </details>
     </div>
 
     <div class="footer-section">
@@ -416,7 +570,6 @@
     e.preventDefault();
     clearStatus();
 
-    // trims لمنع "مسافات فقط"
     nameArEl.value = (nameArEl.value || "").trim();
     document.getElementById('u_name_en').value = (document.getElementById('u_name_en').value || "").trim();
     document.getElementById('u_spec').value = (document.getElementById('u_spec').value || "").trim();
@@ -465,7 +618,7 @@
 
       const response = await fetchWithTimeout(scriptURL, {
         method: "POST",
-        body: JSON.stringify(payload) // بدون headers
+        body: JSON.stringify(payload)
       }, 45000);
 
       const text = await response.text();
