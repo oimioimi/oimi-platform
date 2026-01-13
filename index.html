@@ -14,68 +14,133 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>منصة OIMI - طلب تقييم مهني وسير ذاتية ATS</title>
 
+  <meta property="og:title" content="منصة OIMI - طلب تقييم مهني وسير ذاتية ATS">
+  <meta property="og:description" content="منصة رقمية رائدة لتقديم الحلول المهنية المتكاملة وبناء السير الذاتية الاحترافية.">
+  <meta property="og:image" content="https://i.postimg.cc/cJRw69tq/Favicon-for-OIMI.png">
+  <meta property="og:url" content="https://www.oimi.ae">
+  <meta property="og:type" content="website">
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
   <style>
     :root { --p: #00732f; --lg: #e8f5e9; }
-    body { background: #fff; margin: 0; font-family: 'Segoe UI', sans-serif; padding: 5px; text-align: right; overflow-x: hidden; }
-    .container { max-width: 600px; margin: auto; display: flex; flex-direction: column; gap: 2px; }
-    .card { background: #fff; padding: 18px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 1px solid #eee; }
 
-    .oimi-style { display: inline-flex; align-items: baseline; direction: ltr; font-weight: bold; color: #000; }
-    .oimi-i { display: inline-block; line-height: 1; background: linear-gradient(to bottom, #ff0000 20%, #000000 20%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-
-    .main-title { text-align: center; margin-bottom: 2px; font-weight: 800; font-size: 22px; }
-    .main-title .oimi-style { font-size: 40px; }
-    .sub-title { text-align: center; color: #444; font-size: 16px; margin-bottom: 15px; }
-
-    .box { background: var(--lg); padding: 15px; border-radius: 15px; border: 1px solid #b2dfdb; margin-bottom: 10px; color: #004d40; font-size: 14px; line-height: 1.8; }
-    label { display: block; margin: 15px 0 5px; font-weight: bold; font-size: 14px; color: #444; }
-    input, select, textarea { width: 100%; padding: 12px; margin-bottom: 5px; border-radius: 8px; border: 1px solid #ccc; box-sizing: border-box; font-size: 14px; background: #f9f9f9; font-weight: bold; color: #333; }
-    .num-input { direction: ltr; text-align: left; }
-    .separator { border-top: 1px dashed #00732f; margin: 12px 0; opacity: 0.3; }
-
-    .status {
-      display: none;
-      margin-top: 10px;
-      padding: 12px;
-      border-radius: 10px;
-      border: 1px solid #eee;
-      font-size: 13px;
-      line-height: 1.7;
-      background: #fafafa;
-      color: #333;
+    body{
+      background:#fff; margin:0; font-family:'Segoe UI',sans-serif;
+      padding:5px; text-align:right; overflow-x:hidden;
     }
-    .status.success { border-color: #b7e4c7; background: #ecfdf3; color: #0b5d1e; }
-    .status.error { border-color: #ffc9c9; background: #fff1f1; color: #8a0f0f; }
-    .status.info { border-color: #dbeafe; background: #eff6ff; color: #0b3a6a; }
+    .container{ max-width:600px; margin:auto; display:flex; flex-direction:column; gap:10px; }
 
-    .btn { width: 100%; background: linear-gradient(135deg, #00732f, #00a342); color: white; padding: 16px; border: none; border-radius: 10px; font-size: 18px; font-weight: bold; cursor: pointer; margin-top: 10px; }
-    .btn:disabled { background: #ccc; cursor: not-allowed; }
+    .card{
+      background:#fff; padding:18px; border-radius:20px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.1); border:1px solid #eee;
+    }
 
-    #modalOverlay { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:10000; align-items:center; justify-content:center; }
-    #modalOverlay img { max-width: 90%; max-height: 80%; border: 3px solid #fff; border-radius: 10px; }
+    .oimi-style{ display:inline-flex; align-items:baseline; direction:ltr; font-weight:bold; color:#000; }
+    .oimi-i{
+      display:inline-block; line-height:1;
+      background:linear-gradient(to bottom,#ff0000 20%,#000000 20%);
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    }
 
-    .slider { width: 100%; overflow: hidden; margin-top: 25px; text-align: center; direction: ltr; position: relative; height: 260px; }
-    .track { display: flex; width: max-content; animation: scroll-loop 40s linear infinite; padding: 20px 0; align-items: center; will-change: transform; }
-    .track img { width: 260px; height: 160px; object-fit: cover; margin: 0 15px; border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.1); cursor: zoom-in; }
-    @keyframes scroll-loop { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-    @media (prefers-reduced-motion: reduce) { .track { animation: none; } }
+    .main-title{ text-align:center; margin:0 0 2px; font-weight:800; font-size:22px; }
+    .main-title .oimi-style{ font-size:40px; }
+    .sub-title{ text-align:center; color:#444; font-size:16px; margin:0 0 15px; }
 
-    .footer-section { background: #fff; border-top: 1px solid #eee; margin-top: 20px; padding: 20px; text-align: center; }
-    .social-links { margin: 20px 0; display: flex; justify-content: center; gap: 25px; }
-    .social-links a { text-decoration: none; font-size: 32px; transition: 0.3s; }
-    .fa-facebook { color: #1877F2; } .fa-linkedin { color: #0A66C2; }
-    .fa-tiktok { color: #000000; filter: drop-shadow(2px 2px 0px #EE1D52) drop-shadow(-2px -2px 0px #69C9D0); }
-    .fa-instagram { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    .fa-whatsapp { color: #25D366; }
+    .box{
+      background:var(--lg); padding:15px; border-radius:15px;
+      border:1px solid #b2dfdb; margin-bottom:10px; color:#004d40;
+      font-size:14px; line-height:1.8;
+    }
+
+    label{ display:block; margin:15px 0 5px; font-weight:bold; font-size:14px; color:#444; }
+    input, select, textarea{
+      width:100%; padding:12px; margin-bottom:5px; border-radius:8px;
+      border:1px solid #ccc; box-sizing:border-box; font-size:14px;
+      background:#f9f9f9; font-weight:bold; color:#333;
+    }
+    .num-input{ direction:ltr; text-align:left; }
+    .separator{ border-top:1px dashed #00732f; margin:12px 0; opacity:0.3; }
+
+    .btn{
+      width:100%; background:linear-gradient(135deg,#00732f,#00a342);
+      color:white; padding:16px; border:none; border-radius:10px;
+      font-size:18px; font-weight:bold; cursor:pointer; margin-top:10px;
+    }
+    .btn:disabled{ background:#ccc; cursor:not-allowed; }
+
+    .status{
+      display:none; margin-top:10px; padding:12px; border-radius:10px;
+      border:1px solid #eee; font-size:13px; line-height:1.7;
+      background:#fafafa; color:#333;
+    }
+    .status.success{ border-color:#b7e4c7; background:#ecfdf3; color:#0b5d1e; }
+    .status.error{ border-color:#ffc9c9; background:#fff1f1; color:#8a0f0f; }
+    .status.info{ border-color:#dbeafe; background:#eff6ff; color:#0b3a6a; }
+
+    /* ✅ مع عملائنا */
+    .section-title{
+      text-align:center; font-weight:900; color:#1b1b1b;
+      margin:10px 0 0; font-size:18px;
+    }
+    .section-sub{
+      text-align:center; color:#666; font-size:13px; margin:6px 0 0;
+    }
+
+    /* ✅ Slider */
+    .slider{
+      width:100%; overflow:hidden; text-align:center; direction:ltr;
+      position:relative; height:260px;
+    }
+    .track{
+      display:flex; width:max-content; animation:scroll-loop 40s linear infinite;
+      padding:20px 0; align-items:center; will-change:transform;
+    }
+    .track img{
+      width:260px; height:160px; object-fit:cover; margin:0 15px;
+      border-radius:12px; box-shadow:0 8px 20px rgba(0,0,0,0.1);
+      cursor:zoom-in;
+    }
+    @keyframes scroll-loop{ 0%{transform:translateX(0);} 100%{transform:translateX(-50%);} }
+    @media (prefers-reduced-motion: reduce){ .track{ animation:none; } }
+
+    /* ✅ Modal Zoom */
+    #modalOverlay{
+      display:none; position:fixed; top:0; left:0; width:100%; height:100%;
+      background:rgba(0,0,0,0.85); z-index:10000;
+      align-items:center; justify-content:center;
+    }
+    #modalOverlay img{
+      max-width:90%; max-height:80%;
+      border:3px solid #fff; border-radius:10px;
+    }
+
+    /* ✅ Footer */
+    .footer-section{
+      background:#fff; border-top:1px solid #eee; margin-top:10px;
+      padding:20px; text-align:center;
+    }
+    .social-links{ margin:10px 0 15px; display:flex; justify-content:center; gap:25px; }
+    .social-links a{ text-decoration:none; font-size:32px; transition:0.3s; }
+    .fa-facebook{ color:#1877F2; }
+    .fa-linkedin{ color:#0A66C2; }
+    .fa-tiktok{ color:#000; filter:drop-shadow(2px 2px 0px #EE1D52) drop-shadow(-2px -2px 0px #69C9D0); }
+    .fa-instagram{
+      background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fdf497 5%,#fd5949 45%,#d6249f 60%,#285AEB 90%);
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    }
+    .fa-whatsapp{ color:#25D366; }
   </style>
 </head>
 
 <body>
-  <div id="modalOverlay" onclick="this.style.display='none'"><img id="modalImg" alt="صورة مكبرة"></div>
+
+  <div id="modalOverlay" onclick="this.style.display='none'">
+    <img id="modalImg" alt="صورة مكبرة">
+  </div>
 
   <div class="container">
+
     <div class="card">
       <h2 class="main-title">منصة <span class="oimi-style">O<span class="oimi-i">i</span>M<span class="oimi-i">i</span>.ae</span></h2>
       <div class="sub-title">طلب التقييم المهني وعمل السير الذاتية (ATS)</div>
@@ -87,16 +152,16 @@
           ٢. أكمل المعلومات بجميع الحقول أدناه.<br>
           ٣. اضغط "إرسال" لحفظ بياناتك والحصول على رقم تسجيلك.
           <div class="separator"></div>
-          <div style="text-align: center;">
+          <div style="text-align:center;">
             <a href="https://wa.me/249900065080" target="_blank" rel="noopener"
-               style="color: #00732f; font-weight: bold; text-decoration: none;">
+               style="color:#00732f; font-weight:bold; text-decoration:none;">
               إذا كنت تواجه صعوبة في سداد الرسوم؟ اضغط هنا للتواصل معنا.
             </a>
           </div>
         </div>
 
         <label>الاسم الرباعي (بالعربية) *</label>
-        <input type="text" id="u_name_ar" placeholder="أدخل الاسم بالعربي" required autocomplete="name"
+        <input type="text" id="u_name_ar" placeholder="أدخل الاسم بالعربي" required
                pattern=".*[\u0600-\u06FF].*"
                oninvalid="this.setCustomValidity('يرجى إدخال الاسم باللغة العربية')"
                oninput="this.setCustomValidity(''); this.value=this.value.replace(/[^ \u0600-\u06FF]/g,'')">
@@ -125,7 +190,7 @@
         </select>
 
         <label>رقم الهاتف *</label>
-        <input type="tel" id="u_phone" class="num-input" placeholder="00..." required autocomplete="tel"
+        <input type="tel" id="u_phone" class="num-input" placeholder="00..." required
                minlength="10" maxlength="25"
                oninvalid="this.setCustomValidity('يرجى إدخال رقم هاتف صحيح')"
                oninput="this.setCustomValidity('');">
@@ -137,7 +202,7 @@
                oninput="this.setCustomValidity('');">
 
         <label>البريد الإلكتروني *</label>
-        <input type="email" id="u_email" placeholder="mail@example.com" required autocomplete="email"
+        <input type="email" id="u_email" placeholder="mail@example.com" required
                oninvalid="this.setCustomValidity('يرجى إدخال بريد إلكتروني صحيح')"
                oninput="this.setCustomValidity('');">
 
@@ -155,7 +220,7 @@
         <label>ملاحظات إضافية (اختياري)</label>
         <textarea id="u_notes" rows="3" placeholder="أدخل أي ملاحظات إضافية هنا..."></textarea>
 
-        <div class="separator" style="opacity: 0.1;"></div>
+        <div class="separator" style="opacity:0.1;"></div>
 
         <label>أرفق السيرة الذاتية (PDF/صورة) *</label>
         <input type="file" id="cv_file" accept=".pdf,image/*" required
@@ -171,23 +236,50 @@
         <div id="statusBox" class="status info" aria-live="polite"></div>
       </form>
     </div>
+
+    <!-- ✅ مع عملائنا -->
+    <div class="card" style="padding:16px 18px;">
+      <div class="section-title">مع عملائنا</div>
+      <div class="section-sub">نماذج من آراء وتجارب عملائنا</div>
+
+      <div class="slider">
+        <div class="track" id="track">
+          <img src="https://i.postimg.cc/vHPSwW3p/528604980-10162083330481298-381945114741787991-n.jpg" onclick="zoomImg(this.src)" alt="">
+          <img src="https://i.postimg.cc/sDn0Cpwb/585747945-10162491435001298-5020852638269490297-n.jpg" onclick="zoomImg(this.src)" alt="">
+          <img src="https://i.postimg.cc/Wb9fcMXY/QVZo-ZFNzc-Wdi-MUx2a-HJMUFRhe-GJza-TZI.jpg" onclick="zoomImg(this.src)" alt="">
+          <img src="https://i.postimg.cc/kXjhPxf1/Screen-Shot-2022-01-14-at-9-42-42-AM.jpg" onclick="zoomImg(this.src)" alt="">
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-section">
+      <div class="social-links">
+        <a href="https://wa.me/249900065080" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        <a href="#" onclick="return false;" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.tiktok.com/@oimi.ae" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+        <a href="#" onclick="return false;" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        <a href="#" onclick="return false;" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+      </div>
+      <p style="font-size:11px; color:#aaa; margin-top:10px;">OIMI.ae &copy; 2026</p>
+    </div>
+
   </div>
 
 <script>
-  // ✅ رابط Web App
+  // ✅ Web App URL
   const scriptURL = "https://script.google.com/macros/s/AKfycbxn86Bymuy6kFwBVl3UC6fXD8UKJUpKwWN6fNefOHDX_6XFH1vbzXF_AwVd2HHxhzCT/exec";
 
-  // ✅ ضع نفس القيمة في Script Properties (OIMI_TOKEN)
-  const OIMI_TOKEN = "oimi222026";
+  // ✅ Token (مطابق ل Script Properties: OIMI_TOKEN)
+  const OIMI_TOKEN = "oimi22026";
 
-  const countryCodes = { "السودان": "00249","الإمارات": "00971","السعودية": "00966","مصر": "0020","قطر": "00974","عمان": "00968" };
+  const countryCodes = { "السودان":"00249","الإمارات":"00971","السعودية":"00966","مصر":"0020","قطر":"00974","عمان":"00968" };
   const countryRules = {
-    "السودان":   { code: "00249", nsn: 9  },
-    "الإمارات":  { code: "00971", nsn: 9  },
-    "السعودية":  { code: "00966", nsn: 9  },
-    "مصر":       { code: "0020",  nsn: 10 },
-    "قطر":       { code: "00974", nsn: 8  },
-    "عمان":      { code: "00968", nsn: 8  }
+    "السودان":  { code:"00249", nsn:9  },
+    "الإمارات": { code:"00971", nsn:9  },
+    "السعودية": { code:"00966", nsn:9  },
+    "مصر":      { code:"0020",  nsn:10 },
+    "قطر":      { code:"00974", nsn:8  },
+    "عمان":     { code:"00968", nsn:8  }
   };
 
   const statusBox = document.getElementById('statusBox');
@@ -201,32 +293,43 @@
     statusBox.textContent = '';
   }
 
+  function zoomImg(src){
+    document.getElementById('modalImg').src = src;
+    document.getElementById('modalOverlay').style.display = 'flex';
+  }
+
+  // ✅ سلايدر لا نهائي (نضاعف الصور مرة)
+  (function enhanceSliderLoop(){
+    const track = document.getElementById('track');
+    if (!track) return;
+    const imgs = Array.from(track.querySelectorAll('img'));
+    imgs.forEach(img => track.appendChild(img.cloneNode(true)));
+  })();
+
   function mb(bytes){ return bytes / (1024*1024); }
   function onlyDigits(s){ return String(s || "").replace(/\D/g, ""); }
 
-  function handleCountryChange(el) {
+  function handleCountryChange(el){
     const code = countryCodes[el.value] || "";
     const w = document.getElementById('u_whatsapp');
     const p = document.getElementById('u_phone');
     if (!code) return;
 
-    w.value = code;
-    p.value = code;
+    w.value = code; p.value = code;
 
-    [w, p].forEach(input => {
-      input.addEventListener('input', function () {
+    [w,p].forEach(input=>{
+      input.addEventListener('input', function(){
         this.setCustomValidity('');
         if (!this.value.startsWith(code) && !this.value.startsWith("+")) this.value = code;
         this.value = this.value.replace(/[^0-9+]/g,'');
-      }, { passive: true });
-
-      input.addEventListener('invalid', function () {
+      }, {passive:true});
+      input.addEventListener('invalid', function(){
         this.setCustomValidity('يرجى إدخال رقم صحيح');
       });
     });
   }
 
-  function normalizeIntlNumber(raw, country) {
+  function normalizeIntlNumber(raw, country){
     const rule = countryRules[country];
     if (!rule) return null;
     const nsn = rule.nsn;
@@ -250,23 +353,23 @@
     if (digits.length !== expectedTotal) return null;
 
     const afterCode = digits.substring(("00" + cc).length);
-    if (afterCode.startsWith("0")) return { ok: false };
+    if (afterCode.startsWith("0")) return { ok:false };
 
-    return { ok: true, normalizedDigits: digits };
+    return { ok:true, normalizedDigits: digits };
   }
 
-  function validateCountryAndPhones() {
+  function validateCountryAndPhones(){
     const country = document.getElementById('u_country').value;
-    if (!country) { setStatus('error', 'يرجى اختيار بلد الإقامة.'); return false; }
+    if (!country){ setStatus('error','يرجى اختيار بلد الإقامة.'); return false; }
 
     const phoneEl = document.getElementById('u_phone');
     const waEl = document.getElementById('u_whatsapp');
 
     const phoneNorm = normalizeIntlNumber(phoneEl.value, country);
-    if (!phoneNorm || !phoneNorm.ok) { setStatus('error', 'رقم الهاتف غير صحيح حسب الدولة المختارة.'); return false; }
+    if (!phoneNorm || !phoneNorm.ok){ setStatus('error','رقم الهاتف غير صحيح حسب الدولة المختارة.'); return false; }
 
     const waNorm = normalizeIntlNumber(waEl.value, country);
-    if (!waNorm || !waNorm.ok) { setStatus('error', 'رقم الواتساب غير صحيح حسب الدولة المختارة.'); return false; }
+    if (!waNorm || !waNorm.ok){ setStatus('error','رقم الواتساب غير صحيح حسب الدولة المختارة.'); return false; }
 
     phoneEl.value = phoneNorm.normalizedDigits;
     waEl.value = waNorm.normalizedDigits;
@@ -276,8 +379,8 @@
   const MAX_CV_MB = 5;
   const MAX_RECEIPT_MB = 3;
 
-  function toBase64(file) {
-    return new Promise((resolve, reject) => {
+  function toBase64(file){
+    return new Promise((resolve, reject)=>{
       const r = new FileReader();
       r.onload = () => {
         try { resolve(String(r.result).split(',')[1]); }
@@ -288,20 +391,19 @@
     });
   }
 
-  async function fetchWithTimeout(url, options = {}, timeoutMs = 45000) {
+  async function fetchWithTimeout(url, options={}, timeoutMs=45000){
     const controller = new AbortController();
-    const id = setTimeout(() => controller.abort(), timeoutMs);
+    const id = setTimeout(()=>controller.abort(), timeoutMs);
     try { return await fetch(url, { ...options, signal: controller.signal }); }
     finally { clearTimeout(id); }
   }
 
   const form = document.getElementById('oimi-form');
-
-  // ✅ تقفيل “المسافات فقط” في الاسم العربي
   const nameArEl = document.getElementById('u_name_ar');
+
   function ensureArabicNameRequired(){
     const v = (nameArEl.value || "").trim();
-    if (!v || !/[\u0600-\u06FF]/.test(v)) {
+    if (!v || !/[\u0600-\u06FF]/.test(v)){
       nameArEl.setCustomValidity('يرجى إدخال الاسم باللغة العربية');
       return false;
     }
@@ -310,24 +412,19 @@
   }
   nameArEl.addEventListener('input', ensureArabicNameRequired);
 
-  form.addEventListener('submit', async (e) => {
+  form.addEventListener('submit', async (e)=>{
     e.preventDefault();
     clearStatus();
 
-    // trim قبل checkValidity حتى لا تمرر “مسافات”
+    // trims لمنع "مسافات فقط"
     nameArEl.value = (nameArEl.value || "").trim();
     document.getElementById('u_name_en').value = (document.getElementById('u_name_en').value || "").trim();
     document.getElementById('u_spec').value = (document.getElementById('u_spec').value || "").trim();
     document.getElementById('u_email').value = (document.getElementById('u_email').value || "").trim();
 
-    if (!ensureArabicNameRequired()) { form.reportValidity(); return; }
-    if (!form.checkValidity()) { form.reportValidity(); return; }
+    if (!ensureArabicNameRequired()){ form.reportValidity(); return; }
+    if (!form.checkValidity()){ form.reportValidity(); return; }
     if (!validateCountryAndPhones()) return;
-
-    if (!OIMI_TOKEN || OIMI_TOKEN.includes("ضع_هنا")) {
-      setStatus('error', 'يرجى ضبط قيمة OIMI_TOKEN في HTML (وتطابقها مع Script Properties).');
-      return;
-    }
 
     const btn = document.getElementById('submitBtn');
     if (btn.disabled) return;
@@ -335,15 +432,15 @@
     const cvFile = document.getElementById('cv_file').files[0];
     const receiptFile = document.getElementById('receipt_file').files[0];
 
-    if (!cvFile || !receiptFile) { setStatus('error', 'يرجى إرفاق السيرة الذاتية والإيصال.'); return; }
-    if (mb(cvFile.size) > MAX_CV_MB) { setStatus('error', `حجم السيرة الذاتية كبير. الحد الأقصى ${MAX_CV_MB}MB.`); return; }
-    if (mb(receiptFile.size) > MAX_RECEIPT_MB) { setStatus('error', `حجم الإيصال كبير. الحد الأقصى ${MAX_RECEIPT_MB}MB.`); return; }
+    if (!cvFile || !receiptFile){ setStatus('error','يرجى إرفاق السيرة الذاتية والإيصال.'); return; }
+    if (mb(cvFile.size) > MAX_CV_MB){ setStatus('error',`حجم السيرة الذاتية كبير. الحد الأقصى ${MAX_CV_MB}MB.`); return; }
+    if (mb(receiptFile.size) > MAX_RECEIPT_MB){ setStatus('error',`حجم الإيصال كبير. الحد الأقصى ${MAX_RECEIPT_MB}MB.`); return; }
 
     btn.disabled = true;
     btn.innerHTML = "جاري الحفظ وإرسال الملفات...";
-    setStatus('info', 'جاري إرسال البيانات... لا تغلق الصفحة.');
+    setStatus('info','جاري إرسال البيانات... لا تغلق الصفحة.');
 
-    try {
+    try{
       const payload = {
         "_token": OIMI_TOKEN,
 
@@ -367,8 +464,8 @@
       };
 
       const response = await fetchWithTimeout(scriptURL, {
-        method: 'POST',
-        body: JSON.stringify(payload)   // بدون headers
+        method: "POST",
+        body: JSON.stringify(payload) // بدون headers
       }, 45000);
 
       const text = await response.text();
@@ -376,27 +473,28 @@
       try { result = JSON.parse(text); }
       catch { throw new Error("رد غير مفهوم من السيرفر"); }
 
-      if (result.status === "success") {
+      if (result.status === "success"){
         setStatus('success', "تم بنجاح ✅ رقم تسجيلك: " + result.uniqueId);
-        form.reset();
 
         const waMsg = `مرحباً منصة OIMI ✅\nأكملت التسجيل بنجاح.\nالاسم: ${payload["الاسم العربي"]}\nرقم التسجيل: ${result.uniqueId}`;
-        window.open(`https://wa.me/249900065080?text=${encodeURIComponent(waMsg)}`, '_blank');
+        window.open(`https://wa.me/249900065080?text=${encodeURIComponent(waMsg)}`, "_blank");
 
-        btn.disabled = false;
-        btn.innerHTML = "إرسال الطلب وحفظ البيانات";
+        form.reset();
       } else {
-        setStatus('error', result.message || 'حدث خطأ أثناء الحفظ.');
-        btn.disabled = false;
-        btn.innerHTML = "إرسال الطلب وحفظ البيانات";
+        setStatus('error', result.message || "حدث خطأ أثناء الإرسال، حاول مرة أخرى.");
       }
 
-    } catch (err) {
-      setStatus('error', 'نعتذر، واجهنا مشكلة في الاتصال. يرجى إعادة المحاولة.');
+    } catch(err){
+      const msg = (err && err.name === "AbortError")
+        ? "انتهت مهلة الإرسال. يرجى إعادة المحاولة عند استقرار الإنترنت."
+        : "نعتذر، واجهنا مشكلة في الاتصال. يرجى التأكد من استقرار الإنترنت وإعادة المحاولة.";
+      setStatus('error', msg);
+    } finally {
       btn.disabled = false;
       btn.innerHTML = "إرسال الطلب وحفظ البيانات";
     }
   });
 </script>
+
 </body>
 </html>
