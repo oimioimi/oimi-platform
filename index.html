@@ -89,7 +89,7 @@
           <div class="separator"></div>
           <div style="text-align: center;">
             <a href="https://wa.me/249900065080" target="_blank" rel="noopener"
-              style="color: #00732f; font-weight: bold; text-decoration: none;">
+               style="color: #00732f; font-weight: bold; text-decoration: none;">
               إذا كنت تواجه صعوبة في سداد الرسوم؟ اضغط هنا للتواصل معنا.
             </a>
           </div>
@@ -97,23 +97,24 @@
 
         <label>الاسم الرباعي (بالعربية) *</label>
         <input type="text" id="u_name_ar" placeholder="أدخل الاسم بالعربي" required autocomplete="name"
-          oninvalid="this.setCustomValidity('يرجى إدخال الاسم باللغة العربية')"
-          oninput="this.setCustomValidity(''); this.value=this.value.replace(/[^ \u0600-\u06FF]/g,'')">
+               pattern=".*[\u0600-\u06FF].*"
+               oninvalid="this.setCustomValidity('يرجى إدخال الاسم باللغة العربية')"
+               oninput="this.setCustomValidity(''); this.value=this.value.replace(/[^ \u0600-\u06FF]/g,'')">
 
         <label>الاسم الرباعي (بالإنجليزية) *</label>
         <input type="text" id="u_name_en" class="num-input" placeholder="Full Name in English" required
-          oninvalid="this.setCustomValidity('يرجى إدخال الاسم باللغة الإنجليزية')"
-          oninput="this.setCustomValidity(''); this.value=this.value.replace(/[^A-Za-z .'-]/g,'')">
+               oninvalid="this.setCustomValidity('يرجى إدخال الاسم باللغة الإنجليزية')"
+               oninput="this.setCustomValidity(''); this.value=this.value.replace(/[^A-Za-z .'-]/g,'')">
 
         <label>التخصص المهني *</label>
         <input type="text" id="u_spec" placeholder="مثلاً: محاسب" required
-          oninvalid="this.setCustomValidity('يرجى إدخال التخصص المهني')"
-          oninput="this.setCustomValidity('');">
+               oninvalid="this.setCustomValidity('يرجى إدخال التخصص المهني')"
+               oninput="this.setCustomValidity('');">
 
         <label>بلد الإقامة *</label>
         <select id="u_country" required onchange="handleCountryChange(this)"
-          oninvalid="this.setCustomValidity('يرجى اختيار بلد الإقامة')"
-          oninput="this.setCustomValidity('');">
+                oninvalid="this.setCustomValidity('يرجى اختيار بلد الإقامة')"
+                oninput="this.setCustomValidity('');">
           <option value="">اختر الدولة...</option>
           <option value="السودان">السودان</option>
           <option value="الإمارات">الإمارات</option>
@@ -125,25 +126,25 @@
 
         <label>رقم الهاتف *</label>
         <input type="tel" id="u_phone" class="num-input" placeholder="00..." required autocomplete="tel"
-          minlength="10" maxlength="25"
-          oninvalid="this.setCustomValidity('يرجى إدخال رقم هاتف صحيح')"
-          oninput="this.setCustomValidity('');">
+               minlength="10" maxlength="25"
+               oninvalid="this.setCustomValidity('يرجى إدخال رقم هاتف صحيح')"
+               oninput="this.setCustomValidity('');">
 
         <label>رقم الواتساب *</label>
         <input type="tel" id="u_whatsapp" class="num-input" placeholder="00..." required
-          minlength="10" maxlength="25"
-          oninvalid="this.setCustomValidity('يرجى إدخال رقم واتساب صحيح')"
-          oninput="this.setCustomValidity('');">
+               minlength="10" maxlength="25"
+               oninvalid="this.setCustomValidity('يرجى إدخال رقم واتساب صحيح')"
+               oninput="this.setCustomValidity('');">
 
         <label>البريد الإلكتروني *</label>
         <input type="email" id="u_email" placeholder="mail@example.com" required autocomplete="email"
-          oninvalid="this.setCustomValidity('يرجى إدخال بريد إلكتروني صحيح')"
-          oninput="this.setCustomValidity('');">
+               oninvalid="this.setCustomValidity('يرجى إدخال بريد إلكتروني صحيح')"
+               oninput="this.setCustomValidity('');">
 
         <label>كيف سمعت عننا؟ *</label>
         <select id="u_source" required
-          oninvalid="this.setCustomValidity('يرجى اختيار مصدر التعرف علينا')"
-          oninput="this.setCustomValidity('');">
+                oninvalid="this.setCustomValidity('يرجى اختيار مصدر التعرف علينا')"
+                oninput="this.setCustomValidity('');">
           <option value="فيسبوك">فيسبوك</option>
           <option value="لينكد إن">لينكد إن</option>
           <option value="تيك توك">تيك توك</option>
@@ -158,54 +159,28 @@
 
         <label>أرفق السيرة الذاتية (PDF/صورة) *</label>
         <input type="file" id="cv_file" accept=".pdf,image/*" required
-          oninvalid="this.setCustomValidity('يرجى إرفاق السيرة الذاتية')"
-          oninput="this.setCustomValidity('');">
+               oninvalid="this.setCustomValidity('يرجى إرفاق السيرة الذاتية')"
+               oninput="this.setCustomValidity('');">
 
         <label>أرفق صورة إيصال التحويل *</label>
         <input type="file" id="receipt_file" accept="image/*" required
-          oninvalid="this.setCustomValidity('يرجى إرفاق صورة إيصال التحويل')"
-          oninput="this.setCustomValidity('');">
+               oninvalid="this.setCustomValidity('يرجى إرفاق صورة إيصال التحويل')"
+               oninput="this.setCustomValidity('');">
 
         <button type="submit" class="btn" id="submitBtn">إرسال الطلب وحفظ البيانات</button>
-
         <div id="statusBox" class="status info" aria-live="polite"></div>
       </form>
-    </div>
-
-    <div class="slider">
-      <div class="track" id="track">
-        <img src="https://i.postimg.cc/vHPSwW3p/528604980-10162083330481298-381945114741787991-n.jpg" onclick="zoomImg(this.src)" alt="">
-        <img src="https://i.postimg.cc/sDn0Cpwb/585747945-10162491435001298-5020852638269490297-n.jpg" onclick="zoomImg(this.src)" alt="">
-        <img src="https://i.postimg.cc/Wb9fcMXY/QVZo-ZFNzc-Wdi-MUx2a-HJMUFRhe-GJza-TZI.jpg" onclick="zoomImg(this.src)" alt="">
-        <img src="https://i.postimg.cc/kXjhPxf1/Screen-Shot-2022-01-14-at-9-42-42-AM.jpg" onclick="zoomImg(this.src)" alt="">
-      </div>
-    </div>
-
-    <div class="footer-section">
-      <div class="social-links">
-        <a href="#" onclick="return false;" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-        <a href="#" onclick="return false;" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-        <a href="https://www.tiktok.com/@oimi.ae" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
-        <a href="#" onclick="return false;" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="https://wa.me/249900065080" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-      </div>
-      <p style="font-size:11px; color:#aaa; margin-top:10px;">OIMI.ae &copy; 2026</p>
     </div>
   </div>
 
 <script>
-  // ✅ رابط Web App الجديد
+  // ✅ رابط Web App
   const scriptURL = "https://script.google.com/macros/s/AKfycbxn86Bymuy6kFwBVl3UC6fXD8UKJUpKwWN6fNefOHDX_6XFH1vbzXF_AwVd2HHxhzCT/exec";
 
-  const countryCodes = {
-    "السودان": "00249",
-    "الإمارات": "00971",
-    "السعودية": "00966",
-    "مصر": "0020",
-    "قطر": "00974",
-    "عمان": "00968"
-  };
+  // ✅ ضع نفس القيمة في Script Properties (OIMI_TOKEN)
+  const OIMI_TOKEN = "oimi222026";
 
+  const countryCodes = { "السودان": "00249","الإمارات": "00971","السعودية": "00966","مصر": "0020","قطر": "00974","عمان": "00968" };
   const countryRules = {
     "السودان":   { code: "00249", nsn: 9  },
     "الإمارات":  { code: "00971", nsn: 9  },
@@ -214,17 +189,6 @@
     "قطر":       { code: "00974", nsn: 8  },
     "عمان":      { code: "00968", nsn: 8  }
   };
-
-  function zoomImg(src){
-    document.getElementById('modalImg').src = src;
-    document.getElementById('modalOverlay').style.display = 'flex';
-  }
-
-  (function enhanceSliderLoop(){
-    const track = document.getElementById('track');
-    const imgs = Array.from(track.querySelectorAll('img'));
-    imgs.forEach(img => track.appendChild(img.cloneNode(true)));
-  })();
 
   const statusBox = document.getElementById('statusBox');
   function setStatus(type, msg){
@@ -252,9 +216,7 @@
     [w, p].forEach(input => {
       input.addEventListener('input', function () {
         this.setCustomValidity('');
-        if (!this.value.startsWith(code) && !this.value.startsWith("+")) {
-          this.value = code;
-        }
+        if (!this.value.startsWith(code) && !this.value.startsWith("+")) this.value = code;
         this.value = this.value.replace(/[^0-9+]/g,'');
       }, { passive: true });
 
@@ -267,16 +229,13 @@
   function normalizeIntlNumber(raw, country) {
     const rule = countryRules[country];
     if (!rule) return null;
-
     const nsn = rule.nsn;
     const cc = onlyDigits(rule.code).replace(/^00/, "");
     const s = String(raw || "").trim();
-
     const hasPlus = s.startsWith("+");
     let digits = s.replace(/\D/g, "");
 
     if (digits.startsWith("00" + cc)) {
-      // ok
     } else if (digits.startsWith(cc)) {
       digits = "00" + digits;
     } else if (hasPlus && digits.startsWith(cc)) {
@@ -291,7 +250,7 @@
     if (digits.length !== expectedTotal) return null;
 
     const afterCode = digits.substring(("00" + cc).length);
-    if (afterCode.startsWith("0")) return { ok: false, reason: "leading_zero_after_code" };
+    if (afterCode.startsWith("0")) return { ok: false };
 
     return { ok: true, normalizedDigits: digits };
   }
@@ -304,12 +263,10 @@
     const waEl = document.getElementById('u_whatsapp');
 
     const phoneNorm = normalizeIntlNumber(phoneEl.value, country);
-    if (!phoneNorm) { setStatus('error', 'رقم الهاتف غير صحيح حسب الدولة المختارة.'); return false; }
-    if (!phoneNorm.ok) { setStatus('error', 'رقم الهاتف غير صحيح: لا يجب أن يبدأ الرقم بعد كود الدولة بـ 0.'); return false; }
+    if (!phoneNorm || !phoneNorm.ok) { setStatus('error', 'رقم الهاتف غير صحيح حسب الدولة المختارة.'); return false; }
 
     const waNorm = normalizeIntlNumber(waEl.value, country);
-    if (!waNorm) { setStatus('error', 'رقم الواتساب غير صحيح حسب الدولة المختارة.'); return false; }
-    if (!waNorm.ok) { setStatus('error', 'رقم الواتساب غير صحيح: لا يجب أن يبدأ الرقم بعد كود الدولة بـ 0.'); return false; }
+    if (!waNorm || !waNorm.ok) { setStatus('error', 'رقم الواتساب غير صحيح حسب الدولة المختارة.'); return false; }
 
     phoneEl.value = phoneNorm.normalizedDigits;
     waEl.value = waNorm.normalizedDigits;
@@ -334,18 +291,43 @@
   async function fetchWithTimeout(url, options = {}, timeoutMs = 45000) {
     const controller = new AbortController();
     const id = setTimeout(() => controller.abort(), timeoutMs);
-    try {
-      return await fetch(url, { ...options, signal: controller.signal });
-    } finally { clearTimeout(id); }
+    try { return await fetch(url, { ...options, signal: controller.signal }); }
+    finally { clearTimeout(id); }
   }
 
   const form = document.getElementById('oimi-form');
+
+  // ✅ تقفيل “المسافات فقط” في الاسم العربي
+  const nameArEl = document.getElementById('u_name_ar');
+  function ensureArabicNameRequired(){
+    const v = (nameArEl.value || "").trim();
+    if (!v || !/[\u0600-\u06FF]/.test(v)) {
+      nameArEl.setCustomValidity('يرجى إدخال الاسم باللغة العربية');
+      return false;
+    }
+    nameArEl.setCustomValidity('');
+    return true;
+  }
+  nameArEl.addEventListener('input', ensureArabicNameRequired);
+
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     clearStatus();
 
+    // trim قبل checkValidity حتى لا تمرر “مسافات”
+    nameArEl.value = (nameArEl.value || "").trim();
+    document.getElementById('u_name_en').value = (document.getElementById('u_name_en').value || "").trim();
+    document.getElementById('u_spec').value = (document.getElementById('u_spec').value || "").trim();
+    document.getElementById('u_email').value = (document.getElementById('u_email').value || "").trim();
+
+    if (!ensureArabicNameRequired()) { form.reportValidity(); return; }
     if (!form.checkValidity()) { form.reportValidity(); return; }
     if (!validateCountryAndPhones()) return;
+
+    if (!OIMI_TOKEN || OIMI_TOKEN.includes("ضع_هنا")) {
+      setStatus('error', 'يرجى ضبط قيمة OIMI_TOKEN في HTML (وتطابقها مع Script Properties).');
+      return;
+    }
 
     const btn = document.getElementById('submitBtn');
     if (btn.disabled) return;
@@ -353,19 +335,9 @@
     const cvFile = document.getElementById('cv_file').files[0];
     const receiptFile = document.getElementById('receipt_file').files[0];
 
-    if (!cvFile || !receiptFile) {
-      setStatus('error', 'يرجى إرفاق السيرة الذاتية والإيصال.');
-      return;
-    }
-
-    if (mb(cvFile.size) > MAX_CV_MB) {
-      setStatus('error', `حجم السيرة الذاتية كبير (${mb(cvFile.size).toFixed(2)}MB). الحد الأقصى ${MAX_CV_MB}MB.`);
-      return;
-    }
-    if (mb(receiptFile.size) > MAX_RECEIPT_MB) {
-      setStatus('error', `حجم الإيصال كبير (${mb(receiptFile.size).toFixed(2)}MB). الحد الأقصى ${MAX_RECEIPT_MB}MB.`);
-      return;
-    }
+    if (!cvFile || !receiptFile) { setStatus('error', 'يرجى إرفاق السيرة الذاتية والإيصال.'); return; }
+    if (mb(cvFile.size) > MAX_CV_MB) { setStatus('error', `حجم السيرة الذاتية كبير. الحد الأقصى ${MAX_CV_MB}MB.`); return; }
+    if (mb(receiptFile.size) > MAX_RECEIPT_MB) { setStatus('error', `حجم الإيصال كبير. الحد الأقصى ${MAX_RECEIPT_MB}MB.`); return; }
 
     btn.disabled = true;
     btn.innerHTML = "جاري الحفظ وإرسال الملفات...";
@@ -373,15 +345,17 @@
 
     try {
       const payload = {
-        "الاسم العربي": document.getElementById('u_name_ar').value.trim(),
-        "الاسم الانجليزي": document.getElementById('u_name_en').value.trim(),
-        "التخصص المهني": document.getElementById('u_spec').value.trim(),
+        "_token": OIMI_TOKEN,
+
+        "الاسم العربي": nameArEl.value,
+        "الاسم الانجليزي": document.getElementById('u_name_en').value,
+        "التخصص المهني": document.getElementById('u_spec').value,
         "بلد الإقامة": document.getElementById('u_country').value,
         "رقم الهاتف": "'" + document.getElementById('u_phone').value.trim(),
         "رقم الواتس": "'" + document.getElementById('u_whatsapp').value.trim(),
-        "البريد الإلكتروني": document.getElementById('u_email').value.trim(),
+        "البريد الإلكتروني": document.getElementById('u_email').value,
         "كيف سمعت عننا": document.getElementById('u_source').value,
-        "ملاحظات": document.getElementById('u_notes').value.trim(),
+        "ملاحظات": (document.getElementById('u_notes').value || "").trim(),
 
         "رابط السيرة الذاتية": await toBase64(cvFile),
         "رابط الإيصال": await toBase64(receiptFile),
@@ -392,10 +366,9 @@
         "receipt_mime": receiptFile.type || "application/octet-stream"
       };
 
-      // ✅ بدون headers لتفادي preflight
       const response = await fetchWithTimeout(scriptURL, {
         method: 'POST',
-        body: JSON.stringify(payload)
+        body: JSON.stringify(payload)   // بدون headers
       }, 45000);
 
       const text = await response.text();
@@ -419,10 +392,7 @@
       }
 
     } catch (err) {
-      const msg = (err && err.name === 'AbortError')
-        ? "انتهت مهلة الإرسال. يرجى إعادة المحاولة عند استقرار الإنترنت."
-        : "نعتذر، واجهنا مشكلة في الاتصال. يرجى التأكد من استقرار الإنترنت وإعادة المحاولة.";
-      setStatus('error', msg);
+      setStatus('error', 'نعتذر، واجهنا مشكلة في الاتصال. يرجى إعادة المحاولة.');
       btn.disabled = false;
       btn.innerHTML = "إرسال الطلب وحفظ البيانات";
     }
