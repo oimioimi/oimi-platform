@@ -20,314 +20,73 @@
   <meta property="og:url" content="https://www.oimi.ae">
   <meta property="og:type" content="website">
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
   <style>
-    :root{
-      --p: #00732f;
-      --lg: #e8f5e9;
-      --bg: #ffffff;
-      --dot: #ff0000;
-    }
+    :root { --p: #00732f; --lg: #e8f5e9; }
 
-    /* ✅ FORCE WHITE BACKGROUND EVERYWHERE */
-    html, body{ background: var(--bg) !important; }
     body{
-      margin:0;
-      font-family:'Segoe UI',sans-serif;
-      padding:5px;
-      text-align:right;
-      overflow-x:hidden;
-      color:#111;
+      background:#fff; margin:0; font-family:'Segoe UI',sans-serif;
+      padding:5px; text-align:right; overflow-x:hidden;
     }
-
-    .container{
-      max-width:600px;
-      margin:auto;
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-      background: var(--bg) !important;
-    }
+    .container{ max-width:600px; margin:auto; display:flex; flex-direction:column; gap:10px; }
 
     .card{
-      background: var(--bg) !important;
-      padding:18px;
-      border-radius:20px;
-      box-shadow:0 10px 30px rgba(0,0,0,0.1);
-      border:1px solid #eee;
+      background:#fff; padding:18px; border-radius:20px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.1); border:1px solid #eee;
     }
 
-    /* ==========================================
-       ✅ OIMI.ae LOGO (FIXED)
-       - All black
-       - ONLY dot of i = red rectangle
-       - Works on all devices (no dotless-i issues)
-       ========================================== */
-
-    .oimi-logo{
-      display:inline-flex;
-      direction:ltr;
-      align-items:baseline;
-      font-weight:900;
-      color:#000;
-      line-height:1;
-      letter-spacing:-0.6px;
+    /* ✅ Logo style */
+    .oimi-style{ display:inline-flex; align-items:baseline; direction:ltr; font-weight:bold; color:#000; }
+    .oimi-i{
+      display:inline-block; line-height:1;
+      background:linear-gradient(to bottom,#ff0000 20%,#000000 20%);
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
     }
+    .oimi-logo-inline{ font-size: 1.05em; }
+    .oimi-logo-title{ font-size: 42px; }
 
-    /* title size */
-    .oimi-logo.title{
-      font-size:56px;
-      --dot-w: 0.18em;
-      --dot-h: 0.10em;
-      --dot-top: -0.58em;
-
-      /* ✅ mask to hide original i dot */
-      --mask-sz: 0.28em;
-      --mask-top: -0.72em;
-    }
-
-    /* inline size */
-    .oimi-logo.inline{
-      font-size:1.05em;
-      --dot-w: 0.18em;
-      --dot-h: 0.10em;
-      --dot-top: -0.58em;
-
-      /* ✅ mask to hide original i dot */
-      --mask-sz: 0.30em;
-      --mask-top: -0.78em;
-    }
-
-    .oimi-logo .i{
-      position:relative;
-      display:inline-block;
-      color:#000;
-    }
-
-    /* ✅ white mask to cover default dot of "i" */
-    .oimi-logo .i::before{
-      content:"";
-      position:absolute;
-      width:var(--mask-sz);
-      height:var(--mask-sz);
-      background:var(--bg);
-      left:50%;
-      transform:translateX(-50%);
-      top:var(--mask-top);
-      border-radius:50%;
-      z-index:1;
-    }
-
-    /* ✅ red rectangle dot */
-    .oimi-logo .i::after{
-      content:"";
-      position:absolute;
-      width:var(--dot-w);
-      height:var(--dot-h);
-      background:var(--dot);
-      left:50%;
-      transform:translateX(-50%);
-      top:var(--dot-top);
-      border-radius:0;
-      z-index:2;
-    }
-
-    .main-title{
+    /* ✅ Titles */
+    .logo-title{
       text-align:center;
-      margin:0 0 2px;
       font-weight:900;
-      font-size:22px;
+      margin:0 0 12px;
+      line-height:1.1;
     }
+    .logo-title .oimi-style{ font-size:46px; }
 
-    .sub-title{
-      text-align:center;
-      color:#444;
-      font-size:16px;
+    .about-snippet{
+      background:#fff;
+      border:1px solid #eef2f7;
+      border-radius:16px;
+      padding:14px;
+      color:#3d4451;
+      font-size:15px;
+      line-height:1.9;
+      text-align: justify;
+      font-weight:700;
       margin:0 0 12px;
     }
 
-    .box{
-      background: var(--lg) !important;
-      padding:15px;
-      border-radius:15px;
-      border:1px solid #b2dfdb;
-      margin-bottom:10px;
-      color:#004d40;
-      font-size:14px;
-      line-height:1.8;
-    }
-
-    label{
-      display:block;
-      margin:15px 0 5px;
-      font-weight:bold;
-      font-size:14px;
-      color:#444;
-    }
-
-    input, select, textarea{
-      width:100%;
-      padding:12px;
-      margin-bottom:5px;
-      border-radius:8px;
-      border:1px solid #ccc;
-      box-sizing:border-box;
-      font-size:14px;
-      background:#fff !important;
-      font-weight:bold;
-      color:#333;
-    }
-    .num-input{ direction:ltr; text-align:left; }
-
-    .separator{
-      border-top:1px dashed #00732f;
-      margin:12px 0;
-      opacity:0.3;
-    }
-
-    .btn{
-      width:100%;
-      background: linear-gradient(135deg, #00732f, #00a342);
-      color:white;
-      padding:16px;
-      border:none;
-      border-radius:10px;
-      font-size:18px;
-      font-weight:bold;
-      cursor:pointer;
-      margin-top:10px;
-    }
-    .btn:disabled{ background:#ccc; cursor:not-allowed; }
-
-    .status{
-      display:none;
-      margin-top:10px;
-      padding:12px;
-      border-radius:10px;
-      border:1px solid #eee;
-      font-size:13px;
-      line-height:1.7;
-      background:#fff !important;
-      color:#333;
-    }
-    .status.success{ border-color:#b7e4c7; background:#ecfdf3 !important; color:#0b5d1e; }
-    .status.error{ border-color:#ffc9c9; background:#fff1f1 !important; color:#8a0f0f; }
-    .status.info{ border-color:#dbeafe; background:#eff6ff !important; color:#0b3a6a; }
-
-    /* ✅ مع عملائنا */
-    .section-title{
+    /* ✅ مزيد من التفاصيل */
+    .hint-line{
       text-align:center;
-      font-weight:900;
-      color:#1b1b1b;
       margin:10px 0 0;
-      font-size:18px;
-    }
-    .section-sub{
-      text-align:center;
-      color:#666;
+      color:#6b7280;
+      font-weight:800;
       font-size:13px;
-      margin:6px 0 0;
     }
-
-    /* ✅ Slider */
-    .slider{
-      width:100%;
-      overflow:hidden;
-      text-align:center;
-      direction:ltr;
-      position:relative;
-      height:260px;
-      background:#fff !important;
-    }
-    .track{
-      display:flex;
-      width:max-content;
-      animation:scroll-loop 40s linear infinite;
-      padding:20px 0;
-      align-items:center;
-      will-change:transform;
-    }
-    .track img{
-      width:260px;
-      height:160px;
-      object-fit:cover;
-      margin:0 15px;
-      border-radius:12px;
-      box-shadow:0 8px 20px rgba(0,0,0,0.1);
-      cursor:zoom-in;
-      background:#fff !important;
-    }
-    @keyframes scroll-loop{ 0%{transform:translateX(0);} 100%{transform:translateX(-50%);} }
-    @media (prefers-reduced-motion: reduce){ .track{ animation:none; } }
-
-    /* ✅ Modal Zoom */
-    #modalOverlay{
-      display:none;
-      position:fixed;
-      top:0; left:0;
-      width:100%; height:100%;
-      background:rgba(0,0,0,0.85);
-      z-index:10000;
-      align-items:center;
-      justify-content:center;
-    }
-    #modalOverlay img{
-      max-width:90%;
-      max-height:80%;
-      border:3px solid #fff;
-      border-radius:10px;
-      background:#fff;
-    }
-
-    /* ✅ Footer */
-    .footer-section{
-      background:#fff !important;
-      border-top:1px solid #eee;
-      margin-top:10px;
-      padding:20px;
-      text-align:center;
-    }
-    .social-links{
-      margin:10px 0 15px;
-      display:flex;
-      justify-content:center;
-      gap:25px;
-    }
-    .social-links a{
-      text-decoration:none;
-      font-size:32px;
-      transition:0.3s;
-    }
-    .fa-facebook{ color:#1877F2; }
-    .fa-linkedin{ color:#0A66C2; }
-    .fa-tiktok{ color:#000; filter:drop-shadow(2px 2px 0px #EE1D52) drop-shadow(-2px -2px 0px #69C9D0); }
-    .fa-instagram{
-      background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fdf497 5%,#fd5949 45%,#d6249f 60%,#285AEB 90%);
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
-    }
-    .fa-whatsapp{ color:#25D366; }
-
-    /* ✅ About section */
-    .about-text{
-      color:#3d4451;
-      font-size:16px;
-      line-height:1.9;
-      margin:0;
-      text-align: justify;
-    }
-
     details{
-      margin-top:14px;
+      margin-top:12px;
       border:1px solid #eee;
       border-radius:16px;
-      padding:12px 12px;
-      background:#fff !important;
+      padding:12px;
+      background:#fff;
     }
     summary{
       cursor:pointer;
       list-style:none;
+      user-select:none;
       font-weight:900;
       color:#111;
       font-size:15px;
@@ -335,9 +94,143 @@
       align-items:center;
       justify-content:center;
       gap:8px;
-      user-select:none;
     }
     summary::-webkit-details-marker{ display:none; }
+
+    .details-box{
+      margin-top:12px;
+      border-radius:16px;
+      border:1px solid #eef2f7;
+      background:#fbfdff;
+      padding:14px;
+    }
+    .details-item{
+      background:#fff;
+      border:1px solid #eef2f7;
+      border-radius:14px;
+      padding:12px;
+      margin:10px 0;
+    }
+    .details-item h3{
+      margin:0 0 8px;
+      font-weight:900;
+      font-size:15px;
+      color:#111827;
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+    .details-item ul{
+      margin:0;
+      padding-right:18px;
+      color:#374151;
+      line-height:1.9;
+      font-weight:700;
+      font-size:14px;
+    }
+    .badge{
+      display:inline-flex;
+      width:22px; height:22px;
+      border-radius:6px;
+      align-items:center; justify-content:center;
+      font-size:13px;
+      font-weight:900;
+      color:#fff;
+      background:#64748b;
+      flex:0 0 auto;
+    }
+
+    .service-title{
+      text-align:center;
+      margin:0 0 12px;
+      font-weight:900;
+      font-size:18px;
+      color:#1b1b1b;
+    }
+
+    .box{
+      background:var(--lg); padding:15px; border-radius:15px;
+      border:1px solid #b2dfdb; margin-bottom:10px; color:#004d40;
+      font-size:14px; line-height:1.8;
+    }
+
+    label{ display:block; margin:15px 0 5px; font-weight:bold; font-size:14px; color:#444; }
+    input, select, textarea{
+      width:100%; padding:12px; margin-bottom:5px; border-radius:8px;
+      border:1px solid #ccc; box-sizing:border-box; font-size:14px;
+      background:#f9f9f9; font-weight:bold; color:#333;
+    }
+    .num-input{ direction:ltr; text-align:left; }
+    .separator{ border-top:1px dashed #00732f; margin:12px 0; opacity:0.3; }
+
+    .btn{
+      width:100%; background:linear-gradient(135deg,#00732f,#00a342);
+      color:white; padding:16px; border:none; border-radius:10px;
+      font-size:18px; font-weight:bold; cursor:pointer; margin-top:10px;
+    }
+    .btn:disabled{ background:#ccc; cursor:not-allowed; }
+
+    .status{
+      display:none; margin-top:10px; padding:12px; border-radius:10px;
+      border:1px solid #eee; font-size:13px; line-height:1.7;
+      background:#fafafa; color:#333;
+    }
+    .status.success{ border-color:#b7e4c7; background:#ecfdf3; color:#0b5d1e; }
+    .status.error{ border-color:#ffc9c9; background:#fff1f1; color:#8a0f0f; }
+    .status.info{ border-color:#dbeafe; background:#eff6ff; color:#0b3a6a; }
+
+    /* ✅ مع عملائنا */
+    .section-title{
+      text-align:center; font-weight:900; color:#1b1b1b;
+      margin:10px 0 0; font-size:18px;
+    }
+    .section-sub{
+      text-align:center; color:#666; font-size:13px; margin:6px 0 0;
+    }
+
+    /* ✅ Slider */
+    .slider{
+      width:100%; overflow:hidden; text-align:center; direction:ltr;
+      position:relative; height:260px;
+    }
+    .track{
+      display:flex; width:max-content; animation:scroll-loop 40s linear infinite;
+      padding:20px 0; align-items:center; will-change:transform;
+    }
+    .track img{
+      width:260px; height:160px; object-fit:cover; margin:0 15px;
+      border-radius:12px; box-shadow:0 8px 20px rgba(0,0,0,0.1);
+      cursor:zoom-in;
+    }
+    @keyframes scroll-loop{ 0%{transform:translateX(0);} 100%{transform:translateX(-50%);} }
+    @media (prefers-reduced-motion: reduce){ .track{ animation:none; } }
+
+    /* ✅ Modal Zoom */
+    #modalOverlay{
+      display:none; position:fixed; top:0; left:0; width:100%; height:100%;
+      background:rgba(0,0,0,0.85); z-index:10000;
+      align-items:center; justify-content:center;
+    }
+    #modalOverlay img{
+      max-width:90%; max-height:80%;
+      border:3px solid #fff; border-radius:10px;
+    }
+
+    /* ✅ Footer */
+    .footer-section{
+      background:#fff; border-top:1px solid #eee; margin-top:10px;
+      padding:20px; text-align:center;
+    }
+    .social-links{ margin:10px 0 15px; display:flex; justify-content:center; gap:25px; }
+    .social-links a{ text-decoration:none; font-size:32px; transition:0.3s; }
+    .fa-facebook{ color:#1877F2; }
+    .fa-linkedin{ color:#0A66C2; }
+    .fa-tiktok{ color:#000; filter:drop-shadow(2px 2px 0px #EE1D52) drop-shadow(-2px -2px 0px #69C9D0); }
+    .fa-instagram{
+      background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fdf497 5%,#fd5949 45%,#d6249f 60%,#285AEB 90%);
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    }
+    .fa-whatsapp{ color:#25D366; }
   </style>
 </head>
 
@@ -349,36 +242,52 @@
 
   <div class="container">
 
-    <!-- ✅ HEADER -->
+    <!-- ✅ الرأس: العنوان + التعريف + مزيد من التفاصيل -->
     <div class="card">
-      <div class="main-title">
-        منصة
-        <span class="oimi-logo title" aria-label="OiMi.ae">
-          O<span class="i">i</span>M<span class="i">i</span>.ae
-        </span>
-      </div>
-      <div class="sub-title">طلب التقييم المهني وعمل السير الذاتية (ATS)</div>
-    </div>
+      <h1 class="logo-title">
+        <span class="oimi-style oimi-logo-title">O<span class="oimi-i">i</span>M<span class="oimi-i">i</span>.ae</span>
+      </h1>
 
-    <!-- ✅ تعريف سريع + مزيد من التفاصيل تحت التعريف -->
-    <div class="card">
-      <p class="about-text">
-        <span class="oimi-logo inline" aria-label="OiMi.ae">O<span class="i">i</span>M<span class="i">i</span>.ae</span>
+      <div class="about-snippet">
+        <span class="oimi-style oimi-logo-inline">O<span class="oimi-i">i</span>M<span class="oimi-i">i</span>.ae</span>
         منصة رقمية رائدة متخصصة في تقديم حلول مهنية متكاملة للباحثين عن عمل في منطقة الشرق الأوسط وشمال أفريقيا.
-        نجمع بين التقييم المهني الاحترافي وصياغة السير الذاتية المحسنة لأنظمة التتبع الآلي (ATS) لضمان وصول المواهب إلى أفضل الفرص.
-      </p>
-
+        نجمع بين التقييم المهني الاحترافي وصياغة السير الذاتية المحسنة لأنظمة التتبع الآلي (ATS) لضمان وصول المواهب العربية إلى أفضل الفرص.
+      </div>
       <details>
-        <summary>مزيد من التفاصيل</summary>
-        <div style="padding:10px 6px; color:#374151; font-weight:700; line-height:1.9;">
-          <div>• تحليل احترافي للسيرة الذاتية وفق معايير ATS.</div>
-          <div>• تحسين الصياغة والإنجازات والمهارات بما يناسب الوظائف المستهدفة.</div>
-          <div>• توجيه مهني مختصر حسب مجال المتقدم.</div>
+        <summary>مزيد من التفاصيل عن خدماتنا 📌</summary>
+
+        <div class="details-box">
+          <div class="details-item">
+            <h3><span class="badge">1</span> ماذا نستلم منك؟</h3>
+            <ul>
+              <li>سيرتك الذاتية الحالية (PDF/صورة).</li>
+              <li>بياناتك الأساسية (الاسم، التخصص، الدولة…).</li>
+              <li>إيصال التحويل لإكمال الطلب.</li>
+            </ul>
+          </div>
+
+          <div class="details-item">
+            <h3><span class="badge">2</span> ماذا نُقدّم لك؟</h3>
+            <ul>
+              <li>تقييم مهني واضح + نقاط قوة وتحسينات.</li>
+              <li>سيرة ذاتية محسّنة لأنظمة ATS.</li>
+              <li>تنسيق احترافي مناسب للتقديم على الوظائف.</li>
+            </ul>
+          </div>
+
+          <div class="details-item">
+            <h3><span class="badge">3</span> كيف يتم التواصل؟</h3>
+            <ul>
+              <li>بعد الإرسال تحصل على رقم تسجيلك فورًا.</li>
+              <li>يمكنك إرسال رسالة واتساب تلقائيًا مع رقم التسجيل.</li>
+              <li>نستخدم بياناتك فقط لإتمام الخدمة (خصوصية أعلى).</li>
+            </ul>
+          </div>
         </div>
       </details>
     </div>
 
-    <!-- ✅ مع عملائنا (قبل الطلب) -->
+    <!-- ✅ مع عملائنا (صار فوق طلب التقييم) -->
     <div class="card" style="padding:16px 18px;">
       <div class="section-title">مع عملائنا</div>
       <div class="section-sub">نماذج من آراء وتجارب عملائنا</div>
@@ -393,11 +302,9 @@
       </div>
     </div>
 
-    <!-- ✅ الطلب -->
+    <!-- ✅ طلب التقييم (صار بعد مع عملائنا) -->
     <div class="card">
-      <h2 class="main-title">
-        <span style="font-weight:900;">طلب التقييم المهني وعمل السير الذاتية (ATS)</span>
-      </h2>
+      <h2 class="service-title">طلب التقييم المهني وعمل السير الذاتية (ATS)</h2>
 
       <form id="oimi-form" autocomplete="on" novalidate>
         <div class="box">
@@ -460,11 +367,10 @@
                oninvalid="this.setCustomValidity('يرجى إدخال بريد إلكتروني صحيح')"
                oninput="this.setCustomValidity('');">
 
-        <label>كيف سمعت عنا؟ *</label>
+        <label>كيف سمعت عننا؟ *</label>
         <select id="u_source" required
-                oninvalid="this.setCustomValidity('يرجى اختيار كيف سمعت عنا')"
+                oninvalid="this.setCustomValidity('يرجى اختيار مصدر التعرف علينا')"
                 oninput="this.setCustomValidity('');">
-          <option value="">اختر...</option>
           <option value="فيسبوك">فيسبوك</option>
           <option value="لينكد إن">لينكد إن</option>
           <option value="تيك توك">تيك توك</option>
@@ -492,20 +398,6 @@
       </form>
     </div>
 
-    <!-- ✅ BMC فقط (بدون تكرار وصف المنصة) -->
-    <div class="card">
-      <details open>
-        <summary>لوحة نموذج الأعمال (Business Model Canvas) 📊</summary>
-        <div style="padding:10px 6px; color:#374151; font-weight:700; line-height:1.9;">
-          <div><strong>1) شبكة الشركاء:</strong> مؤسسات مالية – خبراء HR – مطورو ATS – مزودون سحابيون.</div>
-          <div><strong>2) الأنشطة:</strong> تقييم مهني + صياغة ATS + إرشاد مهني.</div>
-          <div><strong>3) القيمة:</strong> دقة تقنية + تميز مهني + دعم شخصي.</div>
-          <div><strong>4) العلاقات:</strong> من الاستكشاف حتى بناء مجتمع ناجحين.</div>
-        </div>
-      </details>
-    </div>
-
-    <!-- ✅ Footer -->
     <div class="footer-section">
       <div class="social-links">
         <a href="https://wa.me/249900065080" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
@@ -552,7 +444,6 @@
     document.getElementById('modalOverlay').style.display = 'flex';
   }
 
-  // ✅ سلايدر لا نهائي (نضاعف الصور مرة)
   (function enhanceSliderLoop(){
     const track = document.getElementById('track');
     if (!track) return;
@@ -704,7 +595,7 @@
         "رقم الهاتف": "'" + document.getElementById('u_phone').value.trim(),
         "رقم الواتس": "'" + document.getElementById('u_whatsapp').value.trim(),
         "البريد الإلكتروني": document.getElementById('u_email').value,
-        "كيف سمعت عنا": document.getElementById('u_source').value,
+        "كيف سمعت عننا": document.getElementById('u_source').value,
         "ملاحظات": (document.getElementById('u_notes').value || "").trim(),
 
         "رابط السيرة الذاتية": await toBase64(cvFile),
