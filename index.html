@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>OIMI.ae – طلب التقييم المهني والسير الذاتية ATS</title>
+
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-F3QLQPETRG"></script>
   <script>
@@ -10,238 +15,316 @@
     gtag('config', 'G-F3QLQPETRG');
   </script>
 
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>OiMi.ae | طلب تقييم مهني وصياغة سيرة ذاتية ATS</title>
+  <link rel="icon" href="https://i.postimg.cc/cJRw69tq/Favicon-for-OIMI.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-  <meta name="description" content="منصة OiMi.ae للتقييم المهني وصياغة السير الذاتية المحسنة لأنظمة ATS مع إرشاد مهني متخصص.">
-  <meta property="og:title" content="OiMi.ae | طلب تقييم مهني وصياغة سيرة ذاتية ATS">
-  <meta property="og:description" content="حلول مهنية متكاملة تشمل التقييم المهني وصياغة السيرة الذاتية ATS والإرشاد الوظيفي.">
-  <meta property="og:image" content="https://i.postimg.cc/cJRw69tq/Favicon-for-OIMI.png">
-  <meta property="og:url" content="https://www.oimi.ae">
-  <meta property="og:type" content="website">
+<style>
+/* =====================
+   GLOBAL – FORCE WHITE
+   ===================== */
+*{ box-sizing:border-box; }
+html,body{
+  margin:0;
+  padding:0;
+  background:#ffffff !important;
+  color:#000;
+  font-family:'Segoe UI',Tahoma,sans-serif;
+}
+.container{
+  max-width:600px;
+  margin:auto;
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
 
-  <link rel="icon" type="image/x-icon" href="https://i.postimg.cc/cJRw69tq/Favicon-for-OIMI.png">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+/* =====================
+   CARD
+   ===================== */
+.card{
+  background:#ffffff !important;
+  border-radius:20px;
+  padding:18px;
+  border:1px solid #eee;
+  box-shadow:0 8px 25px rgba(0,0,0,.08);
+}
 
-  <style>
-    :root{--p:#00732f;--lg:#e8f5e9}
-    body{margin:0;font-family:'Segoe UI',sans-serif;background:#fff;padding:6px}
-    .container{max-width:600px;margin:auto;display:flex;flex-direction:column;gap:14px}
+/* ==================================================
+   OIMI LOGO – EXACT LIKE YOUR SCREENSHOT (RECT DOTS)
+   O → black
+   i → only dot red (RECTANGLE)
+   M → black
+   i → only dot red (RECTANGLE)
+   .ae → black
+   ================================================== */
 
-    .card{
-      background:#fff;border:1px solid #eee;border-radius:20px;
-      padding:18px;box-shadow:0 10px 30px rgba(0,0,0,.08)
-    }
+:root{
+  --page-bg:#ffffff;   /* must be white */
+  --dot-red:#ff0000;
+}
 
-    /* Logo */
-    .oimi-style{display:inline-flex;direction:ltr;font-weight:900;color:#000}
-    .oimi-i{
-      background:linear-gradient(to bottom,#ff0000 20%,#000 20%);
-      -webkit-background-clip:text;-webkit-text-fill-color:transparent
-    }
+.oimi-logo{
+  display:inline-flex;
+  direction:ltr;
+  align-items:baseline;
+  font-weight:900;
+  color:#000;
+  line-height:1;
+  letter-spacing:-0.4px;
+  font-family:'Segoe UI',Tahoma,sans-serif;
+}
 
-    h1{text-align:center;margin:6px 0 8px;font-size:34px;font-weight:900}
-    .about-text{color:#374151;font-size:16px;line-height:1.9;text-align:justify}
+/* title sizing (matches your screenshot look) */
+.oimi-logo.title{
+  font-size:56px;      /* adjust if you want */
+  /* rectangle dot size */
+  --dot-w: 0.18em;
+  --dot-h: 0.10em;
+  /* dot position (tight to the i) */
+  --dot-top: -0.58em;
 
-    .section-title{text-align:center;font-size:20px;font-weight:900;margin:6px 0}
-    .section-sub{text-align:center;font-size:13px;color:#666}
+  /* mask to hide original dot */
+  --mask-w: 0.32em;
+  --mask-h: 0.32em;
+  --mask-top: -0.72em;
+}
 
-    /* Slider */
-    .slider{overflow:hidden;direction:ltr;height:240px}
-    .track{display:flex;width:max-content;animation:scroll 40s linear infinite}
-    .track img{
-      width:240px;height:150px;object-fit:cover;margin:0 14px;
-      border-radius:12px;cursor:zoom-in;
-      box-shadow:0 6px 16px rgba(0,0,0,.1)
-    }
-    @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+/* inline sizing */
+.oimi-logo.inline{
+  font-size:1.05em;
+  --dot-w: 0.18em;
+  --dot-h: 0.10em;
+  --dot-top: -0.58em;
 
-    /* Form */
-    label{display:block;margin-top:14px;font-weight:800;font-size:14px}
-    input,select,textarea{
-      width:100%;padding:12px;border-radius:8px;border:1px solid #ccc;
-      background:#f9f9f9;font-weight:700;margin-top:4px
-    }
-    .num-input{direction:ltr;text-align:left}
+  --mask-w: 0.32em;
+  --mask-h: 0.32em;
+  --mask-top: -0.72em;
+}
 
-    .btn{
-      width:100%;margin-top:16px;padding:16px;border:none;border-radius:12px;
-      background:linear-gradient(135deg,#00732f,#00a342);
-      color:#fff;font-size:18px;font-weight:900;cursor:pointer
-    }
-    .btn:disabled{background:#ccc}
+/* the i */
+.oimi-logo .i{
+  position:relative;
+  display:inline-block;
+  color:#000;
+}
 
-    .status{
-      display:none;margin-top:10px;padding:12px;border-radius:10px;font-size:13px
-    }
-    .status.error{background:#fff1f1;color:#8a0f0f;border:1px solid #ffc9c9}
-    .status.success{background:#ecfdf3;color:#0b5d1e;border:1px solid #b7e4c7}
-    .status.info{background:#eff6ff;color:#0b3a6a;border:1px solid #dbeafe}
+/* hide the font original dot */
+.oimi-logo .i::before{
+  content:"";
+  position:absolute;
+  width:var(--mask-w);
+  height:var(--mask-h);
+  background:var(--page-bg);
+  left:50%;
+  transform:translateX(-50%);
+  top:var(--mask-top);
+  border-radius:0; /* IMPORTANT: no circle */
+  z-index:1;
+}
 
-    /* Footer */
-    .footer-section{border-top:1px solid #eee;text-align:center;padding:18px}
-    .social-links{display:flex;justify-content:center;gap:24px;margin-bottom:10px}
-    .social-links a{font-size:30px;text-decoration:none}
-    .fa-whatsapp{color:#25D366}
-    .fa-tiktok{color:#000}
-  </style>
+/* draw the red rectangle dot */
+.oimi-logo .i::after{
+  content:"";
+  position:absolute;
+  width:var(--dot-w);
+  height:var(--dot-h);
+  background:var(--dot-red);
+  left:50%;
+  transform:translateX(-50%);
+  top:var(--dot-top);
+  border-radius:0; /* rectangle like screenshot */
+  z-index:2;
+}
+
+/* =====================
+   TITLES
+   ===================== */
+.main-title{
+  text-align:center;
+  margin:0;
+}
+.sub-title{
+  text-align:center;
+  font-size:16px;
+  color:#444;
+  margin-top:6px;
+}
+
+/* =====================
+   FORM
+   ===================== */
+label{
+  display:block;
+  margin:14px 0 6px;
+  font-weight:700;
+}
+input,select,textarea{
+  width:100%;
+  padding:12px;
+  border-radius:8px;
+  border:1px solid #ccc;
+  background:#ffffff;
+  font-size:14px;
+}
+textarea{ resize:vertical; }
+.num-input{ direction:ltr; }
+
+.btn{
+  margin-top:16px;
+  width:100%;
+  padding:16px;
+  border:none;
+  border-radius:12px;
+  background:#00732f;
+  color:#fff;
+  font-size:18px;
+  font-weight:900;
+  cursor:pointer;
+}
+.btn:disabled{ opacity:.6; cursor:not-allowed; }
+
+.status{
+  display:none;
+  margin-top:12px;
+  padding:12px;
+  border-radius:10px;
+  font-size:13px;
+}
+.status.error{ background:#fff1f1; color:#900; border:1px solid #f5bcbc; }
+.status.success{ background:#f0fff4; color:#065f46; border:1px solid #9ae6b4; }
+.status.info{ background:#f8fafc; color:#334155; border:1px solid #e5e7eb; }
+
+/* =====================
+   CLIENTS
+   ===================== */
+.section-title{
+  text-align:center;
+  font-size:18px;
+  font-weight:900;
+}
+.section-sub{
+  text-align:center;
+  font-size:13px;
+  color:#666;
+}
+
+.slider{
+  overflow:hidden;
+  direction:ltr;
+  background:#ffffff !important;
+}
+.track{
+  display:flex;
+  gap:16px;
+  animation:scroll 40s linear infinite;
+}
+.track img{
+  width:260px;
+  height:160px;
+  border-radius:12px;
+  object-fit:cover;
+}
+@keyframes scroll{
+  from{ transform:translateX(0); }
+  to{ transform:translateX(-50%); }
+}
+
+/* =====================
+   FOOTER
+   ===================== */
+.footer-section{
+  background:#ffffff !important;
+  border-top:1px solid #eee;
+  padding:20px;
+  text-align:center;
+}
+.social-links{
+  display:flex;
+  justify-content:center;
+  gap:24px;
+  font-size:30px;
+}
+.social-links a{ color:#000; text-decoration:none; }
+.fa-whatsapp{ color:#25D366; }
+.fa-facebook{ color:#1877F2; }
+.fa-linkedin{ color:#0A66C2; }
+.fa-tiktok{ color:#000; }
+.fa-instagram{
+  background:linear-gradient(45deg,#f58529,#dd2a7b,#8134af,#515bd4);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+</style>
 </head>
 
 <body>
 
-<div id="modalOverlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);align-items:center;justify-content:center;z-index:9999"
-     onclick="this.style.display='none'">
-  <img id="modalImg" style="max-width:90%;max-height:80%;border-radius:10px;border:3px solid #fff">
-</div>
-
 <div class="container">
 
-  <!-- H1 -->
+  <!-- HEADER -->
   <div class="card">
-    <h1>
-      <span class="oimi-style">O<span class="oimi-i">i</span>M<span class="oimi-i">i</span>.ae</span>
-    </h1>
-    <p class="about-text">
-      <span class="oimi-style">O<span class="oimi-i">i</span>M<span class="oimi-i">i</span>.ae</span>
-      منصة رقمية متخصصة في التقييم المهني وصياغة السير الذاتية المحسّنة لأنظمة ATS،
-      مع إرشاد مهني يراعي متطلبات سوق العمل في الشرق الأوسط وشمال أفريقيا.
-    </p>
+    <div class="main-title">
+      <span class="oimi-logo title" aria-label="OiMi.ae">
+        O<span class="i">i</span>M<span class="i">i</span>.ae
+      </span>
+    </div>
+    <div class="sub-title">طلب التقييم المهني وعمل السير الذاتية (ATS)</div>
   </div>
 
-  <!-- مع عملائنا -->
+  <!-- CLIENTS -->
   <div class="card">
     <div class="section-title">مع عملائنا</div>
-    <div class="section-sub">نماذج من تجارب عملائنا</div>
-
+    <div class="section-sub">نماذج من تجارب وآراء عملائنا</div>
     <div class="slider">
       <div class="track" id="track">
-        <img src="https://i.postimg.cc/vHPSwW3p/528604980-10162083330481298-381945114741787991-n.jpg" onclick="zoomImg(this.src)">
-        <img src="https://i.postimg.cc/sDn0Cpwb/585747945-10162491435001298-5020852638269490297-n.jpg" onclick="zoomImg(this.src)">
-        <img src="https://i.postimg.cc/Wb9fcMXY/QVZo-ZFNzc-Wdi-MUx2a-HJMUFRhe-GJza-TZI.jpg" onclick="zoomImg(this.src)">
-        <img src="https://i.postimg.cc/kXjhPxf1/Screen-Shot-2022-01-14-at-9-42-42-AM.jpg" onclick="zoomImg(this.src)">
+        <img src="https://i.postimg.cc/vHPSwW3p/528604980-10162083330481298-381945114741787991-n.jpg" alt="">
+        <img src="https://i.postimg.cc/sDn0Cpwb/585747945-10162491435001298-5020852638269490297-n.jpg" alt="">
+        <img src="https://i.postimg.cc/Wb9fcMXY/QVZo-ZFNzc-Wdi-MUx2a-HJMUFRhe-GJza-TZI.jpg" alt="">
       </div>
     </div>
   </div>
 
-  <!-- الطلب -->
+  <!-- FORM -->
   <div class="card">
-    <div class="section-title">طلب التقييم المهني وعمل السير الذاتية (ATS)</div>
+    <form id="oimi-form">
+      <label>الاسم الرباعي (بالعربية)</label>
+      <input required>
 
-    <form id="oimi-form" novalidate>
-      <label>الاسم الرباعي (بالعربية) *</label>
-      <input id="u_name_ar" required>
+      <label>الاسم الرباعي (بالإنجليزية)</label>
+      <input required>
 
-      <label>الاسم الرباعي (بالإنجليزية) *</label>
-      <input id="u_name_en" class="num-input" required>
+      <label>البريد الإلكتروني</label>
+      <input type="email" required>
 
-      <label>التخصص المهني *</label>
-      <input id="u_spec" required>
-
-      <label>بلد الإقامة *</label>
-      <select id="u_country" required>
-        <option value="">اختر الدولة...</option>
-        <option value="السودان">السودان</option>
-        <option value="الإمارات">الإمارات</option>
-        <option value="السعودية">السعودية</option>
-        <option value="مصر">مصر</option>
-        <option value="قطر">قطر</option>
-        <option value="عمان">عمان</option>
-      </select>
-
-      <label>رقم الهاتف *</label>
-      <input id="u_phone" class="num-input" required>
-
-      <label>رقم الواتساب *</label>
-      <input id="u_whatsapp" class="num-input" required>
-
-      <label>البريد الإلكتروني *</label>
-      <input id="u_email" type="email" required>
-
-      <label>كيف سمعت عنا؟ *</label>
-      <select id="u_source" required>
-        <option value="فيسبوك">فيسبوك</option>
-        <option value="لينكد إن">لينكد إن</option>
-        <option value="تيك توك">تيك توك</option>
-        <option value="انستقرام">انستقرام</option>
-        <option value="صديق">عن طريق صديق</option>
-      </select>
-
-      <label>ملاحظات إضافية (اختياري)</label>
-      <textarea id="u_notes"></textarea>
-
-      <label>أرفق السيرة الذاتية *</label>
-      <input id="cv_file" type="file" required>
-
-      <label>أرفق إيصال التحويل *</label>
-      <input id="receipt_file" type="file" required>
-
-      <button class="btn" id="submitBtn">إرسال الطلب وحفظ البيانات</button>
-      <div id="statusBox" class="status"></div>
+      <button class="btn">إرسال الطلب وحفظ البيانات</button>
+      <div id="statusBox" class="status info"></div>
     </form>
   </div>
 
+  <!-- FOOTER -->
   <div class="footer-section">
     <div class="social-links">
-      <a href="https://wa.me/249900065080" target="_blank"><i class="fab fa-whatsapp"></i></a>
-      <a href="https://www.tiktok.com/@oimi.ae" target="_blank"><i class="fab fa-tiktok"></i></a>
+      <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+      <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+      <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
     </div>
-    <p style="font-size:11px;color:#aaa">OiMi.ae © 2026</p>
+    <p style="font-size:12px;color:#aaa;margin-top:10px;">
+      © 2026 OIMI.ae
+    </p>
   </div>
 
 </div>
 
 <script>
-  const scriptURL="https://script.google.com/macros/s/AKfycbxn86Bymuy6kFwBVl3UC6fXD8UKJUpKwWN6fNefOHDX_6XFH1vbzXF_AwVd2HHxhzCT/exec";
-  const OIMI_TOKEN="oimi22026";
-
-  function zoomImg(src){
-    modalImg.src=src;
-    modalOverlay.style.display="flex";
-  }
-
-  const form=document.getElementById("oimi-form");
-  const statusBox=document.getElementById("statusBox");
-
-  form.addEventListener("submit",async e=>{
-    e.preventDefault();
-    statusBox.style.display="block";
-    statusBox.className="status info";
-    statusBox.textContent="جاري الإرسال...";
-
-    try{
-      const payload={
-        "_token":OIMI_TOKEN,
-        "الاسم العربي":u_name_ar.value,
-        "الاسم الانجليزي":u_name_en.value,
-        "التخصص المهني":u_spec.value,
-        "بلد الإقامة":u_country.value,
-        "رقم الهاتف":u_phone.value,
-        "رقم الواتس":u_whatsapp.value,
-        "البريد الإلكتروني":u_email.value,
-
-        /* حل نهائي */
-        "كيف سمعت عنا":u_source.value,
-        "كيف سمعت عننا":u_source.value,
-
-        "ملاحظات":u_notes.value
-      };
-
-      const r=await fetch(scriptURL,{method:"POST",body:JSON.stringify(payload)});
-      const j=await r.json();
-
-      if(j.status==="success"){
-        statusBox.className="status success";
-        statusBox.textContent="تم بنجاح ✅ رقم تسجيلك: "+j.uniqueId;
-        form.reset();
-      }else{
-        throw new Error(j.message);
-      }
-    }catch(err){
-      statusBox.className="status error";
-      statusBox.textContent=err.message||"حدث خطأ أثناء الإرسال";
-    }
+/* duplicate slider for infinite loop */
+const track=document.getElementById('track');
+if(track){
+  [...track.children].forEach(img=>{
+    track.appendChild(img.cloneNode(true));
   });
+}
 </script>
 
 </body>
