@@ -642,3 +642,650 @@
 
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-F3QLQPETRG"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-F3QLQPETRG');
+  </script>
+
+  <link rel="icon" type="image/x-icon" href="https://i.postimg.cc/cJRw69tq/Favicon-for-OIMI.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>منصة OIMI - طلب تقييم مهني وسير ذاتية ATS</title>
+
+  <meta property="og:title" content="منصة OIMI - طلب تقييم مهني وسير ذاتية ATS">
+  <meta property="og:description" content="منصة رقمية رائدة لتقديم الحلول المهنية المتكاملة وبناء السير الذاتية الاحترافية.">
+  <meta property="og:image" content="https://i.postimg.cc/cJRw69tq/Favicon-for-OIMI.png">
+  <meta property="og:url" content="https://www.oimi.ae">
+  <meta property="og:type" content="website">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+  <style>
+    :root { --p: #00732f; --lg: #e8f5e9; }
+
+    body{
+      background:#fff; margin:0; font-family:'Segoe UI',sans-serif;
+      padding:5px; text-align:right; overflow-x:hidden;
+    }
+    .container{ max-width:600px; margin:auto; display:flex; flex-direction:column; gap:10px; }
+
+    .card{
+      background:#fff; padding:18px; border-radius:20px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.1); border:1px solid #eee;
+    }
+
+    /* ✅ Logo style */
+    .oimi-style{ display:inline-flex; align-items:baseline; direction:ltr; font-weight:bold; color:#000; }
+    .oimi-i{
+      display:inline-block; line-height:1;
+      background:linear-gradient(to bottom,#ff0000 20%,#000000 20%);
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    }
+    .oimi-logo-inline{ font-size: 1.05em; }
+    .oimi-logo-title{ font-size: 42px; }
+
+    /* ✅ Titles */
+    .logo-title{
+      text-align:center;
+      font-weight:900;
+      margin:0 0 12px;
+      line-height:1.1;
+    }
+    .logo-title .oimi-style{ font-size:46px; }
+
+    .about-snippet{
+      background:#fff;
+      border:1px solid #eef2f7;
+      border-radius:16px;
+      padding:14px;
+      color:#3d4451;
+      font-size:15px;
+      line-height:1.9;
+      text-align: justify;
+      font-weight:700;
+      margin:0 0 12px;
+    }
+
+    /* ✅ مزيد من التفاصيل */
+    .hint-line{
+      text-align:center;
+      margin:10px 0 0;
+      color:#6b7280;
+      font-weight:800;
+      font-size:13px;
+    }
+    details{
+      margin-top:12px;
+      border:1px solid #eee;
+      border-radius:16px;
+      padding:12px;
+      background:#fff;
+    }
+    summary{
+      cursor:pointer;
+      list-style:none;
+      user-select:none;
+      font-weight:900;
+      color:#111;
+      font-size:15px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+    }
+    summary::-webkit-details-marker{ display:none; }
+
+    .details-box{
+      margin-top:12px;
+      border-radius:16px;
+      border:1px solid #eef2f7;
+      background:#fbfdff;
+      padding:14px;
+    }
+    .details-item{
+      background:#fff;
+      border:1px solid #eef2f7;
+      border-radius:14px;
+      padding:12px;
+      margin:10px 0;
+    }
+    .details-item h3{
+      margin:0 0 8px;
+      font-weight:900;
+      font-size:15px;
+      color:#111827;
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+    .details-item ul{
+      margin:0;
+      padding-right:18px;
+      color:#374151;
+      line-height:1.9;
+      font-weight:700;
+      font-size:14px;
+    }
+    .badge{
+      display:inline-flex;
+      width:22px; height:22px;
+      border-radius:6px;
+      align-items:center; justify-content:center;
+      font-size:13px;
+      font-weight:900;
+      color:#fff;
+      background:#64748b;
+      flex:0 0 auto;
+    }
+
+    .service-title{
+      text-align:center;
+      margin:0 0 12px;
+      font-weight:900;
+      font-size:18px;
+      color:#1b1b1b;
+    }
+
+    .box{
+      background:var(--lg); padding:15px; border-radius:15px;
+      border:1px solid #b2dfdb; margin-bottom:10px; color:#004d40;
+      font-size:14px; line-height:1.8;
+    }
+
+    label{ display:block; margin:15px 0 5px; font-weight:bold; font-size:14px; color:#444; }
+    input, select, textarea{
+      width:100%; padding:12px; margin-bottom:5px; border-radius:8px;
+      border:1px solid #ccc; box-sizing:border-box; font-size:14px;
+      background:#f9f9f9; font-weight:bold; color:#333;
+    }
+    .num-input{ direction:ltr; text-align:left; }
+    .separator{ border-top:1px dashed #00732f; margin:12px 0; opacity:0.3; }
+
+    .btn{
+      width:100%; background:linear-gradient(135deg,#00732f,#00a342);
+      color:white; padding:16px; border:none; border-radius:10px;
+      font-size:18px; font-weight:bold; cursor:pointer; margin-top:10px;
+    }
+    .btn:disabled{ background:#ccc; cursor:not-allowed; }
+
+    .status{
+      display:none; margin-top:10px; padding:12px; border-radius:10px;
+      border:1px solid #eee; font-size:13px; line-height:1.7;
+      background:#fafafa; color:#333;
+    }
+    .status.success{ border-color:#b7e4c7; background:#ecfdf3; color:#0b5d1e; }
+    .status.error{ border-color:#ffc9c9; background:#fff1f1; color:#8a0f0f; }
+    .status.info{ border-color:#dbeafe; background:#eff6ff; color:#0b3a6a; }
+
+    /* ✅ مع عملائنا */
+    .section-title{
+      text-align:center; font-weight:900; color:#1b1b1b;
+      margin:10px 0 0; font-size:18px;
+    }
+    .section-sub{
+      text-align:center; color:#666; font-size:13px; margin:6px 0 0;
+    }
+
+    /* ✅ Slider */
+    .slider{
+      width:100%; overflow:hidden; text-align:center; direction:ltr;
+      position:relative; height:260px;
+    }
+    .track{
+      display:flex; width:max-content; animation:scroll-loop 40s linear infinite;
+      padding:20px 0; align-items:center; will-change:transform;
+    }
+    .track img{
+      width:260px; height:160px; object-fit:cover; margin:0 15px;
+      border-radius:12px; box-shadow:0 8px 20px rgba(0,0,0,0.1);
+      cursor:zoom-in;
+    }
+    @keyframes scroll-loop{ 0%{transform:translateX(0);} 100%{transform:translateX(-50%);} }
+  @media (prefers-reduced-motion: reduce){
+  .track{ animation: scroll-loop 40s linear infinite !important; }
+}
+
+
+    /* ✅ Modal Zoom */
+    #modalOverlay{
+      display:none; position:fixed; top:0; left:0; width:100%; height:100%;
+      background:rgba(0,0,0,0.85); z-index:10000;
+      align-items:center; justify-content:center;
+    }
+    #modalOverlay img{
+      max-width:90%; max-height:80%;
+      border:3px solid #fff; border-radius:10px;
+    }
+
+    /* ✅ Footer */
+    .footer-section{
+      background:#fff; border-top:1px solid #eee; margin-top:10px;
+      padding:20px; text-align:center;
+    }
+    .social-links{ margin:10px 0 15px; display:flex; justify-content:center; gap:25px; }
+    .social-links a{ text-decoration:none; font-size:32px; transition:0.3s; }
+    .fa-facebook{ color:#1877F2; }
+    .fa-linkedin{ color:#0A66C2; }
+    .fa-tiktok{ color:#000; filter:drop-shadow(2px 2px 0px #EE1D52) drop-shadow(-2px -2px 0px #69C9D0); }
+    .fa-instagram{
+      background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fdf497 5%,#fd5949 45%,#d6249f 60%,#285AEB 90%);
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    }
+    .fa-whatsapp{ color:#25D366; }
+  </style>
+</head>
+
+<body>
+
+  <div id="modalOverlay" onclick="this.style.display='none'">
+    <img id="modalImg" alt="صورة مكبرة">
+  </div>
+
+  <div class="container">
+
+    <!-- ✅ الرأس: العنوان + التعريف + مزيد من التفاصيل -->
+    <div class="card">
+      <h1 class="logo-title">
+        <span class="oimi-style oimi-logo-title">O<span class="oimi-i">i</span>M<span class="oimi-i">i</span>.ae</span>
+      </h1>
+
+      <div class="about-snippet">
+        <span class="oimi-style oimi-logo-inline">O<span class="oimi-i">i</span>M<span class="oimi-i">i</span>.ae</span>
+        منصة رقمية رائدة متخصصة في تقديم حلول مهنية متكاملة للباحثين عن عمل في منطقة الشرق الأوسط وشمال أفريقيا.
+        نجمع بين التقييم المهني الاحترافي وصياغة السير الذاتية المحسنة لأنظمة التتبع الآلي (ATS) لضمان وصول المواهب العربية إلى أفضل الفرص.
+      </div>
+      <details>
+        <summary>مزيد من التفاصيل عن خدماتنا 📌</summary>
+
+        <div class="details-box">
+          <div class="details-item">
+            <h3><span class="badge">1</span> ماذا نستلم منك؟</h3>
+            <ul>
+              <li>سيرتك الذاتية الحالية (PDF/صورة).</li>
+              <li>بياناتك الأساسية (الاسم، التخصص، الدولة…).</li>
+              <li>إيصال التحويل لإكمال الطلب.</li>
+            </ul>
+          </div>
+
+          <div class="details-item">
+            <h3><span class="badge">2</span> ماذا نُقدّم لك؟</h3>
+            <ul>
+              <li>تقييم مهني واضح + نقاط قوة وتحسينات.</li>
+              <li>سيرة ذاتية محسّنة لأنظمة ATS.</li>
+              <li>تنسيق احترافي مناسب للتقديم على الوظائف.</li>
+            </ul>
+          </div>
+
+          <div class="details-item">
+            <h3><span class="badge">3</span> كيف يتم التواصل؟</h3>
+            <ul>
+              <li>بعد الإرسال تحصل على رقم تسجيلك فورًا.</li>
+              <li>يمكنك إرسال رسالة واتساب تلقائيًا مع رقم التسجيل.</li>
+              <li>نستخدم بياناتك فقط لإتمام الخدمة (خصوصية أعلى).</li>
+            </ul>
+          </div>
+        </div>
+      </details>
+    </div>
+
+    <!-- ✅ مع عملائنا (صار فوق طلب التقييم) -->
+    <div class="card" style="padding:16px 18px;">
+      <div class="section-title">مع عملائنا</div>
+      <div class="section-sub">نماذج من آراء وتجارب عملائنا</div>
+
+      <div class="slider">
+        <div class="track" id="track">
+          <img src="https://i.postimg.cc/vHPSwW3p/528604980-10162083330481298-381945114741787991-n.jpg" onclick="zoomImg(this.src)" alt="">
+          <img src="https://i.postimg.cc/sDn0Cpwb/585747945-10162491435001298-5020852638269490297-n.jpg" onclick="zoomImg(this.src)" alt="">
+          <img src="https://i.postimg.cc/Wb9fcMXY/QVZo-ZFNzc-Wdi-MUx2a-HJMUFRhe-GJza-TZI.jpg" onclick="zoomImg(this.src)" alt="">
+          <img src="https://i.postimg.cc/kXjhPxf1/Screen-Shot-2022-01-14-at-9-42-42-AM.jpg" onclick="zoomImg(this.src)" alt="">
+        </div>
+      </div>
+    </div>
+
+    <!-- ✅ طلب التقييم (صار بعد مع عملائنا) -->
+    <div class="card">
+      <h2 class="service-title">طلب التقييم المهني وعمل السير الذاتية (ATS)</h2>
+
+      <form id="oimi-form" autocomplete="on" novalidate>
+        <div class="box">
+          <strong>✅ خطوات إتمام الطلب:</strong><br>
+          ١. تحويل رسوم الخدمة (50,000 جنيه) لبنك الخرطوم (بنكك): 4623370 (باسم الأستاذ / عمر إبراهيم)<br>
+          ٢. أكمل المعلومات بجميع الحقول أدناه.<br>
+          ٣. اضغط "إرسال" لحفظ بياناتك والحصول على رقم تسجيلك.
+          <div class="separator"></div>
+          <div style="text-align:center;">
+            <a href="https://wa.me/249900065080" target="_blank" rel="noopener"
+               style="color:#00732f; font-weight:bold; text-decoration:none;">
+              إذا كنت تواجه صعوبة في سداد الرسوم؟ اضغط هنا للتواصل معنا.
+            </a>
+          </div>
+        </div>
+
+        <label>الاسم الرباعي (بالعربية) *</label>
+        <input type="text" id="u_name_ar" placeholder="أدخل الاسم بالعربي" required
+               pattern=".*[\u0600-\u06FF].*"
+               oninvalid="this.setCustomValidity('يرجى إدخال الاسم باللغة العربية')"
+               oninput="this.setCustomValidity(''); this.value=this.value.replace(/[^ \u0600-\u06FF]/g,'')">
+
+        <label>الاسم الرباعي (بالإنجليزية) *</label>
+        <input type="text" id="u_name_en" class="num-input" placeholder="Full Name in English" required
+               oninvalid="this.setCustomValidity('يرجى إدخال الاسم باللغة الإنجليزية')"
+               oninput="this.setCustomValidity(''); this.value=this.value.replace(/[^A-Za-z .'-]/g,'')">
+
+        <label>التخصص المهني *</label>
+        <input type="text" id="u_spec" placeholder="مثلاً: محاسب" required
+               oninvalid="this.setCustomValidity('يرجى إدخال التخصص المهني')"
+               oninput="this.setCustomValidity('');">
+
+        <label>بلد الإقامة *</label>
+        <select id="u_country" required onchange="handleCountryChange(this)"
+                oninvalid="this.setCustomValidity('يرجى اختيار بلد الإقامة')"
+                oninput="this.setCustomValidity('');">
+          <option value="">اختر الدولة...</option>
+          <option value="السودان">السودان</option>
+          <option value="الإمارات">الإمارات</option>
+          <option value="السعودية">السعودية</option>
+          <option value="مصر">مصر</option>
+          <option value="قطر">قطر</option>
+          <option value="عمان">عمان</option>
+        </select>
+
+        <label>رقم الهاتف *</label>
+        <input type="tel" id="u_phone" class="num-input" placeholder="00..." required
+               minlength="10" maxlength="25"
+               oninvalid="this.setCustomValidity('يرجى إدخال رقم هاتف صحيح')"
+               oninput="this.setCustomValidity('');">
+
+        <label>رقم الواتساب *</label>
+        <input type="tel" id="u_whatsapp" class="num-input" placeholder="00..." required
+               minlength="10" maxlength="25"
+               oninvalid="this.setCustomValidity('يرجى إدخال رقم واتساب صحيح')"
+               oninput="this.setCustomValidity('');">
+
+        <label>البريد الإلكتروني *</label>
+        <input type="email" id="u_email" placeholder="mail@example.com" required
+               oninvalid="this.setCustomValidity('يرجى إدخال بريد إلكتروني صحيح')"
+               oninput="this.setCustomValidity('');">
+
+        <label>كيف سمعت عننا؟ *</label>
+        <select id="u_source" required
+                oninvalid="this.setCustomValidity('يرجى اختيار مصدر التعرف علينا')"
+                oninput="this.setCustomValidity('');">
+          <option value="فيسبوك">فيسبوك</option>
+          <option value="لينكد إن">لينكد إن</option>
+          <option value="تيك توك">تيك توك</option>
+          <option value="انستقرام">انستقرام</option>
+          <option value="صديق">عن طريق صديق</option>
+        </select>
+
+        <label>ملاحظات إضافية (اختياري)</label>
+        <textarea id="u_notes" rows="3" placeholder="أدخل أي ملاحظات إضافية هنا..."></textarea>
+
+        <div class="separator" style="opacity:0.1;"></div>
+
+        <label>أرفق السيرة الذاتية (PDF/صورة) *</label>
+        <input type="file" id="cv_file" accept=".pdf,image/*" required
+               oninvalid="this.setCustomValidity('يرجى إرفاق السيرة الذاتية')"
+               oninput="this.setCustomValidity('');">
+
+        <label>أرفق صورة إيصال التحويل *</label>
+        <input type="file" id="receipt_file" accept="image/*" required
+               oninvalid="this.setCustomValidity('يرجى إرفاق صورة إيصال التحويل')"
+               oninput="this.setCustomValidity('');">
+
+        <button type="submit" class="btn" id="submitBtn">إرسال الطلب وحفظ البيانات</button>
+        <div id="statusBox" class="status info" aria-live="polite"></div>
+      </form>
+    </div>
+
+    <div class="footer-section">
+      <div class="social-links">
+        <a href="https://wa.me/249900065080" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        <a href="#" onclick="return false;" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.tiktok.com/@oimi.ae" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+        <a href="#" onclick="return false;" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        <a href="#" onclick="return false;" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+      </div>
+      <p style="font-size:11px; color:#aaa; margin-top:10px;">OIMI.ae &copy; 2026</p>
+    </div>
+
+  </div>
+
+<script>
+  // ✅ Web App URL
+  const scriptURL = "https://script.google.com/macros/s/AKfycbxn86Bymuy6kFwBVl3UC6fXD8UKJUpKwWN6fNefOHDX_6XFH1vbzXF_AwVd2HHxhzCT/exec";
+
+  // ✅ Token (مطابق ل Script Properties: OIMI_TOKEN)
+  const OIMI_TOKEN = "oimi22026";
+
+  const countryCodes = { "السودان":"00249","الإمارات":"00971","السعودية":"00966","مصر":"0020","قطر":"00974","عمان":"00968" };
+  const countryRules = {
+    "السودان":  { code:"00249", nsn:9  },
+    "الإمارات": { code:"00971", nsn:9  },
+    "السعودية": { code:"00966", nsn:9  },
+    "مصر":      { code:"0020",  nsn:10 },
+    "قطر":      { code:"00974", nsn:8  },
+    "عمان":     { code:"00968", nsn:8  }
+  };
+
+  const statusBox = document.getElementById('statusBox');
+  function setStatus(type, msg){
+    statusBox.className = 'status ' + type;
+    statusBox.style.display = 'block';
+    statusBox.textContent = msg;
+  }
+  function clearStatus(){
+    statusBox.style.display = 'none';
+    statusBox.textContent = '';
+  }
+
+  function zoomImg(src){
+    document.getElementById('modalImg').src = src;
+    document.getElementById('modalOverlay').style.display = 'flex';
+  }
+
+  (function enhanceSliderLoop(){
+    const track = document.getElementById('track');
+    if (!track) return;
+    const imgs = Array.from(track.querySelectorAll('img'));
+    imgs.forEach(img => track.appendChild(img.cloneNode(true)));
+  })();
+
+  function mb(bytes){ return bytes / (1024*1024); }
+  function onlyDigits(s){ return String(s || "").replace(/\D/g, ""); }
+
+  function handleCountryChange(el){
+    const code = countryCodes[el.value] || "";
+    const w = document.getElementById('u_whatsapp');
+    const p = document.getElementById('u_phone');
+    if (!code) return;
+
+    w.value = code; p.value = code;
+
+    [w,p].forEach(input=>{
+      input.addEventListener('input', function(){
+        this.setCustomValidity('');
+        if (!this.value.startsWith(code) && !this.value.startsWith("+")) this.value = code;
+        this.value = this.value.replace(/[^0-9+]/g,'');
+      }, {passive:true});
+      input.addEventListener('invalid', function(){
+        this.setCustomValidity('يرجى إدخال رقم صحيح');
+      });
+    });
+  }
+
+  function normalizeIntlNumber(raw, country){
+    const rule = countryRules[country];
+    if (!rule) return null;
+    const nsn = rule.nsn;
+    const cc = onlyDigits(rule.code).replace(/^00/, "");
+    const s = String(raw || "").trim();
+    const hasPlus = s.startsWith("+");
+    let digits = s.replace(/\D/g, "");
+
+    if (digits.startsWith("00" + cc)) {
+    } else if (digits.startsWith(cc)) {
+      digits = "00" + digits;
+    } else if (hasPlus && digits.startsWith(cc)) {
+      digits = "00" + digits;
+    } else if (digits.startsWith("0") && digits.length === nsn + 1) {
+      digits = "00" + cc + digits.substring(1);
+    } else {
+      return null;
+    }
+
+    const expectedTotal = 2 + cc.length + nsn;
+    if (digits.length !== expectedTotal) return null;
+
+    const afterCode = digits.substring(("00" + cc).length);
+    if (afterCode.startsWith("0")) return { ok:false };
+
+    return { ok:true, normalizedDigits: digits };
+  }
+
+  function validateCountryAndPhones(){
+    const country = document.getElementById('u_country').value;
+    if (!country){ setStatus('error','يرجى اختيار بلد الإقامة.'); return false; }
+
+    const phoneEl = document.getElementById('u_phone');
+    const waEl = document.getElementById('u_whatsapp');
+
+    const phoneNorm = normalizeIntlNumber(phoneEl.value, country);
+    if (!phoneNorm || !phoneNorm.ok){ setStatus('error','رقم الهاتف غير صحيح حسب الدولة المختارة.'); return false; }
+
+    const waNorm = normalizeIntlNumber(waEl.value, country);
+    if (!waNorm || !waNorm.ok){ setStatus('error','رقم الواتساب غير صحيح حسب الدولة المختارة.'); return false; }
+
+    phoneEl.value = phoneNorm.normalizedDigits;
+    waEl.value = waNorm.normalizedDigits;
+    return true;
+  }
+
+  const MAX_CV_MB = 5;
+  const MAX_RECEIPT_MB = 3;
+
+  function toBase64(file){
+    return new Promise((resolve, reject)=>{
+      const r = new FileReader();
+      r.onload = () => {
+        try { resolve(String(r.result).split(',')[1]); }
+        catch { reject(new Error("فشل تحويل الملف")); }
+      };
+      r.onerror = () => reject(new Error("تعذر قراءة الملف"));
+      r.readAsDataURL(file);
+    });
+  }
+
+  async function fetchWithTimeout(url, options={}, timeoutMs=45000){
+    const controller = new AbortController();
+    const id = setTimeout(()=>controller.abort(), timeoutMs);
+    try { return await fetch(url, { ...options, signal: controller.signal }); }
+    finally { clearTimeout(id); }
+  }
+
+  const form = document.getElementById('oimi-form');
+  const nameArEl = document.getElementById('u_name_ar');
+
+  function ensureArabicNameRequired(){
+    const v = (nameArEl.value || "").trim();
+    if (!v || !/[\u0600-\u06FF]/.test(v)){
+      nameArEl.setCustomValidity('يرجى إدخال الاسم باللغة العربية');
+      return false;
+    }
+    nameArEl.setCustomValidity('');
+    return true;
+  }
+  nameArEl.addEventListener('input', ensureArabicNameRequired);
+
+  form.addEventListener('submit', async (e)=>{
+    e.preventDefault();
+    clearStatus();
+
+    nameArEl.value = (nameArEl.value || "").trim();
+    document.getElementById('u_name_en').value = (document.getElementById('u_name_en').value || "").trim();
+    document.getElementById('u_spec').value = (document.getElementById('u_spec').value || "").trim();
+    document.getElementById('u_email').value = (document.getElementById('u_email').value || "").trim();
+
+    if (!ensureArabicNameRequired()){ form.reportValidity(); return; }
+    if (!form.checkValidity()){ form.reportValidity(); return; }
+    if (!validateCountryAndPhones()) return;
+
+    const btn = document.getElementById('submitBtn');
+    if (btn.disabled) return;
+
+    const cvFile = document.getElementById('cv_file').files[0];
+    const receiptFile = document.getElementById('receipt_file').files[0];
+
+    if (!cvFile || !receiptFile){ setStatus('error','يرجى إرفاق السيرة الذاتية والإيصال.'); return; }
+    if (mb(cvFile.size) > MAX_CV_MB){ setStatus('error',`حجم السيرة الذاتية كبير. الحد الأقصى ${MAX_CV_MB}MB.`); return; }
+    if (mb(receiptFile.size) > MAX_RECEIPT_MB){ setStatus('error',`حجم الإيصال كبير. الحد الأقصى ${MAX_RECEIPT_MB}MB.`); return; }
+
+    btn.disabled = true;
+    btn.innerHTML = "جاري الحفظ وإرسال الملفات...";
+    setStatus('info','جاري إرسال البيانات... لا تغلق الصفحة.');
+
+    try{
+      const payload = {
+        "_token": OIMI_TOKEN,
+
+        "الاسم العربي": nameArEl.value,
+        "الاسم الانجليزي": document.getElementById('u_name_en').value,
+        "التخصص المهني": document.getElementById('u_spec').value,
+        "بلد الإقامة": document.getElementById('u_country').value,
+        "رقم الهاتف": "'" + document.getElementById('u_phone').value.trim(),
+        "رقم الواتس": "'" + document.getElementById('u_whatsapp').value.trim(),
+        "البريد الإلكتروني": document.getElementById('u_email').value,
+        "كيف سمعت عننا": document.getElementById('u_source').value,
+        "ملاحظات": (document.getElementById('u_notes').value || "").trim(),
+
+        "رابط السيرة الذاتية": await toBase64(cvFile),
+        "رابط الإيصال": await toBase64(receiptFile),
+
+        "cv_name": cvFile.name,
+        "cv_mime": cvFile.type || "application/octet-stream",
+        "receipt_name": receiptFile.name,
+        "receipt_mime": receiptFile.type || "application/octet-stream"
+      };
+
+      const response = await fetchWithTimeout(scriptURL, {
+        method: "POST",
+        body: JSON.stringify(payload)
+      }, 45000);
+
+      const text = await response.text();
+      let result;
+      try { result = JSON.parse(text); }
+      catch { throw new Error("رد غير مفهوم من السيرفر"); }
+
+      if (result.status === "success"){
+        setStatus('success', "تم بنجاح ✅ رقم تسجيلك: " + result.uniqueId);
+
+        const waMsg = `مرحباً منصة OIMI ✅\nأكملت التسجيل بنجاح.\nالاسم: ${payload["الاسم العربي"]}\nرقم التسجيل: ${result.uniqueId}`;
+        window.open(`https://wa.me/249900065080?text=${encodeURIComponent(waMsg)}`, "_blank");
+
+        form.reset();
+      } else {
+        setStatus('error', result.message || "حدث خطأ أثناء الإرسال، حاول مرة أخرى.");
+      }
+
+    } catch(err){
+      const msg = (err && err.name === "AbortError")
+        ? "انتهت مهلة الإرسال. يرجى إعادة المحاولة عند استقرار الإنترنت."
+        : "نعتذر، واجهنا مشكلة في الاتصال. يرجى التأكد من استقرار الإنترنت وإعادة المحاولة.";
+      setStatus('error', msg);
+    } finally {
+      btn.disabled = false;
+      btn.innerHTML = "إرسال الطلب وحفظ البيانات";
+    }
+  });
+</script>
+
+</body>
+</html>
