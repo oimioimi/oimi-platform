@@ -69,13 +69,6 @@
     }
 
     /* ✅ مزيد من التفاصيل */
-    .hint-line{
-      text-align:center;
-      margin:10px 0 0;
-      color:#6b7280;
-      font-weight:800;
-      font-size:13px;
-    }
     details{
       margin-top:12px;
       border:1px solid #eee;
@@ -194,21 +187,33 @@
       position:relative; height:260px;
     }
     .track{
-      display:flex; width:max-content; animation:scroll-loop 15s linear infinite;
+      display:flex; width:max-content;
+      animation:scroll-loop 15s linear infinite;
       padding:20px 0; align-items:center; will-change:transform;
     }
     .track img{
       width:260px; height:160px; object-fit:cover; margin:0 15px;
       border-radius:12px; box-shadow:0 8px 20px rgba(0,0,0,0.1);
       cursor:zoom-in;
+      touch-action: manipulation;
     }
-.slider:hover .track,
-.slider:focus-within .track{
-  animation-play-state: paused;
-  -webkit-animation-play-state: paused;
-}
-    @keyframes scroll-loop{ 0%{transform:translateX(0);} 100%{transform:translateX(-50%);} }
-    @media (prefers-reduced-motion: reduce){ .track{ animation:none; } }
+
+    /* ✅ إيقاف بالماوس (كمبيوتر) */
+    .slider:hover .track,
+    .slider:focus-within .track{
+      animation-play-state: paused;
+      -webkit-animation-play-state: paused;
+    }
+
+    @keyframes scroll-loop{
+      0%{transform:translateX(0);}
+      100%{transform:translateX(-50%);}
+    }
+
+    /* ✅ تقليل الحركة */
+    @media (prefers-reduced-motion: reduce){
+      .track{ animation:none; }
+    }
 
     /* ✅ Modal Zoom */
     #modalOverlay{
@@ -238,44 +243,16 @@
     .fa-whatsapp{ color:#25D366; }
   </style>
 </head>
-<script>
-(function(){
-  const slider = document.querySelector('.slider');
-  const track  = document.querySelector('.track');
-  if(!slider || !track) return;
-
-  let paused = false;
-  let touchingImage = false;
-
-  // الجوال: لمسة = إيقاف / تشغيل
-  slider.addEventListener('touchstart', (e)=>{
-    // لو اللمس على صورة لا نوقف الحركة هنا
-    if(e.target.tagName === 'IMG'){
-      touchingImage = true;
-      return;
-    }
-
-    paused = !paused;
-    track.style.animationPlayState = paused ? 'paused' : 'running';
-    track.style.webkitAnimationPlayState = paused ? 'paused' : 'running';
-  }, {passive:true});
-
-  slider.addEventListener('touchend', ()=>{
-    touchingImage = false;
-  });
-
-})();
-</script>
 
 <body>
 
-  <div id="modalOverlay" onclick="this.style.display='none'">
+  <div id="modalOverlay" onclick="closeModal()">
     <img id="modalImg" alt="صورة مكبرة">
   </div>
 
   <div class="container">
 
-    <!-- ✅ الرأس: العنوان + التعريف + مزيد من التفاصيل -->
+    <!-- ✅ الرأس -->
     <div class="card">
       <h1 class="logo-title">
         <span class="oimi-style oimi-logo-title">O<span class="oimi-i">i</span>M<span class="oimi-i">i</span>.ae</span>
@@ -286,6 +263,7 @@
         منصة رقمية رائدة متخصصة في تقديم حلول مهنية متكاملة للباحثين عن عمل في منطقة الشرق الأوسط وشمال أفريقيا.
         نجمع بين التقييم المهني الاحترافي وصياغة السير الذاتية المحسنة لأنظمة التتبع الآلي (ATS) لضمان وصول المواهب العربية إلى أفضل الفرص.
       </div>
+
       <details>
         <summary>مزيد من التفاصيل عن خدماتنا 📌</summary>
 
@@ -320,7 +298,7 @@
       </details>
     </div>
 
-    <!-- ✅ مع عملائنا (صار فوق طلب التقييم) -->
+    <!-- ✅ مع عملائنا -->
     <div class="card" style="padding:16px 18px;">
       <div class="section-title">مع عملائنا</div>
       <div class="section-sub">نماذج من آراء وتجارب عملائنا</div>
@@ -335,7 +313,7 @@
       </div>
     </div>
 
-    <!-- ✅ طلب التقييم (صار بعد مع عملائنا) -->
+    <!-- ✅ طلب التقييم -->
     <div class="card">
       <h2 class="service-title">طلب التقييم المهني وعمل السير الذاتية (ATS)</h2>
 
@@ -448,7 +426,7 @@
   // ✅ Web App URL
   const scriptURL = "https://script.google.com/macros/s/AKfycbxn86Bymuy6kFwBVl3UC6fXD8UKJUpKwWN6fNefOHDX_6XFH1vbzXF_AwVd2HHxhzCT/exec";
 
-  // ✅ Token (مطابق ل Script Properties: OIMI_TOKEN)
+  // ✅ Token
   const OIMI_TOKEN = "oimi22026";
 
   const countryCodes = { "السودان":"00249","الإمارات":"00971","السعودية":"00966","مصر":"0020","قطر":"00974","عمان":"00968" };
@@ -472,17 +450,71 @@
     statusBox.textContent = '';
   }
 
+  // ✅ تحكم موحّد في حالة السلايدر
+  let SLIDER_PAUSED = false;
+  function setSliderPaused(paused){
+    SLIDER_PAUSED = paused;
+    const track = document.querySelector('.track');
+    if (!track) return;
+    track.style.animationPlayState = paused ? 'paused' : 'running';
+    track.style.webkitAnimationPlayState = paused ? 'paused' : 'running';
+  }
+
+  // ✅ تكبير الصورة: يوقف السلايدر
   function zoomImg(src){
     document.getElementById('modalImg').src = src;
     document.getElementById('modalOverlay').style.display = 'flex';
+    setSliderPaused(true);
   }
 
+  // ✅ إغلاق التكبير: يرجع السلايدر يشتغل دائمًا
+  function closeModal(){
+    const overlay = document.getElementById('modalOverlay');
+    if (overlay) overlay.style.display = 'none';
+    setSliderPaused(false);
+  }
+
+  // ✅ Loop سلس: نسخ الصور داخل الـ track
   (function enhanceSliderLoop(){
     const track = document.getElementById('track');
     if (!track) return;
     const imgs = Array.from(track.querySelectorAll('img'));
     imgs.forEach(img => track.appendChild(img.cloneNode(true)));
   })();
+
+  // ✅ سلوك الجوال الذكي: Tap يوقف/يشغل — Swipe لا يوقف — Tap على الصورة تكبير فقط
+  document.addEventListener('DOMContentLoaded', ()=>{
+    const slider = document.querySelector('.slider');
+    const track  = document.querySelector('.track');
+    if(!slider || !track) return;
+
+    let startX = 0, startY = 0;
+    let moved = false;
+    const MOVE_THRESHOLD = 10;
+
+    slider.addEventListener('touchstart', (e)=>{
+      const t = e.touches && e.touches[0];
+      if (!t) return;
+      moved = false;
+      startX = t.clientX;
+      startY = t.clientY;
+    }, {passive:true});
+
+    slider.addEventListener('touchmove', (e)=>{
+      const t = e.touches && e.touches[0];
+      if (!t) return;
+      const dx = Math.abs(t.clientX - startX);
+      const dy = Math.abs(t.clientY - startY);
+      if (dx > MOVE_THRESHOLD || dy > MOVE_THRESHOLD) moved = true;
+    }, {passive:true});
+
+    slider.addEventListener('touchend', (e)=>{
+      if (moved) return; // Swipe/Scroll لا يوقف
+      const target = e.target;
+      if (target && target.tagName === 'IMG') return; // Tap على صورة: تكبير فقط
+      setSliderPaused(!SLIDER_PAUSED); // Tap على الفراغ: toggle
+    }, {passive:true});
+  });
 
   function mb(bytes){ return bytes / (1024*1024); }
   function onlyDigits(s){ return String(s || "").replace(/\D/g, ""); }
@@ -674,3 +706,4 @@
 </script>
 
 </body>
+</html>
