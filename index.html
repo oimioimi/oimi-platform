@@ -46,6 +46,21 @@
     .oimi-logo-inline{ font-size: 1.05em; }
     .oimi-logo-title{ font-size: 42px; }
 
+    /* ✅ (إضافة صغيرة فقط) Lockup لعرض "منصة" يمين OIMI */
+    .brand-lockup{
+      display:inline-flex;
+      align-items:baseline;
+      gap:10px;
+      direction:rtl; /* ✅ يخلي أول عنصر في DOM يظهر يمين بصريًا */
+      justify-content:center;
+    }
+    .brand-platform{
+      font-weight:900;
+      color:#111;
+      font-size:0.56em; /* متناسق مع عنوان اللوقو */
+      line-height:1;
+    }
+
     /* ✅ Titles */
     .logo-title{
       text-align:center;
@@ -192,28 +207,27 @@
     .slider{
       width:100%; overflow:hidden; text-align:center; direction:ltr;
       position:relative;
-      height:220px;                 /* ✅ أقل فراغ فوق/تحت */
+      height:220px;
     }
     .track{
       display:flex; width:max-content;
       animation:scroll-loop 15s linear infinite;
-      padding:8px 0;                /* ✅ تقليل الفراغ داخل الشريط */
+      padding:8px 0;
       align-items:center; will-change:transform;
     }
     .track img{
       width:260px;
-      height:200px;                 /* ✅ زيادة طول الصور */
+      height:200px;
       object-fit:cover;
-      margin:0 12px;                /* ✅ تقليل المسافة بين الصور */
+      margin:0 12px;
       border-radius:14px;
-      box-shadow:                    /* ✅ شادو أقوى */
+      box-shadow:
         0 16px 40px rgba(0,0,0,0.22),
         0 6px 14px rgba(0,0,0,0.14);
       cursor:zoom-in;
       touch-action: manipulation;
     }
 
-    /* ✅ إيقاف بالماوس (كمبيوتر) */
     .slider:hover .track,
     .slider:focus-within .track{
       animation-play-state: paused;
@@ -314,11 +328,17 @@
 
     <div class="card">
       <h1 class="logo-title">
-        <span class="oimi-style oimi-logo-title">O<span class="oimi-i">i</span>M<span class="oimi-i">i</span>.ae</span>
+        <span class="brand-lockup">
+          <span class="brand-platform">منصة</span>
+          <span class="oimi-style oimi-logo-title">O<span class="oimi-i">i</span>M<span class="oimi-i">i</span></span>
+        </span>
       </h1>
 
       <div class="about-snippet">
-        <span class="oimi-style oimi-logo-inline">O<span class="oimi-i">i</span>M<span class="oimi-i">i</span>.ae</span>
+        <span class="brand-lockup" style="justify-content:flex-start;">
+          <span class="brand-platform" style="font-size:1em;">منصة</span>
+          <span class="oimi-style oimi-logo-inline">O<span class="oimi-i">i</span>M<span class="oimi-i">i</span></span>
+        </span>
         منصة مهنية رقمية متخصصة في مساعدة الأفراد على تقديم أنفسهم باحتراف في سوق العمل، من خلال التقييم المهني وصياغة وتحسين السير الذاتية المتوافقة مع أنظمة التوظيف الحديثة (ATS).
         نركز على رفع جودة الملف المهني وتمكينك من عرض خبراتك ومهاراتك بشكل احترافي، دون التدخل في عمليات التوظيف أو الترشيح الوظيفي.
       </div>
@@ -482,12 +502,35 @@
     </div>
 
     <div class="card" id="legal">
+
+      <!-- ✅ إضافة (بيانات الجهة/المزوّد) -->
+      <div class="policy-card" id="provider">
+        <h3>بيانات الجهة/المزوّد</h3>
+        <ul>
+          <li>
+            الاسم القانوني:
+            <span class="brand-lockup" style="gap:8px;">
+              <span class="brand-platform" style="font-size:14px;">منصة</span>
+              <span class="oimi-style oimi-logo-inline">O<span class="oimi-i">i</span>M<span class="oimi-i">i</span></span>
+            </span>
+          </li>
+          <li>وسيلة تواصل رسمية: هاتف/واتساب <span class="num-input" style="font-weight:900;">00249900065080</span></li>
+          <li>البريد الإلكتروني الرسمي: <strong>info@oimi.ae</strong></li>
+        </ul>
+      </div>
+
+      <div class="separator" style="margin:16px 0; opacity:0.15;"></div>
+
       <div class="policy-card" id="disclaimer">
         <h3>إخلاء مسؤولية قانوني</h3>
         <div>
-          منصة <strong>OIMI</strong> هي منصة خدمات مهنية رقمية مستقلة، تقدم خدمات التقييم المهني وصياغة وتحسين السير الذاتية والملفات المهنية فقط.
+          منصة
+          <span class="oimi-style oimi-logo-inline">O<span class="oimi-i">i</span>M<span class="oimi-i">i</span></span>
+          هي منصة خدمات مهنية رقمية مستقلة، تقدم خدمات التقييم المهني وصياغة وتحسين السير الذاتية والملفات المهنية فقط.
           <br><br>
-          لا تقدم OIMI خدمات توظيف، ولا تعمل كوسيط توظيف، ولا تضمن الحصول على وظيفة أو مقابلة عمل، ولا تمثل أي جهة توظيف داخل أو خارج دولة الإمارات العربية المتحدة.
+          لا تقدم منصة
+          <span class="oimi-style oimi-logo-inline">O<span class="oimi-i">i</span>M<span class="oimi-i">i</span></span>
+          خدمات توظيف، ولا تعمل كوسيط توظيف، ولا تضمن الحصول على وظيفة أو مقابلة عمل، ولا تمثل أي جهة توظيف داخل أو خارج دولة الإمارات العربية المتحدة.
           <br><br>
           جميع الخدمات المقدمة هي خدمات رقمية تُنفذ عن بُعد، وتُقدم لأغراض التطوير المهني فقط.
         </div>
@@ -499,13 +542,19 @@
       <div class="policy-card" id="terms">
         <h3>الشروط والأحكام</h3>
         <ul>
-          <li>باستخدامك لمنصة <strong>OIMI</strong> فإنك توافق على هذه الشروط.</li>
-          <li>تقدم OIMI خدمات مهنية رقمية تشمل التقييم المهني وصياغة وتحسين السير الذاتية والملفات المهنية فقط.</li>
-          <li>لا تضمن OIMI التوظيف أو القبول الوظيفي أو الحصول على مقابلات عمل.</li>
+          <li>باستخدامك لمنصة <span class="oimi-style oimi-logo-inline">O<span class="oimi-i">i</span>M<span class="oimi-i">i</span></span> فإنك توافق على هذه الشروط.</li>
+          <li>تقدم المنصة خدمات مهنية رقمية تشمل التقييم المهني وصياغة وتحسين السير الذاتية والملفات المهنية فقط.</li>
+          <li>لا تضمن المنصة التوظيف أو القبول الوظيفي أو الحصول على مقابلات عمل.</li>
           <li>الرسوم المدفوعة هي مقابل الخدمة المهنية المقدمة فقط، ولا ترتبط بأي نتيجة توظيف.</li>
           <li>يتم تنفيذ جميع الخدمات عن بُعد وبناءً على المعلومات والملفات التي يقدمها العميل.</li>
-          <li>لا تتحمل OIMI مسؤولية أي قرارات توظيف تتخذها جهات خارجية.</li>
-          <li>بعد بدء تنفيذ الخدمة، لا يمكن استرجاع الرسوم إلا في حال عدم تنفيذ الخدمة المتفق عليها.</li>
+          <li>لا تتحمل المنصة مسؤولية أي قرارات توظيف تتخذها جهات خارجية.</li>
+
+          <!-- ✅ تعديل سياسة الاسترجاع/الإلغاء (كما طلبت) -->
+          <li>بدء تنفيذ الخدمة يكون <strong>فوريًا</strong> بعد تأكيد استلام الطلب والملفات (السيرة الذاتية + بيانات الطلب + إيصال التحويل).</li>
+          <li>مدة التسليم المتوقعة: خلال <strong>7 أيام</strong> من تاريخ بدء التنفيذ.</li>
+          <li>سياسة الإلغاء/الاسترجاع: نظراً لأن الخدمة تُنفّذ فوراً وبشكل رقمي مخصص لكل عميل، فلا يتم استرجاع الرسوم بعد بدء التنفيذ، ويُستثنى من ذلك فقط حالة عدم تنفيذ الخدمة أو عدم تسليم المخرجات خلال مدة التسليم المذكورة دون سبب راجع للعميل.</li>
+          <li>آلية الشكوى والمتابعة: عبر واتساب <span class="num-input" style="font-weight:900;">00249900065080</span> أو عبر البريد الإلكتروني <strong>info@oimi.ae</strong>.</li>
+
           <li>قد يتم تحديث هذه الشروط من وقت لآخر دون إشعار مسبق.</li>
         </ul>
       </div>
@@ -515,7 +564,8 @@
       <div class="policy-card" id="about">
         <h3>من نحن</h3>
         <div>
-          <strong>OIMI</strong> مبادرة سودانية لخدمة الباحثين عن عمل، ومنصة مهنية رقمية متخصصة في مساعدة الأفراد على تقديم أنفسهم باحتراف في سوق العمل، من خلال التقييم المهني وصياغة السير الذاتية المتوافقة مع أنظمة التوظيف الحديثة (ATS).
+          منصة <span class="oimi-style oimi-logo-inline">O<span class="oimi-i">i</span>M<span class="oimi-i">i</span></span>
+          مبادرة سودانية لخدمة الباحثين عن عمل، ومنصة مهنية رقمية متخصصة في مساعدة الأفراد على تقديم أنفسهم باحتراف في سوق العمل، من خلال التقييم المهني وصياغة السير الذاتية المتوافقة مع أنظمة التوظيف الحديثة (ATS).
           <br><br>
           نعمل على تحسين جودة الملفات المهنية وتمكين الأفراد من عرض خبراتهم ومهاراتهم بشكل احترافي، دون التدخل في عمليات التوظيف أو الترشيح الوظيفي.
         </div>
@@ -538,7 +588,9 @@
       </div>
 
       <p style="font-size:12px; color:#666; margin:10px 0 5px;">تدار العمليات المالية والخدمية وفقاً للوائح جمهورية السودان</p>
-      <p style="font-size:11px; color:#aaa; margin-top:5px;">OIMI.ae &copy; 2026</p>
+      <p style="font-size:11px; color:#aaa; margin-top:5px;">
+        منصة <span class="oimi-style oimi-logo-inline">O<span class="oimi-i">i</span>M<span class="oimi-i">i</span></span> &copy; 2026
+      </p>
     </div>
 
   </div>
