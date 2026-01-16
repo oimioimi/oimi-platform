@@ -249,6 +249,58 @@
       -webkit-background-clip:text; -webkit-text-fill-color:transparent;
     }
     .fa-whatsapp{ color:#25D366; }
+
+    /* ✅ Legal / Policy Blocks */
+    .policy-card{
+      background:#fff;
+      border:1px solid #eef2f7;
+      border-radius:16px;
+      padding:14px;
+      line-height:1.9;
+      color:#111827;
+      font-size:14px;
+      font-weight:700;
+    }
+    .policy-card h3{
+      margin:0 0 10px;
+      font-size:15px;
+      font-weight:900;
+      text-align:center;
+      color:#111;
+    }
+    .policy-card ul{
+      margin:0;
+      padding-right:18px;
+      color:#374151;
+      font-size:14px;
+      line-height:1.9;
+      font-weight:700;
+    }
+    .mini-note{
+      margin-top:10px;
+      font-size:12px;
+      color:#6b7280;
+      font-weight:800;
+      text-align:center;
+    }
+    .footer-legal-links{
+      margin-top:10px;
+      display:flex;
+      justify-content:center;
+      gap:12px;
+      flex-wrap:wrap;
+      font-size:12px;
+      font-weight:900;
+    }
+    .footer-legal-links a{
+      color:#00732f;
+      text-decoration:none;
+      border:1px solid #d1fae5;
+      background:#ecfdf5;
+      padding:6px 10px;
+      border-radius:999px;
+    }
+    .footer-legal-links a:hover{ opacity:0.9; }
   </style>
 </head>
 
@@ -266,10 +318,11 @@
         <span class="oimi-style oimi-logo-title">O<span class="oimi-i">i</span>M<span class="oimi-i">i</span>.ae</span>
       </h1>
 
+      <!-- ✅ صياغة تسويقية محمية (من نحن) -->
       <div class="about-snippet">
         <span class="oimi-style oimi-logo-inline">O<span class="oimi-i">i</span>M<span class="oimi-i">i</span>.ae</span>
-        منصة رقمية رائدة متخصصة في تقديم حلول مهنية متكاملة للباحثين عن عمل في منطقة الشرق الأوسط وشمال أفريقيا.
-        نجمع بين التقييم المهني الاحترافي وصياغة السير الذاتية المحسنة لأنظمة التتبع الآلي (ATS) لضمان وصول المواهب العربية إلى أفضل الفرص.
+        منصة مهنية رقمية متخصصة في مساعدة الأفراد على تقديم أنفسهم باحتراف في سوق العمل، من خلال التقييم المهني وصياغة وتحسين السير الذاتية المتوافقة مع أنظمة التوظيف الحديثة (ATS).
+        نركز على رفع جودة الملف المهني وتمكينك من عرض خبراتك ومهاراتك بشكل احترافي، دون التدخل في عمليات التوظيف أو الترشيح الوظيفي.
       </div>
 
       <details>
@@ -302,6 +355,16 @@
               <li>نستخدم بياناتك فقط لإتمام الخدمة (خصوصية أعلى).</li>
             </ul>
           </div>
+
+          <!-- ✅ توضيح مختصر داخل التفاصيل (يحميك ويقلل سوء الفهم) -->
+          <div class="details-item">
+            <h3><span class="badge">4</span> تنبيه مهم</h3>
+            <ul>
+              <li>الخدمة المقدمة هي خدمة رقمية مهنية (تقييم/سيرة ذاتية/ATS) فقط.</li>
+              <li>لا نقدم خدمات توظيف، ولا نضمن وظيفة أو مقابلة.</li>
+              <li>الرسوم مقابل الخدمة فقط وليست مرتبطة بنتائج التوظيف.</li>
+            </ul>
+          </div>
         </div>
       </details>
     </div>
@@ -331,6 +394,13 @@
           ١. تحويل رسوم الخدمة (50,000 جنيه) لبنك الخرطوم (بنكك): 4623370 (باسم الأستاذ / عمر إبراهيم)<br>
           ٢. أكمل المعلومات بجميع الحقول أدناه.<br>
           ٣. اضغط "إرسال" لحفظ بياناتك والحصول على رقم تسجيلك.
+          <div class="separator"></div>
+
+          <!-- ✅ سطر توضيحي سريع داخل صندوق الخطوات (بدون إزعاج) -->
+          <div style="font-weight:900; color:#0b5d1e; margin-top:6px;">
+            تنبيه: الرسوم مقابل الخدمة المهنية الرقمية فقط (تقييم/سيرة ذاتية/ATS) ولا ترتبط بالتوظيف أو ضمان وظيفة.
+          </div>
+
           <div class="separator"></div>
           <div style="text-align:center;">
             <a href="https://wa.me/249900065080" target="_blank" rel="noopener"
@@ -417,6 +487,48 @@
       </form>
     </div>
 
+    <!-- ✅ قسم قانوني/سياسات (دمج الثلاثة) -->
+    <div class="card" id="legal">
+      <div class="policy-card" id="disclaimer">
+        <h3>إخلاء مسؤولية قانوني</h3>
+        <div>
+          منصة <strong>OIMI</strong> هي منصة خدمات مهنية رقمية مستقلة، تقدم خدمات التقييم المهني وصياغة وتحسين السير الذاتية والملفات المهنية فقط.
+          <br><br>
+          لا تقدم OIMI خدمات توظيف، ولا تعمل كوسيط توظيف، ولا تضمن الحصول على وظيفة أو مقابلة عمل، ولا تمثل أي جهة توظيف داخل أو خارج دولة الإمارات العربية المتحدة.
+          <br><br>
+          جميع الخدمات المقدمة هي خدمات رقمية تُنفذ عن بُعد، وتُقدم لأغراض التطوير المهني فقط.
+        </div>
+        <div class="mini-note">نهدف لرفع جودة ملفك المهني ووضوحه للسوق، دون أي وعود أو ضمانات توظيف.</div>
+      </div>
+
+      <div class="separator" style="margin:16px 0; opacity:0.15;"></div>
+
+      <div class="policy-card" id="terms">
+        <h3>الشروط والأحكام</h3>
+        <ul>
+          <li>باستخدامك لمنصة <strong>OIMI</strong> فإنك توافق على هذه الشروط.</li>
+          <li>تقدم OIMI خدمات مهنية رقمية تشمل التقييم المهني وصياغة وتحسين السير الذاتية والملفات المهنية فقط.</li>
+          <li>لا تضمن OIMI التوظيف أو القبول الوظيفي أو الحصول على مقابلات عمل.</li>
+          <li>الرسوم المدفوعة هي مقابل الخدمة المهنية المقدمة فقط، ولا ترتبط بأي نتيجة توظيف.</li>
+          <li>يتم تنفيذ جميع الخدمات عن بُعد وبناءً على المعلومات والملفات التي يقدمها العميل.</li>
+          <li>لا تتحمل OIMI مسؤولية أي قرارات توظيف تتخذها جهات خارجية.</li>
+          <li>بعد بدء تنفيذ الخدمة، لا يمكن استرجاع الرسوم إلا في حال عدم تنفيذ الخدمة المتفق عليها.</li>
+          <li>قد يتم تحديث هذه الشروط من وقت لآخر دون إشعار مسبق.</li>
+        </ul>
+      </div>
+
+      <div class="separator" style="margin:16px 0; opacity:0.15;"></div>
+
+      <div class="policy-card" id="about">
+        <h3>من نحن</h3>
+        <div>
+          <strong>OIMI</strong> منصة مهنية رقمية متخصصة في مساعدة الأفراد على تقديم أنفسهم باحتراف في سوق العمل، من خلال التقييم المهني وصياغة السير الذاتية المتوافقة مع أنظمة التوظيف الحديثة (ATS).
+          <br><br>
+          نعمل على تحسين جودة الملفات المهنية وتمكين الأفراد من عرض خبراتهم ومهاراتهم بشكل احترافي، دون التدخل في عمليات التوظيف أو الترشيح الوظيفي.
+        </div>
+      </div>
+    </div>
+
     <div class="footer-section">
       <div class="social-links">
         <a href="https://wa.me/249900065080" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
@@ -425,6 +537,14 @@
         <a href="#" onclick="return false;" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
         <a href="#" onclick="return false;" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
       </div>
+
+      <!-- ✅ روابط سريعة للجزء القانوني (بدون صفحات إضافية) -->
+      <div class="footer-legal-links">
+        <a href="#disclaimer">إخلاء المسؤولية</a>
+        <a href="#terms">الشروط والأحكام</a>
+        <a href="#about">من نحن</a>
+      </div>
+
       <p style="font-size:11px; color:#aaa; margin-top:10px;">OIMI.ae &copy; 2026</p>
     </div>
 
