@@ -46,19 +46,19 @@
     .oimi-logo-inline{ font-size: 1.05em; }
     .oimi-logo-title{ font-size: 42px; }
 
-    /* ✅ (إضافة صغيرة فقط) Lockup لعرض "منصة" يمين OIMI */
+    /* ✅ "منصة" يمين الاسم */
     .brand-lockup{
       display:inline-flex;
       align-items:baseline;
-      gap:10px;
-      direction:rtl; /* ✅ يخلي أول عنصر في DOM يظهر يمين بصريًا */
-      justify-content:center;
+      gap:8px;
+      direction:rtl;
+      white-space:nowrap;
     }
     .brand-platform{
       font-weight:900;
       color:#111;
-      font-size:0.56em; /* متناسق مع عنوان اللوقو */
       line-height:1;
+      font-size:1em;
     }
 
     /* ✅ Titles */
@@ -84,13 +84,6 @@
     }
 
     /* ✅ مزيد من التفاصيل */
-    .hint-line{
-      text-align:center;
-      margin:10px 0 0;
-      color:#6b7280;
-      font-weight:800;
-      font-size:13px;
-    }
     details{
       margin-top:12px;
       border:1px solid #eee;
@@ -203,7 +196,7 @@
       text-align:center; color:#666; font-size:13px; margin:6px 0 0;
     }
 
-    /* ✅ Slider — V2.3 (تعديل المطلوب فقط) */
+    /* ✅ Slider — V2.3 */
     .slider{
       width:100%; overflow:hidden; text-align:center; direction:ltr;
       position:relative;
@@ -227,7 +220,6 @@
       cursor:zoom-in;
       touch-action: manipulation;
     }
-
     .slider:hover .track,
     .slider:focus-within .track{
       animation-play-state: paused;
@@ -237,7 +229,7 @@
     @keyframes scroll-loop{ 0%{transform:translateX(0);} 100%{transform:translateX(-50%);} }
     @media (prefers-reduced-motion: reduce){ .track{ animation:none; } }
 
-    /* ✅ Modal Zoom */
+    /* ✅ Modal Zoom (Images) */
     #modalOverlay{
       display:none; position:fixed; top:0; left:0; width:100%; height:100%;
       background:rgba(0,0,0,0.85); z-index:10000;
@@ -264,39 +256,6 @@
     }
     .fa-whatsapp{ color:#25D366; }
 
-    /* ✅ Legal / Policy Blocks */
-    .policy-card{
-      background:#fff;
-      border:1px solid #eef2f7;
-      border-radius:16px;
-      padding:14px;
-      line-height:1.9;
-      color:#111827;
-      font-size:14px;
-      font-weight:700;
-    }
-    .policy-card h3{
-      margin:0 0 10px;
-      font-size:15px;
-      font-weight:900;
-      text-align:center;
-      color:#111;
-    }
-    .policy-card ul{
-      margin:0;
-      padding-right:18px;
-      color:#374151;
-      font-size:14px;
-      line-height:1.9;
-      font-weight:700;
-    }
-    .mini-note{
-      margin-top:10px;
-      font-size:12px;
-      color:#6b7280;
-      font-weight:800;
-      text-align:center;
-    }
     .footer-legal-links{
       margin-top:10px;
       display:flex;
@@ -313,15 +272,160 @@
       background:#ecfdf5;
       padding:6px 10px;
       border-radius:999px;
+      cursor:pointer;
     }
     .footer-legal-links a:hover{ opacity:0.9; }
+
+    /* ✅ Legal Modal */
+    #legalModalOverlay{
+      display:none; position:fixed; inset:0;
+      background:rgba(0,0,0,0.65);
+      z-index:12000;
+      align-items:center;
+      justify-content:center;
+      padding:12px;
+    }
+    .legal-modal{
+      width:min(620px, 100%);
+      background:#fff;
+      border-radius:18px;
+      box-shadow:0 18px 55px rgba(0,0,0,0.25);
+      border:1px solid #eee;
+      overflow:hidden;
+    }
+    .legal-modal-header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding:12px 14px;
+      border-bottom:1px solid #eee;
+      background:#fbfbfb;
+    }
+    .legal-modal-title{
+      font-weight:900;
+      color:#111;
+      font-size:14px;
+      margin:0;
+    }
+    .legal-modal-close{
+      border:none;
+      background:#111;
+      color:#fff;
+      font-weight:900;
+      border-radius:10px;
+      padding:8px 12px;
+      cursor:pointer;
+      font-size:12px;
+    }
+    .legal-modal-body{
+      padding:14px;
+      max-height:min(70vh, 520px);
+      overflow:auto;
+      line-height:1.9;
+      color:#111827;
+      font-size:14px;
+      font-weight:700;
+      text-align:justify;
+    }
+    .legal-modal-body ul{
+      margin:0;
+      padding-right:18px;
+      color:#374151;
+      font-size:14px;
+      line-height:1.9;
+      font-weight:700;
+    }
+    .legal-mini{
+      margin-top:10px;
+      font-size:12px;
+      color:#6b7280;
+      font-weight:800;
+      text-align:center;
+    }
+    .legal-sep{
+      border-top:1px dashed #00732f;
+      opacity:0.25;
+      margin:12px 0;
+    }
+
+    /* ✅ عناوين داخل نص المودال */
+    .legal-body-title{
+      text-align:center;
+      font-weight:900;
+      color:var(--p);
+      font-size:15px;
+      margin:0 0 10px;
+    }
+
+    /* ✅ (تعديل المطلوب فقط) ترجمة Choose file / No file chosen */
+    .file-wrap{
+      width:100%;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin-bottom:5px;
+    }
+    .file-native{
+      position:absolute !important;
+      width:1px !important;
+      height:1px !important;
+      padding:0 !important;
+      margin:-1px !important;
+      overflow:hidden !important;
+      clip:rect(0,0,0,0) !important;
+      white-space:nowrap !important;
+      border:0 !important;
+    }
+    .file-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:12px 14px;
+      border-radius:8px;
+      border:1px solid #cfead9;
+      background:#ecfdf5;
+      color:#00732f;
+      font-weight:900;
+      cursor:pointer;
+      user-select:none;
+      white-space:nowrap;
+      flex:0 0 auto;
+    }
+    .file-name{
+      flex:1 1 auto;
+      padding:12px;
+      border-radius:8px;
+      border:1px solid #ccc;
+      background:#f9f9f9;
+      font-size:13px;
+      font-weight:800;
+      color:#374151;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      white-space:nowrap;
+      text-align:right;
+      direction:rtl;
+    }
   </style>
 </head>
 
 <body>
 
+  <!-- ✅ Image Zoom Modal -->
   <div id="modalOverlay" onclick="closeModal()">
     <img id="modalImg" alt="صورة مكبرة">
+  </div>
+
+  <!-- ✅ Legal Modal -->
+  <div id="legalModalOverlay" onclick="closeLegalModal(event)">
+    <div class="legal-modal" role="dialog" aria-modal="true" aria-labelledby="legalModalTitle">
+      <div class="legal-modal-header">
+        <div class="legal-modal-title" id="legalModalTitle">—</div>
+        <button class="legal-modal-close" type="button" onclick="hideLegalModal()">إغلاق</button>
+      </div>
+      <div class="legal-modal-body" id="legalModalBody"></div>
+    </div>
   </div>
 
   <div class="container">
@@ -329,14 +433,14 @@
     <div class="card">
       <h1 class="logo-title">
         <span class="brand-lockup">
-          <span class="brand-platform">منصة</span>
+          <span class="brand-platform" style="font-size:46px;">منصة</span>
           <span class="oimi-style oimi-logo-title">O<span class="oimi-i">i</span>M<span class="oimi-i">i</span></span>
         </span>
       </h1>
 
       <div class="about-snippet">
-        <span class="brand-lockup" style="justify-content:flex-start;">
-          <span class="brand-platform" style="font-size:1em;">منصة</span>
+        <span class="brand-lockup">
+          <span class="brand-platform">منصة</span>
           <span class="oimi-style oimi-logo-inline">O<span class="oimi-i">i</span>M<span class="oimi-i">i</span></span>
         </span>
         منصة مهنية رقمية متخصصة في مساعدة الأفراد على تقديم أنفسهم باحتراف في سوق العمل، من خلال التقييم المهني وصياغة وتحسين السير الذاتية المتوافقة مع أنظمة التوظيف الحديثة (ATS).
@@ -470,7 +574,7 @@
                oninvalid="this.setCustomValidity('يرجى إدخال بريد إلكتروني صحيح')"
                oninput="this.setCustomValidity('');">
 
-        <label>كيف سمعت عننا؟ *</label>
+        <label>كيف سمعت عنا؟ *</label>
         <select id="u_source" required
                 oninvalid="this.setCustomValidity('يرجى اختيار مصدر التعرف علينا')"
                 oninput="this.setCustomValidity('');">
@@ -487,89 +591,28 @@
         <div class="separator" style="opacity:0.1;"></div>
 
         <label>أرفق السيرة الذاتية (PDF/صورة) *</label>
-        <input type="file" id="cv_file" accept=".pdf,image/*" required
-               oninvalid="this.setCustomValidity('يرجى إرفاق السيرة الذاتية')"
-               oninput="this.setCustomValidity('');">
+        <!-- ✅ ترجمة Choose file / No file chosen -->
+        <div class="file-wrap">
+          <input type="file" id="cv_file" class="file-native" accept=".pdf,image/*" required
+                 oninvalid="this.setCustomValidity('يرجى إرفاق السيرة الذاتية')"
+                 oninput="this.setCustomValidity('');">
+          <label for="cv_file" class="file-btn">اختر ملفًا</label>
+          <span class="file-name" id="cv_file_name">لم يتم اختيار ملف</span>
+        </div>
 
         <label>أرفق صورة إيصال التحويل *</label>
-        <input type="file" id="receipt_file" accept="image/*" required
-               oninvalid="this.setCustomValidity('يرجى إرفاق صورة إيصال التحويل')"
-               oninput="this.setCustomValidity('');">
+        <!-- ✅ ترجمة Choose file / No file chosen -->
+        <div class="file-wrap">
+          <input type="file" id="receipt_file" class="file-native" accept="image/*" required
+                 oninvalid="this.setCustomValidity('يرجى إرفاق صورة إيصال التحويل')"
+                 oninput="this.setCustomValidity('');">
+          <label for="receipt_file" class="file-btn">اختر ملفًا</label>
+          <span class="file-name" id="receipt_file_name">لم يتم اختيار ملف</span>
+        </div>
 
         <button type="submit" class="btn" id="submitBtn">إرسال الطلب وحفظ البيانات</button>
         <div id="statusBox" class="status info" aria-live="polite"></div>
       </form>
-    </div>
-
-    <div class="card" id="legal">
-
-      <!-- ✅ إضافة (بيانات الجهة/المزوّد) -->
-      <div class="policy-card" id="provider">
-        <h3>بيانات الجهة/المزوّد</h3>
-        <ul>
-          <li>
-            الاسم القانوني:
-            <span class="brand-lockup" style="gap:8px;">
-              <span class="brand-platform" style="font-size:14px;">منصة</span>
-              <span class="oimi-style oimi-logo-inline">O<span class="oimi-i">i</span>M<span class="oimi-i">i</span></span>
-            </span>
-          </li>
-          <li>وسيلة تواصل رسمية: هاتف/واتساب <span class="num-input" style="font-weight:900;">00249900065080</span></li>
-          <li>البريد الإلكتروني الرسمي: <strong>info@oimi.ae</strong></li>
-        </ul>
-      </div>
-
-      <div class="separator" style="margin:16px 0; opacity:0.15;"></div>
-
-      <div class="policy-card" id="disclaimer">
-        <h3>إخلاء مسؤولية قانوني</h3>
-        <div>
-          منصة
-          <span class="oimi-style oimi-logo-inline">O<span class="oimi-i">i</span>M<span class="oimi-i">i</span></span>
-          هي منصة خدمات مهنية رقمية مستقلة، تقدم خدمات التقييم المهني وصياغة وتحسين السير الذاتية والملفات المهنية فقط.
-          <br><br>
-          لا تقدم منصة
-          <span class="oimi-style oimi-logo-inline">O<span class="oimi-i">i</span>M<span class="oimi-i">i</span></span>
-          خدمات توظيف، ولا تعمل كوسيط توظيف، ولا تضمن الحصول على وظيفة أو مقابلة عمل، ولا تمثل أي جهة توظيف داخل أو خارج دولة الإمارات العربية المتحدة.
-          <br><br>
-          جميع الخدمات المقدمة هي خدمات رقمية تُنفذ عن بُعد، وتُقدم لأغراض التطوير المهني فقط.
-        </div>
-        <div class="mini-note">نهدف لرفع جودة ملفك المهني ووضوحه للسوق، دون أي وعود أو ضمانات توظيف.</div>
-      </div>
-
-      <div class="separator" style="margin:16px 0; opacity:0.15;"></div>
-
-      <div class="policy-card" id="terms">
-        <h3>الشروط والأحكام</h3>
-        <ul>
-          <li>باستخدامك لمنصة <span class="oimi-style oimi-logo-inline">O<span class="oimi-i">i</span>M<span class="oimi-i">i</span></span> فإنك توافق على هذه الشروط.</li>
-          <li>تقدم المنصة خدمات مهنية رقمية تشمل التقييم المهني وصياغة وتحسين السير الذاتية والملفات المهنية فقط.</li>
-          <li>لا تضمن المنصة التوظيف أو القبول الوظيفي أو الحصول على مقابلات عمل.</li>
-          <li>الرسوم المدفوعة هي مقابل الخدمة المهنية المقدمة فقط، ولا ترتبط بأي نتيجة توظيف.</li>
-          <li>يتم تنفيذ جميع الخدمات عن بُعد وبناءً على المعلومات والملفات التي يقدمها العميل.</li>
-          <li>لا تتحمل المنصة مسؤولية أي قرارات توظيف تتخذها جهات خارجية.</li>
-
-          <!-- ✅ تعديل سياسة الاسترجاع/الإلغاء (كما طلبت) -->
-          <li>بدء تنفيذ الخدمة يكون <strong>فوريًا</strong> بعد تأكيد استلام الطلب والملفات (السيرة الذاتية + بيانات الطلب + إيصال التحويل).</li>
-          <li>مدة التسليم المتوقعة: خلال <strong>7 أيام</strong> من تاريخ بدء التنفيذ.</li>
-          <li>سياسة الإلغاء/الاسترجاع: نظراً لأن الخدمة تُنفّذ فوراً وبشكل رقمي مخصص لكل عميل، فلا يتم استرجاع الرسوم بعد بدء التنفيذ، ويُستثنى من ذلك فقط حالة عدم تنفيذ الخدمة أو عدم تسليم المخرجات خلال مدة التسليم المذكورة دون سبب راجع للعميل.</li>
-          <li>آلية الشكوى والمتابعة: عبر واتساب <span class="num-input" style="font-weight:900;">00249900065080</span> أو عبر البريد الإلكتروني <strong>info@oimi.ae</strong>.</li>
-
-          <li>قد يتم تحديث هذه الشروط من وقت لآخر دون إشعار مسبق.</li>
-        </ul>
-      </div>
-
-      <div class="separator" style="margin:16px 0; opacity:0.15;"></div>
-
-      <div class="policy-card" id="about">
-        <h3>من نحن</h3>
-        <div>
-          منصة <span class="oimi-style oimi-logo-inline">O<span class="oimi-i">i</span>M<span class="oimi-i">i</span></span>
-          مبادرة سودانية لخدمة الباحثين عن عمل، ومنصة مهنية رقمية متخصصة في مساعدة الأفراد على تقديم أنفسهم باحتراف في سوق العمل، من خلال التقييم المهني وصياغة السير الذاتية المتوافقة مع أنظمة التوظيف الحديثة (ATS).
-          <br><br>
-          نعمل على تحسين جودة الملفات المهنية وتمكين الأفراد من عرض خبراتهم ومهاراتهم بشكل احترافي، دون التدخل في عمليات التوظيف أو الترشيح الوظيفي.
-        </div>
-      </div>
     </div>
 
     <div class="footer-section">
@@ -582,14 +625,17 @@
       </div>
 
       <div class="footer-legal-links">
-        <a href="#disclaimer">إخلاء المسؤولية</a>
-        <a href="#terms">الشروط والأحكام</a>
-        <a href="#about">من نحن</a>
+        <a href="#" onclick="openLegal('disclaimer'); return false;">إخلاء مسؤولية قانوني</a>
+        <a href="#" onclick="openLegal('terms'); return false;">الشروط والأحكام</a>
+        <a href="#" onclick="openLegal('about'); return false;">من نحن</a>
       </div>
 
-      <p style="font-size:12px; color:#666; margin:10px 0 5px;">تدار العمليات المالية والخدمية وفقاً للوائح جمهورية السودان</p>
       <p style="font-size:11px; color:#aaa; margin-top:5px;">
-        منصة <span class="oimi-style oimi-logo-inline">O<span class="oimi-i">i</span>M<span class="oimi-i">i</span></span> &copy; 2026
+        <span class="brand-lockup" style="gap:6px;">
+          <span class="brand-platform" style="font-size:11px;">منصة</span>
+          <span class="oimi-style oimi-logo-inline" style="font-size:11px;">O<span class="oimi-i">i</span>M<span class="oimi-i">i</span></span>
+        </span>
+        &copy; 2026
       </p>
     </div>
 
@@ -641,7 +687,7 @@
   }
   function closeModal(){
     document.getElementById('modalOverlay').style.display = 'none';
-    setSliderPaused(false); // ✅ دائمًا يرجع يشتغل
+    setSliderPaused(false);
   }
 
   // ✅ Loop images
@@ -679,11 +725,23 @@
     }, {passive:true});
 
     slider.addEventListener('touchend', (e)=>{
-      if (moved) return; // Swipe/Scroll لا يوقف
+      if (moved) return;
       const target = e.target;
-      if (target && target.tagName === 'IMG') return; // Tap على صورة: تكبير فقط
-      setSliderPaused(!SLIDER_PAUSED); // Tap على الفراغ: toggle
+      if (target && target.tagName === 'IMG') return;
+      setSliderPaused(!SLIDER_PAUSED);
     }, {passive:true});
+
+    /* ✅ (تعديل المطلوب فقط) تحديث اسم الملف بالعربية */
+    function bindFileInput(inputId, nameId){
+      const input = document.getElementById(inputId);
+      const nameEl = document.getElementById(nameId);
+      if(!input || !nameEl) return;
+      input.addEventListener('change', ()=>{
+        nameEl.textContent = (input.files && input.files[0]) ? input.files[0].name : 'لم يتم اختيار ملف';
+      });
+    }
+    bindFileInput('cv_file', 'cv_file_name');
+    bindFileInput('receipt_file', 'receipt_file_name');
   });
 
   function mb(bytes){ return bytes / (1024*1024); }
@@ -859,6 +917,8 @@
         window.open(`https://wa.me/249900065080?text=${encodeURIComponent(waMsg)}`, "_blank");
 
         form.reset();
+        document.getElementById('cv_file_name').textContent = 'لم يتم اختيار ملف';
+        document.getElementById('receipt_file_name').textContent = 'لم يتم اختيار ملف';
       } else {
         setStatus('error', result.message || "حدث خطأ أثناء الإرسال، حاول مرة أخرى.");
       }
@@ -871,6 +931,97 @@
     } finally {
       btn.disabled = false;
       btn.innerHTML = "إرسال الطلب وحفظ البيانات";
+    }
+  });
+
+  /* ===========================
+     ✅ Legal Modal (Buttons Only)
+     =========================== */
+
+  const BRAND = `
+    <span class="brand-lockup">
+      <span class="brand-platform">منصة</span>
+      <span class="oimi-style oimi-logo-inline">O<span class="oimi-i">i</span>M<span class="oimi-i">i</span></span>
+    </span>
+  `;
+
+  const legalContent = {
+    disclaimer: {
+      title: "إخلاء مسؤولية قانوني",
+      html: `
+        <div>
+          <div class="legal-body-title">إخلاء مسؤولية قانوني</div>
+          ${BRAND} هي منصة خدمات مهنية رقمية مستقلة، تقدم خدمات التقييم المهني وصياغة وتحسين السير الذاتية والملفات المهنية فقط.
+          <div class="legal-sep"></div>
+          لا تقدم ${BRAND} خدمات توظيف، ولا تعمل كوسيط توظيف، ولا تضمن الحصول على وظيفة أو مقابلة عمل، ولا تمثل أي جهة توظيف داخل أو خارج دولة الإمارات العربية المتحدة.
+          <div class="legal-sep"></div>
+          جميع الخدمات المقدمة هي خدمات رقمية تُنفذ عن بُعد، وتُقدم لأغراض التطوير المهني فقط.
+          <div class="legal-mini">نهدف لرفع جودة ملفك المهني ووضوحه للسوق، دون أي وعود أو ضمانات توظيف.</div>
+        </div>
+      `
+    },
+    terms: {
+      title: "الشروط والأحكام",
+      html: `
+        <div>
+          <div class="legal-body-title">الشروط والأحكام</div>
+          <ul>
+            <li>باستخدامك لـ ${BRAND} فإنك توافق على هذه الشروط.</li>
+            <li>تقدم المنصة خدمات مهنية رقمية تشمل التقييم المهني وصياغة وتحسين السير الذاتية والملفات المهنية فقط.</li>
+            <li>لا تضمن المنصة التوظيف أو القبول الوظيفي أو الحصول على مقابلات عمل.</li>
+            <li>الرسوم المدفوعة هي مقابل الخدمة المهنية المقدمة فقط، ولا ترتبط بأي نتيجة توظيف.</li>
+            <li>يتم تنفيذ جميع الخدمات عن بُعد وبناءً على المعلومات والملفات التي يقدمها العميل.</li>
+            <li>لا تتحمل المنصة مسؤولية أي قرارات توظيف تتخذها جهات خارجية.</li>
+            <li>بدء تنفيذ الخدمة يكون <strong>فوريًا</strong> بعد تأكيد استلام الطلب والملفات (السيرة الذاتية + بيانات الطلب + إيصال التحويل).</li>
+            <li>مدة التسليم المتوقعة: خلال <strong>7 أيام</strong> من تاريخ بدء التنفيذ.</li>
+            <li>سياسة الإلغاء/الاسترجاع: نظراً لأن الخدمة تُنفّذ فوراً وبشكل رقمي مخصص لكل عميل، فلا يتم استرجاع الرسوم بعد بدء التنفيذ، ويُستثنى من ذلك فقط حالة عدم تنفيذ الخدمة أو عدم تسليم المخرجات خلال مدة التسليم المذكورة دون سبب راجع للعميل.</li>
+            <li>آلية الشكوى والمتابعة: عبر واتساب <span class="num-input" style="font-weight:900;">00249900065080</span> أو عبر البريد الإلكتروني <strong>info@oimi.ae</strong>.</li>
+            <li>قد يتم تحديث هذه الشروط من وقت لآخر دون إشعار مسبق.</li>
+          </ul>
+        </div>
+      `
+    },
+    about: {
+      title: "من نحن",
+      html: `
+        <div>
+          <div class="legal-body-title">من نحن</div>
+          ${BRAND} مبادرة سودانية لخدمة الباحثين عن عمل، ومنصة مهنية رقمية متخصصة في مساعدة الأفراد على تقديم أنفسهم باحتراف في سوق العمل، من خلال التقييم المهني وصياغة السير الذاتية المتوافقة مع أنظمة التوظيف الحديثة (ATS).
+          <div class="legal-sep"></div>
+          نعمل على تحسين جودة الملفات المهنية وتمكين الأفراد من عرض خبراتهم ومهاراتهم بشكل احترافي، دون التدخل في عمليات التوظيف أو الترشيح الوظيفي.
+          <div class="legal-sep"></div>
+          <div style="text-align:center; font-weight:900; color:#111; margin-bottom:8px;">بيانات الجهة/المزوّد</div>
+          <ul>
+            <li>الاسم القانوني: ${BRAND}</li>
+            <li>وسيلة تواصل رسمية: هاتف/واتساب <span class="num-input" style="font-weight:900;">00249900065080</span></li>
+            <li>البريد الإلكتروني الرسمي: <strong>info@oimi.ae</strong></li>
+          </ul>
+          <div class="legal-sep"></div>
+          <div class="legal-mini">تدار العمليات المالية والخدمية وفقاً للوائح جمهورية السودان</div>
+        </div>
+      `
+    }
+  };
+
+  function openLegal(key){
+    const item = legalContent[key];
+    if(!item) return;
+    document.getElementById('legalModalTitle').textContent = item.title;
+    document.getElementById('legalModalBody').innerHTML = item.html;
+    document.getElementById('legalModalOverlay').style.display = 'flex';
+  }
+  function hideLegalModal(){
+    document.getElementById('legalModalOverlay').style.display = 'none';
+    document.getElementById('legalModalBody').innerHTML = '';
+    document.getElementById('legalModalTitle').textContent = '';
+  }
+  function closeLegalModal(e){
+    if (e.target && e.target.id === 'legalModalOverlay') hideLegalModal();
+  }
+  document.addEventListener('keydown', (e)=>{
+    if(e.key === 'Escape'){
+      if(document.getElementById('legalModalOverlay').style.display === 'flex') hideLegalModal();
+      if(document.getElementById('modalOverlay').style.display === 'flex') closeModal();
     }
   });
 </script>
