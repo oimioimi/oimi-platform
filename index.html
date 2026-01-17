@@ -412,12 +412,10 @@
 
 <body>
 
-  <!-- ✅ Image Zoom Modal -->
   <div id="modalOverlay" onclick="closeModal()">
     <img id="modalImg" alt="صورة مكبرة">
   </div>
 
-  <!-- ✅ Legal Modal -->
   <div id="legalModalOverlay" onclick="closeLegalModal(event)">
     <div class="legal-modal" role="dialog" aria-modal="true" aria-labelledby="legalModalTitle">
       <div class="legal-modal-header">
@@ -591,7 +589,6 @@
         <div class="separator" style="opacity:0.1;"></div>
 
         <label>أرفق السيرة الذاتية (PDF/صورة) *</label>
-        <!-- ✅ ترجمة Choose file / No file chosen -->
         <div class="file-wrap">
           <input type="file" id="cv_file" class="file-native" accept=".pdf,image/*" required
                  oninvalid="this.setCustomValidity('يرجى إرفاق السيرة الذاتية')"
@@ -601,7 +598,6 @@
         </div>
 
         <label>أرفق صورة إيصال التحويل *</label>
-        <!-- ✅ ترجمة Choose file / No file chosen -->
         <div class="file-wrap">
           <input type="file" id="receipt_file" class="file-native" accept="image/*" required
                  oninvalid="this.setCustomValidity('يرجى إرفاق صورة إيصال التحويل')"
@@ -620,7 +616,7 @@
         <a href="https://wa.me/249900065080" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
         <a href="#" onclick="return false;" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
         <a href="https://www.tiktok.com/@oimi.ae" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
-        <a href="#" onclick="return false;" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        <a href="https://www.linkedin.com/in/oimi-oimi-1627a63a6" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
         <a href="#" onclick="return false;" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
       </div>
 
@@ -935,8 +931,8 @@
   });
 
   /* ===========================
-     ✅ Legal Modal (Buttons Only)
-     =========================== */
+      ✅ Legal Modal (Buttons Only)
+      =========================== */
 
   const BRAND = `
     <span class="brand-lockup">
