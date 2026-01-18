@@ -1,6 +1,17 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      corePlugins: {
+        preflight: false, 
+      }
+    }
+  </script>
+
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-F3QLQPETRG"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -23,17 +34,48 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
   <style>
+    /* تنسيقات عامة للإضافات الجديدة */
+    html { scroll-behavior: smooth; }
+    
+    /* ============================================== */
+    /* كود الـ CSS الأصلي الخاص بك (كما هو) */
+    /* ============================================== */
     :root { --p: #00732f; --lg: #e8f5e9; }
 
     body{
       background:#fff; margin:0; font-family:'Segoe UI',sans-serif;
-      padding:5px; text-align:right; overflow-x:hidden;
+      padding:5px; 
+      text-align:right; overflow-x:hidden;
     }
     .container{ max-width:600px; margin:auto; display:flex; flex-direction:column; gap:10px; }
 
     .card{
       background:#fff; padding:18px; border-radius:20px;
       box-shadow:0 10px 30px rgba(0,0,0,0.1); border:1px solid #eee;
+      /* إضافة position: relative للسماح بوضع الزر داخله */
+      position: relative; 
+      overflow: hidden; /* لضمان عدم خروج الزر عن الحواف */
+    }
+
+    /* ✅ زر الشركات الجديد (Badge Style) */
+    .enterprise-badge {
+        position: absolute;
+        top: 0;
+        right: 0;
+        background-color: #0f172a; /* لون داكن */
+        color: #fff;
+        font-family: 'Cairo', sans-serif;
+        font-size: 12px;
+        font-weight: 700;
+        padding: 8px 16px;
+        text-decoration: none;
+        border-bottom-left-radius: 15px; /* انحناء جمالي */
+        z-index: 10;
+        transition: background 0.3s;
+        box-shadow: -2px 2px 5px rgba(0,0,0,0.1);
+    }
+    .enterprise-badge:hover {
+        background-color: #312e81; /* لون أفتح عند التحويم */
     }
 
     /* ✅ Logo style */
@@ -65,7 +107,7 @@
     .logo-title{
       text-align:center;
       font-weight:900;
-      margin:0 0 12px;
+      margin:25px 0 12px; /* تم زيادة الهامش العلوي قليلاً لعدم تغطية الزر */
       line-height:1.1;
     }
     .logo-title .oimi-style{ font-size:46px; }
@@ -358,7 +400,7 @@
       margin:0 0 10px;
     }
 
-    /* ✅ (تعديل المطلوب فقط) ترجمة Choose file / No file chosen */
+    /* ✅ ترجمة Choose file / No file chosen */
     .file-wrap{
       width:100%;
       display:flex;
@@ -429,6 +471,11 @@
   <div class="container">
 
     <div class="card">
+        
+        <a href="#companies-section" class="enterprise-badge">
+            نسخة المؤسسات (Enterprise)
+        </a>
+
       <h1 class="logo-title">
         <span class="brand-lockup">
           <span class="brand-platform" style="font-size:46px;">منصة</span>
@@ -634,393 +681,480 @@
         &copy; 2026
       </p>
     </div>
-
   </div>
 
-<script>
-  // ✅ Web App URL
-  const scriptURL = "https://script.google.com/macros/s/AKfycbxn86Bymuy6kFwBVl3UC6fXD8UKJUpKwWN6fNefOHDX_6XFH1vbzXF_AwVd2HHxhzCT/exec";
+  <div class="w-full overflow-hidden leading-[0] transform translate-y-1">
+      <svg class="relative block w-[calc(100%+1.3px)] h-[60px]" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+          <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="fill-slate-900"></path>
+      </svg>
+  </div>
 
-  // ✅ Token
-  const OIMI_TOKEN = "oimi22026";
+  <section id="companies-section" class="relative py-20 overflow-hidden isolate bg-slate-900 font-[Cairo]" dir="rtl">
+      
+      <div class="absolute inset-0 -z-10 h-full w-full bg-slate-950">
+          <div class="absolute top-0 right-0 -translate-y-12 translate-x-12 blur-3xl opacity-30">
+              <div class="aspect-[1155/678] w-[72rem] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+          </div>
+      </div>
 
-  const countryCodes = { "السودان":"00249","الإمارات":"00971","السعودية":"00966","مصر":"0020","قطر":"00974","عمان":"00968" };
-  const countryRules = {
-    "السودان":  { code:"00249", nsn:9  },
-    "الإمارات": { code:"00971", nsn:9  },
-    "السعودية": { code:"00966", nsn:9  },
-    "مصر":      { code:"0020",  nsn:10 },
-    "قطر":      { code:"00974", nsn:8  },
-    "عمان":     { code:"00968", nsn:8  }
-  };
+      <div class="mx-auto max-w-4xl px-6 lg:px-8 relative">
+        
+          <div class="text-center mb-10">
+              <div class="inline-flex items-center gap-2 rounded-full bg-indigo-500/10 px-4 py-1.5 text-sm font-semibold text-indigo-400 ring-1 ring-inset ring-indigo-500/20 mb-6 backdrop-blur-sm">
+                  <span>نسخة المؤسسات (Enterprise)</span>
+              </div>
+              <h1 class="text-4xl lg:text-5xl font-extrabold text-white mb-6">الوصول للنخبة.</h1>
+              <p class="text-lg text-slate-400 max-w-2xl mx-auto">بوابة حصرية للشركات للوصول إلى قاعدة بيانات الكفاءات.</p>
+          </div>
 
-  const statusBox = document.getElementById('statusBox');
-  function setStatus(type, msg){
-    statusBox.className = 'status ' + type;
-    statusBox.style.display = 'block';
-    statusBox.textContent = msg;
-  }
-  function clearStatus(){
-    statusBox.style.display = 'none';
-    statusBox.textContent = '';
-  }
+          <div class="relative rounded-3xl bg-white/5 p-8 shadow-2xl ring-1 ring-white/10 backdrop-blur-xl max-w-lg mx-auto">
+              <h3 class="text-xl font-bold text-white mb-2 text-center">طلب انضمام (تجريبي)</h3>
+              <p class="text-xs text-gray-400 mb-6 text-center">سجل منشأتك في قائمة الانتظار.</p>
 
-  // ✅ تحكم موحّد في حالة السلايدر
-  let SLIDER_PAUSED = false;
-  function setSliderPaused(paused){
-    SLIDER_PAUSED = paused;
-    const t = document.querySelector('.track');
-    if(!t) return;
-    t.style.animationPlayState = paused ? 'paused' : 'running';
-    t.style.webkitAnimationPlayState = paused ? 'paused' : 'running';
-  }
+              <form id="companyForm" class="space-y-4">
+                  <div>
+                      <input type="text" name="companyName" required placeholder="اسم المنشأة" class="block w-full rounded-lg border-0 bg-white/5 px-4 py-3 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm placeholder-gray-500 outline-none transition-all">
+                  </div>
+                  <div class="grid grid-cols-2 gap-4">
+                      <select name="industry" class="block w-full rounded-lg border-0 bg-white/5 px-4 py-3 text-gray-300 ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-indigo-500 text-sm [&>option]:text-black outline-none">
+                          <option value="" disabled selected>المجال...</option>
+                          <option value="IT">تقنية</option>
+                          <option value="Eng">هندسة</option>
+                          <option value="Med">طبي</option>
+                      </select>
+                      <input type="tel" name="phone" required placeholder="رقم الهاتف" class="block w-full rounded-lg border-0 bg-white/5 px-4 py-3 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-indigo-500 sm:text-sm text-left placeholder-gray-500 outline-none" dir="ltr">
+                  </div>
+                  <div>
+                      <input type="email" name="email" required placeholder="البريد الرسمي" class="block w-full rounded-lg border-0 bg-white/5 px-4 py-3 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-indigo-500 sm:text-sm text-left placeholder-gray-500 outline-none" dir="ltr">
+                  </div>
+                  <button type="submit" class="w-full rounded-lg bg-indigo-600 px-4 py-3.5 text-sm font-bold text-white shadow-lg hover:bg-indigo-500 transition-all cursor-pointer">تفعيل حساب تجريبي</button>
+                  <p class="text-[10px] text-gray-500 text-center mt-3 opacity-60">الخدمة مجانية للأغراض التجريبية (Beta).</p>
+              </form>
+          </div>
 
-  // ✅ تكبير الصورة: يوقف السلايدر — إغلاق: يرجّع يشتغل دائمًا
-  function zoomImg(src){
-    document.getElementById('modalImg').src = src;
-    document.getElementById('modalOverlay').style.display = 'flex';
-    setSliderPaused(true);
-  }
-  function closeModal(){
-    document.getElementById('modalOverlay').style.display = 'none';
-    setSliderPaused(false);
-  }
+      </div>
+  </section>
 
-  // ✅ Loop images
-  (function enhanceSliderLoop(){
-    const track = document.getElementById('track');
-    if (!track) return;
-    const imgs = Array.from(track.querySelectorAll('img'));
-    imgs.forEach(img => track.appendChild(img.cloneNode(true)));
-  })();
+  <script>
+    // ✅ Web App URL (نفسه للنموذجين)
+    const scriptURL = "https://script.google.com/macros/s/AKfycbxn86Bymuy6kFwBVl3UC6fXD8UKJUpKwWN6fNefOHDX_6XFH1vbzXF_AwVd2HHxhzCT/exec";
 
-  // ✅ سلوك الجوال الذكي: Tap يوقف/يشغل — Swipe لا يوقف — Tap على الصورة تكبير فقط
-  document.addEventListener('DOMContentLoaded', ()=>{
-    const slider = document.querySelector('.slider');
-    const track  = document.querySelector('.track');
-    if(!slider || !track) return;
+    // ✅ Token
+    const OIMI_TOKEN = "oimi22026";
 
-    let startX = 0, startY = 0;
-    let moved = false;
-    const MOVE_THRESHOLD = 10;
+    const countryCodes = { "السودان":"00249","الإمارات":"00971","السعودية":"00966","مصر":"0020","قطر":"00974","عمان":"00968" };
+    const countryRules = {
+      "السودان":  { code:"00249", nsn:9  },
+      "الإمارات": { code:"00971", nsn:9  },
+      "السعودية": { code:"00966", nsn:9  },
+      "مصر":      { code:"0020",  nsn:10 },
+      "قطر":      { code:"00974", nsn:8  },
+      "عمان":     { code:"00968", nsn:8  }
+    };
 
-    slider.addEventListener('touchstart', (e)=>{
-      const t = e.touches && e.touches[0];
-      if (!t) return;
-      moved = false;
-      startX = t.clientX;
-      startY = t.clientY;
-    }, {passive:true});
-
-    slider.addEventListener('touchmove', (e)=>{
-      const t = e.touches && e.touches[0];
-      if (!t) return;
-      const dx = Math.abs(t.clientX - startX);
-      const dy = Math.abs(t.clientY - startY);
-      if (dx > MOVE_THRESHOLD || dy > MOVE_THRESHOLD) moved = true;
-    }, {passive:true});
-
-    slider.addEventListener('touchend', (e)=>{
-      if (moved) return;
-      const target = e.target;
-      if (target && target.tagName === 'IMG') return;
-      setSliderPaused(!SLIDER_PAUSED);
-    }, {passive:true});
-
-    /* ✅ (تعديل المطلوب فقط) تحديث اسم الملف بالعربية */
-    function bindFileInput(inputId, nameId){
-      const input = document.getElementById(inputId);
-      const nameEl = document.getElementById(nameId);
-      if(!input || !nameEl) return;
-      input.addEventListener('change', ()=>{
-        nameEl.textContent = (input.files && input.files[0]) ? input.files[0].name : 'لم يتم اختيار ملف';
-      });
+    const statusBox = document.getElementById('statusBox');
+    function setStatus(type, msg){
+      statusBox.className = 'status ' + type;
+      statusBox.style.display = 'block';
+      statusBox.textContent = msg;
     }
-    bindFileInput('cv_file', 'cv_file_name');
-    bindFileInput('receipt_file', 'receipt_file_name');
-  });
+    function clearStatus(){
+      statusBox.style.display = 'none';
+      statusBox.textContent = '';
+    }
 
-  function mb(bytes){ return bytes / (1024*1024); }
-  function onlyDigits(s){ return String(s || "").replace(/\D/g, ""); }
+    // ✅ تحكم موحّد في حالة السلايدر
+    let SLIDER_PAUSED = false;
+    function setSliderPaused(paused){
+      SLIDER_PAUSED = paused;
+      const t = document.querySelector('.track');
+      if(!t) return;
+      t.style.animationPlayState = paused ? 'paused' : 'running';
+      t.style.webkitAnimationPlayState = paused ? 'paused' : 'running';
+    }
 
-  function handleCountryChange(el){
-    const code = countryCodes[el.value] || "";
-    const w = document.getElementById('u_whatsapp');
-    const p = document.getElementById('u_phone');
-    if (!code) return;
+    // ✅ تكبير الصورة: يوقف السلايدر — إغلاق: يرجّع يشتغل دائمًا
+    function zoomImg(src){
+      document.getElementById('modalImg').src = src;
+      document.getElementById('modalOverlay').style.display = 'flex';
+      setSliderPaused(true);
+    }
+    function closeModal(){
+      document.getElementById('modalOverlay').style.display = 'none';
+      setSliderPaused(false);
+    }
 
-    w.value = code; p.value = code;
+    // ✅ Loop images
+    (function enhanceSliderLoop(){
+      const track = document.getElementById('track');
+      if (!track) return;
+      const imgs = Array.from(track.querySelectorAll('img'));
+      imgs.forEach(img => track.appendChild(img.cloneNode(true)));
+    })();
 
-    [w,p].forEach(input=>{
-      input.addEventListener('input', function(){
-        this.setCustomValidity('');
-        if (!this.value.startsWith(code) && !this.value.startsWith("+")) this.value = code;
-        this.value = this.value.replace(/[^0-9+]/g,'');
+    // ✅ سلوك الجوال الذكي: Tap يوقف/يشغل — Swipe لا يوقف — Tap على الصورة تكبير فقط
+    document.addEventListener('DOMContentLoaded', ()=>{
+      const slider = document.querySelector('.slider');
+      const track  = document.querySelector('.track');
+      if(!slider || !track) return;
+
+      let startX = 0, startY = 0;
+      let moved = false;
+      const MOVE_THRESHOLD = 10;
+
+      slider.addEventListener('touchstart', (e)=>{
+        const t = e.touches && e.touches[0];
+        if (!t) return;
+        moved = false;
+        startX = t.clientX;
+        startY = t.clientY;
       }, {passive:true});
-      input.addEventListener('invalid', function(){
-        this.setCustomValidity('يرجى إدخال رقم صحيح');
+
+      slider.addEventListener('touchmove', (e)=>{
+        const t = e.touches && e.touches[0];
+        if (!t) return;
+        const dx = Math.abs(t.clientX - startX);
+        const dy = Math.abs(t.clientY - startY);
+        if (dx > MOVE_THRESHOLD || dy > MOVE_THRESHOLD) moved = true;
+      }, {passive:true});
+
+      slider.addEventListener('touchend', (e)=>{
+        if (moved) return;
+        const target = e.target;
+        if (target && target.tagName === 'IMG') return;
+        setSliderPaused(!SLIDER_PAUSED);
+      }, {passive:true});
+
+      /* ✅ (تعديل المطلوب فقط) تحديث اسم الملف بالعربية */
+      function bindFileInput(inputId, nameId){
+        const input = document.getElementById(inputId);
+        const nameEl = document.getElementById(nameId);
+        if(!input || !nameEl) return;
+        input.addEventListener('change', ()=>{
+          nameEl.textContent = (input.files && input.files[0]) ? input.files[0].name : 'لم يتم اختيار ملف';
+        });
+      }
+      bindFileInput('cv_file', 'cv_file_name');
+      bindFileInput('receipt_file', 'receipt_file_name');
+    });
+
+    function mb(bytes){ return bytes / (1024*1024); }
+    function onlyDigits(s){ return String(s || "").replace(/\D/g, ""); }
+
+    function handleCountryChange(el){
+      const code = countryCodes[el.value] || "";
+      const w = document.getElementById('u_whatsapp');
+      const p = document.getElementById('u_phone');
+      if (!code) return;
+
+      w.value = code; p.value = code;
+
+      [w,p].forEach(input=>{
+        input.addEventListener('input', function(){
+          this.setCustomValidity('');
+          if (!this.value.startsWith(code) && !this.value.startsWith("+")) this.value = code;
+          this.value = this.value.replace(/[^0-9+]/g,'');
+        }, {passive:true});
+        input.addEventListener('invalid', function(){
+          this.setCustomValidity('يرجى إدخال رقم صحيح');
+        });
       });
-    });
-  }
-
-  function normalizeIntlNumber(raw, country){
-    const rule = countryRules[country];
-    if (!rule) return null;
-    const nsn = rule.nsn;
-    const cc = onlyDigits(rule.code).replace(/^00/, "");
-    const s = String(raw || "").trim();
-    const hasPlus = s.startsWith("+");
-    let digits = s.replace(/\D/g, "");
-
-    if (digits.startsWith("00" + cc)) {
-    } else if (digits.startsWith(cc)) {
-      digits = "00" + digits;
-    } else if (hasPlus && digits.startsWith(cc)) {
-      digits = "00" + digits;
-    } else if (digits.startsWith("0") && digits.length === nsn + 1) {
-      digits = "00" + cc + digits.substring(1);
-    } else {
-      return null;
     }
 
-    const expectedTotal = 2 + cc.length + nsn;
-    if (digits.length !== expectedTotal) return null;
+    function normalizeIntlNumber(raw, country){
+      const rule = countryRules[country];
+      if (!rule) return null;
+      const nsn = rule.nsn;
+      const cc = onlyDigits(rule.code).replace(/^00/, "");
+      const s = String(raw || "").trim();
+      const hasPlus = s.startsWith("+");
+      let digits = s.replace(/\D/g, "");
 
-    const afterCode = digits.substring(("00" + cc).length);
-    if (afterCode.startsWith("0")) return { ok:false };
-
-    return { ok:true, normalizedDigits: digits };
-  }
-
-  function validateCountryAndPhones(){
-    const country = document.getElementById('u_country').value;
-    if (!country){ setStatus('error','يرجى اختيار بلد الإقامة.'); return false; }
-
-    const phoneEl = document.getElementById('u_phone');
-    const waEl = document.getElementById('u_whatsapp');
-
-    const phoneNorm = normalizeIntlNumber(phoneEl.value, country);
-    if (!phoneNorm || !phoneNorm.ok){ setStatus('error','رقم الهاتف غير صحيح حسب الدولة المختارة.'); return false; }
-
-    const waNorm = normalizeIntlNumber(waEl.value, country);
-    if (!waNorm || !waNorm.ok){ setStatus('error','رقم الواتساب غير صحيح حسب الدولة المختارة.'); return false; }
-
-    phoneEl.value = phoneNorm.normalizedDigits;
-    waEl.value = waNorm.normalizedDigits;
-    return true;
-  }
-
-  const MAX_CV_MB = 5;
-  const MAX_RECEIPT_MB = 3;
-
-  function toBase64(file){
-    return new Promise((resolve, reject)=>{
-      const r = new FileReader();
-      r.onload = () => {
-        try { resolve(String(r.result).split(',')[1]); }
-        catch { reject(new Error("فشل تحويل الملف")); }
-      };
-      r.onerror = () => reject(new Error("تعذر قراءة الملف"));
-      r.readAsDataURL(file);
-    });
-  }
-
-  async function fetchWithTimeout(url, options={}, timeoutMs=45000){
-    const controller = new AbortController();
-    const id = setTimeout(()=>controller.abort(), timeoutMs);
-    try { return await fetch(url, { ...options, signal: controller.signal }); }
-    finally { clearTimeout(id); }
-  }
-
-  const form = document.getElementById('oimi-form');
-  const nameArEl = document.getElementById('u_name_ar');
-
-  function ensureArabicNameRequired(){
-    const v = (nameArEl.value || "").trim();
-    if (!v || !/[\u0600-\u06FF]/.test(v)){
-      nameArEl.setCustomValidity('يرجى إدخال الاسم باللغة العربية');
-      return false;
-    }
-    nameArEl.setCustomValidity('');
-    return true;
-  }
-  nameArEl.addEventListener('input', ensureArabicNameRequired);
-
-  form.addEventListener('submit', async (e)=>{
-    e.preventDefault();
-    clearStatus();
-
-    nameArEl.value = (nameArEl.value || "").trim();
-    document.getElementById('u_name_en').value = (document.getElementById('u_name_en').value || "").trim();
-    document.getElementById('u_spec').value = (document.getElementById('u_spec').value || "").trim();
-    document.getElementById('u_email').value = (document.getElementById('u_email').value || "").trim();
-
-    if (!ensureArabicNameRequired()){ form.reportValidity(); return; }
-    if (!form.checkValidity()){ form.reportValidity(); return; }
-    if (!validateCountryAndPhones()) return;
-
-    const btn = document.getElementById('submitBtn');
-    if (btn.disabled) return;
-
-    const cvFile = document.getElementById('cv_file').files[0];
-    const receiptFile = document.getElementById('receipt_file').files[0];
-
-    if (!cvFile || !receiptFile){ setStatus('error','يرجى إرفاق السيرة الذاتية والإيصال.'); return; }
-    if (mb(cvFile.size) > MAX_CV_MB){ setStatus('error',`حجم السيرة الذاتية كبير. الحد الأقصى ${MAX_CV_MB}MB.`); return; }
-    if (mb(receiptFile.size) > MAX_RECEIPT_MB){ setStatus('error',`حجم الإيصال كبير. الحد الأقصى ${MAX_RECEIPT_MB}MB.`); return; }
-
-    btn.disabled = true;
-    btn.innerHTML = "جاري الحفظ وإرسال الملفات...";
-    setStatus('info','جاري إرسال البيانات... لا تغلق الصفحة.');
-
-    try{
-      const payload = {
-        "_token": OIMI_TOKEN,
-
-        "الاسم العربي": nameArEl.value,
-        "الاسم الانجليزي": document.getElementById('u_name_en').value,
-        "التخصص المهني": document.getElementById('u_spec').value,
-        "بلد الإقامة": document.getElementById('u_country').value,
-        "رقم الهاتف": "'" + document.getElementById('u_phone').value.trim(),
-        "رقم الواتس": "'" + document.getElementById('u_whatsapp').value.trim(),
-        "البريد الإلكتروني": document.getElementById('u_email').value,
-        "كيف سمعت عننا": document.getElementById('u_source').value,
-        "ملاحظات": (document.getElementById('u_notes').value || "").trim(),
-
-        "رابط السيرة الذاتية": await toBase64(cvFile),
-        "رابط الإيصال": await toBase64(receiptFile),
-
-        "cv_name": cvFile.name,
-        "cv_mime": cvFile.type || "application/octet-stream",
-        "receipt_name": receiptFile.name,
-        "receipt_mime": receiptFile.type || "application/octet-stream"
-      };
-
-      const response = await fetchWithTimeout(scriptURL, {
-        method: "POST",
-        body: JSON.stringify(payload)
-      }, 45000);
-
-      const text = await response.text();
-      let result;
-      try { result = JSON.parse(text); }
-      catch { throw new Error("رد غير مفهوم من السيرفر"); }
-
-      if (result.status === "success"){
-        setStatus('success', "تم بنجاح ✅ رقم تسجيلك: " + result.uniqueId);
-
-        const waMsg = `مرحباً منصة OIMI ✅\nأكملت التسجيل بنجاح.\nالاسم: ${payload["الاسم العربي"]}\nرقم التسجيل: ${result.uniqueId}`;
-        window.open(`https://wa.me/249900065080?text=${encodeURIComponent(waMsg)}`, "_blank");
-
-        form.reset();
-        document.getElementById('cv_file_name').textContent = 'لم يتم اختيار ملف';
-        document.getElementById('receipt_file_name').textContent = 'لم يتم اختيار ملف';
+      if (digits.startsWith("00" + cc)) {
+      } else if (digits.startsWith(cc)) {
+        digits = "00" + digits;
+      } else if (hasPlus && digits.startsWith(cc)) {
+        digits = "00" + digits;
+      } else if (digits.startsWith("0") && digits.length === nsn + 1) {
+        digits = "00" + cc + digits.substring(1);
       } else {
-        setStatus('error', result.message || "حدث خطأ أثناء الإرسال، حاول مرة أخرى.");
+        return null;
       }
 
-    } catch(err){
-      const msg = (err && err.name === "AbortError")
-        ? "انتهت مهلة الإرسال. يرجى إعادة المحاولة عند استقرار الإنترنت."
-        : "نعتذر، واجهنا مشكلة في الاتصال. يرجى التأكد من استقرار الإنترنت وإعادة المحاولة.";
-      setStatus('error', msg);
-    } finally {
-      btn.disabled = false;
-      btn.innerHTML = "إرسال الطلب وحفظ البيانات";
+      const expectedTotal = 2 + cc.length + nsn;
+      if (digits.length !== expectedTotal) return null;
+
+      const afterCode = digits.substring(("00" + cc).length);
+      if (afterCode.startsWith("0")) return { ok:false };
+
+      return { ok:true, normalizedDigits: digits };
     }
-  });
 
-  /* ===========================
-      ✅ Legal Modal (Buttons Only)
-      =========================== */
+    function validateCountryAndPhones(){
+      const country = document.getElementById('u_country').value;
+      if (!country){ setStatus('error','يرجى اختيار بلد الإقامة.'); return false; }
 
-  const BRAND = `
-    <span class="brand-lockup">
-      <span class="brand-platform">منصة</span>
-      <span class="oimi-style oimi-logo-inline">O<span class="oimi-i">i</span>M<span class="oimi-i">i</span></span>
-    </span>
-  `;
+      const phoneEl = document.getElementById('u_phone');
+      const waEl = document.getElementById('u_whatsapp');
 
-  const legalContent = {
-    disclaimer: {
-      title: "إخلاء مسؤولية قانوني",
-      html: `
-        <div>
-          <div class="legal-body-title">إخلاء مسؤولية قانوني</div>
-          ${BRAND} هي منصة خدمات مهنية رقمية مستقلة، تقدم خدمات التقييم المهني وصياغة وتحسين السير الذاتية والملفات المهنية فقط.
-          <div class="legal-sep"></div>
-          لا تقدم ${BRAND} خدمات توظيف، ولا تعمل كوسيط توظيف، ولا تضمن الحصول على وظيفة أو مقابلة عمل، ولا تمثل أي جهة توظيف داخل أو خارج دولة الإمارات العربية المتحدة.
-          <div class="legal-sep"></div>
-          جميع الخدمات المقدمة هي خدمات رقمية تُنفذ عن بُعد، وتُقدم لأغراض التطوير المهني فقط.
-          <div class="legal-mini">نهدف لرفع جودة ملفك المهني ووضوحه للسوق، دون أي وعود أو ضمانات توظيف.</div>
-        </div>
-      `
-    },
-    terms: {
-      title: "الشروط والأحكام",
-      html: `
-        <div>
-          <div class="legal-body-title">الشروط والأحكام</div>
-          <ul>
-            <li>باستخدامك لـ ${BRAND} فإنك توافق على هذه الشروط.</li>
-            <li>تقدم المنصة خدمات مهنية رقمية تشمل التقييم المهني وصياغة وتحسين السير الذاتية والملفات المهنية فقط.</li>
-            <li>لا تضمن المنصة التوظيف أو القبول الوظيفي أو الحصول على مقابلات عمل.</li>
-            <li>الرسوم المدفوعة هي مقابل الخدمة المهنية المقدمة فقط، ولا ترتبط بأي نتيجة توظيف.</li>
-            <li>يتم تنفيذ جميع الخدمات عن بُعد وبناءً على المعلومات والملفات التي يقدمها العميل.</li>
-            <li>لا تتحمل المنصة مسؤولية أي قرارات توظيف تتخذها جهات خارجية.</li>
-            <li>بدء تنفيذ الخدمة يكون <strong>فوريًا</strong> بعد تأكيد استلام الطلب والملفات (السيرة الذاتية + بيانات الطلب + إيصال التحويل).</li>
-            <li>مدة التسليم المتوقعة: خلال <strong>7 أيام</strong> من تاريخ بدء التنفيذ.</li>
-            <li>سياسة الإلغاء/الاسترجاع: نظراً لأن الخدمة تُنفّذ فوراً وبشكل رقمي مخصص لكل عميل، فلا يتم استرجاع الرسوم بعد بدء التنفيذ، ويُستثنى من ذلك فقط حالة عدم تنفيذ الخدمة أو عدم تسليم المخرجات خلال مدة التسليم المذكورة دون سبب راجع للعميل.</li>
-            <li>آلية الشكوى والمتابعة: عبر واتساب <span class="num-input" style="font-weight:900;">00249900065080</span> أو عبر البريد الإلكتروني <strong>info@oimi.ae</strong>.</li>
-            <li>قد يتم تحديث هذه الشروط من وقت لآخر دون إشعار مسبق.</li>
-          </ul>
-        </div>
-      `
-    },
-    about: {
-      title: "من نحن",
-      html: `
-        <div>
-          <div class="legal-body-title">من نحن</div>
-          ${BRAND} مبادرة سودانية لخدمة الباحثين عن عمل، ومنصة مهنية رقمية متخصصة في مساعدة الأفراد على تقديم أنفسهم باحتراف في سوق العمل، من خلال التقييم المهني وصياغة السير الذاتية المتوافقة مع أنظمة التوظيف الحديثة (ATS).
-          <div class="legal-sep"></div>
-          نعمل على تحسين جودة الملفات المهنية وتمكين الأفراد من عرض خبراتهم ومهاراتهم بشكل احترافي، دون التدخل في عمليات التوظيف أو الترشيح الوظيفي.
-          <div class="legal-sep"></div>
-          <div style="text-align:center; font-weight:900; color:#111; margin-bottom:8px;">بيانات الجهة/المزوّد</div>
-          <ul>
-            <li>الاسم القانوني: ${BRAND}</li>
-            <li>وسيلة تواصل رسمية: هاتف/واتساب <span class="num-input" style="font-weight:900;">00249900065080</span></li>
-            <li>البريد الإلكتروني الرسمي: <strong>info@oimi.ae</strong></li>
-          </ul>
-          <div class="legal-sep"></div>
-          <div class="legal-mini">تدار العمليات المالية والخدمية وفقاً للوائح جمهورية السودان</div>
-        </div>
-      `
+      const phoneNorm = normalizeIntlNumber(phoneEl.value, country);
+      if (!phoneNorm || !phoneNorm.ok){ setStatus('error','رقم الهاتف غير صحيح حسب الدولة المختارة.'); return false; }
+
+      const waNorm = normalizeIntlNumber(waEl.value, country);
+      if (!waNorm || !waNorm.ok){ setStatus('error','رقم الواتساب غير صحيح حسب الدولة المختارة.'); return false; }
+
+      phoneEl.value = phoneNorm.normalizedDigits;
+      waEl.value = waNorm.normalizedDigits;
+      return true;
     }
-  };
 
-  function openLegal(key){
-    const item = legalContent[key];
-    if(!item) return;
-    document.getElementById('legalModalTitle').textContent = item.title;
-    document.getElementById('legalModalBody').innerHTML = item.html;
-    document.getElementById('legalModalOverlay').style.display = 'flex';
-  }
-  function hideLegalModal(){
-    document.getElementById('legalModalOverlay').style.display = 'none';
-    document.getElementById('legalModalBody').innerHTML = '';
-    document.getElementById('legalModalTitle').textContent = '';
-  }
-  function closeLegalModal(e){
-    if (e.target && e.target.id === 'legalModalOverlay') hideLegalModal();
-  }
-  document.addEventListener('keydown', (e)=>{
-    if(e.key === 'Escape'){
-      if(document.getElementById('legalModalOverlay').style.display === 'flex') hideLegalModal();
-      if(document.getElementById('modalOverlay').style.display === 'flex') closeModal();
+    const MAX_CV_MB = 5;
+    const MAX_RECEIPT_MB = 3;
+
+    function toBase64(file){
+      return new Promise((resolve, reject)=>{
+        const r = new FileReader();
+        r.onload = () => {
+          try { resolve(String(r.result).split(',')[1]); }
+          catch { reject(new Error("فشل تحويل الملف")); }
+        };
+        r.onerror = () => reject(new Error("تعذر قراءة الملف"));
+        r.readAsDataURL(file);
+      });
     }
-  });
-</script>
+
+    async function fetchWithTimeout(url, options={}, timeoutMs=45000){
+      const controller = new AbortController();
+      const id = setTimeout(()=>controller.abort(), timeoutMs);
+      try { return await fetch(url, { ...options, signal: controller.signal }); }
+      finally { clearTimeout(id); }
+    }
+
+    const form = document.getElementById('oimi-form');
+    const nameArEl = document.getElementById('u_name_ar');
+
+    function ensureArabicNameRequired(){
+      const v = (nameArEl.value || "").trim();
+      if (!v || !/[\u0600-\u06FF]/.test(v)){
+        nameArEl.setCustomValidity('يرجى إدخال الاسم باللغة العربية');
+        return false;
+      }
+      nameArEl.setCustomValidity('');
+      return true;
+    }
+    nameArEl.addEventListener('input', ensureArabicNameRequired);
+
+    form.addEventListener('submit', async (e)=>{
+      e.preventDefault();
+      clearStatus();
+
+      nameArEl.value = (nameArEl.value || "").trim();
+      document.getElementById('u_name_en').value = (document.getElementById('u_name_en').value || "").trim();
+      document.getElementById('u_spec').value = (document.getElementById('u_spec').value || "").trim();
+      document.getElementById('u_email').value = (document.getElementById('u_email').value || "").trim();
+
+      if (!ensureArabicNameRequired()){ form.reportValidity(); return; }
+      if (!form.checkValidity()){ form.reportValidity(); return; }
+      if (!validateCountryAndPhones()) return;
+
+      const btn = document.getElementById('submitBtn');
+      if (btn.disabled) return;
+
+      const cvFile = document.getElementById('cv_file').files[0];
+      const receiptFile = document.getElementById('receipt_file').files[0];
+
+      if (!cvFile || !receiptFile){ setStatus('error','يرجى إرفاق السيرة الذاتية والإيصال.'); return; }
+      if (mb(cvFile.size) > MAX_CV_MB){ setStatus('error',`حجم السيرة الذاتية كبير. الحد الأقصى ${MAX_CV_MB}MB.`); return; }
+      if (mb(receiptFile.size) > MAX_RECEIPT_MB){ setStatus('error',`حجم الإيصال كبير. الحد الأقصى ${MAX_RECEIPT_MB}MB.`); return; }
+
+      btn.disabled = true;
+      btn.innerHTML = "جاري الحفظ وإرسال الملفات...";
+      setStatus('info','جاري إرسال البيانات... لا تغلق الصفحة.');
+
+      try{
+        const payload = {
+          "_token": OIMI_TOKEN,
+
+          "الاسم العربي": nameArEl.value,
+          "الاسم الانجليزي": document.getElementById('u_name_en').value,
+          "التخصص المهني": document.getElementById('u_spec').value,
+          "بلد الإقامة": document.getElementById('u_country').value,
+          "رقم الهاتف": "'" + document.getElementById('u_phone').value.trim(),
+          "رقم الواتس": "'" + document.getElementById('u_whatsapp').value.trim(),
+          "البريد الإلكتروني": document.getElementById('u_email').value,
+          "كيف سمعت عننا": document.getElementById('u_source').value,
+          "ملاحظات": (document.getElementById('u_notes').value || "").trim(),
+
+          "رابط السيرة الذاتية": await toBase64(cvFile),
+          "رابط الإيصال": await toBase64(receiptFile),
+
+          "cv_name": cvFile.name,
+          "cv_mime": cvFile.type || "application/octet-stream",
+          "receipt_name": receiptFile.name,
+          "receipt_mime": receiptFile.type || "application/octet-stream"
+        };
+
+        const response = await fetchWithTimeout(scriptURL, {
+          method: "POST",
+          body: JSON.stringify(payload)
+        }, 45000);
+
+        const text = await response.text();
+        let result;
+        try { result = JSON.parse(text); }
+        catch { throw new Error("رد غير مفهوم من السيرفر"); }
+
+        if (result.status === "success"){
+          setStatus('success', "تم بنجاح ✅ رقم تسجيلك: " + result.uniqueId);
+
+          const waMsg = `مرحباً منصة OIMI ✅\nأكملت التسجيل بنجاح.\nالاسم: ${payload["الاسم العربي"]}\nرقم التسجيل: ${result.uniqueId}`;
+          window.open(`https://wa.me/249900065080?text=${encodeURIComponent(waMsg)}`, "_blank");
+
+          form.reset();
+          document.getElementById('cv_file_name').textContent = 'لم يتم اختيار ملف';
+          document.getElementById('receipt_file_name').textContent = 'لم يتم اختيار ملف';
+        } else {
+          setStatus('error', result.message || "حدث خطأ أثناء الإرسال، حاول مرة أخرى.");
+        }
+
+      } catch(err){
+        const msg = (err && err.name === "AbortError")
+          ? "انتهت مهلة الإرسال. يرجى إعادة المحاولة عند استقرار الإنترنت."
+          : "نعتذر، واجهنا مشكلة في الاتصال. يرجى التأكد من استقرار الإنترنت وإعادة المحاولة.";
+        setStatus('error', msg);
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = "إرسال الطلب وحفظ البيانات";
+      }
+    });
+
+    /* ===========================
+       ✅ Legal Modal (Buttons Only)
+       =========================== */
+
+    const BRAND = `
+      <span class="brand-lockup">
+        <span class="brand-platform">منصة</span>
+        <span class="oimi-style oimi-logo-inline">O<span class="oimi-i">i</span>M<span class="oimi-i">i</span></span>
+      </span>
+    `;
+
+    const legalContent = {
+      disclaimer: {
+        title: "إخلاء مسؤولية قانوني",
+        html: `
+          <div>
+            <div class="legal-body-title">إخلاء مسؤولية قانوني</div>
+            ${BRAND} هي منصة خدمات مهنية رقمية مستقلة، تقدم خدمات التقييم المهني وصياغة وتحسين السير الذاتية والملفات المهنية فقط.
+            <div class="legal-sep"></div>
+            لا تقدم ${BRAND} خدمات توظيف، ولا تعمل كوسيط توظيف، ولا تضمن الحصول على وظيفة أو مقابلة عمل، ولا تمثل أي جهة توظيف داخل أو خارج دولة الإمارات العربية المتحدة.
+            <div class="legal-sep"></div>
+            جميع الخدمات المقدمة هي خدمات رقمية تُنفذ عن بُعد، وتُقدم لأغراض التطوير المهني فقط.
+            <div class="legal-mini">نهدف لرفع جودة ملفك المهني ووضوحه للسوق، دون أي وعود أو ضمانات توظيف.</div>
+          </div>
+        `
+      },
+      terms: {
+        title: "الشروط والأحكام",
+        html: `
+          <div>
+            <div class="legal-body-title">الشروط والأحكام</div>
+            <ul>
+              <li>باستخدامك لـ ${BRAND} فإنك توافق على هذه الشروط.</li>
+              <li>تقدم المنصة خدمات مهنية رقمية تشمل التقييم المهني وصياغة وتحسين السير الذاتية والملفات المهنية فقط.</li>
+              <li>لا تضمن المنصة التوظيف أو القبول الوظيفي أو الحصول على مقابلات عمل.</li>
+              <li>الرسوم المدفوعة هي مقابل الخدمة المهنية المقدمة فقط، ولا ترتبط بأي نتيجة توظيف.</li>
+              <li>يتم تنفيذ جميع الخدمات عن بُعد وبناءً على المعلومات والملفات التي يقدمها العميل.</li>
+              <li>لا تتحمل المنصة مسؤولية أي قرارات توظيف تتخذها جهات خارجية.</li>
+              <li>بدء تنفيذ الخدمة يكون <strong>فوريًا</strong> بعد تأكيد استلام الطلب والملفات (السيرة الذاتية + بيانات الطلب + إيصال التحويل).</li>
+              <li>مدة التسليم المتوقعة: خلال <strong>7 أيام</strong> من تاريخ بدء التنفيذ.</li>
+              <li>سياسة الإلغاء/الاسترجاع: نظراً لأن الخدمة تُنفّذ فوراً وبشكل رقمي مخصص لكل عميل، فلا يتم استرجاع الرسوم بعد بدء التنفيذ، ويُستثنى من ذلك فقط حالة عدم تنفيذ الخدمة أو عدم تسليم المخرجات خلال مدة التسليم المذكورة دون سبب راجع للعميل.</li>
+              <li>آلية الشكوى والمتابعة: عبر واتساب <span class="num-input" style="font-weight:900;">00249900065080</span> أو عبر البريد الإلكتروني <strong>info@oimi.ae</strong>.</li>
+              <li>قد يتم تحديث هذه الشروط من وقت لآخر دون إشعار مسبق.</li>
+            </ul>
+          </div>
+        `
+      },
+      about: {
+        title: "من نحن",
+        html: `
+          <div>
+            <div class="legal-body-title">من نحن</div>
+            ${BRAND} مبادرة سودانية لخدمة الباحثين عن عمل، ومنصة مهنية رقمية متخصصة في مساعدة الأفراد على تقديم أنفسهم باحتراف في سوق العمل، من خلال التقييم المهني وصياغة السير الذاتية المتوافقة مع أنظمة التوظيف الحديثة (ATS).
+            <div class="legal-sep"></div>
+            نعمل على تحسين جودة الملفات المهنية وتمكين الأفراد من عرض خبراتهم ومهاراتهم بشكل احترافي، دون التدخل في عمليات التوظيف أو الترشيح الوظيفي.
+            <div class="legal-sep"></div>
+            <div style="text-align:center; font-weight:900; color:#111; margin-bottom:8px;">بيانات الجهة/المزوّد</div>
+            <ul>
+              <li>الاسم القانوني: ${BRAND}</li>
+              <li>وسيلة تواصل رسمية: هاتف/واتساب <span class="num-input" style="font-weight:900;">00249900065080</span></li>
+              <li>البريد الإلكتروني الرسمي: <strong>info@oimi.ae</strong></li>
+            </ul>
+            <div class="legal-sep"></div>
+            <div class="legal-mini">تدار العمليات المالية والخدمية وفقاً للوائح جمهورية السودان</div>
+          </div>
+        `
+      }
+    };
+
+    function openLegal(key){
+      const item = legalContent[key];
+      if(!item) return;
+      document.getElementById('legalModalTitle').textContent = item.title;
+      document.getElementById('legalModalBody').innerHTML = item.html;
+      document.getElementById('legalModalOverlay').style.display = 'flex';
+    }
+    function hideLegalModal(){
+      document.getElementById('legalModalOverlay').style.display = 'none';
+      document.getElementById('legalModalBody').innerHTML = '';
+      document.getElementById('legalModalTitle').textContent = '';
+    }
+    function closeLegalModal(e){
+      if (e.target && e.target.id === 'legalModalOverlay') hideLegalModal();
+    }
+    document.addEventListener('keydown', (e)=>{
+      if(e.key === 'Escape'){
+        if(document.getElementById('legalModalOverlay').style.display === 'flex') hideLegalModal();
+        if(document.getElementById('modalOverlay').style.display === 'flex') closeModal();
+      }
+    });
+
+    /* ===========================
+       ✅ كود تشغيل نموذج الشركات الجديد (مضاف)
+       =========================== */
+    const companyForm = document.getElementById('companyForm');
+
+    if (companyForm) {
+        companyForm.addEventListener('submit', e => {
+            e.preventDefault();
+            
+            const btn = companyForm.querySelector('button');
+            const originalContent = btn.innerHTML;
+            
+            btn.innerHTML = 'جاري الاتصال...';
+            btn.disabled = true;
+            btn.classList.add('opacity-75');
+
+            const data = new FormData(companyForm);
+            data.append('formType', 'company_registration'); 
+            
+            fetch(scriptURL, { method: 'POST', body: data })
+                .then(response => {
+                    alert("تم تسجيل طلب الشركة بنجاح!");
+                    companyForm.reset();
+                })
+                .catch(error => {
+                    console.error('Error!', error.message);
+                    alert("حدث خطأ في الاتصال.");
+                })
+                .finally(() => {
+                    btn.innerHTML = originalContent;
+                    btn.disabled = false;
+                    btn.classList.remove('opacity-75');
+                });
+        });
+    }
+  </script>
 
 </body>
 </html>
